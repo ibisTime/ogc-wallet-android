@@ -138,7 +138,7 @@
                                     android:ellipsize="end"
                                     android:maxLines="1"
                                     android:text="0"
-                                    android:textColor="#007AFF"
+                                    android:textColor="#2F49A5"
                                     android:textSize="12sp" />
 
                             </LinearLayout>

@@ -84,7 +84,7 @@ public class InviteQrActivity extends AbsStatusBarTranslucentActivity implements
 
         mPermissionHelper = new PermissionHelper(this);
 
-        setPageBgImage(R.drawable.invite_bg);
+        setPageBgRes(R.drawable.invite_bg);
 
         setStatusBarWhite();
 

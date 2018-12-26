@@ -104,7 +104,7 @@ public class WebViewImgBgActivity extends AbsStatusBarTranslucentActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        setPageBgImage(R.drawable.my_bg);
+        setPageBgRes(R.drawable.my_bg);
         initLayout();
         initData();
     }

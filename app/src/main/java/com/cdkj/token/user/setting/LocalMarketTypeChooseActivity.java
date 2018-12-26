@@ -47,7 +47,7 @@ public class LocalMarketTypeChooseActivity extends AbsStatusBarTranslucentActivi
     public void afterCreate(Bundle savedInstanceState) {
 
         setMidTitle(R.string.local_coin);
-        setPageBgImage(R.drawable.my_bg);
+        setPageBgRes(R.drawable.my_bg);
 
         LocalMarketTypePresenter localMarketTypePresenter = new LocalMarketTypePresenter();
 

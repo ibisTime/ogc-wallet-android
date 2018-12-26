@@ -36,7 +36,7 @@ public class GuideActivity extends AbsStatusBarTranslucentActivity {
     public void afterCreate(Bundle savedInstanceState) {
 
         sheShowTitle(false);
-        setPageBgImage(R.mipmap.app_page_bg_new);
+        setPageBgRes(R.mipmap.app_page_bg_new);
 
         init();
         initViewPager();

@@ -12,8 +12,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cdkj.baselibrary.activitys.AppBuildTypeActivity;
-import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.AppConfig;
+import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.OtherLibManager;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsStatusBarTranslucentActivity;
@@ -32,7 +32,7 @@ import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
-import com.cdkj.token.databinding.ActivitySignInBinding;
+import com.cdkj.token.databinding.ActivitySignIn2Binding;
 import com.cdkj.token.user.CountryCodeListActivity;
 
 import java.util.HashMap;
@@ -46,7 +46,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
 
     private LoginPresenter mPresenter;
     private SendPhoneCodePresenter mSendPhoneCodePresenter;
-    private ActivitySignInBinding mBinding;
+    private ActivitySignIn2Binding mBinding;
 
     private final String CODE_LOGIN_CODE = "805044";//验证码登录接口编号
 
@@ -69,7 +69,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
 
     @Override
     public View addContentView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_sign_in, null, false);
+        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_sign_in2, null, false);
         return mBinding.getRoot();
     }
 
@@ -78,7 +78,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
 
         sheShowTitle(false);
 
-        setPageBgImage(R.drawable.sign_in_bg);
+        setPageBgRes(R.drawable.sign_in_bg);
 
         mPresenter = new LoginPresenter(this);
         mSendPhoneCodePresenter = new SendPhoneCodePresenter(this, this);
@@ -110,19 +110,19 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
 
     private void initListener() {
         //改变登录方式
-        mBinding.tvChangeLogin.setOnClickListener(v -> {
-            if (isCodeLogin()) {    //显示密码登录
-                mBinding.edtCode.setVisibility(View.GONE);
-                mBinding.edtPassword.setVisibility(View.VISIBLE);
-                mBinding.tvChangeLogin.setText(R.string.code_login);
-
-            } else {                                                     //显示验证码登录
-                mBinding.edtCode.setVisibility(View.VISIBLE);
-                mBinding.edtPassword.setVisibility(View.GONE);
-                mBinding.tvChangeLogin.setText(R.string.account_login);
-            }
-
-        });
+//        mBinding.tvChangeLogin.setOnClickListener(v -> {
+//            if (isCodeLogin()) {    //显示密码登录
+//                mBinding.edtCode.setVisibility(View.GONE);
+//                mBinding.edtPassword.setVisibility(View.VISIBLE);
+//                mBinding.tvChangeLogin.setText(R.string.code_login);
+//
+//            } else {                                                     //显示验证码登录
+//                mBinding.edtCode.setVisibility(View.VISIBLE);
+//                mBinding.edtPassword.setVisibility(View.GONE);
+//                mBinding.tvChangeLogin.setText(R.string.account_login);
+//            }
+//
+//        });
 
         //发送验证码
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
@@ -145,7 +145,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
         });
 
         //找回密码
-        mBinding.edtPassword.getRughtText().setOnClickListener(v -> {
+        mBinding.tvForget.setOnClickListener(v -> {
             FindLoginPwdActivity.open(this, mBinding.edtUsername.getText().toString().trim());
         });
 

@@ -47,7 +47,7 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(R.string.accounts_and_security);
-        setPageBgImage(R.drawable.my_bg);
+        setPageBgRes(R.drawable.my_bg);
         initListener();
 
     }

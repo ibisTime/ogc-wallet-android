@@ -39,6 +39,6 @@ public class UserAboutActivity extends AbsStatusBarTranslucentActivity {
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(getStrRes(R.string.user_about));
         mBinding.tvVersionName.setText(getString(R.string.version_num, AppUtils.getAppVersionName(this)));
-        setPageBgImage(R.drawable.my_bg);
+        setPageBgRes(R.drawable.my_bg);
     }
 }

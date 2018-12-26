@@ -47,11 +47,11 @@ public abstract class AbsStatusBarTranslucentActivity extends BaseActivity {
      */
     public abstract void afterCreate(Bundle savedInstanceState);
 
-    public void setPageBgImage(@DrawableRes int imgId) {
+    public void setPageBgRes(@DrawableRes int imgId) {
         mBaseBinding.linLayoutRoot.setBackgroundResource(imgId);
     }
 
-    public void setTitleBgImage(@DrawableRes int imgId) {
+    public void setTitleBgRes(@DrawableRes int imgId) {
         mBaseBinding.fraLayoutTitle.setBackgroundResource(imgId);
     }
 

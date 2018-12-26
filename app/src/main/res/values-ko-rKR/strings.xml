@@ -605,7 +605,7 @@
     <string name="question_fix">버전복원</string>
     <!--奖励金额   bug等级  修复版本-->
 
-    <string name="question_done"><Data><![CDATA[<font color="#007AFF">%1$s</font> %2$s 장려하고 이미 %3$s 버전으로 복원함]]></Data></string>
+    <string name="question_done"><Data><![CDATA[<font color="#2F49A5">%1$s</font> %2$s 장려하고 이미 %3$s 버전으로 복원함]]></Data></string>
 
     <string name="bug_level_1_1">심각</string>
 

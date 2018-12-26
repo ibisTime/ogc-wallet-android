@@ -53,7 +53,7 @@ public class InviteRuleActivity extends AbsStatusBarTranslucentActivity {
         setWhiteTitle();
         setStatusBarWhite();
         setMidTitle(getString(R.string.invite_gift));
-        setPageBgImage(R.drawable.invite_bg);
+        setPageBgRes(R.drawable.invite_bg);
         getinviteRule();
         getinviteRule2();
 

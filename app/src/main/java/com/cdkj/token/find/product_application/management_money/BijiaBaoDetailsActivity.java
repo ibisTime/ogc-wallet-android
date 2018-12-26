@@ -66,7 +66,7 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setWhiteTitle();
-        setPageBgImage(R.drawable.money_manager_bg2);
+        setPageBgRes(R.drawable.money_manager_bg2);
         if (getIntent() != null) {
             mProductCode = getIntent().getStringExtra(CdRouteHelper.DATASIGN);
         }

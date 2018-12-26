@@ -664,7 +664,7 @@
 
     <!--<string name="question_done">Reward %1$s&#45;&#45;Optimization flaw, has been repaired in %2$s version</string>-->
     <!--奖励金额   bug等级  修复版本-->
-    <string name="question_done"><Data><![CDATA[Reward<font color="#007AFF">%1$s</font>--%2$s, has been repaired in %3$s version]]></Data></string>
+    <string name="question_done"><Data><![CDATA[Reward<font color="#2F49A5">%1$s</font>--%2$s, has been repaired in %3$s version]]></Data></string>
 
     <string name="bug_level_1_1">Serious</string>
 

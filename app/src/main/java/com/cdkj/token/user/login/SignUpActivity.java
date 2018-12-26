@@ -4,15 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.OtherLibManager;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
-import com.cdkj.baselibrary.base.AbsActivity;
+import com.cdkj.baselibrary.base.AbsStatusBarTranslucentActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.SendCodeInterface;
 import com.cdkj.baselibrary.interfaces.SendPhoneCodePresenter;
@@ -27,7 +29,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
-import com.cdkj.token.databinding.ActivitySignUpBinding;
+import com.cdkj.token.databinding.ActivitySignUp2Binding;
 import com.cdkj.token.user.CountryCodeListActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,11 +40,13 @@ import java.util.Map;
 import retrofit2.Call;
 
 
-public class SignUpActivity extends AbsActivity implements SendCodeInterface {
+public class SignUpActivity extends AbsStatusBarTranslucentActivity implements SendCodeInterface {
 
 
     private SendPhoneCodePresenter mSendCodePresenter;
-    private ActivitySignUpBinding mBinding;
+    private ActivitySignUp2Binding mBinding;
+
+    private String tabPosition;
 
     public static void open(Context context) {
         if (context == null) {
@@ -53,21 +57,14 @@ public class SignUpActivity extends AbsActivity implements SendCodeInterface {
     }
 
     @Override
-    protected boolean canLoadTopTitleView() {
-        return false;
-    }
-
-    @Override
-    public View addMainView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_sign_up, null, false);
+    public View addContentView() {
+        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_sign_up2, null, false);
         return mBinding.getRoot();
     }
 
-
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        setTopTitle(getStrRes(R.string.user_title_sign_up));
-        setSubLeftImgState(true);
+        setPageBgRes(R.color.white);
 
         mSendCodePresenter = new SendPhoneCodePresenter(this, this);
 
@@ -87,11 +84,28 @@ public class SignUpActivity extends AbsActivity implements SendCodeInterface {
 
 
     private void initListener() {
+
+        mBinding.tlWay.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.e("tab",tab.getPosition()+"");
+
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
         //国家区号选择
         mBinding.edtMobile.getLeftRootView().setOnClickListener(view -> {
             CountryCodeListActivity.open(this, true);
         });
-        mBinding.tvFinish.setOnClickListener(view -> finish());
 
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
             if (check("code")) {

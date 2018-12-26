@@ -51,6 +51,7 @@
                 android:layout_marginTop="20dp"
                 app:hint_text="@string/user_sign_in_mobile_hint" />
 
+
             <com.cdkj.token.views.SignInEditClearCodeLayout
                 android:id="@+id/edt_code"
                 android:layout_width="match_parent"

@@ -71,7 +71,7 @@ public class InviteActivity extends AbsStatusBarTranslucentActivity implements U
         setWhiteTitle();
         setStatusBarWhite();
         setMidTitle(getString(R.string.invite_gift));
-        setPageBgImage(R.drawable.invite_bg);
+        setPageBgRes(R.drawable.invite_bg);
 
         setClickListener();
 

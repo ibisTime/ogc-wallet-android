@@ -54,7 +54,7 @@ public class AppConfig {
 
 
     // 环境访问地址
-    public static final String BASE_URL_DEV = "http://m.dev.thachain.org/"; // 研发
+    public static final String BASE_URL_DEV = "http://120.26.6.213:5801/forward-service/"; // 研发
     public static final String BASE_URL_TEST = "https://test.thachain.org/"; // 测试
     public static final String BASE_URL_ONLINE = "https://app.tha.hichengdai.com/"; // 线上
 
