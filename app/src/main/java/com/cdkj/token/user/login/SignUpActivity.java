@@ -8,7 +8,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.AppConfig;
@@ -39,14 +38,18 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.baselibrary.utils.StringUtils.isEmail;
+
 
 public class SignUpActivity extends AbsStatusBarTranslucentActivity implements SendCodeInterface {
 
+    private static final int TAB_MOBILE = 0;
+    private static final int TAB_EMAIL = 1;
 
     private SendPhoneCodePresenter mSendCodePresenter;
     private ActivitySignUp2Binding mBinding;
 
-    private String tabPosition;
+    private int tabPosition = 0;
 
     public static void open(Context context) {
         if (context == null) {
@@ -88,7 +91,20 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
         mBinding.tlWay.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.e("tab",tab.getPosition()+"");
+
+                tabPosition = tab.getPosition();
+
+                if (TAB_MOBILE == tabPosition){
+
+                    mBinding.edtMobile.setVisibility(View.VISIBLE);
+                    mBinding.edtEmail.setVisibility(View.GONE);
+
+                }else if (TAB_EMAIL == tabPosition){
+
+                    mBinding.edtMobile.setVisibility(View.GONE);
+                    mBinding.edtEmail.setVisibility(View.VISIBLE);
+
+                }
 
 
             }
@@ -130,9 +146,25 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
 
     private boolean check(String type) {
 
-        if (TextUtils.isEmpty(mBinding.edtMobile.getText().toString().trim())) {
-            UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_mobile_hint));
-            return false;
+        if (TAB_MOBILE == tabPosition){
+
+            if (TextUtils.isEmpty(mBinding.edtMobile.getText().toString().trim())) {
+                UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_mobile_hint));
+                return false;
+            }
+
+        }else if (TAB_EMAIL == tabPosition){
+
+            if (TextUtils.isEmpty(mBinding.edtEmail.getText().toString().trim())) {
+                UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_email_hint));
+                return false;
+            }
+
+            if (isEmail(mBinding.edtEmail.getText().toString().trim())) {
+                UITipDialog.showInfoNoIcon(this, getString(R.string.signup_email_format_wrong));
+                return false;
+            }
+
         }
 
         if (type.equals("all")) {

@@ -1063,6 +1063,9 @@
     <string name="rank_100">You are not on the ranking list, keep going</string>
     <string name="ssl_error">ssl证书验证失败</string>
     <string name="go_on">继续</string>
+    <string name="signup_by_mobile">手机注册</string>
+    <string name="signup_by_email">邮箱注册</string>
+    <string name="signup_email_format_wrong">邮箱格式不正确</string>
 
 </resources>
 

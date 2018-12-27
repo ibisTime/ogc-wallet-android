@@ -914,4 +914,7 @@
     <string name="income_rank_more">더보기</string>
     <string name="buyamount_not_empty">구입분액 수도 없 는 빈</string>
     <string name="rank_100">순위100위에 들지못했습니다. 힘내세요</string>
+    <string name="signup_by_mobile">手机注册</string>
+    <string name="signup_by_email">邮箱注册</string>
+    <string name="signup_email_format_wrong">邮箱格式不正确</string>
 </resources>
