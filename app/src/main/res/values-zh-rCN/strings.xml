@@ -169,7 +169,7 @@
 
 
     <string name="user_sign_in_mobile_hint">请输入手机号</string>
-    <string name="user_sign_in_pwd_hint">请输入密码</string>
+
     <string name="user_sign_in_confirm">确认登录</string>
     <string name="user_sign_in_forget">忘记密码?</string>
 
@@ -606,7 +606,7 @@
     <string name="bug_level_3_1">优化</string>
     <string name="bga_pp_take_picture">拍摄照片</string>
     <!--奖励金额   bug等级  修复版本-->
-    <string name="question_done"><Data><![CDATA[奖励<font color="#2F49A5">%1$s</font>--%2$s, 已于 %3$s 版本修复]]></Data></string>
+    <string name="question_done"><Data><![CDATA[奖励<font color="#4064E6">%1$s</font>--%2$s, 已于 %3$s 版本修复]]></Data></string>
     <string name="setting">设置</string>
     <string name="version_update">版本更新</string>
     <string name="version_update_info">有可更新版本</string>
@@ -836,4 +836,12 @@
     <string name="signup_by_mobile">手机注册</string>
     <string name="signup_by_email">邮箱注册</string>
     <string name="signup_email_format_wrong">邮箱格式不正确</string>
+    <string name="user_my_friends">我的好友</string>
+    <string name="mian_tab_invest">投资</string>
+    <string name="mian_tab_trade">交易</string>
+    <string name="mian_tab_wallet">钱包</string>
+    <string name="user_sign_login_name_hint">请输入账号</string>
+    <string name="user_sign_welcome_back">欢迎回来</string>
+    <string name="user_sign_in_pwd_hint">请输入密码（6～16个字符或字母组成）</string>
+    <string name="un_freeze">可用</string>
 </resources>

@@ -23,7 +23,6 @@ import com.cdkj.baselibrary.utils.BitmapUtils;
 import com.cdkj.baselibrary.utils.GlideApp;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.PermissionHelper;
-import com.cdkj.tha.wxapi.WxUtil;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivityAddressQrimgShowBinding;
 import com.cdkj.token.model.CoinAddressShowModel;
@@ -69,6 +68,7 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(R.string.get_money);
+        mBaseBinding.titleView.setRightTitle(getStrRes(R.string.wallet_charge_record));
 
         if (getIntent() != null) {
             coinAddressShowModel = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
@@ -117,6 +117,10 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
     }
 
     private void initListener() {
+        mBaseBinding.titleView.setRightFraClickListener(view -> {
+
+        });
+
         mBinding.btnCopy.setOnClickListener(view -> {
             copyAddress();
         });

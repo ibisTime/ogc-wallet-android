@@ -34,10 +34,10 @@ public class InvestmentBillListAdapter extends BaseQuickAdapter<InvestBillModel,
         int i = transAmount.compareTo(BigDecimal.ZERO);
         if (i == 1) {
             helper.setText(R.id.tv_transAmount, "+" + AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8)+" "+item.getCurrency());
-            helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.oragne_ff8000));
+            helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.invest_in_money));
         } else {
             helper.setText(R.id.tv_transAmount, AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8)+" "+item.getCurrency());
-            helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.green_46aaaf));
+            helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.invest_out_money));
         }
 
         BigDecimal postAmount = new BigDecimal(item.getPostAmountString());

@@ -12,7 +12,7 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
-import com.cdkj.token.adapter.ManagementMoneyListAdapter;
+import com.cdkj.token.adapter.InvestListAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.common.AbsRefreshClipListActivity;
 import com.cdkj.token.model.ManageMoneyBuySuccessEvent;
@@ -62,15 +62,15 @@ public class ManagementMoneyListActivity extends AbsRefreshClipListActivity {
     @Override
     public RecyclerView.Adapter getListAdapter(List listData) {
 
-        ManagementMoneyListAdapter managementMoneyListAdapter = new ManagementMoneyListAdapter(listData);
+        InvestListAdapter investListAdapter = new InvestListAdapter(listData);
 
-        managementMoneyListAdapter.setOnItemClickListener((adapter, view, position) -> {
-            ManagementMoney managementMoney = managementMoneyListAdapter.getItem(position);
+        investListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ManagementMoney managementMoney = investListAdapter.getItem(position);
             if (managementMoney == null) return;
             ManagementMoneyDetailsActivity.open(ManagementMoneyListActivity.this, managementMoney.getCode());
         });
 
-        return managementMoneyListAdapter;
+        return investListAdapter;
     }
 
     @Override

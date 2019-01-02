@@ -55,7 +55,7 @@ public class QuestionHistoryListAdapter extends BaseQuickAdapter<QuestionFeedbac
 
         switch (status) {
             case "0":
-                return Color.parseColor("#2F49A5");
+                return Color.parseColor("#4064E6");
             case "1":
                 return ContextCompat.getColor(mContext, R.color.gray_999999);
             case "2":

@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-    <ScrollView
+    <FrameLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white">
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/gradient_bg" />
 
 
         <LinearLayout
@@ -15,18 +20,42 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <View
+            <FrameLayout
+                android:id="@+id/fraLayout_title"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/title_bg_blue" />
+                android:layout_height="45dp"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/img_finish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:src="@drawable/back_white" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:text="@string/my_investment_details"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/title_mid_size" />
+
+            </FrameLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="-45dp"
+                android:layout_marginTop="20dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/user_fragment_card_cornerradius"
                 app:cardElevation="@dimen/user_fragment_card_elevation"
@@ -68,6 +97,7 @@
 
 
             <LinearLayout
+                android:layout_marginTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -77,7 +107,7 @@
                 android:paddingLeft="15dp">
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet_bill_detail_before"
                     android:textColor="@color/gray_666666"
@@ -87,8 +117,8 @@
                     android:id="@+id/tv_before"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
                     android:textColor="@color/text_black_cd"
                     android:textSize="14sp"
                     tools:text="收款地址" />
@@ -108,7 +138,7 @@
                 android:paddingLeft="15dp">
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet_bill_detail_after"
                     android:textColor="@color/gray_666666"
@@ -119,8 +149,8 @@
                     android:id="@+id/tv_after"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
                     android:textColor="@color/text_black_cd"
                     android:textSize="14sp"
                     tools:text="收款地址" />
@@ -140,7 +170,7 @@
                 android:paddingLeft="15dp">
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet_bill_detail_date"
                     android:textColor="@color/gray_666666"
@@ -150,8 +180,8 @@
                     android:id="@+id/tv_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
                     android:textColor="@color/text_black_cd"
                     android:textSize="14sp"
                     tools:text="收款地址" />
@@ -171,7 +201,7 @@
                 android:paddingLeft="15dp">
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet_bill_detail_status"
                     android:textColor="@color/gray_666666"
@@ -181,8 +211,8 @@
                     android:id="@+id/tv_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
                     android:textColor="@color/text_black_cd"
                     android:textSize="14sp"
                     tools:text="收款地址" />
@@ -202,7 +232,7 @@
                 android:paddingLeft="15dp">
 
                 <TextView
-                    android:layout_width="80dp"
+                    android:layout_width="95dp"
                     android:layout_height="wrap_content"
                     android:text="@string/wallet_bill_detail_type"
                     android:textColor="@color/gray_666666"
@@ -212,8 +242,8 @@
                     android:id="@+id/tv_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="20dp"
-                    android:paddingTop="20dp"
+                    android:paddingBottom="15dp"
+                    android:paddingTop="15dp"
                     android:textColor="@color/text_black_cd"
                     android:textSize="14sp"
                     tools:text="收款地址" />
@@ -227,7 +257,7 @@
         </LinearLayout>
 
 
-    </ScrollView>
+    </FrameLayout>
 
 
 </layout>

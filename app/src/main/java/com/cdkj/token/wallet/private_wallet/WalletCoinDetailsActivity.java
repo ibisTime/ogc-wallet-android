@@ -12,14 +12,12 @@ import android.view.View;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
-import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.NetUtils;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -102,7 +100,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
         if (accountListBean != null) {
             mBaseBinding.titleView.setMidTitle(accountListBean.getCoinSymbol());
-            ImgUtils.loadCircleImg(WalletCoinDetailsActivity.this, accountListBean.getCoinImgUrl(), mBinding.ivIcon);
+//            ImgUtils.loadCircleImg(WalletCoinDetailsActivity.this, accountListBean.getCoinImgUrl(), mBinding.ivIcon);
             setAmountInfo();
         }
 
@@ -125,7 +123,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
         }
 
-        mBinding.tvAmountCny.setText("≈" + accountListBean.getLocalAmount() + " " + SPUtilHelper.getLocalMarketSymbol());
+//        mBinding.tvAmountCny.setText("≈" + accountListBean.getLocalAmount() + " " + SPUtilHelper.getLocalMarketSymbol());
     }
 
 

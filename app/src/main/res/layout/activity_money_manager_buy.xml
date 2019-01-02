@@ -21,17 +21,17 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="@color/white"
                     android:orientation="horizontal"
-                    android:paddingBottom="22dp"
-                    android:paddingLeft="25dp"
-                    android:paddingTop="22dp">
+                    android:paddingLeft="15dp">
 
 
                     <TextView
                         android:id="@+id/tv_coin_balance"
+                        android:textColor="@color/gray_333333"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -44,13 +44,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="15dp"
-                        android:background="@drawable/btn_rectangle_blue_bg"
+                        android:background="@drawable/btn_code_blue_bg"
                         android:paddingBottom="5dp"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
                         android:paddingTop="5dp"
                         android:text="@string/transfer_user_funds"
-                        android:textColor="#ff0064ff"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="13sp" />
 
 
@@ -62,81 +62,74 @@
                     android:layout_marginTop="1dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
+                    android:paddingLeft="15dp"
                     android:paddingTop="20dp">
-
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="6dp"
-                        android:background="@drawable/rect_blue_change" />
 
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="159dp"
                         android:layout_height="21dp"
-                        android:layout_marginLeft="15dp"
-                        android:textColor="#ff464646"
+                        android:textColor="@color/gray_333333"
                         android:textSize="15sp"
                         tools:text="蓝潮基金ETH增长型7期" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/last_amount2"
+                            android:textColor="@color/gray_999999"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_avil_amount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/gray_333333"
+                            android:textSize="14sp"
+                            tools:text="ETH" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/expected_income2"
+                            android:textColor="@color/gray_999999"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_expect_yield"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/gray_333333"
+                            android:textSize="14sp"
+                            tools:text="ETH" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/last_amount2"
-                        android:textColor="#ff666666"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_avil_amount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/text_black_cd"
-                        android:textSize="14sp"
-                        tools:text="ETH" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:paddingLeft="15dp"
-                    android:paddingTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="@string/expected_income2"
-                        android:textColor="#ff666666"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/tv_expect_yield"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="@color/text_black_cd"
-                        android:textSize="14sp"
-                        tools:text="ETH" />
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,18 +140,15 @@
                     android:orientation="horizontal"
                     android:paddingTop="20dp">
 
-                    <View
-                        android:layout_width="10dp"
-                        android:layout_height="6dp"
-                        android:background="@drawable/rect_blue_change" />
 
                     <TextView
                         android:layout_width="159dp"
                         android:layout_height="21dp"
                         android:layout_marginLeft="15dp"
                         android:text="@string/buy_amount"
-                        android:textColor="#ff464646"
-                        android:textSize="15sp" />
+                        android:textStyle="bold"
+                        android:textColor="@color/gray_333333"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -317,7 +307,7 @@
                 android:id="@+id/btn_buy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_btn_blue_change"
+                android:background="@drawable/shape_normal_blue_btn"
                 android:text="@string/buy"
                 android:textColor="@color/white" />
 

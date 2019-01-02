@@ -50,8 +50,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
+        UIStatusBarHelper.translucent(this, 0x00001234);
         UIStatusBarHelper.setStatusBarLightMode(this);
-        UIStatusBarHelper.translucent(this);
 
         mSubscription = new CompositeDisposable();
 

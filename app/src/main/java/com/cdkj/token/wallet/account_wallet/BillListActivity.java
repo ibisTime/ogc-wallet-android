@@ -14,7 +14,6 @@ import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -24,7 +23,7 @@ import com.cdkj.token.databinding.ActivityWalletBillBinding;
 import com.cdkj.token.model.BillFilterModel;
 import com.cdkj.token.model.BillModel;
 import com.cdkj.token.model.CoinAddressShowModel;
-import com.cdkj.token.model.WalletBalanceModel;
+import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.views.ScrollPicker;
 import com.cdkj.token.views.pop.PickerPop;
@@ -39,8 +38,6 @@ import java.util.Map;
 
 import retrofit2.Call;
 
-import static com.cdkj.token.utils.LocalCoinDBUtils.getCoinIconByCoinSymbol;
-
 /**
  * 中心化钱包流水
  * Created by cdkj on 2018/5/25.
@@ -50,7 +47,7 @@ public class BillListActivity extends AbsLoadActivity {
 
     private ActivityWalletBillBinding mBinding;
 
-    private WalletBalanceModel mAccountBean;
+    private WalletModel mAccountBean;
     private BillListAdapter mBillAdapter;
 
     private BaseRefreshCallBack refreshCallBackback;
@@ -63,12 +60,17 @@ public class BillListActivity extends AbsLoadActivity {
     private PickerPop filterPickerPop;
 
 
-    public static void open(Context context, WalletBalanceModel mAccountBean) {
+    public static void open(Context context, WalletModel mAccountBean) {
         if (context == null) {
             return;
         }
         context.startActivity(new Intent(context, BillListActivity.class)
                 .putExtra(CdRouteHelper.DATASIGN, mAccountBean));
+    }
+
+    @Override
+    protected boolean canLoadTopTitleView() {
+        return false;
     }
 
     @Override
@@ -82,8 +84,6 @@ public class BillListActivity extends AbsLoadActivity {
     public void afterCreate(Bundle savedInstanceState) {
 
         setStatusBarBlue();
-        setTitleBgBlue();
-
         initFilterTypeList();
 
         if (getIntent() == null)
@@ -115,21 +115,22 @@ public class BillListActivity extends AbsLoadActivity {
     }
 
     private void initView() {
-        ImgUtils.loadCircleImg(this, getCoinIconByCoinSymbol(mAccountBean.getCoinSymbol()), mBinding.ivIcon);
+//        ImgUtils.loadCircleImg(this, getCoinIconByCoinSymbol(mAccountBean.getCoinSymbol()), mBinding.ivIcon);
         mBinding.tvFilter.setVisibility(View.VISIBLE);
 
         mBinding.tvInMoney.setText(R.string.wallet_bill_list_charge);
         mBinding.tvOutMoney.setText(R.string.wallet_bill_list_withdraw);
 
-        mBinding.tvAmount.setText(AmountUtil.transformFormatToString(mAccountBean.getAvailableAmount(), mAccountBean.getCoinSymbol(), 8) + " " + mAccountBean.getCoinSymbol());
+        mBinding.tvSymbol.setText(mAccountBean.getCurrency());
+        mBinding.tvAmount.setText(AmountUtil.toMinWithUnit(mAccountBean.getAmount(), mAccountBean.getCurrency(), 8));
 
-        mBinding.tvAmountCny.setText("≈ " + mAccountBean.getLocalAmount() + SPUtilHelper.getLocalMarketSymbol());
+//        mBinding.tvAmountCny.setText("≈ " + mAccountBean.getLocalAmount() + SPUtilHelper.getLocalMarketSymbol());
 
     }
 
     private void initData() {
         if (mAccountBean != null) {
-            mBaseBinding.titleView.setMidTitle(mAccountBean.getCoinSymbol());
+            mBaseBinding.titleView.setMidTitle(mAccountBean.getCurrency());
         }
         refreshHelper = new RefreshHelper(this, refreshCallBackback);
         refreshHelper.init(10);
@@ -139,6 +140,10 @@ public class BillListActivity extends AbsLoadActivity {
 
 
     private void initListener() {
+
+        mBinding.imgFinish.setOnClickListener(view -> {
+            finish();
+        });
 
         //筛选
         mBinding.tvFilter.setOnClickListener(view -> {
@@ -163,7 +168,7 @@ public class BillListActivity extends AbsLoadActivity {
                 return;
             CoinAddressShowModel coinAddressShowModel = new CoinAddressShowModel();
             coinAddressShowModel.setAddress(mAccountBean.getAddress());
-            coinAddressShowModel.setCoinSymbol(mAccountBean.getCoinSymbol());
+            coinAddressShowModel.setCoinSymbol(mAccountBean.getCurrency());
             WalletAddressShowActivity.open(this, coinAddressShowModel);
         });
 
@@ -171,7 +176,7 @@ public class BillListActivity extends AbsLoadActivity {
         mBinding.linLayoutOutCoin.setOnClickListener(view -> {
             if (mAccountBean == null)
                 return;
-            WithdrawActivity.open(this, mAccountBean);
+//            WithdrawActivity.open(this, mAccountBean);
         });
     }
 
@@ -180,7 +185,6 @@ public class BillListActivity extends AbsLoadActivity {
         refreshCallBackback = new BaseRefreshCallBack(this) {
             @Override
             public SmartRefreshLayout getRefreshLayout() {
-
                 return mBinding.refreshLayout;
             }
 
@@ -196,11 +200,6 @@ public class BillListActivity extends AbsLoadActivity {
                     BillDetailActivity.open(BillListActivity.this, (BillModel.ListBean) adapter.getItem(position));
                 });
                 return mBillAdapter;
-            }
-
-            @Override
-            public void onRefresh(int pageindex, int limit) {
-
             }
 
             @Override

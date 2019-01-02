@@ -38,7 +38,6 @@ import com.cdkj.token.model.db.WalletDBModel;
 import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.utils.wallet.WalletHelper;
 import com.cdkj.token.views.dialogs.InfoSureDialog;
-import com.cdkj.token.wallet.account_wallet.BillListActivity;
 import com.cdkj.token.wallet.create_guide.CreateWalletStartActivity;
 import com.cdkj.token.wallet.private_wallet.WalletCoinDetailsActivity;
 import com.cdkj.token.wallet.smart_transfer.SmartTransferActivity;
@@ -252,7 +251,7 @@ public class WalletFragment extends BaseLazyFragment {
 
                         WalletCoinDetailsActivity.open(mActivity, localCoinModel,TextUtils.equals(address, localCoinModel.getAddress()));
                     } else {
-                        BillListActivity.open(mActivity, walletBalanceAdapter.getItem(position));
+//                        BillListActivity.open(mActivity, walletBalanceAdapter.getItem(position));
                     }
 
                 });
@@ -528,7 +527,6 @@ public class WalletFragment extends BaseLazyFragment {
                 return false;
             }
         };
-
     }
 
     @Override

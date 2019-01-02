@@ -14,8 +14,8 @@ import java.util.Locale;
 public class AppConfig {
 
     //系统参数
-    public final static String COMPANYCODE = "CD-TOKEN00018";
-    public final static String SYSTEMCODE = "CD-TOKEN00018";
+    public final static String COMPANYCODE = "CD-OGC000019";
+    public final static String SYSTEMCODE = "CD-OGC000019";
     public final static String USERTYPE = "C";//用户类型
 
 

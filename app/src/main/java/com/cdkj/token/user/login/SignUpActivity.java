@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.OtherLibManager;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
@@ -28,6 +29,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
+import com.cdkj.token.common.ThaAppConstant;
 import com.cdkj.token.databinding.ActivitySignUp2Binding;
 import com.cdkj.token.user.CountryCodeListActivity;
 
@@ -50,6 +52,8 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
     private ActivitySignUp2Binding mBinding;
 
     private int tabPosition = 0;
+
+    private boolean agreeFlag = false; // 是否统一协议，默认不同意
 
     public static void open(Context context) {
         if (context == null) {
@@ -99,13 +103,15 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
                     mBinding.edtMobile.setVisibility(View.VISIBLE);
                     mBinding.edtEmail.setVisibility(View.GONE);
 
+                    mBinding.edtMobile.requestFocus();
+
                 }else if (TAB_EMAIL == tabPosition){
 
                     mBinding.edtMobile.setVisibility(View.GONE);
                     mBinding.edtEmail.setVisibility(View.VISIBLE);
 
+                    mBinding.edtEmail.requestFocus();
                 }
-
 
             }
 
@@ -126,21 +132,42 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
             if (check("code")) {
 
-                String phone = mBinding.edtMobile.getText().toString().trim();
+                String bizType = "";
+                String loginName = "";
+                if (TAB_MOBILE == tabPosition){
+                    bizType = "805041";
+                    loginName = mBinding.edtMobile.getText().toString().trim();
+                } else if (TAB_EMAIL == tabPosition){
+                    bizType = "805043";
+                    loginName = mBinding.edtEmail.getText().toString().trim();
+                }
 
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
-                        phone, "805041", "C", SPUtilHelper.getCountryInterCode());
+                        loginName, bizType, "C", SPUtilHelper.getCountryInterCode());
 
                 mSendCodePresenter.openVerificationActivity(sendVerificationCode);
 
             }
         });
 
+        mBinding.ivAgree.setOnClickListener(view -> {
+
+            agreeFlag = !agreeFlag;
+
+            mBinding.ivAgree.setImageResource(agreeFlag ? R.mipmap.sign_agree : R.mipmap.sign_no_agree);
+        });
+
+        mBinding.tvProtocol.setOnClickListener(view -> {
+            WebViewActivity.openkey(this, getString(R.string.pop_protocol), ThaAppConstant.getH5UrlLangage(""));
+        });
+
+
         mBinding.btnConfirm.setOnClickListener(view -> {
             if (check("all")) {
                 signUp();
             }
         });
+
 
     }
 
@@ -177,12 +204,19 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
                 UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_password_hint));
                 return false;
             }
+
             if (TextUtils.isEmpty(mBinding.edtRePassword.getText().toString().trim())) {
                 UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_repassword_hint));
                 return false;
             }
+
             if (!mBinding.edtRePassword.getText().toString().trim().equals(mBinding.edtPassword.getText().toString().trim())) {
                 UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_repassword_two_hint));
+                return false;
+            }
+
+            if (!agreeFlag){
+                UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_protocol_hint));
                 return false;
             }
 
@@ -194,10 +228,12 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
 
     private void signUp() {
         Map<String, Object> map = new HashMap<>();
-//        map.put("nickname", mBinding.edtNick.getText().toString().trim());
         map.put("kind", "C");
-//        map.put("userRefereeKind", "C");
-//        map.put("userReferee", mBinding.edtReferee.getText().toString().trim());
+        if (TAB_MOBILE == tabPosition){
+            map.put("mobile", mBinding.edtMobile.getText().toString().trim());
+        } else if (TAB_EMAIL == tabPosition){
+            map.put("email", mBinding.edtMobile.getText().toString().trim());
+        }
         map.put("mobile", mBinding.edtMobile.getText().toString().trim());
         map.put("loginPwd", mBinding.edtPassword.getText().toString().trim());
         map.put("smsCaptcha", mBinding.edtCode.getText().toString().trim());
@@ -205,7 +241,14 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
         map.put("companyCode", AppConfig.COMPANYCODE);
         map.put("countryCode", SPUtilHelper.getCountryCode());
         map.put("interCode", SPUtilHelper.getCountryInterCode());
-        Call call = RetrofitUtils.createApi(MyApi.class).signUp("805041", StringUtils.getRequestJsonString(map));
+
+        String code = "";
+        if (TAB_MOBILE == tabPosition){
+            code = "805041";
+        } else if (TAB_EMAIL == tabPosition){
+            code = "805043";
+        }
+        Call call = RetrofitUtils.createApi(MyApi.class).signUp(code, StringUtils.getRequestJsonString(map));
 
         addCall(call);
 
@@ -245,7 +288,7 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
     public void CodeSuccess(String msg) {
         //启动倒计时
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.edtCode.getSendCodeBtn(), R.drawable.btn_code_blue_bg, R.drawable.gray,
-                ContextCompat.getColor(this, R.color.btn_blue), ContextCompat.getColor(this, R.color.white)));
+                ContextCompat.getColor(this, R.color.colorAccent), ContextCompat.getColor(this, R.color.white)));
 
     }
 

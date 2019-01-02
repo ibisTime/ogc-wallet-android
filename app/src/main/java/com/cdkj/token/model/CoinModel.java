@@ -7,7 +7,6 @@ import com.cdkj.baselibrary.interfaces.AmountShowTypeInterface;
 import com.cdkj.baselibrary.interfaces.MarketShowTypeInterface;
 import com.contrarywind.interfaces.IPickerViewData;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -15,8 +14,7 @@ import java.util.List;
  * Created by lei on 2017/10/25.
  */
 
-public class CoinModel implements Serializable, AmountShowTypeInterface {
-
+public class CoinModel implements AmountShowTypeInterface {
 
     /**
      * accountList : [{"accountNumber":"A201711212030187096126","userId":"U201711212030187015235","realName":"18984955240","type":"C","status":"0","currency":"ETH","amountString":"0","frozenAmountString":"0","md5":"4122cb13c7a474c1976c9706ae36521d","addAmountString":"0","inAmountString":"0","outAmountString":"0","createDatetime":"Nov 21, 2017 8:30:18 PM","systemCode":"CD-COIN000017","companyCode":"CD-COIN000017","coinAddress":"0x2fa7a62e954995b6b96ecc9f7b622a7ad784f6e5"}]
@@ -86,7 +84,7 @@ public class CoinModel implements Serializable, AmountShowTypeInterface {
         return totalAmountKRW;
     }
 
-    public static class AccountListBean implements Serializable, IPickerViewData, AmountShowTypeInterface, MarketShowTypeInterface, Parcelable {
+    public static class AccountListBean implements IPickerViewData, AmountShowTypeInterface, MarketShowTypeInterface, Parcelable {
         /**
          * accountNumber : A201711212030187096126
          * userId : U201711212030187015235

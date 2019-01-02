@@ -27,8 +27,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:paddingBottom="10dp"
+                    android:layout_marginTop="40dp"
                     android:text="@string/register"
                     android:textStyle="bold"
                     android:textColor="@color/black"
@@ -36,12 +35,12 @@
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tl_way"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="15dp"
                     app:tabSelectedTextColor="@color/colorPrimary"
                     app:tabIndicatorColor="@color/colorPrimary"
                     app:tabIndicatorHeight="2.4dp"
                     android:layout_width="180dp"
-                    android:layout_height="45dp">
+                    android:layout_height="wrap_content">
 
                     <android.support.design.widget.TabItem
                         android:layout_width="wrap_content"
@@ -63,7 +62,7 @@
                     android:id="@+id/edt_mobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     app:hint_text="@string/user_sign_in_mobile_hint" />
 
                 <com.cdkj.token.views.SignInEditClearLayout
@@ -102,9 +101,12 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:layout_marginRight="4dp"
-                        android:layout_width="12dp"
-                        android:layout_height="12dp" />
+                        android:id="@+id/iv_agree"
+                        android:src="@mipmap/sign_no_agree"
+                        android:layout_marginTop="0.5dp"
+                        android:padding="5dp"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp" />
 
                     <TextView
                         android:text="@string/user_sign_up_agree"
@@ -113,6 +115,7 @@
                         android:layout_height="wrap_content" />
 
                     <TextView
+                        android:id="@+id/tv_protocol"
                         android:textSize="11sp"
                         android:textColor="@color/colorPrimary"
                         android:text="@string/user_sign_up_profile"
@@ -126,8 +129,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/shape_normal_blue_btn"
                     android:gravity="center"
                     android:text="@string/user_title_sign_up"

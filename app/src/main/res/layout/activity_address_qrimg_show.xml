@@ -7,32 +7,34 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scrollbars="none"
         android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F1F2F5"
+            android:background="@color/white"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="26dp"
                 android:gravity="center"
                 android:text="@string/my_coin_address_2"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
+                android:textColor="@color/gray_333333"
+                android:textSize="16sp" />
 
             <FrameLayout
-                android:layout_width="280dp"
-                android:layout_height="280dp"
+                android:layout_width="270dp"
+                android:layout_height="270dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@mipmap/icon_qr_code_bg">
 
                 <android.support.v7.widget.CardView
-                    android:layout_width="230dp"
-                    android:layout_height="230dp"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
                     android:layout_gravity="center"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="5dp"
@@ -41,8 +43,8 @@
 
                     <ImageView
                         android:id="@+id/img_QRCode"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="190dp"
+                        android:layout_height="190dp"
                         android:layout_gravity="center" />
 
                 </android.support.v7.widget.CardView>
@@ -55,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="26dp"
                 android:text="@string/address"
                 android:textColor="@color/gray_666666"
                 android:textSize="16sp" />
@@ -64,11 +66,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                app:cardBackgroundColor="#FDFEFF"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="#FDFDFF"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="3dp"
                 app:cardUseCompatPadding="true">
@@ -92,7 +94,7 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:orientation="vertical"
-                android:paddingTop="35dp">
+                android:paddingTop="25dp">
 
                 <Button
                     android:id="@+id/btn_copy"
@@ -101,19 +103,20 @@
                     android:layout_marginBottom="15dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:background="@drawable/selector_btn_blue_change"
+                    android:background="@drawable/shape_normal_blue_btn"
                     android:text="@string/copy_money_address"
                     android:textColor="@color/white"
                     android:textSize="16sp" />
 
                 <Button
                     android:id="@+id/btn_save_photo"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/selector_btn_blue_change"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@drawable/shape_normal_blue_btn"
                     android:text="@string/save_qrimg"
                     android:textColor="@color/white"
                     android:textSize="16sp" />

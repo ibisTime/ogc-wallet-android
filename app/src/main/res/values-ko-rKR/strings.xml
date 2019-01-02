@@ -291,7 +291,7 @@
     <string name="sen_red_packet_note">훙빠우에는 황금 만냥</string>
     <string name="user_language_english">English</string>
     <string name="user_sign_up_mobile">핸드폰 번호</string>
-    <string name="user_sign_in_pwd_hint">밀번호 입력</string>
+    x
     <string name="user_sign_in_forget">비밀번호 되찾기?</string>
     <string name="user_title_sign_in">로그인</string>
     <string name="yibibao">위삐보</string>
@@ -605,7 +605,7 @@
     <string name="question_fix">버전복원</string>
     <!--奖励金额   bug等级  修复版本-->
 
-    <string name="question_done"><Data><![CDATA[<font color="#2F49A5">%1$s</font> %2$s 장려하고 이미 %3$s 버전으로 복원함]]></Data></string>
+    <string name="question_done"><Data><![CDATA[<font color="#4064E6">%1$s</font> %2$s 장려하고 이미 %3$s 버전으로 복원함]]></Data></string>
 
     <string name="bug_level_1_1">심각</string>
 
@@ -917,4 +917,12 @@
     <string name="signup_by_mobile">手机注册</string>
     <string name="signup_by_email">邮箱注册</string>
     <string name="signup_email_format_wrong">邮箱格式不正确</string>
+    <string name="user_my_friends">我的好友</string>
+    <string name="mian_tab_invest">投资</string>
+    <string name="mian_tab_trade">交易</string>
+    <string name="mian_tab_wallet">钱包</string>
+    <string name="user_sign_login_name_hint">请输入账号</string>
+    <string name="user_sign_welcome_back">欢迎回来</string>
+    <string name="user_sign_in_pwd_hint">Enter password </string>
+    <string name="un_freeze">可用</string>
 </resources>

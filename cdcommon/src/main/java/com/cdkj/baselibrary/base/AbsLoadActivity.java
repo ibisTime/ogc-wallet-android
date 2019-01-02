@@ -94,6 +94,10 @@ public abstract class AbsLoadActivity extends BaseActivity {
         mBaseBinding.titleView.setVisibility(isShow ? View.VISIBLE : View.GONE);
     }
 
+    protected void setShowTitleLine(boolean isShow) {
+        mBaseBinding.titleView.isShowTitleLine(isShow);
+    }
+
     /**
      * 设置title背景信息
      */
@@ -107,6 +111,11 @@ public abstract class AbsLoadActivity extends BaseActivity {
     protected void setStatusBarBlue() {
         UIStatusBarHelper.setStatusBarDarkMode(this);
         setStatusBarColor(ContextCompat.getColor(this, R.color.title_bg_blue));
+    }
+
+    protected void setStatusBarWhite() {
+        UIStatusBarHelper.setStatusBarLightMode(this);
+        setStatusBarColor(ContextCompat.getColor(this, R.color.white));
     }
 
     protected void setStatusBarColor(@ColorInt int color) {

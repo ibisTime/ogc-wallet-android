@@ -18,7 +18,59 @@
             android:layout_height="50dp"
             android:clickable="false"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="4">
+
+            <LinearLayout
+                android:id="@+id/ll_invest"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_invest"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@mipmap/main_invest_dark" />
+
+                <TextView
+                    android:id="@+id/tv_invest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/mian_tab_invest"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_trade"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_trade"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@mipmap/main_trade_dark" />
+
+                <TextView
+                    android:id="@+id/tv_trade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/mian_tab_trade"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/ll_wallet"
@@ -40,33 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="@string/assets"
-                    android:textColor="@color/gray_666666"
-                    android:textSize="11sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/ll_consult"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/iv_consult"
-                    android:layout_width="19dp"
-                    android:layout_height="19dp"
-                    android:src="@mipmap/main_consult_dark" />
-
-                <TextView
-                    android:id="@+id/tv_consult"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/main_tag_consult"
+                    android:text="@string/mian_tab_wallet"
                     android:textColor="@color/gray_666666"
                     android:textSize="11sp" />
 

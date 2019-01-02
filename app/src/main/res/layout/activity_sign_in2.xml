@@ -5,16 +5,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+                android:background="@mipmap/arc_bg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="210dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                     android:layout_width="108dp"
                     android:layout_height="49dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="43dp"
+                    android:layout_marginTop="65dp"
                     android:src="@drawable/icon_sign_in" />
 
                 <android.support.v7.widget.CardView
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
-                    android:layout_marginTop="27dp"
+                    android:layout_marginTop="35dp"
                     android:layout_marginBottom="20dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="10dp"
@@ -48,22 +48,21 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_marginTop="45dp"
+                            android:layout_marginTop="40dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="欢迎回来"
+                            android:text="@string/user_sign_welcome_back"
                             android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:textSize="22sp" />
+                            android:textSize="26sp" />
 
-
-                        <com.cdkj.token.views.SignInEditClearCountryCodeLayout
+                        <com.cdkj.token.views.SignInEditClearRightTextLayout
                             android:id="@+id/edt_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="25dp"
-                            app:hint_text="@string/user_sign_in_mobile_hint" />
+                            app:hint_text="@string/user_sign_login_name_hint" />
 
                         <com.cdkj.token.views.SignInEditClearRightTextLayout
                             android:id="@+id/edt_password"
@@ -95,7 +94,7 @@
 
                         <LinearLayout
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="25dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
@@ -129,13 +128,9 @@
 
                 </android.support.v7.widget.CardView>
 
-
-
             </LinearLayout>
 
         </FrameLayout>
-
-
 
     </ScrollView>
 

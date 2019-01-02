@@ -18,7 +18,7 @@ import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.UIStatusBarHelper;
 import com.cdkj.token.R;
-import com.cdkj.token.adapter.ManagementMoneyListAdapter;
+import com.cdkj.token.adapter.InvestListAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityRefreshMoneyManagerBinding;
 import com.cdkj.token.model.InvestmentAmountModel;
@@ -61,8 +61,8 @@ public class BiJiaBaoListActivity extends BaseActivity {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_refresh_money_manager);
 
-        UIStatusBarHelper.setStatusBarLightMode(this);
         UIStatusBarHelper.translucent(this);
+        UIStatusBarHelper.setStatusBarLightMode(this);
 
         initClickListener();
         initRefreshHelper();
@@ -118,15 +118,15 @@ public class BiJiaBaoListActivity extends BaseActivity {
      */
     public RecyclerView.Adapter getListAdapter(List listData) {
 
-        ManagementMoneyListAdapter managementMoneyListAdapter = new ManagementMoneyListAdapter(listData);
+        InvestListAdapter investListAdapter = new InvestListAdapter(listData);
 
-        managementMoneyListAdapter.setOnItemClickListener((adapter, view, position) -> {
-            ManagementMoney managementMoney = managementMoneyListAdapter.getItem(position);
+        investListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ManagementMoney managementMoney = investListAdapter.getItem(position);
             if (managementMoney == null) return;
             BijiaBaoDetailsActivity.open(BiJiaBaoListActivity.this, managementMoney.getCode());
         });
 
-        return managementMoneyListAdapter;
+        return investListAdapter;
     }
 
 

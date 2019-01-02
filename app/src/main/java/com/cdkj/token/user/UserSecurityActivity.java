@@ -18,7 +18,6 @@ import com.cdkj.token.databinding.ActivityUserSecurityBinding;
 import com.cdkj.token.user.login.SetLoginPwdActivity;
 import com.cdkj.token.user.login.SignInActivity;
 import com.cdkj.token.user.pattern_lock.PatternLockSettingActivity;
-import com.cdkj.token.user.setting.UserLanguageActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -108,7 +107,7 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity {
 
         //绑定邮箱
         mBinding.llMail.setOnClickListener(view -> {
-//            UserEmailActivity.open(this, SPUtilHelper.getUserEmail());
+            UserEmailActivity.open(this, SPUtilHelper.getUserEmail());
         });
 
         //修改手机号
@@ -131,11 +130,6 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity {
             } else {
                 GoogleCodeSetActivity.open(this);
             }
-        });
-
-
-        mBinding.llLanguage.setOnClickListener(view -> {
-            UserLanguageActivity.open(this);
         });
 
 

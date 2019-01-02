@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2F49A5</color>
-    <color name="colorPrimaryDark">#2F49A5</color>
-    <color name="colorAccent">#2F49A5</color>
+    <color name="colorPrimary">#4064E6</color>
+    <color name="colorPrimaryDark">#4064E6</color>
+    <color name="colorAccent">#4064E6</color>
 
     <color name="gray_bg">#f6f6f6</color>
     <color name="title_bg">#ffffff</color>
-    <color name="title_bg_blue">#0848DF</color>
+    <color name="title_bg_blue">#4064E6</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="white_50">#82ffffff</color>
@@ -15,7 +15,7 @@
     <color name="text_hint_color">#aaaaaa</color>
     <color name="pop_black_bg">#651b1b1b</color>
     <color name="text_color">#484848</color>
-    <color name="text_color_light">#2F49A5</color>
+    <color name="text_color_light">#4064E6</color>
 
     <!--dialog-->
     <color name="dialog_tips_content_txt">#333333</color>
@@ -60,7 +60,7 @@
     <color name="fontColor_hint">#aaaaaa</color>
 
 
-    <color name="btn_select">#2F49A5</color>
+    <color name="btn_select">#4064E6</color>
     <color name="btn_select_un">#2770FA</color>
     <color name="tablayout_select">#108ee9</color>
     <color name="lineColor">#ebeaea</color>

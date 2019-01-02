@@ -47,9 +47,6 @@ public class BillDetailActivity extends AbsLoadActivity {
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(getStrRes(R.string.wallet_title_bill_detail));
 
-        setStatusBarBlue();
-        setTitleBgBlue();
-
         if (getIntent() != null) {
             bean = (BillModel.ListBean) getIntent().getSerializableExtra(CdRouteHelper.DATASIGN);
             if (bean != null) {

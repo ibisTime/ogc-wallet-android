@@ -12,6 +12,7 @@ import com.bigkoo.pickerview.builder.TimePickerBuilder;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.api.ResponseInListModel;
+import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.databinding.LayoutCommonRecyclerRefreshBinding;
@@ -45,13 +46,15 @@ public class InvestmentBillListActivity extends AbsLoadActivity {
 
     private TimePickerView timePickerView;
 
+    private String symbol = "";
     private String selectDate = "";
 
-    public static void open(Context context) {
+    public static void open(Context context, String symbol) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, InvestmentBillListActivity.class);
+        intent.putExtra(CdRouteHelper.DATASIGN, symbol);
         context.startActivity(intent);
     }
 
@@ -71,6 +74,11 @@ public class InvestmentBillListActivity extends AbsLoadActivity {
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(R.string.investment_bill);
         mBaseBinding.titleView.setRightImg(R.drawable.ic_calendar);
+
+        setShowTitleLine(true);
+//        setStatusBarWhite();
+
+        symbol = getIntent().getStringExtra(CdRouteHelper.DATASIGN);
 
         inRefreshHelper();
 
@@ -120,6 +128,7 @@ public class InvestmentBillListActivity extends AbsLoadActivity {
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
         map.put("date", selectDate);
+        map.put("symbol", symbol);
 
         if (isShowDialog) showLoadingDialog();
 

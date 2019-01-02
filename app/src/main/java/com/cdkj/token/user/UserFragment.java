@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +28,9 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.ToastUtil;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.FragmentUser2Binding;
-import com.cdkj.token.find.product_application.management_money.MyIncomeActivity;
 import com.cdkj.token.interfaces.UserInfoInterface;
 import com.cdkj.token.interfaces.UserInfoPresenter;
-import com.cdkj.token.user.credit.CreditActivity;
 import com.cdkj.token.user.invite.InviteActivity;
-import com.cdkj.token.user.question_feedback.QuestionFeedbackSubmitActivity;
 import com.cdkj.token.user.setting.UserSettingActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -92,11 +90,6 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
     private void initClickListener() {
 
-        //问题反馈
-        mBinding.linLayoutFeedback.setOnClickListener(view -> {
-            QuestionFeedbackSubmitActivity.open(mActivity);
-        });
-
         //修改昵称
         mBinding.tvNickName.setOnClickListener(view -> {
             NickModifyActivity.open(mActivity, SPUtilHelper.getUserName());
@@ -108,19 +101,17 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
         });
 
         // 我的收益
-        mBinding.linLayoutIncome.setOnClickListener(view -> {
-            MyIncomeActivity.open(mActivity);
-        });
+//        mBinding.linLayoutIncome.setOnClickListener(view -> {
+//            MyIncomeActivity.open(mActivity);
+//        });
 
         //更换头像
         mBinding.imgLogo.setOnClickListener(view -> {
             ImageSelectActivity.launchFragment(this, PHOTOFLAG);
         });
+
         //账户与安全
         mBinding.linLayoutUserAccount.setOnClickListener(view -> UserSecurityActivity.open(mActivity));
-
-        //语言
-//        mBinding.languageChange.setOnClickListener(view -> UserLanguageActivity.open(mActivity));
 
         //加入社群
         mBinding.joinUs.setOnClickListener(view -> UserJoinActivity.open(mActivity));
@@ -128,16 +119,11 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
         //帮助中心
         mBinding.helper.setOnClickListener(view -> {
             OtherLibManager.openZendeskHelpCenter(mActivity);
-//            WebViewImgBgActivity.openkey(mActivity, getStrRes(R.string.user_issue), ThaAppConstant.getH5UrlLangage(ThaAppConstant.QUESTIONS));
         });
 
         //设置
         mBinding.setting.setOnClickListener(view -> UserSettingActivity.open(mActivity));
 
-        //信用积分
-        mBinding.tvCreditAmount.setOnClickListener(view -> {
-            CreditActivity.open(mActivity);
-        });
     }
 
     @Override
@@ -166,28 +152,19 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
             return;
         }
 
-        if (isShowUserCrown(data.getCreateNo())) {
-            mBinding.imgCrown.setVisibility(View.VISIBLE);
-        } else {
-            mBinding.imgCrown.setVisibility(View.GONE);
-        }
-
-        if (data.getNickname() == null) return;
 
         mBinding.tvNickName.setText(data.getNickname());
-        mBinding.tvPhoneNumber.setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()) + " " + StringUtils.ttransformShowPhone(data.getMobile()));
+        if (TextUtils.isEmpty(data.getMobile())){
+            if (!TextUtils.isEmpty(data.getEmail())){
+                mBinding.tvPhoneNumber.setText(data.getEmail());
+            }
+        }else {
+            mBinding.tvPhoneNumber.setText(StringUtils.ttransformShowPhone(data.getMobile()));
+        }
+
         ImgUtils.loadLogo(mActivity, data.getPhoto(), mBinding.imgLogo);
     }
 
-    /**
-     * 判断能否显示创始图标
-     *
-     * @param userNo 用户编号
-     * @return
-     */
-    private boolean isShowUserCrown(long userNo) {
-        return userNo < 10000;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

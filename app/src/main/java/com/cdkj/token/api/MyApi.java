@@ -60,6 +60,7 @@ import com.cdkj.token.model.UTXOListModel;
 import com.cdkj.token.model.UserRefereeModel;
 import com.cdkj.token.model.UserSettingModel;
 import com.cdkj.token.model.VersionModel;
+import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.model.WithdrawOrderModel;
 import com.cdkj.token.model.db.LocalCoinDbModel;
 
@@ -853,5 +854,16 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<IncomeRankTopModel>> getIncomeRankTop(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取用户账户
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<WalletModel>> getSymbolList(@Field("code") String code, @Field("json") String json);
 
 }

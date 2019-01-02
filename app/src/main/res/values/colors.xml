@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2F49A5</color>
-    <color name="colorPrimaryDark">#2F49A5</color>
-    <color name="colorAccent">#2F49A5</color>
+    <color name="colorPrimary">#4064E6</color>
+    <color name="colorPrimaryDark">#4064E6</color>
+    <color name="colorAccent">#4064E6</color>
 
 
     <color name="gray_5e5e5f">#5e5e5f</color>
@@ -22,15 +22,17 @@
 
     <color name="gray_434343">#434343</color>
 
+    <color name="black_000000">#000000</color>
     <color name="black">#484848</color>
     <color name="white_80">#80ffffff</color>
 
     <color name="green">#2ac64c</color>
     <color name="green_46aaaf">#46AAAF</color>
 
-    <color name="blue">#2F49A5</color>
+    <color name="blue">#4064E6</color>
+    <color name="blue_4368EF">#4368EF</color>
     <color name="blue_0064ff">#0064FF</color>
-    <color name="text_blue">#2F49A5</color>
+    <color name="text_blue">#4064E6</color>
 
     <color name="yellow">#fff9eb</color>
 
@@ -41,7 +43,7 @@
     <color name="oragne_ff6953">#FF6953</color>
     <color name="oragne_ff8000">#FF8000</color>
 
-    <color name="pass_view_rect_input">#2F49A5</color>
+    <color name="pass_view_rect_input">#4064E6</color>
     <color name="regi_line_color">#c8c8c8</color>
 
     <color name="app_btn_blue">#0848DF</color>
@@ -51,8 +53,12 @@
     <color name="red">#F55E52</color>
     <color name="transparent">#09000000</color>
     <color name="red_packet_text_yellow">#FBDDA9</color>
+
     <color name="out_money">#F55E52</color>
     <color name="in_money">#47D047</color>
+
+    <color name="invest_in_money">#E35151</color>
+    <color name="invest_out_money">#26B06B</color>
 
     <color name="bga_pp_colorPrimaryDark">@color/colorPrimaryDark</color>
     <!-- PhotoPicker 导航栏的颜色 -->

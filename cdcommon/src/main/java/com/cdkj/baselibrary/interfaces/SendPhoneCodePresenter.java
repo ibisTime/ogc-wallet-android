@@ -6,7 +6,6 @@ import android.text.TextUtils;
 
 import com.cdkj.baselibrary.R;
 import com.cdkj.baselibrary.appmanager.AppConfig;
-import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
@@ -49,10 +48,6 @@ public class SendPhoneCodePresenter {
         if (sendVerificationCode == null) {
             return;
         }
-        if (TextUtils.isEmpty(sendVerificationCode.getPhone())) {
-            ToastUtil.show(activity, this.activity.getString(R.string.activity_mobile_mobile_hint));
-            return;
-        }
         VerificationAliActivity.open(activity, AL_IVERIFICATION_REQUEST_CODE);
     }
 
@@ -85,12 +80,23 @@ public class SendPhoneCodePresenter {
 
         hashMap.put("systemCode", AppConfig.SYSTEMCODE);
         hashMap.put("companyCode", AppConfig.COMPANYCODE);
-        hashMap.put("mobile", sendVerificationCode.getPhone());
+        if (StringUtils.isEmail(sendVerificationCode.getLoginName())){
+            hashMap.put("email", sendVerificationCode.getLoginName());
+        }else {
+            hashMap.put("mobile", sendVerificationCode.getLoginName());
+        }
         hashMap.put("bizType", sendVerificationCode.getBizType());
         hashMap.put("kind", sendVerificationCode.getKind());
         hashMap.put("interCode", sendVerificationCode.getCountryCode()); //国际区号
         hashMap.put("sessionId", sendVerificationCode.getSessionID()); //阿里验证
-        call = RetrofitUtils.getBaseAPiService().successRequest("805953", StringUtils.getRequestJsonString(hashMap));
+
+        String code;
+        if (StringUtils.isEmail(sendVerificationCode.getLoginName())){
+            code = "630093";
+        }else {
+            code = "630090";
+        }
+        call = RetrofitUtils.getBaseAPiService().successRequest(code, StringUtils.getRequestJsonString(hashMap));
 
         mListener.StartSend();
         call.enqueue(new BaseResponseModelCallBack<IsSuccessModes>(activity) {

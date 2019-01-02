@@ -12,10 +12,12 @@ import com.cdkj.baselibrary.adapters.ViewPagerAdapter;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.base.BaseActivity;
 import com.cdkj.baselibrary.model.AllFinishEvent;
-import com.cdkj.token.find.FindFragment;
+import com.cdkj.baselibrary.utils.UIStatusBarHelper;
 import com.cdkj.token.databinding.ActivityMainBinding;
+import com.cdkj.token.invest.InvestFragment;
+import com.cdkj.token.trade.TradeFragment;
 import com.cdkj.token.user.UserFragment;
-import com.cdkj.token.wallet.WalletFragment;
+import com.cdkj.token.wallet.WalletFragment2;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,9 +29,11 @@ public class MainActivity extends BaseActivity {
 
     private ActivityMainBinding mBinding;
 
-    public static final int WALLET = 0;
-    public static final int CONSULT = 1;
-    public static final int ME = 2;
+    public static final int INVEST = 0;
+    public static final int TRADE = 1;
+    public static final int WALLET = 2;
+//    public static final int CONSULT = 1;
+    public static final int USER = 3;
     private List<Fragment> fragments;
 
     /**
@@ -49,12 +53,15 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         initListener();
-        init();
         initViewPager();
+
+        init();
     }
 
 
     private void init() {
+        UIStatusBarHelper.setStatusBarDarkMode(this);
+
         setShowIndex(WALLET);
 //        CoinListService.open(this);
     }
@@ -64,18 +71,24 @@ public class MainActivity extends BaseActivity {
      */
     private void initListener() {
 
-        mBinding.layoutMainBottom.llConsult.setOnClickListener(v -> {
-            setShowIndex(CONSULT);
+//        mBinding.layoutMainBottom.llConsult.setOnClickListener(v -> {
+//            setShowIndex(CONSULT);
+//        });
 
+        mBinding.layoutMainBottom.llInvest.setOnClickListener(v -> {
+            setShowIndex(INVEST);
+        });
+
+        mBinding.layoutMainBottom.llTrade.setOnClickListener(v -> {
+            setShowIndex(TRADE);
         });
 
         mBinding.layoutMainBottom.llWallet.setOnClickListener(v -> {
             setShowIndex(WALLET);
-
         });
 
         mBinding.layoutMainBottom.llMy.setOnClickListener(v -> {
-            setShowIndex(ME);
+            setShowIndex(USER);
         });
 
     }
@@ -84,15 +97,27 @@ public class MainActivity extends BaseActivity {
     public void setTabIndex(int index) {
         setTabDark();
         switch (index) {
-            case CONSULT:
-                mBinding.layoutMainBottom.ivConsult.setImageResource(R.mipmap.main_consult_light);
-                mBinding.layoutMainBottom.tvConsult.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+//            case CONSULT:
+//                mBinding.layoutMainBottom.ivConsult.setImageResource(R.mipmap.main_consult_light);
+//                mBinding.layoutMainBottom.tvConsult.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+//                break;
+
+            case INVEST:
+                mBinding.layoutMainBottom.ivInvest.setImageResource(R.mipmap.main_invest_light);
+                mBinding.layoutMainBottom.tvInvest.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
                 break;
+
+            case TRADE:
+                mBinding.layoutMainBottom.ivTrade.setImageResource(R.mipmap.main_trade_light);
+                mBinding.layoutMainBottom.tvTrade.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+                break;
+
             case WALLET:
                 mBinding.layoutMainBottom.ivWallet.setImageResource(R.mipmap.main_wallet_light);
                 mBinding.layoutMainBottom.tvWallet.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
                 break;
-            case ME:
+
+            case USER:
                 mBinding.layoutMainBottom.ivMy.setImageResource(R.mipmap.main_my_light);
                 mBinding.layoutMainBottom.tvMy.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
                 break;
@@ -101,8 +126,14 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setTabDark() {
-        mBinding.layoutMainBottom.ivConsult.setImageResource(R.mipmap.main_consult_dark);
-        mBinding.layoutMainBottom.tvConsult.setTextColor(ContextCompat.getColor(this, R.color.gray_666666));
+//        mBinding.layoutMainBottom.ivConsult.setImageResource(R.mipmap.main_consult_dark);
+//        mBinding.layoutMainBottom.tvConsult.setTextColor(ContextCompat.getColor(this, R.color.gray_666666));
+
+        mBinding.layoutMainBottom.ivInvest.setImageResource(R.mipmap.main_invest_dark);
+        mBinding.layoutMainBottom.tvInvest.setTextColor(ContextCompat.getColor(this, R.color.gray_666666));
+
+        mBinding.layoutMainBottom.ivTrade.setImageResource(R.mipmap.main_trade_dark);
+        mBinding.layoutMainBottom.tvTrade.setTextColor(ContextCompat.getColor(this, R.color.gray_666666));
 
         mBinding.layoutMainBottom.ivWallet.setImageResource(R.mipmap.main_wallet_dark);
         mBinding.layoutMainBottom.tvWallet.setTextColor(ContextCompat.getColor(this, R.color.gray_666666));
@@ -120,15 +151,15 @@ public class MainActivity extends BaseActivity {
         //设置fragment数据
         fragments = new ArrayList<>();
 
-        fragments.add(WalletFragment.getInstance());
-        fragments.add(FindFragment.getInstance());
+        fragments.add(InvestFragment.getInstance());
+        fragments.add(TradeFragment.getInstance());
+        fragments.add(WalletFragment2.getInstance());
         fragments.add(UserFragment.getInstance());
 
         mBinding.pagerMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), fragments));
         mBinding.pagerMain.setOffscreenPageLimit(fragments.size());
 
         mBinding.pagerMain.setCurrentItem(0);
-
     }
 
 

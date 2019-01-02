@@ -37,6 +37,10 @@ public class MyManagementMoneyDetailsActivity extends AbsLoadActivity {
         context.startActivity(intent);
     }
 
+    @Override
+    protected boolean canLoadTopTitleView() {
+        return false;
+    }
 
     @Override
     public View addMainView() {
@@ -47,18 +51,20 @@ public class MyManagementMoneyDetailsActivity extends AbsLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        mBaseBinding.titleView.setMidTitle(R.string.my_managment_money);
-
-        setStatusBarBlue();
-        setTitleBgBlue();
-
         if (getIntent() != null) {
             moneyProduct = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
         }
 
+        initListener();
         setShowData(moneyProduct);
 
 
+    }
+
+    private void initListener() {
+        mBinding.ivFinish.setOnClickListener(view -> {
+            finish();
+        });
     }
 
     /**

@@ -77,13 +77,14 @@
 
                 <TextView
                     android:id="@+id/tv_income"
+                    android:layout_marginRight="3dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="middle"
                     android:singleLine="true"
-                    android:textColor="#ffff6400"
+                    android:textColor="@color/blue_4368EF"
                     android:textSize="20sp"
-                    tools:text="9.4fffffffETH" />
+                    tools:text="0.00ETH" />
 
                 <TextView
                     android:layout_width="wrap_content"

@@ -84,7 +84,7 @@ public class MyIncomeActivity extends BaseActivity {
         });
 
         mBinding.llIncomePop.setOnClickListener(view -> {
-            InvestmentBillListActivity.open(this);
+//            InvestmentBillListActivity.open(this);
         });
 
         mBinding.llMoreRank.setOnClickListener(view -> {

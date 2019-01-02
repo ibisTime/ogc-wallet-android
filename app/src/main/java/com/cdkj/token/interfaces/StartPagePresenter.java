@@ -55,7 +55,7 @@ public class StartPagePresenter {
      * 开始
      */
     public void start() {
-        checkDBAegis();
+        checkVersion();
     }
 
     /**
@@ -161,6 +161,17 @@ public class StartPagePresenter {
     }
 
     /**
+     * 获取七牛之后 判断用户是否登录 没登陆进行国家匹配
+     */
+    private void qiniuAfter() {
+        if (SPUtilHelper.isLoginNoStart()) {
+            startMain();
+        } else {
+            getCountryList();
+        }
+    }
+
+    /**
      * 获取国家列表，保存列表第一位国家信息并启动登录界面
      */
     private void getCountryList() {
@@ -208,16 +219,6 @@ public class StartPagePresenter {
         AppConfig.changeLocalCoinTypeForCountry(countryCodeMode.getInterCode());
     }
 
-    /**
-     * 获取七牛之后 判断用户是否登录 没登陆进行国家匹配
-     */
-    private void qiniuAfter() {
-        if (SPUtilHelper.isLoginNoStart()) {
-            startMain();
-        } else {
-            getCountryList();
-        }
-    }
 
     /**
      * 启动主页

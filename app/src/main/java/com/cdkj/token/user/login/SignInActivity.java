@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cdkj.baselibrary.activitys.AppBuildTypeActivity;
-import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.OtherLibManager;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
@@ -24,20 +23,11 @@ import com.cdkj.baselibrary.interfaces.SendCodeInterface;
 import com.cdkj.baselibrary.interfaces.SendPhoneCodePresenter;
 import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.model.UserLoginModel;
-import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
-import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.LogUtil;
-import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivitySignIn2Binding;
-import com.cdkj.token.user.CountryCodeListActivity;
-
-import java.util.HashMap;
-
-import retrofit2.Call;
 
 @Route(path = CdRouteHelper.APPLOGIN)
 public class SignInActivity extends AbsStatusBarTranslucentActivity implements LoginInterface, SendCodeInterface {
@@ -48,7 +38,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     private SendPhoneCodePresenter mSendPhoneCodePresenter;
     private ActivitySignIn2Binding mBinding;
 
-    private final String CODE_LOGIN_CODE = "805044";//验证码登录接口编号
+    private final String CODE_LOGIN_CODE = "805050";//验证码登录接口编号
 
     private int changeDevCount = 0;//用于记录研发或测试环境切换条件
 
@@ -77,8 +67,9 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     public void afterCreate(Bundle savedInstanceState) {
 
         sheShowTitle(false);
-
-        setPageBgRes(R.drawable.sign_in_bg);
+        setPageBgRes(R.color.colorPrimary);
+        setContentBgRes(R.color.white);
+        setStatusBarWhite();
 
         mPresenter = new LoginPresenter(this);
         mSendPhoneCodePresenter = new SendPhoneCodePresenter(this, this);
@@ -92,8 +83,6 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     protected void onResume() {
         super.onResume();
         changeDevCount = 0;
-        mBinding.edtUsername.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtUsername.getLeftImage());
     }
 
     private void initEditInputType() {
@@ -109,20 +98,6 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     }
 
     private void initListener() {
-        //改变登录方式
-//        mBinding.tvChangeLogin.setOnClickListener(v -> {
-//            if (isCodeLogin()) {    //显示密码登录
-//                mBinding.edtCode.setVisibility(View.GONE);
-//                mBinding.edtPassword.setVisibility(View.VISIBLE);
-//                mBinding.tvChangeLogin.setText(R.string.code_login);
-//
-//            } else {                                                     //显示验证码登录
-//                mBinding.edtCode.setVisibility(View.VISIBLE);
-//                mBinding.edtPassword.setVisibility(View.GONE);
-//                mBinding.tvChangeLogin.setText(R.string.account_login);
-//            }
-//
-//        });
 
         //发送验证码
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
@@ -154,12 +129,6 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
             SignUpActivity.open(this);
         });
 
-        //国家区号选择
-        mBinding.edtUsername.getLeftRootView().setOnClickListener(view -> {
-            CountryCodeListActivity.open(this, true);
-        });
-
-
         /**
          * 切换环境
          */
@@ -184,60 +153,12 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
             return;
         }
 
-        if (isCodeLogin()) {
-            if (TextUtils.isEmpty(mBinding.edtCode.getEditText().getText().toString().trim())) {
-                UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_code_hint));
-                return;
-            }
-            codeLoginRequest();
-
-        } else {
-
-            if (mBinding.edtPassword.getText().toString().trim().length() < 6) {
-                UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_password_format_hint));
-                return;
-            }
-
-            mPresenter.login(mBinding.edtUsername.getText().toString(), mBinding.edtPassword.getText().toString(), SPUtilHelper.getCountryInterCode(), this);
+        if (mBinding.edtPassword.getText().toString().trim().length() < 6) {
+            UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_password_format_hint));
+            return;
         }
-    }
 
-
-    /**
-     * 验证码登录
-     */
-    public void codeLoginRequest() {
-
-        HashMap<String, String> hashMap = new HashMap<>();
-
-        hashMap.put("countryCode", SPUtilHelper.getCountryCode());
-        hashMap.put("mobile", mBinding.edtUsername.getEditText().getText().toString());
-        hashMap.put("smsCaptcha", mBinding.edtCode.getEditText().getText().toString());
-        hashMap.put("systemCode", AppConfig.SYSTEMCODE);
-        hashMap.put("companyCode", AppConfig.COMPANYCODE);
-        hashMap.put("interCode", SPUtilHelper.getCountryInterCode());
-        Call call = RetrofitUtils.getBaseAPiService().userLogin(CODE_LOGIN_CODE, StringUtils.getRequestJsonString(hashMap));
-
-        showLoadingDialog();
-
-        call.enqueue(new BaseResponseModelCallBack<UserLoginModel>(this) {
-            @Override
-            protected void onSuccess(UserLoginModel data, String SucMessage) {
-                if (!TextUtils.isEmpty(data.getToken()) && !TextUtils.isEmpty(data.getUserId())) {
-                    loginSuccessNext(data);
-                } else {
-                    disMissLoadingDialog();
-                    UITipDialog.showInfoNoIcon(SignInActivity.this, SucMessage);
-                }
-            }
-
-            @Override
-            protected void onFinish() {
-                disMissLoadingDialog();
-            }
-        });
-
-
+        mPresenter.login(mBinding.edtUsername.getText().toString(), mBinding.edtPassword.getText().toString(), SPUtilHelper.getCountryInterCode(), this);
     }
 
     /**
@@ -269,15 +190,6 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
         showToast(msg);
     }
 
-
-    /**
-     * 是否是验证码登录
-     *
-     * @return
-     */
-    public boolean isCodeLogin() {
-        return mBinding.edtCode.getVisibility() == View.VISIBLE;
-    }
 
     @Override
     public void StartLogin() {

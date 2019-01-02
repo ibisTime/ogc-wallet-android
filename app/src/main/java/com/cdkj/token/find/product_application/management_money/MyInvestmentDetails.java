@@ -16,6 +16,7 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.utils.UIStatusBarHelper;
 import com.cdkj.token.R;
 import com.cdkj.token.adapter.MyManagementMoneyAdapter;
 import com.cdkj.token.api.MyApi;
@@ -57,6 +58,8 @@ public class MyInvestmentDetails extends BaseActivity {
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_my_investment_details);
 
+        UIStatusBarHelper.setStatusBarDarkMode(this);
+
         initClickListener();
 
         initStatusChangeListener();
@@ -67,7 +70,11 @@ public class MyInvestmentDetails extends BaseActivity {
     }
 
     private void initClickListener() {
-        mBinding.linLayoutBill.setOnClickListener(view -> InvestmentBillListActivity.open(this));
+
+        mBinding.linLayoutBillBTC.setOnClickListener(view -> InvestmentBillListActivity.open(this, "BTC"));
+
+        mBinding.linLayoutBillUSDT.setOnClickListener(view -> InvestmentBillListActivity.open(this, "USDT"));
+
         mBinding.imgFinish.setOnClickListener(view -> finish());
     }
 
@@ -160,8 +167,8 @@ public class MyInvestmentDetails extends BaseActivity {
         call.enqueue(new BaseResponseModelCallBack<InvestmentAmountModel>(this) {
             @Override
             protected void onSuccess(InvestmentAmountModel data, String SucMessage) {
-                mBinding.tvTotalInvest.setText(AmountUtil.transformFormatToString2(data.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
-                mBinding.tvTotalIncome.setText(AmountUtil.transformFormatToString2(data.getTotalIncome(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
+                mBinding.tvTotalInvestBTC.setText(AmountUtil.transformFormatToString2(data.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
+                mBinding.tvTotalInvestBTC.setText(AmountUtil.transformFormatToString2(data.getTotalIncome(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
             }
 
             @Override
@@ -206,7 +213,7 @@ public class MyInvestmentDetails extends BaseActivity {
         MyManagementMoneyAdapter adapter = new MyManagementMoneyAdapter(listData);
 
         adapter.setOnItemClickListener((adapter1, view, position) -> {
-//            MyManagementMoneyDetailsActivity.open(this, adapter.getItem(position));
+            MyManagementMoneyDetailsActivity.open(this, adapter.getItem(position));
         });
 
         return adapter;

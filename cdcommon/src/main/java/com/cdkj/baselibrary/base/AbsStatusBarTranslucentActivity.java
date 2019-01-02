@@ -22,14 +22,14 @@ public abstract class AbsStatusBarTranslucentActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UIStatusBarHelper.setStatusBarLightMode(this);
         UIStatusBarHelper.translucent(this);
+        UIStatusBarHelper.setStatusBarLightMode(this);
 
         mBaseBinding = DataBindingUtil.setContentView(this, R.layout.activity_abs_status_bar);
 
         View contentView = addContentView();
         if (contentView != null) {
-            mBaseBinding.linLayoutRoot.addView(contentView);
+            mBaseBinding.llContent.addView(contentView);
         }
 
         mBaseBinding.imgBack.setOnClickListener(view -> finish());
@@ -47,12 +47,28 @@ public abstract class AbsStatusBarTranslucentActivity extends BaseActivity {
      */
     public abstract void afterCreate(Bundle savedInstanceState);
 
+    /**
+     * 设置根布局背景（由于沉浸式采用 fitsSystemWindows 方式实现，设置此背景也就是设置statusbar背景样式）
+     * @param imgId
+     */
     public void setPageBgRes(@DrawableRes int imgId) {
         mBaseBinding.linLayoutRoot.setBackgroundResource(imgId);
     }
 
+    /**
+     * 设置头部导航栏样式，此布局默认无色，浮于跟布局之上，设置此布局背景会导致根布局背景样式被遮挡
+     * @param imgId
+     */
     public void setTitleBgRes(@DrawableRes int imgId) {
         mBaseBinding.fraLayoutTitle.setBackgroundResource(imgId);
+    }
+
+    /**
+     * 设置内容布局样式，此布局默认无色，浮于跟布局之上，设置此布局背景会导致根布局背景样式被遮挡
+     * @param imgId
+     */
+    public void setContentBgRes(@DrawableRes int imgId) {
+        mBaseBinding.llContent.setBackgroundResource(imgId);
     }
 
     public void setMidTitle(String titleString) {
@@ -75,5 +91,6 @@ public abstract class AbsStatusBarTranslucentActivity extends BaseActivity {
     public void setStatusBarWhite() {
         UIStatusBarHelper.setStatusBarDarkMode(this);
     }
+
 
 }

@@ -70,7 +70,7 @@ public class MyApplication extends Application {
 
         BGAImage.setImageLoader(new BGAGlideImageLoader2());
 
-        OtherLibManager.initUmeng(this, BuildConfig.umeng);
+//        OtherLibManager.initUmeng(this, BuildConfig.umeng);
 
         Logger.setLoggable(true);
         OtherLibManager.initZendesk(this);

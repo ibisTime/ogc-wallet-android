@@ -283,18 +283,21 @@ public class InviteQrActivity extends AbsStatusBarTranslucentActivity implements
                     .map(bitmap -> BitmapUtils.saveBitmapFile(bitmap, ""))
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(path -> {
+
                         mBinding.linLayoutCopy.setVisibility(View.VISIBLE);
                         mBinding.llRule.setVisibility(View.GONE);
+
                         disMissLoadingDialog();
                         UITipDialog.showInfoNoIcon(this, getString(R.string.save_success));
 
-
                     }, throwable -> {
+
                         mBinding.linLayoutCopy.setVisibility(View.VISIBLE);
                         mBinding.llRule.setVisibility(View.GONE);
+
                         disMissLoadingDialog();
                         UITipDialog.showInfoNoIcon(this, getString(R.string.save_fail));
-                        LogUtil.E("图片保存失败" + throwable);
+
                     }));
         });
     }

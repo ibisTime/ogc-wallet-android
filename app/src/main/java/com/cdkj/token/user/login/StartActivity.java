@@ -2,12 +2,14 @@ package com.cdkj.token.user.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.base.BaseActivity;
 import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.model.AllFinishEvent;
+import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.interfaces.StartPagePresenter;
@@ -49,6 +51,10 @@ public class StartActivity extends BaseActivity implements StartPageView {
 
         pagePresenter = new StartPagePresenter(this);
         pagePresenter.start();
+
+        int width = DisplayHelper.getScreenWidth(this);
+        Log.e("width", width+"px");
+        Log.e("width", DisplayHelper.px2dp(this, width)+"dp");
 
     }
 

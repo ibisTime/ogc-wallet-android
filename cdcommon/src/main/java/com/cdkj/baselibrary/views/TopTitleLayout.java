@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -32,6 +31,7 @@ public class TopTitleLayout extends FrameLayout {
     private TextView mLeftTv;
     private ImageView mRightImg;
     private TextView mRightTv;
+    private View mLine;
 
     private Context mContext;
 
@@ -58,6 +58,7 @@ public class TopTitleLayout extends FrameLayout {
         mRightFra = (FrameLayout) findViewById(R.id.fllayout_right);
         mLeftImg = (ImageView) findViewById(R.id.img_back);
         mRightImg = (ImageView) findViewById(R.id.img_right);
+        mLine = findViewById(R.id.v_line);
     }
 
     public void setLeftTitle(String text) {
@@ -107,6 +108,10 @@ public class TopTitleLayout extends FrameLayout {
         if (img != 0) {
             mRightImg.setImageResource(img);
         }
+    }
+
+    public void isShowTitleLine(boolean isShow) {
+        mLine.setVisibility(isShow ? VISIBLE : GONE);
     }
 
     public void setLeftFraClickListener(View.OnClickListener listener) {

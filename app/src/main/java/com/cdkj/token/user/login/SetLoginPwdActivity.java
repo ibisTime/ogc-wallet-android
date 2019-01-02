@@ -107,6 +107,7 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
 //        mBinding.edtMobile.getLeftRootView().setOnClickListener(view -> {
 //            CountryCodeListActivity.open(this, true);
 //        });
+
         mBinding.tvFinish.setOnClickListener(view -> finish());
 
         //发送验证码

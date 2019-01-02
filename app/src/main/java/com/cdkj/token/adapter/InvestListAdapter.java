@@ -21,10 +21,10 @@ import java.util.List;
  * Created by cdkj on 2018/5/25.
  */
 
-public class ManagementMoneyListAdapter extends BaseQuickAdapter<ManagementMoney, BaseViewHolder> {
+public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseViewHolder> {
 
 
-    public ManagementMoneyListAdapter(@Nullable List<ManagementMoney> data) {
+    public InvestListAdapter(@Nullable List<ManagementMoney> data) {
         super(R.layout.item_manager_money2, data);
     }
 
@@ -58,7 +58,7 @@ public class ManagementMoneyListAdapter extends BaseQuickAdapter<ManagementMoney
 
         switch (item.getStatus()) {
             case "4":                       //蓝色
-                return Color.parseColor("#ff0064ff");
+                return Color.parseColor("#FF4064E6");
             case "8":
                 //灰色
                 return Color.parseColor("#ff999999");
@@ -87,11 +87,6 @@ public class ManagementMoneyListAdapter extends BaseQuickAdapter<ManagementMoney
                 return mContext.getString(R.string.management_money_state_5);
             case "6":
                 return mContext.getString(R.string.management_money_state_6);
-//                if (BigDecimalUtils.compareEqualsZERO(data.getAvilAmount())) {
-//
-//                } else {
-//                    return mContext.getString(R.string.management_money_state_10);
-//                }
             case "7":
                 if (data.isIncomeFlag()){
                     return mContext.getString(R.string.management_money_state_jxz);

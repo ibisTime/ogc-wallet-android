@@ -276,7 +276,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="40dp"
-                android:background="@drawable/selector_btn_blue_change"
+                android:background="@drawable/shape_normal_blue_btn"
                 android:gravity="center"
                 android:text="@string/wallet_withdraw_confirm"
                 android:textColor="@color/white"
