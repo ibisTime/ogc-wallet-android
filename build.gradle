@@ -3,9 +3,9 @@ apply plugin: 'com.alibaba.arouter'
 buildscript {
 
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-        jcenter()
         google()
+        jcenter()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven { url "https://dl.bintray.com/ethereum/maven/" }
         mavenCentral()
     }
@@ -22,9 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
-        flatDir {         //<------添加三行
-            dirs 'libs'   //<------
-        }
+        google()
         jcenter()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
         maven { url "https://jitpack.io" }
@@ -40,7 +38,9 @@ allprojects {
         mavenCentral()
         maven { url "https://dl.bintray.com/ethereum/maven/" }
         maven { url "https://dl.bintray.com/thelasterstar/maven/" }//微博
-        google()
+        flatDir {         //<------添加三行
+            dirs 'libs'   //<------
+        }
     }
 }
 task clean(type: Delete) {

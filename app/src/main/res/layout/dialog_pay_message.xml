@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="付款须知"
+            android:textColor="@color/gray_333333"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/tv_message1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="请在10分钟内完成付款"
+            android:textColor="@color/gray_333333"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_message2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="转账请务必填写转账附信"
+            android:textColor="@color/gray_333333"
+            android:textSize="18sp" />
+
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="每天取消三次订单后，24小时内不允许交易"
+            android:textColor="@color/indicator_yealo_color"
+            android:textSize="12sp" />
+
+        <View
+            style="@style/style_split_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="我知道了"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+</layout>

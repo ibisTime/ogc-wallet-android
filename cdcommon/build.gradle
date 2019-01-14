@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 16
@@ -35,10 +35,10 @@ android {
 
     }
 
-    dexOptions {
-        incremental true
-        javaMaxHeapSize "4g"
-    }
+//    dexOptions {
+//        incremental true
+//        javaMaxHeapSize "4g"
+//    }
 
     dataBinding {
         enabled true

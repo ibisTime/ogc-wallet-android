@@ -33,6 +33,7 @@
     <!---->
     <color name="gray">#ececec</color>
     <color name="txt_gray">#999999</color>
+    <color name="txt_333">#333333</color>
 
     <!--分割线颜色-->
     <color name="splitLine_color">#dededf</color>
@@ -74,6 +75,7 @@
 
     <color name="invite_color_gray">#A2A5C4</color>
     <color name="invite_color_blue">#00F9FE</color>
+    <color name="indicator_yealo_color">#FA7D0E</color>
 
 
 

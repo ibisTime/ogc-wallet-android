@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="BTC交易区"
+                    android:textColor="@color/gray_333333"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_bill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|right"
+                    android:layout_marginRight="15dp"
+                    android:text="账单"
+                    android:textColor="@color/gray_333333"
+                    android:textSize="16sp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="208dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="近30日走势图"
+                        android:textColor="@color/gray_333333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="买入价"
+                        android:textColor="@color/txt_333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_buying_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="1360"
+                        android:textColor="#0EC55B"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:text="卖出价"
+                        android:textColor="@color/txt_333"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_selling_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="1890"
+                        android:textColor="#E15E5E"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tl_way"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                app:tabIndicatorColor="@color/indicator_yealo_color"
+                app:tabIndicatorHeight="2.4dp"
+                app:tabSelectedTextColor="@color/indicator_yealo_color"
+                app:tabTextColor="#FF999999">
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="买入"
+                    android:textSize="18sp" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="卖出"
+                    android:textSize="18sp" />
+
+            </android.support.design.widget.TabLayout>
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/border_invite_copy_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="金额"
+                    android:textColor="@color/txt_333"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_money"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入购买金额"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="CNY"
+                    android:textColor="@color/txt_333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/border_invite_copy_btn"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="数量"
+                    android:textColor="@color/txt_333"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/et_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入买入数量"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:text="BTC"
+                    android:textColor="@color/txt_333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/tv_available_assets_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="可用资产:"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_available_assets"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    tools:text="0.0000567btc" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="交易手续费:"
+                    android:textColor="@color/gray_999999"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_service_charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="0.0000567btc"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="收款方式" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/icon_ali_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:src="@mipmap/icon_right_arrow" />
+            </LinearLayout>
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="match_parent"
+                android:layout_height="5dp" />
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorPrimary"
+                android:text="买入BTC"
+                android:textColor="@color/white" />
+
+            <!--<com.scwang.smartrefresh.layout.SmartRefreshLayout-->
+            <!--android:id="@+id/refreshLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/gray_bg"-->
+            <!--app:srlAccentColor="@android:color/tertiary_text_dark"-->
+            <!--app:srlEnablePreviewInEditMode="true"-->
+            <!--app:srlPrimaryColor="#ffefefef">-->
+            <!--&lt;!&ndash;srlAccentColor srlPrimaryColor 将会改变 Header 和 Footer 的主题颜色&ndash;&gt;-->
+            <!--&lt;!&ndash;srlEnablePreviewInEditMode 可以开启和关闭预览功能&ndash;&gt;-->
+            <!--<com.cdkj.baselibrary.views.refresh.ClassicsHeader2-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/recyclerView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+
+            <!--<com.cdkj.baselibrary.views.refresh.ClassicsFooter2-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

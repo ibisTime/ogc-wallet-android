@@ -3,24 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.cdkj.token">
 
-    <uses-permission android:name="android.permission.VIBRATE" /> <!--震动-->
-    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" /><!--允许修改当前设置-->
-    <uses-permission android:name="android.permission.INTERNET" /><!--链接网络-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /><!--允许程序写入外部存储，如SD卡上写文件-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!--允许程序写入外部存储，如SD卡上写文件-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /><!---->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动 -->
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" /> <!-- 允许修改当前设置 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 链接网络 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 允许程序写入外部存储，如SD卡上写文件 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 允许程序写入外部存储，如SD卡上写文件 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--  -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" /><!--友盟-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 友盟 -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/><!--指纹识别-->
-
-    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
-    <!--<uses-permission android:name="android.permission.CALL_PHONE" />-->
-
+    <!-- 指纹识别 -->
+    <!-- <uses-permission android:name="android.permission.GET_TASKS" /> -->
+    <!-- <uses-permission android:name="android.permission.WAKE_LOCK" /> -->
+    <!-- <uses-permission android:name="android.permission.CALL_PHONE" /> -->
     <!-- 多渠道打包 -->
-
     <application
         android:name=".MyApplication"
         android:allowBackup="false"
@@ -31,11 +29,10 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:replace="android:allowBackup">
 
-        <!--友盟渠道标识-->
+        <!-- 友盟渠道标识 -->
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
-
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="${UMENG_CHANNEL_APPKEY}" />
@@ -47,8 +44,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogStyleBottom" />
-
-
         <activity android:name=".user.login.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,7 +57,6 @@
         <activity
             android:name=".wallet.account_wallet.BillDetailActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".wallet.account_wallet.WithdrawActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -101,7 +95,6 @@
             android:name="com.cdkj.baselibrary.activitys.PayPwdModifyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-
         // 图片
         <activity
             android:name="com.cdkj.baselibrary.activitys.ImageSelectActivity"
@@ -110,21 +103,18 @@
         <activity
             android:name="com.cdkj.baselibrary.activitys.AuthenticateActivity"
             android:launchMode="singleTask">
-
             // 需要添加下面的intent-filter配置
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 //scheme:为 实名认证Activity，认证接口参数"returnUrl"冒号前字符，host为同位置参数冒号后字符
                 <data
                     android:host="certify.back"
                     android:scheme="orangecoin" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".wallet.account_wallet.WithdrawOrderActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -132,13 +122,12 @@
             android:name=".user.UserGoogleActivity"
             android:windowSoftInputMode="adjustPan" />
 
-        <!--拨打电话-->
+        <!-- 拨打电话 -->
         <activity
             android:name=".user.CallPhoneActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ActivityDialogStyleBottom"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".find.NoneActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -157,7 +146,6 @@
         <activity
             android:name=".user.WalletToolActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".wallet.create_guide.CreateWalletSuccessActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -167,7 +155,6 @@
         <activity
             android:name=".wallet.create_guide.WalletHelpWordsShowActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".wallet.import_guide.ImportWalletSuccessActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -183,7 +170,6 @@
         <activity
             android:name=".wallet.backup_guide.WalletBackupPasswordCheckActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".wallet.export.CoinKeySelectActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -205,11 +191,9 @@
         <activity
             android:name=".wallet.private_wallet.TransactionDetailsActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".user.CountryCodeListActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".user.GoogleCodeSetActivity"
             android:theme="@style/ActivityDialogStyleBottom" />
@@ -254,7 +238,6 @@
             android:name=".user.question_feedback.QuestionFeedbackDetailsActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".user.setting.UserSettingActivity" />
-
         <activity android:name=".find.product_application.management_money.ManagementMoneyListActivity" />
         <activity android:name=".find.product_application.management_money.MyManagementMoneyListActivity" />
         <activity android:name=".find.product_application.management_money.MyManagementMoneyDetailsActivity" />
@@ -270,12 +253,10 @@
         <activity
             android:name=".wallet.smart_transfer.SmartTransferActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".find.product_application.red_package.SendRedPacketActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".find.product_application.red_package.CoinSelectListActivity" />
-
         <activity android:name=".user.invite.InviteActivity" />
         <activity android:name=".user.invite.InviteRuleActivity" />
         <activity
@@ -305,30 +286,34 @@
         <activity android:name=".find.product_application.management_money.BijiaBaoDetailsActivity" />
         <activity android:name=".find.product_application.management_money.MyInvestmentDetails" />
         <activity android:name=".find.product_application.management_money.InvestmentBillListActivity" />
-        <activity android:name=".find.product_application.management_money.BiJiaBaoBuyActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".find.product_application.management_money.MyIncomeActivity" >
+        <activity
+            android:name=".find.product_application.management_money.BiJiaBaoBuyActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".find.product_application.management_money.MyIncomeActivity" />
+        <activity android:name=".find.product_application.management_money.IncomeRankActivity">
 
-        </activity>
-        <activity android:name=".find.product_application.management_money.IncomeRankActivity" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".find.product_application.management_money.MyIncomeBillListActivity" />
         <activity android:name=".wallet.AddChoiceCoinActivity" />
         <activity android:name=".wallet.private_wallet.USDTTransactionDetailsActivity" />
         <activity android:name=".wallet.private_wallet.WalletUSDTTransferActivity" />
-        <activity android:name=".user.guide.GuideActivity" >
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <activity android:name=".user.guide.GuideActivity">
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
+        <activity android:name=".trade.OrderListActivity" />
+        <activity android:name=".trade.OrderDetailsActivity"></activity>
     </application>
 
 </manifest>

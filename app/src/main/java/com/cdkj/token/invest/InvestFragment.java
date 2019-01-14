@@ -80,6 +80,7 @@ public class InvestFragment extends BaseLazyFragment {
         initClickListener();
         initRefreshHelper();
         getUsrInvestAmount();
+//        reflex(mBinding.tlWay);
 
         mRefreshHelper.onDefaluteMRefresh(true);
 
@@ -91,10 +92,10 @@ public class InvestFragment extends BaseLazyFragment {
         mBinding.tvMyInvesment.setOnClickListener(view -> MyInvestmentDetails.open(mActivity));
 
         mBinding.llVisible.setOnClickListener(view -> {
-            if (mBinding.tvTotalInvest.getText().toString().equals("****** BTC")){
+            if (mBinding.tvTotalInvest.getText().toString().equals("****** BTC")) {
                 mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
                 mBinding.ivEye.setImageResource(R.mipmap.eye_open_white);
-            }else {
+            } else {
                 mBinding.tvTotalInvest.setText("****** BTC");
                 mBinding.ivEye.setImageResource(R.mipmap.eye_close_white);
             }
@@ -235,6 +236,68 @@ public class InvestFragment extends BaseLazyFragment {
 
 
     }
+
+//    public void reflex(final TabLayout tabLayout){
+//        //了解源码得知 线的宽度是根据 tabView的宽度来设置的
+//        tabLayout.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    //拿到tabLayout的mTabStrip属性
+//                    LinearLayout mTabStrip = (LinearLayout) tabLayout.getChildAt(0);
+//
+//
+//                    int dp10 = dip2px(tabLayout.getContext(), 10);
+//
+//                    for (int i = 0; i < mTabStrip.getChildCount(); i++) {
+//                        View tabView = mTabStrip.getChildAt(i);
+//
+//                        //拿到tabView的mTextView属性  tab的字数不固定一定用反射取mTextView
+//                        Field mTextViewField = tabView.getClass().getDeclaredField("mTextView");
+//                        mTextViewField.setAccessible(true);
+//
+//                        TextView mTextView = (TextView) mTextViewField.get(tabView);
+//
+//                        tabView.setPadding(0, 0, 0, 0);
+//
+//                        //因为我想要的效果是   字多宽线就多宽，所以测量mTextView的宽度
+//                        int width = 0;
+//                        width = mTextView.getWidth();
+//                        if (width == 0) {
+//                            mTextView.measure(0, 0);
+//                            width = mTextView.getMeasuredWidth();
+//                        }
+//
+//                        //设置tab左右间距为10dp  注意这里不能使用Padding 因为源码中线的宽度是根据 tabView的宽度来设置的
+//                        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+//                        params.width = width ;
+//                        params.leftMargin = dp10;
+//                        params.rightMargin = dp10;
+//                        tabView.setLayoutParams(params);
+//
+//                        tabView.invalidate();
+//                    }
+//
+//                } catch (NoSuchFieldException e) {
+//                    e.printStackTrace();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//    }
+//
+//    /**
+//     * 根据手机分辨率从DP转成PX
+//     * @param context
+//     * @param dpValue
+//     * @return
+//     */
+//    public static int dip2px(Context context, float dpValue) {
+//        float scale = context.getResources().getDisplayMetrics().density;
+//        return (int) (dpValue * scale + 0.5f);
+//    }
 
 
     @Override

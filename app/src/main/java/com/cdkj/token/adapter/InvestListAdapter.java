@@ -40,7 +40,7 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
 
 
         helper.setText(R.id.tv_state, getStateString(item));
-        helper.setTextColor(R.id.tv_state, getStateTextColor(item));
+        helper.setTextColor(R.id.tv_state, Color.parseColor("#4064E6"));
 
         helper.setText(R.id.tv_limite_days, mContext.getString(R.string.product_days, item.getLimitDays() + ""));
         helper.setText(R.id.tv_avil_amount,
