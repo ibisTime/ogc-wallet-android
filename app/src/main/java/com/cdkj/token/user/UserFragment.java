@@ -113,6 +113,9 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
         //账户与安全
         mBinding.linLayoutUserAccount.setOnClickListener(view -> UserSecurityActivity.open(mActivity));
 
+        //我的好友
+        mBinding.llFriends.setOnClickListener(view -> UserFriendsActivity.open(mActivity));
+
         //加入社群
         mBinding.joinUs.setOnClickListener(view -> UserJoinActivity.open(mActivity));
 
@@ -123,6 +126,8 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
         //设置
         mBinding.setting.setOnClickListener(view -> UserSettingActivity.open(mActivity));
+        //我的银行卡
+        mBinding.llMyBanks.setOnClickListener(view -> UserBackCardActivity.open(mActivity, false));
 
     }
 
@@ -154,11 +159,11 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
 
         mBinding.tvNickName.setText(data.getNickname());
-        if (TextUtils.isEmpty(data.getMobile())){
-            if (!TextUtils.isEmpty(data.getEmail())){
+        if (TextUtils.isEmpty(data.getMobile())) {
+            if (!TextUtils.isEmpty(data.getEmail())) {
                 mBinding.tvPhoneNumber.setText(data.getEmail());
             }
-        }else {
+        } else {
             mBinding.tvPhoneNumber.setText(StringUtils.ttransformShowPhone(data.getMobile()));
         }
 

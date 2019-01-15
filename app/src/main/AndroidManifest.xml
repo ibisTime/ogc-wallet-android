@@ -313,7 +313,10 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".trade.OrderListActivity" />
-        <activity android:name=".trade.OrderDetailsActivity"></activity>
+        <activity android:name=".trade.OrderDetailsActivity" />
+        <activity android:name=".user.UserFriendsActivity"></activity>
+        <activity android:name=".user.UserBackCardActivity" />
+        <activity android:name=".user.AddBackCardActivity" />
     </application>
 
 </manifest>

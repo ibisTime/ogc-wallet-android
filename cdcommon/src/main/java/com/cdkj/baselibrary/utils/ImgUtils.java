@@ -49,6 +49,16 @@ public class ImgUtils {
 
     }
 
+    public static void loadCircleImg(Context context, int imgid, ImageView img) {
+        if (context == null) {
+            return;
+        }
+        if (img == null) {
+            return;
+        }
+        GlideApp.with(context).load(imgid).transform(new CircleCrop()).into(img);
+    }
+
 
     public static void loadByte(Activity context, byte[] imgid, ImageView img) {
         if (!AppUtils.isActivityExist(context)) {
@@ -161,6 +171,15 @@ public class ImgUtils {
                     .into(iv);
         }
 
+    }
+
+    public static void loadImage(Context context, int path, ImageView iv) {
+
+        if (context == null)
+            return;
+        GlideApp.with(context)
+                .load(path)
+                .into(iv);
     }
 
     public static void loadLocalImage(Context context, String path, ImageView iv) {

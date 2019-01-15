@@ -110,9 +110,9 @@
 
 
                 <android.support.v7.widget.CardView
-                    android:layout_marginTop="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="@dimen/user_fragment_card_cornerradius"
                     app:cardElevation="@dimen/user_fragment_card_elevation"
@@ -336,6 +336,36 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_weight="1"
                                 android:text="@string/setting"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:background="@mipmap/more" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_my_banks"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/user_fragment_item_img_width"
+                                android:layout_height="@dimen/user_fragment_item_img_height"
+                                android:layout_marginLeft="15dp"
+                                android:src="@drawable/user_set" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:text="我的银行卡"
                                 android:textColor="@color/black"
                                 android:textSize="14sp" />
 
