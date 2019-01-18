@@ -54,12 +54,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txt_name"
                     android:layout_marginLeft="15dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginTop="2dp"
                     android:layout_toRightOf="@+id/img_bankCart"
-                    android:text="储蓄卡"
+                    android:text="银行卡"
                     android:textColor="@color/white"
-                    android:textSize="14dp"
-                    android:visibility="invisible" />
+                    android:textSize="12dp"
+                    />
 
                 <LinearLayout
                     android:id="@+id/ll_bannk_number"

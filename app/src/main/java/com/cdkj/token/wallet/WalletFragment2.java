@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
-import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
@@ -21,7 +21,10 @@ import com.cdkj.token.R;
 import com.cdkj.token.adapter.WalletAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.FragmentWalletBinding;
+import com.cdkj.token.interfaces.LocalCoinCacheInterface;
+import com.cdkj.token.interfaces.LocalCoinCachePresenter;
 import com.cdkj.token.model.WalletModel;
+import com.cdkj.token.model.db.LocalCoinDbModel;
 import com.cdkj.token.wallet.account_wallet.BillListActivity;
 
 import java.util.HashMap;
@@ -39,6 +42,7 @@ public class WalletFragment2 extends BaseLazyFragment {
     private FragmentWalletBinding mBinding;
 
     private RefreshHelper mRefreshHelper;
+    private LocalCoinCachePresenter mlLocalCoinCachePresenter;
 
     /**
      * 获得fragment实例
@@ -65,17 +69,33 @@ public class WalletFragment2 extends BaseLazyFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_wallet, null, false);
-
+        initLocalCoinPresenter();//初始化币种,请求币种保存本地
+        mlLocalCoinCachePresenter.getCoinList(mActivity);  //开始时请求币种缓存
         initRefresh();
-        mRefreshHelper.onDefaluteMRefresh(true);
 
         return mBinding.getRoot();
+    }
+
+    /**
+     * 本地币种缓存Presenter回调
+     * 获取缓存后再获取对应钱包数据
+     */
+    void initLocalCoinPresenter() {
+        mlLocalCoinCachePresenter = new LocalCoinCachePresenter(new LocalCoinCacheInterface() {
+            @Override
+            public void cacheEnd(List<LocalCoinDbModel> data) {
+//                getWalletAssetsData(true, false);
+                mRefreshHelper.onDefaluteMRefresh(true);
+            }
+        });
+
     }
 
     private void initRefresh() {
         mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
             @Override
             public View getRefreshLayout() {
+                mlLocalCoinCachePresenter.getCoinList(mActivity);  //刷新请求币种
                 mBinding.refreshLayout.setEnableLoadmore(false);
                 return mBinding.refreshLayout;
             }
@@ -102,7 +122,7 @@ public class WalletFragment2 extends BaseLazyFragment {
         mRefreshHelper.init(10);
     }
 
-    private WalletAdapter getListAdapter(List listData){
+    private WalletAdapter getListAdapter(List listData) {
         WalletAdapter adapter = new WalletAdapter(listData);
         adapter.setOnItemClickListener((adapter1, view, position) -> {
             BillListActivity.open(mActivity, adapter.getItem(position));
@@ -139,11 +159,11 @@ public class WalletFragment2 extends BaseLazyFragment {
         map.put("token", SPUtilHelper.getUserToken());
 
         Call call = RetrofitUtils.createApi(MyApi.class).getSymbolList("802301", StringUtils.getRequestJsonString(map));
-
-        call.enqueue(new BaseResponseListCallBack<WalletModel>(null) {
+        call.enqueue(new BaseResponseModelCallBack<WalletModel>(mActivity) {
             @Override
-            protected void onSuccess(List<WalletModel> data, String SucMessage) {
-                mRefreshHelper.setData(data, getString(R.string.no_assets), R.mipmap.order_none);
+            protected void onSuccess(WalletModel data, String SucMessage) {
+                mRefreshHelper.setData(data.getAccountList(), getString(R.string.no_assets), R.mipmap.order_none);
+
             }
 
             @Override

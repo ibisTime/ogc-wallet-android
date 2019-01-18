@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="OrderListTitle">暂无订单数据</string>
+    <string name="to_be_paid">待支付</string>
+</resources>

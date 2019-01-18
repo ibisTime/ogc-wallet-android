@@ -35,8 +35,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:text="@string/can_use_balance" />
-
+                        tools:text="@string/can_use_balance"
+                        />
+                    <!--tools:text="@string/can_use_balance"-->
 
                     <TextView
                         android:id="@+id/tv_in_money"

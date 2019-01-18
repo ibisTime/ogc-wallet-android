@@ -1,14 +1,32 @@
 package com.cdkj.token.user;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
-import com.cdkj.token.R;
+
+import com.cdkj.baselibrary.api.BaseResponseListModel;
+import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
+import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
+import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.LogUtil;
+import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.token.R;
+import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityBindBankCardBinding;
+import com.cdkj.token.model.BankTypeModel;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
 
 
 public class AddBackCardActivity extends AbsLoadActivity {
@@ -46,7 +64,7 @@ public class AddBackCardActivity extends AbsLoadActivity {
 
         //添加银行类型
         mBinding.txtBankName.setOnClickListener(v -> {
-//            getBankBrand()
+            getBankBrand();
         });
 //如果已经实名认证则不能更改持卡人
 //        if (!TextUtils.isEmpty(SPUtilHelpr.getUserName())) {
@@ -82,101 +100,89 @@ public class AddBackCardActivity extends AbsLoadActivity {
                     showToast("银行卡号最低为16位数字");
                     return;
                 }
-//                bindCard();
+                addCard();
             }
         });
     }
 
 
     //绑定银行卡
-//    public void bindCard() {
-//
-//        Map<String, String> object = new HashMap<>();
-//
-//        object.put("realName", mBinding.editName.getText().toString().trim());
-//        object.put("bankcardNumber", mBinding.edtCardId.getText().toString().trim());
-//        object.put("bankName", mBinding.txtBankName.getText().toString().trim());
-//        object.put("bankCode", mSelectCardId);
-//        object.put("currency", "CNY");
-//        object.put("type", "C");
-//        object.put("token", SPUtilHelpr.getUserToken());
-//        object.put("userId", SPUtilHelpr.getUserId());
-//        object.put("systemCode", MyConfig.SYSTEMCODE);
-//
-//        //下面这几个参数 不确定是否需要 为了调试先随便添加
-//        object.put("companyCode", MyConfig.COMPANYCODE);
-//        object.put("bindMobile", "13333333333");
-//        object.put("subbranch", mBinding.edtCardZH.getText().toString().trim());
-//        object.put("smsCaptcha", "1234");//验证码
-//
-////        Call call = RetrofitUtils.getBaseAPiService().bindBankCard("802010", StringUtils.getJsonToString(object));
-//        Call call = RetrofitUtils.getBaseAPiService().bindBankCard("802020", StringUtils.getJsonToString(object));
-//        addCall(call);
-//        showLoadingDialog();
-//
-//        call.enqueue(new BaseResponseModelCallBack(this) {
-//            @Override
-//            protected void onSuccess(Object data, String SucMessage) {
-//                showToast("银行卡添加成功");
-//                SPUtilHelpr.saveUserIsBindCard(true);
-//                finish();
-//            }
-//
-//            @Override
-//            protected void onFinish() {
-//                disMissLoading();
-//            }
-//        });
-//    }
+    public void addCard() {
+
+        Map<String, String> object = new HashMap<>();
+        object.put("bankCode", mSelectCardId);
+        object.put("bankName", mBinding.txtBankName.getText().toString().trim());
+        object.put("bankcardNumber", mBinding.edtCardId.getText().toString().trim());
+        object.put("realName", mBinding.editName.getText().toString().trim());
+        object.put("subbranch", mBinding.edtCardZH.getText().toString().trim());
+        object.put("type", "0");//0 银行卡 1支付宝
+        object.put("userId", SPUtilHelper.getUserId());
+//        object.put("systemCode", AppConfig.SYSTEMCODE);
+
+        Call call = RetrofitUtils.createApi(MyApi.class).addBankCard("802024", StringUtils.getRequestJsonString(object));
+        addCall(call);
+        showLoadingDialog();
+
+        call.enqueue(new BaseResponseModelCallBack(this) {
+            @Override
+            protected void onSuccess(Object data, String SucMessage) {
+                showToast("银行卡添加成功");
+                finish();
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoadingDialog();
+            }
+        });
+    }
 
 
     /**
      * 获取银行卡渠道
      */
-//    private void getBankBrand() {
-//        Map object = new HashMap();
-//        object.put("token", SPUtilHelpr.getUserToken());
-//        object.put("payType", "WAP");
-//        Call call = RetrofitUtils.getBaseAPiService().getBackModel("802116", StringUtils.getJsonToString(object));
-//        addCall(call);
-//        showLoadingDialog();
-//        call.enqueue(new BaseResponseListCallBack<BankModel>(this) {
-//            @Override
-//            protected void onSuccess(List<BankModel> r, String SucMessage) {
-//                mBankNames = new String[r.size()];
-//                mBankCodes = new String[r.size()];
-//
-//                int i = 0;
-//
-//                for (BankModel b : r) {
-//                    mBankNames[i] = b.getBankName();
-//                    mBankCodes[i] = b.getBankCode();
-//                    LogUtil.E("银行卡code" + b.getBankCode());
-//                    i++;
-//                }
-//                if (mBankNames.length != 0 && mBankNames.length == mBankCodes.length) {
-//                    chooseBankCard();
-//                }
-//            }
-//
-//            @Override
-//            protected void onFinish() {
-//                disMissLoading();
-//            }
-//        });
-//    }
-//
-//
-//    private void chooseBankCard() {
-//        new AlertDialog.Builder(this).setTitle("请选择银行").setSingleChoiceItems(
-//                mBankNames, -1, new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int which) {
-////                        txtBankCard.setText(list.get(which).getBankName());
-//                        mBinding.txtBankName.setText(mBankNames[which]);
-//                        mSelectCardId = mBankCodes[which];
-//                        LogUtil.E("选择银行卡code" + mSelectCardId);
-//                        dialog.dismiss();
-//                    }
-//                }).setNegativeButton("取消", null).show();
-//    }
+    private void getBankBrand() {
+
+        Call<BaseResponseListModel<BankTypeModel>> backTypeList = RetrofitUtils.createApi(MyApi.class).getBackTypeList("802116", "{}");
+        addCall(backTypeList);
+        showLoadingDialog();
+        backTypeList.enqueue(new BaseResponseListCallBack<BankTypeModel>(this) {
+            @Override
+            protected void onSuccess(List<BankTypeModel> data, String SucMessage) {
+                mBankNames = new String[data.size()];
+                mBankCodes = new String[data.size()];
+                int i = 0;
+                for (BankTypeModel b : data) {
+                    mBankNames[i] = b.getBankName();
+                    mBankCodes[i] = b.getBankCode();
+                    LogUtil.E("银行卡code" + b.getBankCode());
+                    i++;
+                }
+                if (mBankNames.length != 0 && mBankNames.length == mBankCodes.length) {
+                    chooseBankCard();
+                }
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoadingDialog();
+            }
+        });
+    }
+
+    /**
+     * 选择银行卡  弹窗
+     */
+    private void chooseBankCard() {
+        new AlertDialog.Builder(this).setTitle("请选择银行").setSingleChoiceItems(
+                mBankNames, -1, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+//                        txtBankCard.setText(list.get(which).getBankName());
+                        mBinding.txtBankName.setText(mBankNames[which]);
+                        mSelectCardId = mBankCodes[which];
+                        LogUtil.E("选择银行卡code" + mSelectCardId);
+                        dialog.dismiss();
+                    }
+                }).setNegativeButton("取消", null).show();
+    }
 }

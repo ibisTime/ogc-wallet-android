@@ -329,4 +329,30 @@ public class DateUtil {
 
         return isSameDate;
     }
+
+    /**
+     * 格式化秒数
+     *
+     * @param seconds
+     */
+    public static String formatSeconds(int seconds) {
+        String str = "";
+        if (seconds > 60) {
+            int fen = seconds / 60;
+            if (fen > 60) {
+                int shi = seconds / 60 / 60;
+                int miao = seconds % 3600;
+                if (miao > 60) {
+                    str = "剩余付款时间：" + shi + "时" + miao / 60 + "分" + miao % 60 + "秒";
+                } else {
+                    str = "剩余付款时间：" + shi + "时" + "0分" + miao + "秒";
+                }
+            } else {
+                str = "剩余付款时间：" + fen + "分" + seconds % 60 + "秒";
+            }
+        } else {
+            str = "剩余付款时间：" + seconds + "秒";
+        }
+        return str;
+    }
 }

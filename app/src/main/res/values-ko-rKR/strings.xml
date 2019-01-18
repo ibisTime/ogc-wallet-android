@@ -925,4 +925,12 @@
     <string name="user_sign_welcome_back">欢迎回来</string>
     <string name="user_sign_in_pwd_hint">Enter password </string>
     <string name="un_freeze">可用</string>
+    <string name="OrderListTitle">暂无订单数据</string>
+    <string name="OrderListTitleEmpty">暂无订单数据</string>
+    <string name="to_be_paid">待支付</string>
+    <string name="completed">已完成</string>
+    <string name="order_time_out">订单超时</string>
+    <string name="order_cancel">已取消</string>
+    <string name="user_order_cancel">用户取消订单</string>
+    <string name="bank_list_empty">暂无银行卡</string>
 </resources>

@@ -28,7 +28,7 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityAddressQrimgShowBinding;
-import com.cdkj.token.model.CoinModel;
+import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -84,39 +84,31 @@ public class RechargeAddressQRActivity extends AbsLoadActivity {
     }
 
 
-    private void initQRCodeAndAddress(CoinModel.AccountListBean model) {
+    private void initQRCodeAndAddress(WalletModel.AccountListBean model) {
         if (model == null) return;
-
         try {
             String coinLogoUrl = SPUtilHelper.getQiniuUrl() + LocalCoinDBUtils.getCoinIconByCoinSymbol(model.getCurrency());
 
             GlideApp.with(this).asBitmap().load(coinLogoUrl)
                     .into(new SimpleTarget<Bitmap>() {
-
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
 
                             try {
-
-                                Bitmap mBitmap = CodeUtils.createImage(model.getCoinAddress(), 400, 400, resource);
+                                Bitmap mBitmap = CodeUtils.createImage(model.getAddress(), 400, 400, resource);
                                 mBinding.imgQRCode.setImageBitmap(mBitmap);
-                                mBinding.txtAddress.setText(model.getCoinAddress());
+                                mBinding.txtAddress.setText(model.getAddress());
                             } catch (Exception e) {
-
                                 try {
-
-                                    Bitmap mBitmap = CodeUtils.createImage(model.getCoinAddress(), 400, 400, null);
+                                    Bitmap mBitmap = CodeUtils.createImage(model.getAddress(), 400, 400, null);
                                     mBinding.imgQRCode.setImageBitmap(mBitmap);
-                                    mBinding.txtAddress.setText(model.getCoinAddress());
+                                    mBinding.txtAddress.setText(model.getAddress());
 
                                 } catch (Exception e2) {
 
                                 }
-
                             }
-
                         }
-
                     });
 
         } catch (Exception e) {
@@ -125,6 +117,7 @@ public class RechargeAddressQRActivity extends AbsLoadActivity {
 
 
     }
+
 
     private void initListener() {
 
@@ -191,25 +184,25 @@ public class RechargeAddressQRActivity extends AbsLoadActivity {
             return;
 
         Map<String, Object> map = new HashMap<>();
-        map.put("currency", type);
         map.put("userId", SPUtilHelper.getUserId());
         map.put("token", SPUtilHelper.getUserToken());
-
-        Call call = RetrofitUtils.createApi(MyApi.class).getAccount("802503", StringUtils.getRequestJsonString(map));
-
+        Call call = RetrofitUtils.createApi(MyApi.class).getSymbolList("802301", StringUtils.getRequestJsonString(map));
         addCall(call);
 
         showLoadingDialog();
-
-        call.enqueue(new BaseResponseModelCallBack<CoinModel>(this) {
+        call.enqueue(new BaseResponseModelCallBack<WalletModel>(this) {
             @Override
-            protected void onSuccess(CoinModel data, String SucMessage) {
+            protected void onSuccess(WalletModel data, String SucMessage) {
                 if (data.getAccountList() == null || data.getAccountList().size() == 0) {
                     return;
                 }
-                initQRCodeAndAddress(data.getAccountList().get(0));
+                for (WalletModel.AccountListBean accountListBean : data.getAccountList()) {
+                    if (type.equals(accountListBean.getCurrency())) {
+                        initQRCodeAndAddress(accountListBean);
+                        break;
+                    }
+                }
             }
-
             @Override
             protected void onFinish() {
                 disMissLoadingDialog();

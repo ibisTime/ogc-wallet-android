@@ -38,6 +38,7 @@ public class RefreshHelper<T> {
     private Context mContext;
 
     private View mEmptyView;
+    private OnMyRefreshLoadmoreListener myOnRefreshLoadmoreListener;
 
     public int getmPageIndex() {
         return mPageIndex;
@@ -127,6 +128,10 @@ public class RefreshHelper<T> {
         mRefreshLayout.setOnRefreshLoadmoreListener(new OnRefreshLoadmoreListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) { //刷新
+
+                if (myOnRefreshLoadmoreListener != null) {
+                    myOnRefreshLoadmoreListener.onRefresh(refreshlayout);
+                }
                 onMRefresh(1, mLimit, false);
                 if (mRefreshInterface != null) {
                     mRefreshInterface.onRefresh(1, mLimit);
@@ -136,6 +141,9 @@ public class RefreshHelper<T> {
 
             @Override
             public void onLoadmore(RefreshLayout refreshlayout) {//加载
+                if (myOnRefreshLoadmoreListener != null) {
+                    myOnRefreshLoadmoreListener.onLoadmore(refreshlayout);
+                }
                 if (mDataList.size() > 0) {
                     mPageIndex++;
                 }
@@ -306,4 +314,18 @@ public class RefreshHelper<T> {
         mContext = null;
     }
 
+
+    /**
+     * 添加  刷新加载回调  再目前刷新做操作前置进行回调
+     */
+    public void setOnRefreshLoadmoreListener(OnMyRefreshLoadmoreListener onRefreshLoadmoreListener) {
+        this.myOnRefreshLoadmoreListener = onRefreshLoadmoreListener;
+    }
+
+    public interface OnMyRefreshLoadmoreListener {
+
+        public void onRefresh(RefreshLayout refreshlayout);
+
+        public void onLoadmore(RefreshLayout refreshlayout);
+    }
 }

@@ -854,4 +854,12 @@
     <string name="user_sign_welcome_back">欢迎回来</string>
     <string name="user_sign_in_pwd_hint">请输入密码（6～16个字符或字母组成）</string>
     <string name="un_freeze">可用</string>
+    <string name="OrderListTitle">订单数据记录</string>
+    <string name="OrderListTitleEmpty">暂无订单数据</string>
+    <string name="to_be_paid">待支付</string>
+    <string name="completed">已完成</string>
+    <string name="order_time_out">订单超时</string>
+    <string name="order_cancel">已取消</string>
+    <string name="user_order_cancel">用户取消订单</string>
+    <string name="bank_list_empty">暂无银行卡</string>
 </resources>

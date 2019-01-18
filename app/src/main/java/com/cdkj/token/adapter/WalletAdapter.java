@@ -14,26 +14,30 @@ import java.util.List;
  * Created by cdkj on 2018/12/29.
  */
 
-public class WalletAdapter extends BaseQuickAdapter<WalletModel, BaseViewHolder> {
+public class WalletAdapter extends BaseQuickAdapter<WalletModel.AccountListBean, BaseViewHolder> {
 
-    public WalletAdapter(@Nullable List<WalletModel> data) {
+    public WalletAdapter(@Nullable List<WalletModel.AccountListBean> data) {
         super(R.layout.item_wallet, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, WalletModel item) {
+    protected void convert(BaseViewHolder helper, WalletModel.AccountListBean item) {
 
 //        ImgUtils.loadImage(mContext, item.ge(), helper.getView(R.id.img_coin_logo));
+        if (item.getCurrency()!=null) {
 
-        if (item.getCurrency().toUpperCase().equals("BTC")){
-            helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_btc);
+            if (item.getCurrency().toUpperCase().equals("BTC")){
+                helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_btc);
+            }
+
+            if (item.getCurrency().toUpperCase().equals("ETH")){
+                helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_eth);
+            }
+            helper.setText(R.id.tv_symbol, item.getCurrency().toUpperCase());
         }
 
-        if (item.getCurrency().toUpperCase().equals("ETH")){
-            helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_eth);
-        }
 
-        helper.setText(R.id.tv_symbol, item.getCurrency().toUpperCase());
+
 
         String froStr = mContext.getString(R.string.freeze);
         String frozenAmount = AmountUtil.toMinWithUnit(item.getFrozenAmount(), item.getCurrency(), 8);

@@ -328,7 +328,7 @@ public class LocalCoinDBUtils {
         }
 
         Log.e("unit",unit+"");
-        return BigDecimal.TEN.pow(unit);
+        return BigDecimal.TEN.pow(unit);//pow 是幂   例如  2.pow(3)  就是2的三次方   BigDecimal.TEN是10
     }
 
 

@@ -46,6 +46,9 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.baselibrary.appmanager.AppConfig.ENGLISH;
+import static com.cdkj.baselibrary.appmanager.AppConfig.KOREA;
+import static com.cdkj.baselibrary.appmanager.AppConfig.SIMPLIFIED;
 import static com.cdkj.baselibrary.utils.DateUtil.DATE_YMD;
 import static java.math.BigDecimal.ROUND_DOWN;
 
@@ -137,7 +140,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
         //增加份额
         mBinding.tvAdd.setOnClickListener(view -> {
-            if (buyShare < model.getMax()){
+            if (buyShare < model.getMax()) {
                 mBinding.edtBuyAmount.setText((buyShare + 1) + "");
                 mBinding.edtBuyAmount.setSelection(mBinding.edtBuyAmount.getText().length());
             }
@@ -146,7 +149,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
         //购买
         mBinding.btnBuy.setOnClickListener(view -> {
-            if (TextUtils.isEmpty(mBinding.edtBuyAmount.getText().toString().trim())){
+            if (TextUtils.isEmpty(mBinding.edtBuyAmount.getText().toString().trim())) {
                 UITipDialog.showInfo(this, getString(R.string.buyamount_not_empty));
                 return;
             }
@@ -161,7 +164,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
             }
 
             ProductBuyStep2Model buyStep2Model = new ProductBuyStep2Model();
-            buyStep2Model.setProductName(mProductModel.getName());
+            buyStep2Model.setProductName(getLabguageName());
             buyStep2Model.setBuyAmountString(buyAmount);
             buyStep2Model.setEndTime(DateUtil.formatStringData(mProductModel.getArriveDatetime(), DATE_YMD));
             buyStep2Model.setExpectInComeAmount(getExpectInCome(buyAmount));
@@ -180,7 +183,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
     }
 
-    private String getExpectInCome(String buyAmount){
+    private String getExpectInCome(String buyAmount) {
         //预期收益计算=投资金额*年化收益率/365*投资期限（天）     计算结果先保留4位小数点 最后显示保留2位
         float buyamount = Float.valueOf(buyAmount);
 
@@ -206,11 +209,11 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
         mBinding.seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                buyShare = i+1;
+                buyShare = i + 1;
                 setBuyShare(buyShare);
 
-                if (isSeekBarChange){
-                    mBinding.edtBuyAmount.setText(buyShare+"");
+                if (isSeekBarChange) {
+                    mBinding.edtBuyAmount.setText(buyShare + "");
                     mBinding.edtBuyAmount.setSelection(mBinding.edtBuyAmount.getText().length());
                 }
             }
@@ -241,22 +244,22 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
             @Override
             public void afterTextChanged(Editable editable) {
 
-                if (TextUtils.isEmpty(editable.toString().trim())){
+                if (TextUtils.isEmpty(editable.toString().trim())) {
                     return;
                 }
 
                 int progress = Integer.parseInt(editable.toString().trim());
-                if (progress > model.getMax()){
-                    mBinding.edtBuyAmount.setText(model.getMax()+"");
+                if (progress > model.getMax()) {
+                    mBinding.edtBuyAmount.setText(model.getMax() + "");
                     return;
                 }
 
-                if (progress < model.getMin()){
-                    mBinding.edtBuyAmount.setText(model.getMin()+"");
+                if (progress < model.getMin()) {
+                    mBinding.edtBuyAmount.setText(model.getMin() + "");
                     return;
                 }
 
-                mBinding.seekBar.setProgress(progress-1);
+                mBinding.seekBar.setProgress(progress - 1);
                 isSeekBarChange = false;
 
             }
@@ -269,9 +272,9 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
     }
 
-    private void setBuyShare(int quantity){
-        buyAmount = AmountUtil.transformFormatToString(new BigDecimal(quantity).multiply(mProductModel.getIncreAmount()), mProductModel.getSymbol(),8);
-        mBinding.tvAmount.setText("(" + buyAmount + mProductModel.getSymbol() +")");
+    private void setBuyShare(int quantity) {
+        buyAmount = AmountUtil.transformFormatToString(new BigDecimal(quantity).multiply(mProductModel.getIncreAmount()), mProductModel.getSymbol(), 8);
+        mBinding.tvAmount.setText("(" + buyAmount + mProductModel.getSymbol() + ")");
     }
 
     /**
@@ -287,9 +290,30 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
         mBinding.tvAvilAmount.setText(avilString + getString(R.string.fen));
         mBinding.tvExpectYield.setText(StringUtils.showformatPercentage(mProductModel.getExpectYield()));
 
-        mBinding.tvName.setText(mProductModel.getName());
-
+        mBinding.tvName.setText(getLabguageName());
         mBinding.tvPopProtocol.setText(Html.fromHtml(getString(R.string.read_buy_pop_protocol)));
+    }
+
+    private String getLabguageName() {
+        String name;
+        String language = SPUtilHelper.getLanguage();
+        switch (language) {
+            case SIMPLIFIED:
+                //汉语
+                name=mProductModel.getNameZhCn();
+                break;
+            case ENGLISH:
+                //英语
+                name=mProductModel.getNameEn();
+                break;
+            case KOREA:
+                //韩语
+                name=mProductModel.getNameKo();
+                break;
+            default:
+                name=mProductModel.getName();
+        }
+        return name;
     }
 
 
@@ -297,6 +321,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
      * 获取默认币种余额
      */
     public void getCoinBalance() {
+//        mBinding.tvCoinBalance.setText("shenfahj a ");
 
         if (TextUtils.isEmpty(SPUtilHelper.getUserId()) || mProductModel == null || TextUtils.isEmpty(mProductModel.getSymbol())) {
             return;
@@ -307,7 +332,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
         map.put("userId", SPUtilHelper.getUserId());
         map.put("token", SPUtilHelper.getUserToken());
 
-        Call call = RetrofitUtils.createApi(MyApi.class).getAccount("802503", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.createApi(MyApi.class).getAccount("802301", StringUtils.getRequestJsonString(map));
 
         call.enqueue(new BaseResponseModelCallBack<CoinModel>(null) {
             @Override
@@ -325,12 +350,10 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
                     BigDecimal frozenAmount = accountListBean.getFrozenAmount();
                     //可用=总资产-冻结
                     String amountString = AmountUtil.transformFormatToString(amount.subtract(frozenAmount), accountListBean.getCurrency(), AmountUtil.ALLSCALE);
-                    mBinding.tvCoinBalance.setText(Html.fromHtml(getString(R.string.can_use_balance, amountString, mProductModel.getSymbol())));
+//                    mBinding.tvCoinBalance.setText(Html.fromHtml(getString(R.string.can_use_balance, amountString, mProductModel.getSymbol())));
+                    mBinding.tvCoinBalance.setText(getStrRes(R.string.wallet_withdraw_balance) + amountString + mProductModel.getSymbol());
                 }
-
-
             }
-
 
             @Override
             protected void onFinish() {
@@ -366,9 +389,9 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
                 mBinding.tvMax.setText(data.getMax() + getString(R.string.fen));
                 // 初始进度条
                 mBinding.seekBar.setProgress(0);
-                mBinding.seekBar.setMax(data.getMax()-1);
+                mBinding.seekBar.setMax(data.getMax() - 1);
                 // 初始购买金额
-                mBinding.edtBuyAmount.setText(model.getMin()+"");
+                mBinding.edtBuyAmount.setText(model.getMin() + "");
                 mBinding.edtBuyAmount.setSelection(mBinding.edtBuyAmount.getText().length());
                 setBuyShare(buyShare);
             }
@@ -389,7 +412,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
     @Override
     public void onBuyStep2(ProductBuyStep2Model buyStep2Model) {
-        showPasswordInputDialog(buyShare +"");
+        showPasswordInputDialog(buyShare + "");
     }
 
     /**

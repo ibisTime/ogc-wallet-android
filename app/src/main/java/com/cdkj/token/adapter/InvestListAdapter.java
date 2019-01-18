@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.ProgressBar;
 
+import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -15,6 +16,10 @@ import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.math.BigDecimal;
 import java.util.List;
+
+import static com.cdkj.baselibrary.appmanager.AppConfig.ENGLISH;
+import static com.cdkj.baselibrary.appmanager.AppConfig.KOREA;
+import static com.cdkj.baselibrary.appmanager.AppConfig.SIMPLIFIED;
 
 /**
  * 理财列表
@@ -34,8 +39,7 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
 
         if (item == null) return;
 
-
-        helper.setText(R.id.tv_name, item.getName());
+        helper.setText(R.id.tv_name, getLanguageName(item));
         helper.setText(R.id.tv_income, StringUtils.showformatPercentage(item.getExpectYield()));
 
 
@@ -49,6 +53,28 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
         ProgressBar progressBar = helper.getView(R.id.progressbar);
         BigDecimal f = BigDecimalUtils.div(item.getSaleAmount(), item.getAmount(), 2);
         progressBar.setProgress((int) (f.floatValue() * 100));
+    }
+
+    private String getLanguageName(ManagementMoney item) {
+        String language = SPUtilHelper.getLanguage();
+        String name;
+        switch (language) {
+            case SIMPLIFIED:
+                //汉语
+                name = item.getNameZhCn();
+                break;
+            case ENGLISH:
+                //英语
+                name = item.getNameEn();
+                break;
+            case KOREA:
+                //韩语
+                name = item.getNameKo();
+                break;
+            default:
+                name = item.getName();
+        }
+        return name;
     }
 
     private int getStateTextColor(ManagementMoney item) {
@@ -88,9 +114,9 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
             case "6":
                 return mContext.getString(R.string.management_money_state_6);
             case "7":
-                if (data.isIncomeFlag()){
+                if (data.isIncomeFlag()) {
                     return mContext.getString(R.string.management_money_state_jxz);
-                }else {
+                } else {
                     return mContext.getString(R.string.management_money_state_7);
                 }
             case "8":

@@ -47,7 +47,7 @@ public class BillListActivity extends AbsLoadActivity {
 
     private ActivityWalletBillBinding mBinding;
 
-    private WalletModel mAccountBean;
+    private WalletModel.AccountListBean mAccountBean;
     private BillListAdapter mBillAdapter;
 
     private BaseRefreshCallBack refreshCallBackback;
@@ -60,7 +60,7 @@ public class BillListActivity extends AbsLoadActivity {
     private PickerPop filterPickerPop;
 
 
-    public static void open(Context context, WalletModel mAccountBean) {
+    public static void open(Context context, WalletModel.AccountListBean mAccountBean) {
         if (context == null) {
             return;
         }
@@ -89,7 +89,7 @@ public class BillListActivity extends AbsLoadActivity {
         if (getIntent() == null)
             return;
 
-        mAccountBean = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
+        mAccountBean = (WalletModel.AccountListBean) getIntent().getSerializableExtra(CdRouteHelper.DATASIGN);
 
         initCallBack();
         initData();

@@ -366,7 +366,6 @@ public class WalletFragment extends BaseLazyFragment {
 
 
         for (LocalCoinDbModel localCoinDbModel : localCoinDbModels) {           //获取本地缓存的币种
-
             if (localCoinDbModel == null) {
                 continue;
             }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卖出BTC"
+            android:textColor="@color/gray_999999"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="30.12BTC"
+            android:textColor="@color/gray_333333"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="请输入资金密码"
+            android:textColor="@color/gray_999999"
+            android:textSize="12sp" />
+
+        <com.cdkj.token.views.MyPasswordView
+            android:id="@+id/myPV_psw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="25dp">
+
+        </com.cdkj.token.views.MyPasswordView>
+
+        <View
+            style="@style/style_split_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp">
+
+            <TextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消"
+                android:textColor="@color/gray_666666"
+                android:textSize="18sp" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp" />
+
+            <TextView
+                android:id="@+id/tv_confirm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/gray_333333"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+</layout>

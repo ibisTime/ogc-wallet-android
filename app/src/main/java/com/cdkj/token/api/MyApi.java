@@ -10,6 +10,7 @@ import com.cdkj.token.model.AddressModel;
 import com.cdkj.token.model.AppQuestionModel;
 import com.cdkj.token.model.BTCBillModel;
 import com.cdkj.token.model.BalanceListModel;
+import com.cdkj.token.model.BankTypeModel;
 import com.cdkj.token.model.BannerModel;
 import com.cdkj.token.model.BiJiaBaoAvilModel;
 import com.cdkj.token.model.BillModel;
@@ -57,6 +58,7 @@ import com.cdkj.token.model.SystemParameterModel;
 import com.cdkj.token.model.TrustModel;
 import com.cdkj.token.model.TxHashModel;
 import com.cdkj.token.model.UTXOListModel;
+import com.cdkj.token.model.UserBankCardModel;
 import com.cdkj.token.model.UserRefereeModel;
 import com.cdkj.token.model.UserSettingModel;
 import com.cdkj.token.model.VersionModel;
@@ -864,6 +866,50 @@ public interface MyApi {
      */
     @FormUrlEncoded
     @POST("api")
-    Call<BaseResponseListModel<WalletModel>> getSymbolList(@Field("code") String code, @Field("json") String json);
+    Call<BaseResponseModel<WalletModel>> getSymbolList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取银行卡种类
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<BankTypeModel>> getBackTypeList(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 添加银行卡
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<String>> addBankCard(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取用户绑定的银行卡数据
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<UserBankCardModel>> getBankData(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 设置默认银行卡  或者 解绑银行卡  入参相同  code不同
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<IsSuccessModes>> setDefaultOrUntyingBankCard(@Field("code") String code, @Field("json") String json);
 
 }

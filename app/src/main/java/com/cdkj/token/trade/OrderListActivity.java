@@ -10,8 +10,10 @@ import android.widget.TextView;
 import com.cdkj.baselibrary.base.AbsRefreshListActivity;
 import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.baselibrary.utils.RefreshHelper;
+import com.cdkj.token.R;
 import com.cdkj.token.adapter.OrderListAdapter;
 import com.cdkj.token.model.OrderListModel;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +34,24 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel> {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle("订单记录");
+        mBaseBinding.titleView.setMidTitle(getStrRes(R.string.OrderListTitle));
         initRefreshHelper(RefreshHelper.LIMITE);
+
+        mRefreshHelper.setOnRefreshLoadmoreListener(new RefreshHelper.OnMyRefreshLoadmoreListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                //刷新前 先停止所有的倒计时
+                OrderListAdapter adapter = (OrderListAdapter) mRefreshHelper.getmAdapter();
+                adapter.stopTimeDow();
+            }
+
+            @Override
+            public void onLoadmore(RefreshLayout refreshlayout) {
+                OrderListAdapter adapter = (OrderListAdapter) mRefreshHelper.getmAdapter();
+                adapter.stopTimeDow();
+            }
+        });
+
     }
 
     @Override
@@ -52,6 +70,7 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel> {
         return adapter;
     }
 
+
     @Override
     public void getListRequest(int pageindex, int limit, boolean isShowDialog) {
         ArrayList dataList = new ArrayList<OrderListModel>();
@@ -67,7 +86,7 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel> {
         dataList.add(orderListModel1);
         dataList.add(orderListModel2);
         dataList.add(orderListModel3);
-        mRefreshHelper.setData(dataList, "暂无订单数据", 0);
+        mRefreshHelper.setData(dataList, getString(R.string.OrderListTitleEmpty), 0);
     }
 
 }

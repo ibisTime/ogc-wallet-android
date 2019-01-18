@@ -93,7 +93,20 @@
                         android:textSize="14sp" />
                 </LinearLayout>
 
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/line_chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white">
+
+                </com.github.mikephil.charting.charts.LineChart>
+
             </LinearLayout>
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tl_way"
@@ -213,7 +226,8 @@
                     android:layout_height="wrap_content"
                     android:text="可用资产:"
                     android:textColor="@color/gray_999999"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_available_assets"
@@ -221,9 +235,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:text="0.0000567btc"
                     android:textColor="@color/colorPrimary"
                     android:textSize="12sp"
-                    tools:text="0.0000567btc" />
+                    android:visibility="gone" />
 
 
                 <TextView
@@ -250,6 +265,7 @@
                 android:layout_height="10dp" />
 
             <LinearLayout
+                android:id="@+id/ll_select_bank"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15dp"
@@ -267,12 +283,14 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:id="@+id/iv_pay_logo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginRight="10dp"
                     android:src="@mipmap/icon_ali_logo" />
 
                 <TextView
+                    android:id="@+id/tv_pay_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="支付宝" />
@@ -324,6 +342,7 @@
             <!--android:layout_height="wrap_content" />-->
 
             <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
+
 
         </LinearLayout>
     </ScrollView>

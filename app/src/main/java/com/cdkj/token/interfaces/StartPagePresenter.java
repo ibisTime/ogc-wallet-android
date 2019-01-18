@@ -133,7 +133,7 @@ public class StartPagePresenter {
         map.put("systemCode", AppConfig.SYSTEMCODE);
         map.put("companyCode", AppConfig.COMPANYCODE);
 
-        Call call = RetrofitUtils.createApi(MyApi.class).getSystemParameter("660917", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.createApi(MyApi.class).getSystemParameter("630047", StringUtils.getRequestJsonString(map));
         addCall(call);
 
         call.enqueue(new BaseResponseModelCallBack<SystemParameterModel>(null) {

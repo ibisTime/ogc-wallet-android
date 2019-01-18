@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="1dp"
+        android:background="@drawable/border_right_round_dee0e5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <View
+                style="@style/style_split_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tv_6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#5eDEE0E5"
+                android:gravity="center"
+                android:textColor="@color/gray_333333"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="1" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:cursorVisible="false"
+            android:maxLength="6"
+            android:textColor="@android:color/transparent" />
+        <!--android:cursorVisible="false"  隐藏光标-->
+
+    </FrameLayout>
+</layout>

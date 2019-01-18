@@ -18,6 +18,7 @@ import com.cdkj.baselibrary.base.AbsStatusBarTranslucentActivity;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
+import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
@@ -33,6 +34,9 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+import static com.cdkj.baselibrary.appmanager.AppConfig.ENGLISH;
+import static com.cdkj.baselibrary.appmanager.AppConfig.KOREA;
+import static com.cdkj.baselibrary.appmanager.AppConfig.SIMPLIFIED;
 import static com.cdkj.baselibrary.utils.DateUtil.DATE_YMD;
 
 /**
@@ -169,15 +173,32 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
         if (managementMoney == null) {
             return;
         }
+        String language = SPUtilHelper.getLanguage();
+        switch (language) {
+            case SIMPLIFIED:
+                //汉语
+                mBaseBinding.tvTitle.setText(managementMoney.getNameZhCn());
+                break;
+            case ENGLISH:
+                //英语
+                mBaseBinding.tvTitle.setText(managementMoney.getNameEn());
+                break;
+            case KOREA:
+                //韩语
+                mBaseBinding.tvTitle.setText(managementMoney.getNameKo());
+                break;
+            default:
+                mBaseBinding.tvTitle.setText(managementMoney.getName());
+        }
 
         BigDecimal coinUnit = LocalCoinDBUtils.getLocalCoinUnit(managementMoney.getSymbol());//币种最小单位
 
-        mBaseBinding.tvTitle.setText(managementMoney.getName());
+        LogUtil.E("换算的单位"+coinUnit.toString());
 
         String[] totlaRatio = StringUtils.showformatPercentage(managementMoney.getExpectYield()).split("\\.");
         mbinding.tvBuyTotlaRatio.setText(totlaRatio[0]);//年化率
-        if (totlaRatio.length > 1){
-            mbinding.tvBuyTotlaRatioDecimal.setText("."+totlaRatio[1]);//年化率
+        if (totlaRatio.length > 1) {
+            mbinding.tvBuyTotlaRatioDecimal.setText("." + totlaRatio[1]);//年化率
         }
 
         mbinding.tvEndDay.setText(getString(R.string.product_days, managementMoney.getLimitDays() + ""));//产品期限
@@ -201,18 +222,18 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
         mbinding.webview2.setVisibility(View.GONE);
         mbinding.webview3.setVisibility(View.GONE);
 
-        if (managementMoney.getStatus().equals("5")){ // 5-募集期
+        if (managementMoney.getStatus().equals("5")) { // 5-募集期
             mbinding.btnToBuy.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             mbinding.btnToBuy.setVisibility(View.GONE);
         }
 
         // 0 不能购买，1 起购，2 起息，3 结期
-        if (TextUtils.isEmpty(managementMoney.getTimeStatus())){
+        if (TextUtils.isEmpty(managementMoney.getTimeStatus())) {
             return;
         }
         int timeStatus = Integer.parseInt(managementMoney.getTimeStatus());
-        if (timeStatus > 0){
+        if (timeStatus > 0) {
             mbinding.tvProgress1.setBackgroundResource(R.drawable.oval_blue);
             mbinding.tvProgress1.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
             mbinding.tvStartTime.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
@@ -221,7 +242,7 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
             mbinding.ivSchedule1.setImageResource(R.mipmap.schedule_blue);
         }
 
-        if (timeStatus > 1){
+        if (timeStatus > 1) {
             mbinding.tvProgress2.setBackgroundResource(R.drawable.oval_blue);
             mbinding.tvProgress2.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
             mbinding.tvIncomeTime.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
@@ -230,7 +251,7 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
             mbinding.ivSchedule2.setImageResource(R.mipmap.schedule_blue);
         }
 
-        if (timeStatus > 2){
+        if (timeStatus > 2) {
             mbinding.tvProgress3.setBackgroundResource(R.drawable.oval_blue);
             mbinding.tvProgress3.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
             mbinding.tvEndTime.setTextColor(ContextCompat.getColor(this, R.color.blue_0064ff));
@@ -240,6 +261,7 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
 
     /**
      * 获取购买属性
+     *
      * @param managementMoney
      * @return
      */

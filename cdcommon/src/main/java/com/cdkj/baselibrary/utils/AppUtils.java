@@ -11,16 +11,17 @@ import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.LocaleList;
 import android.provider.ContactsContract;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.cdkj.baselibrary.CdApplication;
 import com.cdkj.baselibrary.R;
@@ -190,6 +191,52 @@ public class AppUtils {
                                    btn.setEnabled(true);
                                    btn.setText(R.string.resend_code);
                                    btn.setBackgroundResource(R.drawable.selector_blue);
+                               }
+                           }
+                );
+    }
+
+    /**
+     * 订单记录的倒计时
+     *
+     * @param count 秒数
+     * @param tv   按钮
+     * @return
+     */
+    public static Disposable startTimeDown(final int count, final TextView tv, OnTimeCompletion onTimeCompletion) {
+        return Observable.interval(0, 1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())    // 创建一个按照给定的时间间隔发射从0开始的整数序列
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .take(count)//只发射开始的N项数据或者一定时间内的数据
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        tv.setText(DateUtil.formatSeconds(count));
+                    }
+                })
+                .subscribe(new Consumer<Long>() {
+                               @Override
+                               public void accept(Long aLong) throws Exception {
+                                  tv.setEnabled(false);
+                                  tv.setText(DateUtil.formatSeconds((int) (count - aLong)));
+//                                   btn.setBackgroundResource(R.drawable.btn_no_click_gray);
+                               }
+                           }, new Consumer<Throwable>() {
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   tv.setText(DateUtil.formatSeconds(count));
+//                                   btn.setBackgroundResource(R.drawable.selector_blue);
+
+                               }
+                           }, new Action() {
+                               @Override
+                               public void run() throws Exception {
+                                   tv.setTextColor(Color.parseColor("#999999"));
+                                   tv.setText("订单超时");
+                                   if (onTimeCompletion != null) {
+                                       onTimeCompletion.onComplete(tv);
+                                   }
+//                                   btn.setBackgroundResource(R.drawable.selector_blue);
                                }
                            }
                 );
@@ -424,7 +471,7 @@ public class AppUtils {
         ContentResolver cr = context.getContentResolver();
 
         String[] mContactsProjection = new String[]{
-            /*    ContactsContract.CommonDataKinds.Phone.CONTACT_ID,*/ //id
+                /*    ContactsContract.CommonDataKinds.Phone.CONTACT_ID,*/ //id
                 ContactsContract.CommonDataKinds.Phone.NUMBER,   //电话号码
                 ContactsContract.Contacts.DISPLAY_NAME,      //姓名
         };
@@ -554,6 +601,10 @@ public class AppUtils {
             }
 
         }
+    }
+
+    public interface OnTimeCompletion {
+        public void onComplete(TextView view);
     }
 
 }
