@@ -98,6 +98,7 @@ public class PasswordInputDialog extends Dialog {
         if (cancel == null) {
             mBinding.tvCancel.setOnClickListener(view -> dismiss());
         } else {
+            dismiss();
             mBinding.tvCancel.setOnClickListener(cancel);
         }
         return this;
@@ -112,6 +113,7 @@ public class PasswordInputDialog extends Dialog {
         if (cancel == null) {
             mBinding.tvConfirm.setOnClickListener(view -> dismiss());
         } else {
+            dismiss();
             mBinding.tvConfirm.setOnClickListener(view -> {
                 cancel.onSuccer(mBinding.tvConfirm, mBinding.myPVPsw.getText());
             });

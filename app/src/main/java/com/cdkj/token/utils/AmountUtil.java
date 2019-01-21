@@ -52,14 +52,14 @@ public class AmountUtil {
      */
     public static String toMinWithUnit(BigDecimal amount, String coinSymbol, int scale) {
         if (amount == null) {
-            return "0"+coinSymbol;
+            return "0" + coinSymbol;
         }
 
         if (TextUtils.isEmpty(coinSymbol)) {
             return formatCoinAmount(BigDecimalUtils.div(amount, BigDecimal.TEN.pow(18), scale));
         }
 
-        return formatCoinAmount(BigDecimalUtils.div(amount, getLocalCoinUnit(coinSymbol), scale))+coinSymbol;
+        return formatCoinAmount(BigDecimalUtils.div(amount, getLocalCoinUnit(coinSymbol), scale)) + coinSymbol;
     }
 
     /**
@@ -77,6 +77,7 @@ public class AmountUtil {
         if (TextUtils.isEmpty(coinSymbol)) {
             return formatCoinAmount(BigDecimalUtils.div(amount, BigDecimal.TEN.pow(18), scale));
         }
+
 
         return formatCoinAmount(BigDecimalUtils.div(amount, getLocalCoinUnit(coinSymbol), scale));
     }
@@ -269,5 +270,28 @@ public class AmountUtil {
 
     }
 
+
+//      new BigDecimal(1).divide()
+
+    public static String divideDoubleToBigDecimal(double v1, BigDecimal v2, int scale) {
+        if (v1 == 0 || v2 == null)
+            return "";
+        BigDecimal divide = new BigDecimal(v1).divide(v2,scale+1,BigDecimal.ROUND_HALF_UP);
+        return scale(divide.toString(), scale);
+    }
+
+    public static String divideBigDecimalToDouble(BigDecimal v1, double v2, int scale) {
+        if (v2 == 0 || v1 == null)
+            return "";
+        BigDecimal divide = v1.divide(new BigDecimal(v2),scale+1,BigDecimal.ROUND_HALF_UP);
+
+        return scale(divide.toString(), scale);
+    }
+    public static String multiplyBigDecimalToDouble(BigDecimal v1, double v2, int scale) {
+        if (v2 == 0 || v1 == null)
+            return "";
+        BigDecimal divide = v1.multiply(new BigDecimal(v2));
+        return scale(divide.toString(), scale);
+    }
 
 }

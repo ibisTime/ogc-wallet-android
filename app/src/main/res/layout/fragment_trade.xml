@@ -137,6 +137,7 @@
                 android:layout_height="0.5dp" />
 
             <LinearLayout
+                android:id="@+id/ll_money"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15dp"
@@ -175,6 +176,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_number"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginLeft="15dp"
@@ -283,6 +285,7 @@
                     android:layout_weight="1" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/iv_pay_logo"
                     android:layout_width="20dp"
                     android:layout_height="20dp"

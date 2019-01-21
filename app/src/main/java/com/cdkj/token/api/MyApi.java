@@ -33,6 +33,7 @@ import com.cdkj.token.model.IncomeRankTopModel;
 import com.cdkj.token.model.InvestBillModel;
 import com.cdkj.token.model.InvestmentAmountModel;
 import com.cdkj.token.model.InviteModel;
+import com.cdkj.token.model.LineChartDataModel;
 import com.cdkj.token.model.LocalCoinBill;
 import com.cdkj.token.model.LocalEthTokenCoinBill;
 import com.cdkj.token.model.LocalUSDTCoinBill;
@@ -45,6 +46,7 @@ import com.cdkj.token.model.MyManamentMoneyProduct;
 import com.cdkj.token.model.MySendRedPackageBean;
 import com.cdkj.token.model.OrderDetailModel;
 import com.cdkj.token.model.OrderModel;
+import com.cdkj.token.model.PayTypeModel;
 import com.cdkj.token.model.QuestionFeedbackModel;
 import com.cdkj.token.model.RateModel;
 import com.cdkj.token.model.RecommendAppModel;
@@ -52,6 +54,8 @@ import com.cdkj.token.model.RedPackageDetialsBean;
 import com.cdkj.token.model.RedPackageHistoryBean;
 import com.cdkj.token.model.RedPacketDetails;
 import com.cdkj.token.model.StatisticsListModel;
+import com.cdkj.token.model.SuccessModel;
+import com.cdkj.token.model.SymbolPriceModel;
 import com.cdkj.token.model.SystemMessageModel;
 import com.cdkj.token.model.SystemParameterListModel;
 import com.cdkj.token.model.SystemParameterModel;
@@ -911,5 +915,49 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<IsSuccessModes>> setDefaultOrUntyingBankCard(@Field("code") String code, @Field("json") String json);
+
+   /**
+     * 获取图表数据
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<LineChartDataModel>> getLineChartData(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取承兑商罪行币种价格
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<SymbolPriceModel>> getSymbolPrice(@Field("code") String code, @Field("json") String json);
+
+       /**
+     * 公共的成功接口
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<SuccessModel>> submitSuccess(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取付款方式
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<PayTypeModel>> getPayType(@Field("code") String code, @Field("json") String json);
 
 }

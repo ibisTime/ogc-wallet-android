@@ -355,4 +355,20 @@ public class DateUtil {
         }
         return str;
     }
+
+    /**
+     * 返回当前时间的前一个月的  时间
+     * @param fmt  返回时间的格式
+     * @return
+     */
+    public static String fristMonth(String fmt) {
+        //过去一月
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.MONTH, -1);
+        Date m = c.getTime();
+        String mon = format(m, fmt);
+        return mon;
+    }
+
 }

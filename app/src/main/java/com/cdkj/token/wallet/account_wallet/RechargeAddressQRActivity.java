@@ -114,8 +114,6 @@ public class RechargeAddressQRActivity extends AbsLoadActivity {
         } catch (Exception e) {
 
         }
-
-
     }
 
 
