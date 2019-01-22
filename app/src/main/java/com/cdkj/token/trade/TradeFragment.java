@@ -41,7 +41,6 @@ import com.cdkj.token.user.UserBackCardActivity;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.utils.MPChartUtils;
 import com.cdkj.token.utils.StringUtil;
-import com.cdkj.token.utils.wallet.WalletHelper;
 import com.cdkj.token.views.dialogs.PasswordInputDialog;
 import com.github.mikephil.charting.data.Entry;
 
@@ -96,7 +95,6 @@ public class TradeFragment extends BaseLazyFragment {
         initLineChart();
         initLineChartData();
         initSymbolPrice();
-
         initPayType();
         initClickListener();
         return mBinding.getRoot();
@@ -225,7 +223,6 @@ public class TradeFragment extends BaseLazyFragment {
                 UserBackCardActivity.open(mActivity, true);
             }
         });
-//        mBinding.llSlectBank.setOnClickListener(view -> OrderListActivity.open(mActivity));
         //提交按钮
         mBinding.btnConfirm.setOnClickListener(view -> {
             if (checkSubmit()) {
@@ -236,6 +233,7 @@ public class TradeFragment extends BaseLazyFragment {
         mBinding.tlWay.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                cleanEditText();
                 position = tab.getPosition();
                 if (position == 0) {
                     initBuyView();
@@ -344,7 +342,10 @@ public class TradeFragment extends BaseLazyFragment {
         mBinding.tvAvailableAssets.setVisibility(View.GONE);//可用资产
         mBinding.btnConfirm.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         mBinding.ivPayLogo.setVisibility(View.VISIBLE);
-        mBinding.tvPayName.setText(payTypeModel == null ? "" : payTypeModel.getName());
+        if (payTypeModel != null) {
+            mBinding.tvPayName.setText(payTypeModel.getName());
+            mBinding.ivPayLogo.setImageResource(TextUtils.equals("支付宝", payTypeModel.getName()) ? R.mipmap.icon_ali_logo : R.mipmap.icon_pay_bank_logo);
+        }
         mBinding.tvServiceCharge.setText(symbolPriceModel == null ? "" : AmountUtil.multiplyBigDecimalToDouble(symbolPriceModel.getBuyFeeRate(), 100, 2) + "%");
         mBinding.btnConfirm.setText("买入BTC");
     }
@@ -414,18 +415,18 @@ public class TradeFragment extends BaseLazyFragment {
                 return;
             }
             //卖出的时候需要弹出资金密码的弹框
-            PasswordInputDialog.build(mActivity)
+            PasswordInputDialog pswDialog = PasswordInputDialog.build(mActivity)
                     .setView(position == 0 ? "买入BTC" : "卖出BTC", mBinding.etNumber.getText().toString().trim() + "BTC")
                     .setOnNegativeListener(null)
                     .setOnPositiveListener((view2, psaaword) -> {
-                        String walletPasswordByUserId = WalletHelper.getWalletPasswordByUserId(SPUtilHelper.getUserId());
-                        if (TextUtils.equals(walletPasswordByUserId, psaaword)) {
-                            UITipDialog.showFail(mActivity, "密码错误");
-                            return;
-                        }
+//                        String walletPasswordByUserId = WalletHelper.getWalletPasswordByUserId(SPUtilHelper.getUserId());
+//                        if (!TextUtils.equals(walletPasswordByUserId, psaaword)) {
+//                            UITipDialog.showFail(mActivity, "密码错误");
+//                            return;
+//                        }
                         submitData(psaaword);
-//                        ToastUtil.show(mActivity, "密码为:" + psaaword);
-                    }).show();
+                    });
+            pswDialog.show();
         });
     }
 
@@ -438,10 +439,14 @@ public class TradeFragment extends BaseLazyFragment {
         String code;
         if (position == 0) {
             code = "625270";
+            if (symbolPriceModel == null || payTypeModel == null)
+                return;
             map.put("tradePrice", symbolPriceModel.getBuyPrice().toString());//	必填,交易价格，当时行情价
             map.put("receiveType", payTypeModel.getType());//必填,收款方式
         } else {
             code = "625271";
+            if (payBankModel == null || symbolPriceModel == null)
+                return;
             map.put("bankCardCode", payBankModel.getCode());
             map.put("tradePrice", symbolPriceModel.getSellerPrice().toString());//	必填,交易价格，当时行情价
             map.put("tradePwd", tradePwd);//	资金密码
@@ -458,6 +463,7 @@ public class TradeFragment extends BaseLazyFragment {
             @Override
             protected void onSuccess(SuccessModel data, String SucMessage) {
                 UITipDialog.showInfo(mActivity, "交易成功");
+                OrderDetailsActivity.open(mActivity, data.getCode());
             }
 
             @Override
@@ -465,6 +471,14 @@ public class TradeFragment extends BaseLazyFragment {
                 disMissLoading();
             }
         });
+    }
+
+    /**
+     * 每次切换  买入卖出的时候  清楚  因为不会自动换算
+     */
+    private void cleanEditText() {
+        mBinding.etMoney.setText("");
+        mBinding.etNumber.setText("");
     }
 
     /**

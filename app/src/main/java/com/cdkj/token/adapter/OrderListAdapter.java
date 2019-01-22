@@ -2,10 +2,12 @@ package com.cdkj.token.adapter;
 
 import android.graphics.Color;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cdkj.baselibrary.utils.AppUtils;
+import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.token.R;
 import com.cdkj.token.model.OrderListModel;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -20,30 +22,33 @@ import io.reactivex.disposables.Disposable;
  * Created by cdkj on 2018/5/25.
  */
 
-public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewHolder> {
+public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, BaseViewHolder> {
 
     ArrayList<Disposable> disposableList = new ArrayList<>();
 
-    public OrderListAdapter(@Nullable List<OrderListModel> data) {
+    public OrderListAdapter(@Nullable List<OrderListModel.ListBean> data) {
         super(R.layout.item_order_list, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, OrderListModel item) {
-//        helper
-        helper.setText(R.id.tv_date, "2018-12-12 12:30");
-        helper.setText(R.id.tv_name, "ETC");
+    protected void convert(BaseViewHolder helper, OrderListModel.ListBean item) {
+        helper.setText(R.id.tv_date, DateUtil.format(item.getCreateDatetime(), DateUtil.DEFAULT_DATE_FMT));
+        if (TextUtils.equals("0", item.getType())) {
+            helper.setText(R.id.tv_name, "买入");
+        } else {
+            helper.setText(R.id.tv_name, "卖出");
+        }
         setTypeView(helper.getView(R.id.tv_remaining_time), helper.getView(R.id.tv_type), helper.getView(R.id.iv_type), item);
     }
 
-    //0  待支付 1 已取消 2 已完成  3 超时
-    //
-    private void setTypeView(TextView tvTime, TextView tvType, ImageView iv, OrderListModel item) {
-        switch (item.getType()) {
-            case 0:
-//                tvTime.setText("剩余付款时间：9分30秒");
+    //   待支付   已完成   已取消    超时
+    //0=待支付 1=已支付 2=已释放 3=已取消  4=平台取消  5=超时
+
+    private void setTypeView(TextView tvTime, TextView tvType, ImageView iv, OrderListModel.ListBean item) {
+        switch (item.getStatus()) {
+            case "0":
                 Disposable disposable = AppUtils.startTimeDown(10, tvTime, view -> {
-                    item.setType(3);
+                    item.setStatus("5");
                     stopTimeDow();
                     this.notifyDataSetChanged();
                 });
@@ -53,21 +58,24 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewH
                 tvTime.setTextColor(Color.parseColor("#0EC55B"));
                 iv.setImageResource(R.mipmap.icon_pay_loding);
                 break;
-            case 1:
+            case "1":
+            case "2":
+                //买入是增加  卖出是减少
+                tvTime.setText(TextUtils.equals("0", item.getType()) ? ("+" + item.getCount()) : ("-" + item.getCount()));
+                tvType.setText(R.string.completed);
+                tvType.setTextColor(Color.parseColor("#D53D3D"));
+                tvTime.setTextColor(Color.parseColor("#333333"));
+                iv.setImageResource(R.mipmap.icon_pay_success);
+                break;
+            case "3":
+            case "4":
                 tvTime.setText(R.string.user_order_cancel);
                 tvType.setText(R.string.order_cancel);
                 tvType.setTextColor(Color.parseColor("#999999"));
                 tvTime.setTextColor(Color.parseColor("#999999"));
                 iv.setImageResource(R.mipmap.icon_pay_cancel);
                 break;
-            case 2:
-                tvTime.setText("-0.089874");
-                tvType.setText(R.string.completed);
-                tvType.setTextColor(Color.parseColor("#D53D3D"));
-                tvTime.setTextColor(Color.parseColor("#333333"));
-                iv.setImageResource(R.mipmap.icon_pay_success);
-                break;
-            case 3:
+            case "5":
                 tvTime.setText(R.string.order_time_out);
                 tvType.setText(R.string.order_cancel);
                 tvType.setTextColor(Color.parseColor("#999999"));
@@ -80,7 +88,6 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel, BaseViewH
                 tvType.setTextColor(Color.parseColor("#999999"));
                 tvTime.setTextColor(Color.parseColor("#999999"));
                 iv.setImageResource(R.mipmap.icon_pay_cancel);
-
         }
     }
 

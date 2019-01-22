@@ -45,6 +45,8 @@ import com.cdkj.token.model.MyGetRedPackageBean;
 import com.cdkj.token.model.MyManamentMoneyProduct;
 import com.cdkj.token.model.MySendRedPackageBean;
 import com.cdkj.token.model.OrderDetailModel;
+import com.cdkj.token.model.OrderListDetailsModel;
+import com.cdkj.token.model.OrderListModel;
 import com.cdkj.token.model.OrderModel;
 import com.cdkj.token.model.PayTypeModel;
 import com.cdkj.token.model.QuestionFeedbackModel;
@@ -69,6 +71,7 @@ import com.cdkj.token.model.VersionModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.model.WithdrawOrderModel;
 import com.cdkj.token.model.db.LocalCoinDbModel;
+import com.cdkj.token.model.submitOrdeMakeMoneyModel;
 
 import io.reactivex.Observable;
 import retrofit2.Call;
@@ -959,5 +962,37 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<PayTypeModel>> getPayType(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 订单列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<OrderListModel>> getOrdetList(@Field("code") String code, @Field("json") String json);
+    /**
+     * 订单详情
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<OrderListDetailsModel>> getOrdetListDetails(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 订单打款标记  或者取消订单
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<submitOrdeMakeMoneyModel>> submitOrCancelOrdeMakeMoney(@Field("code") String code, @Field("json") String json);
 
 }

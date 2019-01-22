@@ -138,6 +138,16 @@ public class DateUtil {
         }
     }
 
+    public static String format(String date, String fmt) {
+        try {
+            Date date1 = new Date(date);
+            SimpleDateFormat sdf = new SimpleDateFormat(fmt);
+            return sdf.format(date1);
+        } catch (Exception e) {
+            return "";
+        }
+    }
+
     public static String format(Date date) {
         return format(date, DEFAULT_DATE_FMT);
     }
@@ -358,7 +368,8 @@ public class DateUtil {
 
     /**
      * 返回当前时间的前一个月的  时间
-     * @param fmt  返回时间的格式
+     *
+     * @param fmt 返回时间的格式
      * @return
      */
     public static String fristMonth(String fmt) {

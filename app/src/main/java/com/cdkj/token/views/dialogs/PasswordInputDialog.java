@@ -93,13 +93,15 @@ public class PasswordInputDialog extends Dialog {
      *
      * @param cancel
      */
-    public PasswordInputDialog setOnNegativeListener(View.OnClickListener cancel) {
+    public PasswordInputDialog setOnNegativeListener(NegativeListener cancel) {
 
         if (cancel == null) {
             mBinding.tvCancel.setOnClickListener(view -> dismiss());
         } else {
-            dismiss();
-            mBinding.tvCancel.setOnClickListener(cancel);
+            mBinding.tvCancel.setOnClickListener(view -> {
+                dismiss();
+                cancel.onSuccer(view);
+            });
         }
         return this;
     }
@@ -113,8 +115,8 @@ public class PasswordInputDialog extends Dialog {
         if (cancel == null) {
             mBinding.tvConfirm.setOnClickListener(view -> dismiss());
         } else {
-            dismiss();
             mBinding.tvConfirm.setOnClickListener(view -> {
+                dismiss();
                 cancel.onSuccer(mBinding.tvConfirm, mBinding.myPVPsw.getText());
             });
         }
@@ -123,5 +125,9 @@ public class PasswordInputDialog extends Dialog {
 
     public interface PositiveListener {
         void onSuccer(View view, String psaaword);
+    }
+
+    public interface NegativeListener {
+        void onSuccer(View view);
     }
 }
