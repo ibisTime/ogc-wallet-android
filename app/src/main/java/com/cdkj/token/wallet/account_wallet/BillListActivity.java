@@ -9,7 +9,6 @@ import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
-import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
@@ -64,8 +63,7 @@ public class BillListActivity extends AbsLoadActivity {
         if (context == null) {
             return;
         }
-        context.startActivity(new Intent(context, BillListActivity.class)
-                .putExtra(CdRouteHelper.DATASIGN, mAccountBean));
+        context.startActivity(new Intent(context, BillListActivity.class).putExtra(CdRouteHelper.DATASIGN, mAccountBean));
     }
 
     @Override
@@ -85,12 +83,9 @@ public class BillListActivity extends AbsLoadActivity {
 
         setStatusBarBlue();
         initFilterTypeList();
-
         if (getIntent() == null)
             return;
-
         mAccountBean = (WalletModel.AccountListBean) getIntent().getSerializableExtra(CdRouteHelper.DATASIGN);
-
         initCallBack();
         initData();
         initView();
@@ -104,7 +99,7 @@ public class BillListActivity extends AbsLoadActivity {
         String[] bizType = new String[]{"", "charge", "withdraw", "withdrawfee", "redpacket_back", "sendredpacket_in", "sendredpacket_out", "jf_lottery_in"};
 
         String[] types = new String[]{getStrRes(R.string.bill_type_all), getStrRes(R.string.bill_type_charge), getStrRes(R.string.bill_type_withdraw),
-                getStrRes(R.string.bill_type_withdrawfee), getString(R.string.redpacket_back), getString(R.string.redpacket_get), getString(R.string.send_red_package),getString(R.string.lottery)};
+                getStrRes(R.string.bill_type_withdrawfee), getString(R.string.redpacket_back), getString(R.string.redpacket_get), getString(R.string.send_red_package), getString(R.string.lottery)};
 
         for (int i = 0; i < types.length; i++) {
             BillFilterModel billFilterModel = new BillFilterModel();
@@ -118,19 +113,16 @@ public class BillListActivity extends AbsLoadActivity {
 //        ImgUtils.loadCircleImg(this, getCoinIconByCoinSymbol(mAccountBean.getCoinSymbol()), mBinding.ivIcon);
         mBinding.tvFilter.setVisibility(View.VISIBLE);
 
-        mBinding.tvInMoney.setText(R.string.wallet_bill_list_charge);
-        mBinding.tvOutMoney.setText(R.string.wallet_bill_list_withdraw);
+        mBinding.tvInMoney.setText("转入");
+        mBinding.tvOutMoney.setText("转出");
 
         mBinding.tvSymbol.setText(mAccountBean.getCurrency());
         mBinding.tvAmount.setText(AmountUtil.toMinWithUnit(mAccountBean.getAmount(), mAccountBean.getCurrency(), 8));
-
-//        mBinding.tvAmountCny.setText("≈ " + mAccountBean.getLocalAmount() + SPUtilHelper.getLocalMarketSymbol());
-
     }
 
     private void initData() {
         if (mAccountBean != null) {
-            mBaseBinding.titleView.setMidTitle(mAccountBean.getCurrency());
+            mBinding.tvTitle.setText(mAccountBean.getCurrency());
         }
         refreshHelper = new RefreshHelper(this, refreshCallBackback);
         refreshHelper.init(10);
@@ -176,7 +168,7 @@ public class BillListActivity extends AbsLoadActivity {
         mBinding.linLayoutOutCoin.setOnClickListener(view -> {
             if (mAccountBean == null)
                 return;
-//            WithdrawActivity.open(this, mAccountBean);
+            WithdrawActivity.open(this, mAccountBean);
         });
     }
 
@@ -222,12 +214,10 @@ public class BillListActivity extends AbsLoadActivity {
         map.put("limit", limit + "");
         map.put("start", pageIndex + "");
         map.put("bizType", filterType);
-        map.put("kind", kind);
         map.put("accountNumber", mAccountBean.getAccountNumber());
-        map.put("token", SPUtilHelper.getUserToken());
         map.put("systemCode", AppConfig.SYSTEMCODE);
 
-        Call call = RetrofitUtils.createApi(MyApi.class).getBillListData("802524", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.createApi(MyApi.class).getBillListData("802322", StringUtils.getRequestJsonString(map));
 
         addCall(call);
 

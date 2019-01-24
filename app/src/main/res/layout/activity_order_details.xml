@@ -101,10 +101,10 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="15dp"
-                        tools:text="买入0.054784562BTC"
                         android:textColor="@color/gray_333333"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        tools:text="买入0.054784562BTC" />
 
                     <TextView
                         android:id="@+id/tv_total_price"
@@ -239,11 +239,41 @@
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/view_collection"
+                        style="@style/style_split_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_collection"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="65dp"
+                            android:layout_height="wrap_content"
+                            android:text="收款信息"
+                            android:textColor="@color/gray_666666"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/tv_collection_msg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gray_333333"
+                            android:textSize="14sp"
+                            tools:text="工商银行 (尾号: 6314)" />
+                    </LinearLayout>
+
+                    <View
                         style="@style/style_split_line"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginBottom="50dp" />
-
                 </LinearLayout>
 
 
@@ -285,9 +315,9 @@
                         android:layout_gravity="center"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="15dp"
-                        tools:text="¥100"
                         android:textColor="@color/gray_333333"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        tools:text="¥100" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"

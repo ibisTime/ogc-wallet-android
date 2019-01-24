@@ -30,7 +30,7 @@ import com.cdkj.token.R;
 import com.cdkj.token.databinding.FragmentUser2Binding;
 import com.cdkj.token.interfaces.UserInfoInterface;
 import com.cdkj.token.interfaces.UserInfoPresenter;
-import com.cdkj.token.user.invite.InviteActivity;
+import com.cdkj.token.user.invite.InviteQrActivity2;
 import com.cdkj.token.user.setting.UserSettingActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -97,7 +97,8 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
         //邀请有礼
         mBinding.linLayoutInvite.setOnClickListener(view -> {
-            InviteActivity.open(mActivity);
+
+            InviteQrActivity2.open(mActivity);
         });
 
         // 我的收益
@@ -123,11 +124,8 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
         mBinding.helper.setOnClickListener(view -> {
             OtherLibManager.openZendeskHelpCenter(mActivity);
         });
-
         //设置
         mBinding.setting.setOnClickListener(view -> UserSettingActivity.open(mActivity));
-        //我的银行卡
-        mBinding.llMyBanks.setOnClickListener(view -> UserBackCardActivity.open(mActivity, false));
 
     }
 
@@ -274,6 +272,4 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
     public void onFinishedGetUserInfo(UserInfoModel userInfo, String errorMsg) {
         setShowData(userInfo);
     }
-
-
 }

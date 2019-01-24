@@ -16,13 +16,12 @@
             android:background="@drawable/gradient_bg" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--android:layout_marginTop="25dp"-->
             <FrameLayout
                 android:id="@+id/fraLayout_title"
-                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:orientation="horizontal">
@@ -31,10 +30,10 @@
                     android:id="@+id/img_finish"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingBottom="10dp"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
                     android:paddingTop="10dp"
+                    android:paddingRight="15dp"
+                    android:paddingBottom="10dp"
                     android:src="@drawable/back_white" />
 
                 <TextView
@@ -44,17 +43,17 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
-                    android:text="@string/my_investment_details"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/title_mid_size" />
+                    android:textSize="@dimen/title_mid_size"
+                    tools:text="@string/my_investment_details" />
 
             </FrameLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
-                android:layout_marginTop="15dp"
                 android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="@dimen/user_fragment_card_cornerradius"
@@ -62,10 +61,10 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/transfer_bg_1"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -81,9 +80,9 @@
 
                     <TextView
                         android:id="@+id/tv_amount"
-                        android:layout_marginTop="2dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
                         android:ellipsize="end"
                         android:singleLine="true"
                         android:textColor="@color/gray_333333"
@@ -157,9 +156,9 @@
                 android:layout_height="0.5dp" />
 
             <LinearLayout
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -178,9 +177,9 @@
 
                     <TextView
                         android:id="@+id/tv_in_money"
-                        android:layout_marginLeft="5.5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5.5dp"
                         android:text="@string/get_money"
                         android:textColor="@color/gray_333333"
                         android:textSize="13sp" />
@@ -191,7 +190,7 @@
                 <View
                     style="@style/style_split_line"
                     android:layout_width="1px"
-                    android:layout_height="20dp"/>
+                    android:layout_height="20dp" />
 
                 <LinearLayout
                     android:id="@+id/linLayout_out_coin"
@@ -209,9 +208,9 @@
 
                     <TextView
                         android:id="@+id/tv_out_money"
-                        android:layout_marginLeft="5.5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="5.5dp"
                         android:text="@string/transfer_2"
                         android:textColor="@color/gray_333333"
                         android:textSize="13sp" />

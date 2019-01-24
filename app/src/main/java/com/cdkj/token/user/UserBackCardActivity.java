@@ -12,7 +12,6 @@ import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
-import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.ToastUtil;
@@ -32,7 +31,6 @@ import retrofit2.Call;
 public class UserBackCardActivity extends AbsRefreshListActivity {
 
     private boolean mIsselect;//用户打开类型是否是选择银行卡
-
     /**
      * @param context
      */
@@ -51,13 +49,6 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
         initRefreshHelper(RefreshHelper.LIMITE);
         init();
         initOnClickListener();
-
-        initData();
-    }
-
-    private void initData() {
-
-
     }
 
     private void initOnClickListener() {
@@ -90,7 +81,6 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
         //条目按钮点击事件
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             UserBankCardModel.ListBean currentItem = (UserBankCardModel.ListBean) adapter.getData().get(position);
-            LogUtil.E("点击的viewid为:" + view.getId() + "默认选中的id为:" + R.id.cb_default + "解绑的id为:" + R.id.tv_untying);
 
             switch (view.getId()) {
                 case R.id.cb_default:
@@ -128,10 +118,10 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
         map.put("start", pageindex + "");
         map.put("status", "0");//0是可用的   1是 已解绑的
         map.put("type", "0");//0银行卡  1支付宝
+        map.put("userId", SPUtilHelper.getUserId());
         Call<BaseResponseModel<UserBankCardModel>> bankData = RetrofitUtils.createApi(MyApi.class).getBankData("802030", StringUtils.getRequestJsonString(map));
         addCall(bankData);
         showLoadingDialog();
-
         bankData.enqueue(new BaseResponseModelCallBack<UserBankCardModel>(this) {
             @Override
             protected void onSuccess(UserBankCardModel data, String SucMessage) {
@@ -183,7 +173,6 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
             }
         });
     }
-
 
     @Override
     protected void onResume() {

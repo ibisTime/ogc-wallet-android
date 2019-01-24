@@ -137,9 +137,18 @@ public class OrderDetailsActivity extends AbsLoadActivity {
 
     private void setViewData() {
         if (TextUtils.equals("0", orderListDetailsModel.getStatus())) {
-            mBinding.llType0.setVisibility(View.VISIBLE);
-            mBinding.llType3.setVisibility(View.GONE);
-            mBinding.tvTitleRight.setVisibility(View.VISIBLE);
+            //买断是  买入还是卖出的待付款  待确认
+            if (TextUtils.equals("0", orderListDetailsModel.getType())) {
+                mBinding.llType0.setVisibility(View.VISIBLE);
+                mBinding.llType3.setVisibility(View.GONE);
+                mBinding.tvTitleRight.setVisibility(View.VISIBLE);
+            } else {
+                mBinding.llType3.setVisibility(View.VISIBLE);
+                mBinding.llType0.setVisibility(View.GONE);
+                mBinding.tvTitleRight.setVisibility(View.GONE);
+                mBinding.llCollection.setVisibility(View.VISIBLE);
+                mBinding.viewCollection.setVisibility(View.VISIBLE);
+            }
         } else {
             mBinding.llType3.setVisibility(View.VISIBLE);
             mBinding.llType0.setVisibility(View.GONE);
@@ -147,24 +156,21 @@ public class OrderDetailsActivity extends AbsLoadActivity {
         }
         switch (orderListDetailsModel.getStatus()) {
             case "0":
-                //待支付是支付宝  还是银行卡
-                mBinding.tvFuyan.setText(orderListDetailsModel.getPostscript());
-                mBinding.tvUnpaidAmount.setText("¥" + orderListDetailsModel.getTradeAmount().toString());
-                //1  是支付宝  0是银行卡
-                if (TextUtils.equals("1", orderListDetailsModel.getReceiveType())) {
-                    mBinding.ivQr.setVisibility(View.VISIBLE);
-                    mBinding.llBack.setVisibility(View.GONE);
-                    mBinding.ivPayLogo.setImageResource(R.mipmap.icon_ali_logo);
-                    mBinding.tvPayName.setText("支付宝");
+                if (TextUtils.equals("0", orderListDetailsModel.getType())) {
+                    setPayViewData();
                 } else {
-                    mBinding.ivQr.setVisibility(View.GONE);
-                    mBinding.llBack.setVisibility(View.VISIBLE);
-                    mBinding.ivPayLogo.setImageResource(R.mipmap.icon_pay_bank_logo);
-                    mBinding.tvPayName.setText("银行卡转账");
-                    mBinding.tvPayee.setText(orderListDetailsModel.getReceiveName());
-                    mBinding.tvBankNumber.setText(orderListDetailsModel.getReceiveCardNo());
-                    mBinding.tvBankName.setText(orderListDetailsModel.getReceiveBank());
-                    mBinding.tvBankBranch.setText(orderListDetailsModel.getReceiveSubbranch());
+                    setOrderDetalisView();
+                    mBinding.ivType.setImageResource(R.mipmap.icon_pay_to_be_confirmed);
+                    mBinding.tvType.setText("待确认");
+                    mBinding.tvTypeMassage.setText("订单已提交,平台将会再10分钟内确认并完成付款");
+                    String payNamber;
+                    if (!TextUtils.isEmpty(orderListDetailsModel.getReceiveCardNo()) && orderListDetailsModel.getReceiveCardNo().length() > 5) {
+                        payNamber = orderListDetailsModel.getReceiveCardNo().substring(orderListDetailsModel.getReceiveCardNo().length() - 4, orderListDetailsModel.getReceiveCardNo().length());
+                    } else {
+                        payNamber = orderListDetailsModel.getReceiveCardNo();
+                    }
+                    mBinding.tvCollectionMsg.setText(orderListDetailsModel.getReceiveBank() + "  (尾号为:  " + payNamber + ")");
+
                 }
                 break;
             case "1":
@@ -190,6 +196,31 @@ public class OrderDetailsActivity extends AbsLoadActivity {
             default:
                 mBinding.ivType.setImageResource(R.mipmap.icon_pay_cancel);
                 mBinding.tvType.setText("");
+        }
+    }
+
+    /**
+     * 代付款状态的  买入情况
+     */
+    private void setPayViewData() {
+        //待支付是支付宝  还是银行卡
+        mBinding.tvFuyan.setText(orderListDetailsModel.getPostscript());
+        mBinding.tvUnpaidAmount.setText("¥" + orderListDetailsModel.getTradeAmount().toString());
+        //1  是支付宝  0是银行卡
+        if (TextUtils.equals("1", orderListDetailsModel.getReceiveType())) {
+            mBinding.ivQr.setVisibility(View.VISIBLE);
+            mBinding.llBack.setVisibility(View.GONE);
+            mBinding.ivPayLogo.setImageResource(R.mipmap.icon_ali_logo);
+            mBinding.tvPayName.setText("支付宝");
+        } else {
+            mBinding.ivQr.setVisibility(View.GONE);
+            mBinding.llBack.setVisibility(View.VISIBLE);
+            mBinding.ivPayLogo.setImageResource(R.mipmap.icon_pay_bank_logo);
+            mBinding.tvPayName.setText("银行卡转账");
+            mBinding.tvPayee.setText(orderListDetailsModel.getReceiveName());
+            mBinding.tvBankNumber.setText(orderListDetailsModel.getReceiveCardNo());
+            mBinding.tvBankName.setText(orderListDetailsModel.getReceiveBank());
+            mBinding.tvBankBranch.setText(orderListDetailsModel.getReceiveSubbranch());
         }
     }
 

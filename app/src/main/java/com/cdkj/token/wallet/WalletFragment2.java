@@ -70,9 +70,7 @@ public class WalletFragment2 extends BaseLazyFragment {
 
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_wallet, null, false);
         initLocalCoinPresenter();//初始化币种,请求币种保存本地
-        mlLocalCoinCachePresenter.getCoinList(mActivity);  //开始时请求币种缓存
         initRefresh();
-
         return mBinding.getRoot();
     }
 
@@ -88,14 +86,14 @@ public class WalletFragment2 extends BaseLazyFragment {
                 mRefreshHelper.onDefaluteMRefresh(true);
             }
         });
-
     }
 
     private void initRefresh() {
+
         mRefreshHelper = new RefreshHelper(mActivity, new BaseRefreshCallBack(mActivity) {
             @Override
             public View getRefreshLayout() {
-                mlLocalCoinCachePresenter.getCoinList(mActivity);  //刷新请求币种
+                mlLocalCoinCachePresenter.getCoinList(mActivity);  //开始时请求币种缓存
                 mBinding.refreshLayout.setEnableLoadmore(false);
                 return mBinding.refreshLayout;
             }
@@ -149,21 +147,20 @@ public class WalletFragment2 extends BaseLazyFragment {
      */
     public void getSymbolList() {
         showLoadingDialog();
-
         if (TextUtils.isEmpty(SPUtilHelper.getUserId())) {
             return;
         }
-
         Map<String, Object> map = new HashMap<>();
         map.put("userId", SPUtilHelper.getUserId());
         map.put("token", SPUtilHelper.getUserToken());
 
         Call call = RetrofitUtils.createApi(MyApi.class).getSymbolList("802301", StringUtils.getRequestJsonString(map));
+        addCall(call);
         call.enqueue(new BaseResponseModelCallBack<WalletModel>(mActivity) {
             @Override
             protected void onSuccess(WalletModel data, String SucMessage) {
                 mRefreshHelper.setData(data.getAccountList(), getString(R.string.no_assets), R.mipmap.order_none);
-
+                mBinding.tvTotalAmountCNY.setText("≈" + data.getTotalAmountCNY() + "  CNY");
             }
 
             @Override

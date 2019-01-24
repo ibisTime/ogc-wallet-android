@@ -21,8 +21,6 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivityUserGoogleBinding;
 
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -72,7 +70,7 @@ public class UserGoogleActivity extends AbsActivity implements SendCodeInterface
 
     //获取验证码相关
     @Override
-    public void CodeSuccess(String msg) {
+    public void CodeSuccess(String msg,int req) {
         //启动倒计时
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.btnSend));
 
@@ -81,7 +79,7 @@ public class UserGoogleActivity extends AbsActivity implements SendCodeInterface
     }
 
     @Override
-    public void CodeFailed(String code, String msg) {
+    public void CodeFailed(String code, String msg,int req) {
         showToast(msg);
     }
 

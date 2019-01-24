@@ -261,12 +261,12 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
 
 
     @Override
-    public void CodeSuccess(String msg) {
+    public void CodeSuccess(String msg,int req) {
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.btnSend));
     }
 
     @Override
-    public void CodeFailed(String code, String msg) {
+    public void CodeFailed(String code, String msg,int req) {
         UITipDialog.showInfoNoIcon(PayPwdModifyActivity.this, msg);
     }
 

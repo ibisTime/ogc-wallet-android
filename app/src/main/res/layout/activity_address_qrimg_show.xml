@@ -7,8 +7,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,10 +66,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
                 app:cardBackgroundColor="#FDFDFF"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="3dp"
@@ -100,9 +100,9 @@
                     android:id="@+id/btn_copy"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginLeft="30dp"
                     android:layout_marginRight="30dp"
+                    android:layout_marginBottom="15dp"
                     android:background="@drawable/shape_normal_blue_btn"
                     android:text="@string/copy_money_address"
                     android:textColor="@color/white"
@@ -110,16 +110,16 @@
 
                 <Button
                     android:id="@+id/btn_save_photo"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/btn_height"
-                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/shape_normal_blue_btn"
                     android:text="@string/save_qrimg"
                     android:textColor="@color/white"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:visibility="gone" />
 
             </LinearLayout>
 

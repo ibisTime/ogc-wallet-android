@@ -48,6 +48,7 @@ public class SendPhoneCodePresenter {
         if (sendVerificationCode == null) {
             return;
         }
+        AL_IVERIFICATION_REQUEST_CODE = sendVerificationCode.getRequestCode();
         VerificationAliActivity.open(activity, AL_IVERIFICATION_REQUEST_CODE);
     }
 
@@ -80,9 +81,9 @@ public class SendPhoneCodePresenter {
 
         hashMap.put("systemCode", AppConfig.SYSTEMCODE);
         hashMap.put("companyCode", AppConfig.COMPANYCODE);
-        if (StringUtils.isEmail(sendVerificationCode.getLoginName())){
+        if (StringUtils.isEmail(sendVerificationCode.getLoginName())) {
             hashMap.put("email", sendVerificationCode.getLoginName());
-        }else {
+        } else {
             hashMap.put("mobile", sendVerificationCode.getLoginName());
         }
         hashMap.put("bizType", sendVerificationCode.getBizType());
@@ -91,9 +92,9 @@ public class SendPhoneCodePresenter {
         hashMap.put("sessionId", sendVerificationCode.getSessionID()); //阿里验证
 
         String code;
-        if (StringUtils.isEmail(sendVerificationCode.getLoginName())){
+        if (StringUtils.isEmail(sendVerificationCode.getLoginName())) {
             code = "630093";
-        }else {
+        } else {
             code = "630090";
         }
         call = RetrofitUtils.getBaseAPiService().successRequest(code, StringUtils.getRequestJsonString(hashMap));
@@ -104,9 +105,9 @@ public class SendPhoneCodePresenter {
             protected void onSuccess(IsSuccessModes data, String SucMessage) {
                 if (data.isSuccess()) {
                     ToastUtil.show(activity, activity.getString(R.string.smscode_send_success));
-                    mListener.CodeSuccess(activity.getString(R.string.smscode_send_success));
+                    mListener.CodeSuccess(activity.getString(R.string.smscode_send_success),AL_IVERIFICATION_REQUEST_CODE);
                 } else {
-                    mListener.CodeFailed("", activity.getString(R.string.smscode_send_success));
+                    mListener.CodeFailed("", activity.getString(R.string.smscode_send_success),AL_IVERIFICATION_REQUEST_CODE);
                 }
             }
 

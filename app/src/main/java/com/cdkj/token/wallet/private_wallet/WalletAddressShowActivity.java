@@ -24,9 +24,10 @@ import com.cdkj.baselibrary.utils.GlideApp;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.PermissionHelper;
 import com.cdkj.token.R;
-import com.cdkj.token.databinding.ActivityAddressQrimgShowBinding;
+import com.cdkj.token.databinding.ActivityWalletAddressShowBinding;
 import com.cdkj.token.model.CoinAddressShowModel;
 import com.cdkj.token.utils.LocalCoinDBUtils;
+import com.cdkj.token.wallet.account_wallet.WithdrawOrderActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import io.reactivex.Observable;
@@ -39,7 +40,7 @@ import io.reactivex.schedulers.Schedulers;
 public class WalletAddressShowActivity extends AbsLoadActivity {
 
 
-    private ActivityAddressQrimgShowBinding mBinding;
+    private ActivityWalletAddressShowBinding mBinding;
 
     private PermissionHelper mPermissionHelper;
     private CoinAddressShowModel coinAddressShowModel;
@@ -56,7 +57,7 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
 
     @Override
     public View addMainView() {
-        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_address_qrimg_show, null, false);
+        mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_wallet_address_show, null, false);
         return mBinding.getRoot();
     }
 
@@ -118,16 +119,15 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
 
     private void initListener() {
         mBaseBinding.titleView.setRightFraClickListener(view -> {
-
+            if (coinAddressShowModel == null) return;
+            WithdrawOrderActivity.open(this, TextUtils.equals(coinAddressShowModel.getCoinSymbol(), "BTC") ? WithdrawOrderActivity.BTC_INPUT : WithdrawOrderActivity.ETC_INPUT, coinAddressShowModel.getCoinSymbol());
         });
-
+        mBinding.ivCloseMsg.setOnClickListener(view -> mBinding.llMsg.setVisibility(View.GONE));
         mBinding.btnCopy.setOnClickListener(view -> {
             copyAddress();
         });
-
         mBinding.btnSavePhoto.setOnClickListener(view -> {
             permissionRequestAndSaveBitmap();
-
         });
     }
 

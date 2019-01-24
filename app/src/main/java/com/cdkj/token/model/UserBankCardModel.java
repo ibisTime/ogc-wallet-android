@@ -12,9 +12,9 @@ public class UserBankCardModel {
      * pageNO : 1
      * start : 0
      * pageSize : 15
-     * totalCount : 2
+     * totalCount : 1
      * totalPage : 1
-     * list : [{"code":"BC20190117104411941149291","bankcardNumber":"1234567891011112","bankCode":"ZJTLCB","bankName":"浙江泰隆商业银行","subbranch":"1234567891011112","userId":"U20181228133231683443414","type":"0","status":"1","systemCode":"CD-OGC000019","isDefault":"0"},{"code":"BC20190116192900461604378","bankcardNumber":"3303271996194648","bankCode":"PSBC","bankName":"中国邮政储蓄银行","subbranch":"3303271996194648","userId":"U20181228133231683443414","type":"0","status":"1","systemCode":"CD-OGC000019","isDefault":"0"}]
+     * list : [{"code":"BC20190123181710623580881","bankcardNumber":"4643461364738764946494","bankCode":"PSBC","bankName":"中国邮政储蓄银行","subbranch":"开户支行","userId":"U20190114113239790410882","realName":"齐胜涛","type":"0","status":"0","systemCode":"CD-OGC000019","isDefault":"0","background":"back_psbc.png","icon":"logo_psbc.png"}]
      */
 
     private int pageNO;
@@ -74,16 +74,19 @@ public class UserBankCardModel {
 
     public static class ListBean {
         /**
-         * code : BC20190117104411941149291
-         * bankcardNumber : 1234567891011112
-         * bankCode : ZJTLCB
-         * bankName : 浙江泰隆商业银行
-         * subbranch : 1234567891011112
-         * userId : U20181228133231683443414
+         * code : BC20190123181710623580881
+         * bankcardNumber : 4643461364738764946494
+         * bankCode : PSBC
+         * bankName : 中国邮政储蓄银行
+         * subbranch : 开户支行
+         * userId : U20190114113239790410882
+         * realName : 齐胜涛
          * type : 0
-         * status : 1
+         * status : 0
          * systemCode : CD-OGC000019
          * isDefault : 0
+         * background : back_psbc.png
+         * icon : logo_psbc.png
          */
 
         private String code;
@@ -92,10 +95,13 @@ public class UserBankCardModel {
         private String bankName;
         private String subbranch;
         private String userId;
+        private String realName;
         private String type;
         private String status;
         private String systemCode;
         private String isDefault;
+        private String background;
+        private String icon;
 
         public String getCode() {
             return code;
@@ -145,6 +151,14 @@ public class UserBankCardModel {
             this.userId = userId;
         }
 
+        public String getRealName() {
+            return realName;
+        }
+
+        public void setRealName(String realName) {
+            this.realName = realName;
+        }
+
         public String getType() {
             return type;
         }
@@ -175,6 +189,22 @@ public class UserBankCardModel {
 
         public void setIsDefault(String isDefault) {
             this.isDefault = isDefault;
+        }
+
+        public String getBackground() {
+            return background;
+        }
+
+        public void setBackground(String background) {
+            this.background = background;
+        }
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public void setIcon(String icon) {
+            this.icon = icon;
         }
     }
 }

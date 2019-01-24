@@ -29,9 +29,12 @@ public class OtherLibManager {
      * @param context
      */
     public static void initZendesk(Context context) {
+//        Zendesk.INSTANCE.init(context, AppConfig.getZenDeskUrl(),
+//                "71d2ca9aba0cccc12deebfbdd352fbae8c53cd8999dd10bc",
+//                "mobile_sdk_client_7af3526c83d0c1999bc3");
         Zendesk.INSTANCE.init(context, AppConfig.getZenDeskUrl(),
-                "71d2ca9aba0cccc12deebfbdd352fbae8c53cd8999dd10bc",
-                "mobile_sdk_client_7af3526c83d0c1999bc3");
+                "572a044301abb3cec5bc7efba47802dc225375622ee399eb",
+                "mobile_sdk_client_1315e07d5bbe64e76b61");
 
         Identity identity = new AnonymousIdentity();
         Zendesk.INSTANCE.setIdentity(identity);

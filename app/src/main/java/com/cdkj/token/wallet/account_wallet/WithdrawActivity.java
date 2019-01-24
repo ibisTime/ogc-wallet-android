@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
 import com.cdkj.baselibrary.activitys.PayPwdModifyActivity;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
-import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.dialog.TextPwdInputDialog;
@@ -22,15 +23,18 @@ import com.cdkj.baselibrary.model.CodeModel;
 import com.cdkj.baselibrary.model.UserInfoModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.BigDecimalUtils;
+import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.PermissionHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityWithdrawBinding;
-import com.cdkj.token.model.WalletBalanceModel;
-import com.cdkj.token.model.db.LocalCoinDbModel;
+import com.cdkj.token.model.SystemParameterModel;
+import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.utils.EditTextJudgeNumberWatcher;
+import com.cdkj.token.utils.NetWorrkUtils;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -39,8 +43,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
-
-import static com.cdkj.token.utils.LocalCoinDBUtils.getLocalCoinUnit;
 
 
 /**
@@ -51,14 +53,15 @@ import static com.cdkj.token.utils.LocalCoinDBUtils.getLocalCoinUnit;
 
 public class WithdrawActivity extends AbsLoadActivity {
 
-    private WalletBalanceModel model;
+    private WalletModel.AccountListBean model;
     private PermissionHelper permissionHelper;
 
     private TextPwdInputDialog inputDialog;
     private ActivityWithdrawBinding mBinding;
+    private String serviceCharge;
 
 
-    public static void open(Context context, WalletBalanceModel model) {
+    public static void open(Context context, WalletModel.AccountListBean model) {
         if (context == null) {
             return;
         }
@@ -79,65 +82,47 @@ public class WithdrawActivity extends AbsLoadActivity {
     @Override
     public void topTitleViewRightClick() {
         if (model == null) return;
-        WithdrawOrderActivity.open(this, model.getCoinSymbol());
+        WithdrawOrderActivity.open(this, TextUtils.equals(model.getCurrency(), "BTC") ? WithdrawOrderActivity.BTC_OUTPUT : WithdrawOrderActivity.ETC_OUTPUT, model.getCurrency());
     }
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-        setStatusBarBlue();
-        setTitleBgBlue();
+//        setStatusBarBlue();
+//        setTitleBgBlue();
 
-        mBaseBinding.titleView.setMidTitle(getStrRes(R.string.wallet_title_withdraw));
-
+        mBaseBinding.titleView.setMidTitle("转出");
         mBaseBinding.titleView.setRightTitle(getString(R.string.wallet_charge_recode));
-
-
         init();
-
         initListener();
-
         getUserInfoRequest();
-
-
-        getWithdrawFee(model.getCoinSymbol());
+        getWithdrawFee();
     }
 
     private void init() {
-
         if (getIntent() == null) {
             return;
         }
-
-
-        model = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
-
+        model = (WalletModel.AccountListBean) getIntent().getSerializableExtra(CdRouteHelper.DATASIGN);
         if (model == null) {
             return;
         }
-
-        String availablemountString = AmountUtil.transformFormatToString(model.getAvailableAmount(), model.getCoinSymbol(), 8) + " " + model.getCoinSymbol();
-
-        mBinding.tvBalance.setText(availablemountString);
-
-        mBinding.tvFeeCoin.setText(model.getCoinSymbol());
+        String availablemountString = AmountUtil.transformFormatToString(model.getAmount(), model.getCurrency(), 8) + " " + model.getCurrency();
+        mBinding.tvAmount.setText(availablemountString);
+//        mBinding.tvFeeCoin.setText(model.getCurrency());
+        mBinding.tvFee.setText("0" + model.getCurrency());
 
     }
 
     private void initListener() {
-
         //二维码
         mBinding.fraLayoutQRcode.setOnClickListener(view -> {
             QRscan();
         });
-
         mBinding.btnWithdraw.setOnClickListener(view -> {
-
             if (!check()) {
                 return;
             }
-
-
             if (SPUtilHelper.getTradePwdFlag()) {
                 showInputDialog();
             } else {
@@ -148,12 +133,32 @@ public class WithdrawActivity extends AbsLoadActivity {
                     }
                 });
             }
-
-
         });
+        mBinding.edtNumber.addTextChangedListener(new EditTextJudgeNumberWatcher(mBinding.edtNumber, 15, 8));
+        mBinding.edtNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
 
-        mBinding.edtAmount.addTextChangedListener(new EditTextJudgeNumberWatcher(mBinding.edtAmount, 15, 8));
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (TextUtils.isEmpty(serviceCharge))
+                    return;
+                String number = mBinding.edtNumber.getText().toString().trim();
+                if (TextUtils.isEmpty(number) || !(Double.parseDouble(number) > 0)) {
+                    mBinding.tvFee.setText("0" + model.getCurrency());
+                    return;
+                }
+                String serviceChargeText = BigDecimalUtils.multiply(new BigDecimal(number), new BigDecimal(serviceCharge)).toString();
+                mBinding.tvFee.setText(AmountUtil.scale(serviceChargeText, 8) + model.getCurrency());
+            }
+        });
     }
 
     //权限处理
@@ -168,17 +173,17 @@ public class WithdrawActivity extends AbsLoadActivity {
             return false;
         }
 
-        if (TextUtils.isEmpty(mBinding.edtAmount.getText().toString().trim())) {
+        if (TextUtils.isEmpty(mBinding.edtNumber.getText().toString().trim())) {
             UITipDialog.showInfoNoIcon(WithdrawActivity.this, getStrRes(R.string.wallet_withdraw_amount_hint));
             return false;
         }
 
-        if (SPUtilHelper.getGoogleAuthFlag() && TextUtils.isEmpty(mBinding.editGoogleCode.getText().toString())) {
-            UITipDialog.showInfoNoIcon(this, getStrRes(R.string.google_code_hint));
-            mBinding.linLayoutGoogle.setVisibility(View.VISIBLE);
-            mBinding.viewGoogle.setVisibility(View.VISIBLE);
-            return false;
-        }
+//        if (SPUtilHelper.getGoogleAuthFlag() && TextUtils.isEmpty(mBinding.editGoogleCode.getText().toString())) {
+//            UITipDialog.showInfoNoIcon(this, getStrRes(R.string.google_code_hint));
+//            mBinding.linLayoutGoogle.setVisibility(View.VISIBLE);
+////            mBinding.viewGoogle.setVisibility(View.VISIBLE);
+//            return false;
+//        }
 
         return true;
     }
@@ -233,42 +238,52 @@ public class WithdrawActivity extends AbsLoadActivity {
 
     /**
      * 获取手续费
-     *
-     * @param coin
      */
-    private void getWithdrawFee(String coin) {
-
-        if (TextUtils.isEmpty(coin)) {
-            return;
-        }
-
-        Map<String, String> map = new HashMap<>();
-
-        map.put("symbol", coin);
-        map.put("systemCode", AppConfig.SYSTEMCODE);
-        map.put("companyCode", AppConfig.COMPANYCODE);
-
-        Call call = RetrofitUtils.createApi(MyApi.class).getCoinFees("802266", StringUtils.getRequestJsonString(map));
-
-        addCall(call);
-
-        showLoadingDialog();
-
-        call.enqueue(new BaseResponseModelCallBack<LocalCoinDbModel>(this) {
-
+    private void getWithdrawFee() {
+        NetWorrkUtils.getSystemServer(this, "withdraw_fee", true, new NetWorrkUtils.SystemServerListener() {
             @Override
-            protected void onSuccess(LocalCoinDbModel data, String SucMessage) {
-                if (data == null)
-                    return;
-
-                mBinding.tvFee.setText(AmountUtil.transformFormatToString(data.getWithdrawFee(), coin, AmountUtil.ALLSCALE));
+            public void onSuccer(SystemParameterModel data) {
+                serviceCharge = data.getCvalue();
             }
 
             @Override
-            protected void onFinish() {
-                disMissLoadingDialog();
+            public void onError(String error) {
+                LogUtil.E("手续费获取失败" + error);
+
             }
         });
+
+//        if (TextUtils.isEmpty(coin)) {
+//            return;
+//        }
+//
+//        Map<String, String> map = new HashMap<>();
+//
+//        map.put("symbol", coin);
+//        map.put("systemCode", AppConfig.SYSTEMCODE);
+//        map.put("companyCode", AppConfig.COMPANYCODE);
+//
+//        Call call = RetrofitUtils.createApi(MyApi.class).getCoinFees("802266", StringUtils.getRequestJsonString(map));
+//
+//        addCall(call);
+//
+//        showLoadingDialog();
+//
+//        call.enqueue(new BaseResponseModelCallBack<LocalCoinDbModel>(this) {
+//
+//            @Override
+//            protected void onSuccess(LocalCoinDbModel data, String SucMessage) {
+//                if (data == null)
+//                    return;
+//
+////                mBinding.tvFee.setText(AmountUtil.transformFormatToString(data.getWithdrawFee(), coin, AmountUtil.ALLSCALE));
+//            }
+//
+//            @Override
+//            protected void onFinish() {
+//                disMissLoadingDialog();
+//            }
+//        });
     }
 
     /**
@@ -277,27 +292,26 @@ public class WithdrawActivity extends AbsLoadActivity {
      * @param tradePwd
      */
     private void withdrawal(String tradePwd) {
-        BigDecimal bigDecimal = new BigDecimal(mBinding.edtAmount.getText().toString().trim());
+//        BigDecimal bigDecimal = new BigDecimal(mBinding.edtNumber.getText().toString().trim());
 
         Map<String, String> map = new HashMap<>();
 
-        map.put("googleCaptcha", mBinding.editGoogleCode.getText().toString());
-        map.put("token", SPUtilHelper.getUserToken());
-        map.put("applyUser", SPUtilHelper.getUserId());
-        map.put("systemCode", AppConfig.SYSTEMCODE);
+//        map.put("googleCaptcha", mBinding.editGoogleCode.getText().toString());
+//        map.put("token", SPUtilHelper.getUserToken());
+//        map.put("systemCode", AppConfig.SYSTEMCODE);
+
         map.put("accountNumber", model.getAccountNumber());
-        map.put("amount", bigDecimal.multiply(getLocalCoinUnit(model.getCoinSymbol())).toString().split("\\.")[0]);
+        map.put("amount", mBinding.edtNumber.getText().toString().trim());
+        map.put("applyNote", "");
+        map.put("applyUser", SPUtilHelper.getUserId());
+        map.put("applyNote", model.getCurrency() + getString(R.string.bill_type_withdraw));
+        map.put("payCardInfo", model.getCurrency());
         map.put("payCardNo", mBinding.editToAddress.getText().toString().trim());
-        map.put("payCardInfo", model.getCoinSymbol());
-        map.put("applyNote", model.getCoinSymbol() + getString(R.string.bill_type_withdraw));
         map.put("tradePwd", tradePwd);
 
-        Call call = RetrofitUtils.getBaseAPiService().codeRequest("802750", StringUtils.getRequestJsonString(map));
-
+        Call call = RetrofitUtils.getBaseAPiService().codeRequest("802350", StringUtils.getRequestJsonString(map));
         addCall(call);
-
         showLoadingDialog();
-
         call.enqueue(new BaseResponseModelCallBack<CodeModel>(this) {
 
             @Override

@@ -144,12 +144,12 @@ public class UpdatePhoneActivity extends AbsActivity implements SendCodeInterfac
     }
 
     @Override
-    public void CodeSuccess(String msg) {
+    public void CodeSuccess(String msg,int req) {
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.btnSendNew));
     }
 
     @Override
-    public void CodeFailed(String code, String msg) {
+    public void CodeFailed(String code, String msg,int req) {
         showToast(msg);
     }
 

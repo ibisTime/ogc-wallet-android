@@ -31,7 +31,7 @@ public class TopTitleLayout extends FrameLayout {
     private TextView mLeftTv;
     private ImageView mRightImg;
     private TextView mRightTv;
-    private View mLine;
+//    private View mLine;
 
     private Context mContext;
 
@@ -58,7 +58,7 @@ public class TopTitleLayout extends FrameLayout {
         mRightFra = (FrameLayout) findViewById(R.id.fllayout_right);
         mLeftImg = (ImageView) findViewById(R.id.img_back);
         mRightImg = (ImageView) findViewById(R.id.img_right);
-        mLine = findViewById(R.id.v_line);
+//        mLine = findViewById(R.id.v_line);
     }
 
     public void setLeftTitle(String text) {
@@ -111,7 +111,7 @@ public class TopTitleLayout extends FrameLayout {
     }
 
     public void isShowTitleLine(boolean isShow) {
-        mLine.setVisibility(isShow ? VISIBLE : GONE);
+//        mLine.setVisibility(isShow ? VISIBLE : GONE);
     }
 
     public void setLeftFraClickListener(View.OnClickListener listener) {

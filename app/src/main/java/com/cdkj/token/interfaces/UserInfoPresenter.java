@@ -140,6 +140,9 @@ public class UserInfoPresenter {
                 SPUtilHelper.saveTradePwdFlag(data.isTradepwdFlag());
                 SPUtilHelper.saveLoginPwdFlag(data.isLoginPwdFlag());
                 SPUtilHelper.saveGoogleAuthFlag(data.isGoogleAuthFlag());
+                SPUtilHelper.saveRealName(data.getRealName());
+                SPUtilHelper.saveUserEmail(data.getEmail());
+                SPUtilHelper.saveRealName(data.getMobile());
 
                 if (mListener != null) {
                     mListener.onFinishedGetUserInfo(data, "");

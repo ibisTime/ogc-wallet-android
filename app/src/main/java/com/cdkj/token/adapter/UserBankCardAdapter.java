@@ -42,14 +42,16 @@ public class UserBankCardAdapter extends BaseQuickAdapter<UserBankCardModel.List
             helper.setText(R.id.txt_number, item.getBankcardNumber());
         }
 
-        int logoId = R.mipmap.logo_defalut;
-        int backId = R.mipmap.back_default;
-//        if (!TextUtils.isEmpty(item.getBankCode())) {
-//        logoId = mContext.getResources().getIdentifier("logo_" + "ABC", "mipmap", mContext.getPackageName());
-//        backId = mContext.getResources().getIdentifier("back_" + "ABC", "mipmap", mContext.getPackageName());
-//        }
-        ImgUtils.loadCircleImg(mContext, logoId, helper.getView(R.id.img_bankCart));
-        ImgUtils.loadImage(mContext, backId, helper.getView(R.id.img_back_bg));
+        if (TextUtils.isEmpty(item.getBackground())) {
+            ImgUtils.loadImage(mContext, R.mipmap.back_default, helper.getView(R.id.img_back_bg));
+        } else {
+            ImgUtils.loadImage(mContext, item.getBackground(), helper.getView(R.id.img_back_bg));
+        }
+        if (TextUtils.isEmpty(item.getIcon())) {
+            ImgUtils.loadCircleImg(mContext, R.mipmap.logo_defalut, helper.getView(R.id.img_bankCart));
+        } else {
+            ImgUtils.loadImage(mContext, item.getIcon(), helper.getView(R.id.img_bankCart));
+        }
 
         helper.addOnClickListener(R.id.cb_default);
         helper.addOnClickListener(R.id.tv_untying);

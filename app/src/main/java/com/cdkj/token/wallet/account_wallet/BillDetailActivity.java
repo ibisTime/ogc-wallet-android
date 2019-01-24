@@ -46,16 +46,16 @@ public class BillDetailActivity extends AbsLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(getStrRes(R.string.wallet_title_bill_detail));
+        setStatusBarBlue();
+        setTitleBgBlue();
+
 
         if (getIntent() != null) {
             bean = (BillModel.ListBean) getIntent().getSerializableExtra(CdRouteHelper.DATASIGN);
             if (bean != null) {
                 setView();
             }
-
         }
-
-
     }
 
     private void setView() {
@@ -71,11 +71,11 @@ public class BillDetailActivity extends AbsLoadActivity {
             mBinding.tvAmount.setText(AmountUtil.transformFormatToString(tas, coinUnit, 8) + " " + bean.getCurrency());
         }
 
-        mBinding.tvBefore.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPreAmountString()),coinUnit, 8));
-        mBinding.tvAfter.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPostAmountString()),coinUnit, 8));
+        mBinding.tvBefore.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPreAmountString()), coinUnit, 8));
+        mBinding.tvAfter.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPostAmountString()), coinUnit, 8));
         mBinding.tvDate.setText(DateUtil.formatStringData(bean.getCreateDatetime(), DEFAULT_DATE_FMT));
-        mBinding.tvType.setText(AmountUtil.formatBizType(bean.getBizType()));
         mBinding.tvStatus.setText(AmountUtil.formatBillStatus(bean.getStatus()));
+        mBinding.tvType.setText(AmountUtil.formatBizType(bean.getRemark()));
     }
 
 

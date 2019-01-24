@@ -52,11 +52,18 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
                     stopTimeDow();
                     this.notifyDataSetChanged();
                 });
+
                 disposableList.add(disposable);
-                tvType.setText(R.string.to_be_paid);
+                //买的话是 待支付,  卖的话是 待确定
+                if (TextUtils.equals("0", item.getType())) {
+                    tvType.setText(R.string.to_be_paid);
+                    iv.setImageResource(R.mipmap.icon_pay_loding);
+                } else {
+                    tvType.setText(R.string.to_be_confirmed);
+                    iv.setImageResource(R.mipmap.icon_pay_to_be_confirmed);
+                }
                 tvType.setTextColor(Color.parseColor("#0EC55B"));
                 tvTime.setTextColor(Color.parseColor("#0EC55B"));
-                iv.setImageResource(R.mipmap.icon_pay_loding);
                 break;
             case "1":
             case "2":

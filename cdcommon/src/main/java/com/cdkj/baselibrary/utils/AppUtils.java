@@ -166,6 +166,7 @@ public class AppUtils {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         btn.setEnabled(false);
+                        btn.setTextColor(CdApplication.getContext().getResources().getColor(R.color.blue));
                         btn.setText(CdApplication.getContext().getString(R.string.code_down, count));
                     }
                 })
@@ -175,6 +176,7 @@ public class AppUtils {
                                public void accept(Long aLong) throws Exception {
                                    btn.setEnabled(false);
                                    btn.setText(CdApplication.getContext().getString(R.string.code_down, count - aLong));
+                                   btn.setTextColor(CdApplication.getContext().getResources().getColor(R.color.white));
                                    btn.setBackgroundResource(R.drawable.btn_no_click_gray);
                                }
                            }, new Consumer<Throwable>() {
@@ -182,7 +184,8 @@ public class AppUtils {
                                public void accept(Throwable throwable) throws Exception {
                                    btn.setEnabled(true);
                                    btn.setText(CdApplication.getContext().getString(R.string.code_down, count));
-                                   btn.setBackgroundResource(R.drawable.selector_blue);
+                                   btn.setTextColor(CdApplication.getContext().getResources().getColor(R.color.blue));
+                                   btn.setBackgroundResource(R.drawable.btn_code_blue_bg);
 
                                }
                            }, new Action() {
@@ -190,7 +193,8 @@ public class AppUtils {
                                public void run() throws Exception {
                                    btn.setEnabled(true);
                                    btn.setText(R.string.resend_code);
-                                   btn.setBackgroundResource(R.drawable.selector_blue);
+                                   btn.setTextColor(CdApplication.getContext().getResources().getColor(R.color.blue));
+                                   btn.setBackgroundResource(R.drawable.btn_code_blue_bg);
                                }
                            }
                 );

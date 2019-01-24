@@ -55,7 +55,7 @@ public class UserJoinActivity extends AbsStatusBarTranslucentActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(getStrRes(R.string.user_title_join));
-        setPageBgRes(R.drawable.my_bg);
+//        setPageBgRes(R.drawable.my_bg);
         getCommnityList();
     }
 
@@ -79,8 +79,7 @@ public class UserJoinActivity extends AbsStatusBarTranslucentActivity {
         map.put("type", "followUs");
         map.put("systemCode", AppConfig.SYSTEMCODE);
         map.put("companyCode", AppConfig.COMPANYCODE);
-
-        Call<BaseResponseListModel<IntroductionInfoModel>> call = RetrofitUtils.getBaseAPiService().getKeySystemInfoList("660919", StringUtils.getRequestJsonString(map));
+        Call<BaseResponseListModel<IntroductionInfoModel>> call = RetrofitUtils.getBaseAPiService().getKeySystemInfoList("600115", StringUtils.getRequestJsonString(map));
 
         showLoadingDialog();
 

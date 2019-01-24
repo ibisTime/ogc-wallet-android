@@ -216,7 +216,7 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
 
 
     @Override
-    public void CodeSuccess(String msg) {
+    public void CodeSuccess(String msg,int req) {
         //启动倒计时
         //启动倒计时
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.edtCode.getSendCodeBtn(), R.drawable.btn_code_blue_bg, R.drawable.gray,
@@ -225,7 +225,7 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
     }
 
     @Override
-    public void CodeFailed(String code, String msg) {
+    public void CodeFailed(String code, String msg,int req) {
         UITipDialog.showInfoNoIcon(FindLoginPwdActivity.this, msg);
     }
 

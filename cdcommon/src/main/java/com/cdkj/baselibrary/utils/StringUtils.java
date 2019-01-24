@@ -275,8 +275,12 @@ public class StringUtils {
 
     //判断email格式是否正确
     public static boolean isEmail(String email) {
+        if (TextUtils.isEmpty(email))
+            return false;
         String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
+//        String str = "^[a-z0-9A-Z]+[- | a-z0-9A-Z . _]+@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\\\.)+[a-z]{2,}$";
         Pattern p = Pattern.compile(str);
+
         Matcher m = p.matcher(email);
 
         return m.matches();

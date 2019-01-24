@@ -24,19 +24,20 @@ public class WalletAdapter extends BaseQuickAdapter<WalletModel.AccountListBean,
     protected void convert(BaseViewHolder helper, WalletModel.AccountListBean item) {
 
 //        ImgUtils.loadImage(mContext, item.ge(), helper.getView(R.id.img_coin_logo));
-        if (item.getCurrency()!=null) {
+        if (item.getCurrency() != null) {
 
-            if (item.getCurrency().toUpperCase().equals("BTC")){
+            if (item.getCurrency().toUpperCase().equals("BTC")) {
                 helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_btc);
             }
 
-            if (item.getCurrency().toUpperCase().equals("ETH")){
+            if (item.getCurrency().toUpperCase().equals("ETH")) {
                 helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_eth);
+            }
+            if (item.getCurrency().toUpperCase().equals("USDT")) {
+                helper.setBackgroundRes(R.id.iv_symbol, R.mipmap.wallet_icon_usdt);
             }
             helper.setText(R.id.tv_symbol, item.getCurrency().toUpperCase());
         }
-
-
 
 
         String froStr = mContext.getString(R.string.freeze);

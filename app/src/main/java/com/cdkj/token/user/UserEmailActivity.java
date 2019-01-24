@@ -97,7 +97,6 @@ public class UserEmailActivity extends AbsActivity implements SendCodeInterface 
                         mBinding.edtEmail.getText().toString(), "805131", "C", SPUtilHelper.getCountryInterCode());
 
                 mSendCodePresenter.openVerificationActivity(sendVerificationCode);
-
             }
 
         });
@@ -179,7 +178,7 @@ public class UserEmailActivity extends AbsActivity implements SendCodeInterface 
 
     //获取验证码相关
     @Override
-    public void CodeSuccess(String msg) {
+    public void CodeSuccess(String msg,int req) {
         //启动倒计时
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.edtCode.getSendCodeBtn(), R.drawable.btn_code_blue_bg, R.drawable.gray,
                 ContextCompat.getColor(this, R.color.colorAccent), ContextCompat.getColor(this, R.color.white)));
@@ -187,7 +186,7 @@ public class UserEmailActivity extends AbsActivity implements SendCodeInterface 
     }
 
     @Override
-    public void CodeFailed(String code, String msg) {
+    public void CodeFailed(String code, String msg,int req) {
         UITipDialog.showInfoNoIcon(this, msg);
     }
 

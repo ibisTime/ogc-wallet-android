@@ -65,6 +65,7 @@ import com.cdkj.token.model.TrustModel;
 import com.cdkj.token.model.TxHashModel;
 import com.cdkj.token.model.UTXOListModel;
 import com.cdkj.token.model.UserBankCardModel;
+import com.cdkj.token.model.UserFriendsModel;
 import com.cdkj.token.model.UserRefereeModel;
 import com.cdkj.token.model.UserSettingModel;
 import com.cdkj.token.model.VersionModel;
@@ -994,5 +995,14 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<submitOrdeMakeMoneyModel>> submitOrCancelOrdeMakeMoney(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 我的好友
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<UserFriendsModel>> getMyFriend(@Field("code") String code, @Field("json") String json);
 
 }

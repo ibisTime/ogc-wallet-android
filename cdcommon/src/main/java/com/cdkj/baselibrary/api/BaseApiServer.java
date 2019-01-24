@@ -138,5 +138,4 @@ public interface BaseApiServer {
     @POST("api")
     Call<BaseResponseListModel<IntroductionInfoModel>> getKeySystemInfoList(@Field("code") String code, @Field("json") String json);
 
-
 }

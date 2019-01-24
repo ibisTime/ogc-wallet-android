@@ -80,36 +80,36 @@
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".user.login.SignUpActivity" />
-        //找回密码
+        <!--//找回密码-->
         <activity
             android:name=".user.login.FindLoginPwdActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        //修改手机号
+        <!--//修改手机号-->
         <activity
             android:name="com.cdkj.baselibrary.activitys.UpdatePhoneActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        //资金密码修改
+        <!--//资金密码修改-->
         <activity
             android:name="com.cdkj.baselibrary.activitys.PayPwdModifyActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        // 图片
+        <!--// 图片-->
         <activity
             android:name="com.cdkj.baselibrary.activitys.ImageSelectActivity"
             android:theme="@style/ActivityDialogStyleBottom" />
-        // 实名认证
+        <!--// 实名认证-->
         <activity
             android:name="com.cdkj.baselibrary.activitys.AuthenticateActivity"
             android:launchMode="singleTask">
-            // 需要添加下面的intent-filter配置
+            <!--// 需要添加下面的intent-filter配置-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                //scheme:为 实名认证Activity，认证接口参数"returnUrl"冒号前字符，host为同位置参数冒号后字符
+                <!--//scheme:为 实名认证Activity，认证接口参数"returnUrl"冒号前字符，host为同位置参数冒号后字符-->
                 <data
                     android:host="certify.back"
                     android:scheme="orangecoin" />
@@ -317,6 +317,13 @@
         <activity android:name=".user.UserFriendsActivity"></activity>
         <activity android:name=".user.UserBackCardActivity" />
         <activity android:name=".user.AddBackCardActivity" />
+        <activity
+            android:name=".user.invite.InviteQrActivity2"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".user.UserUpPhoneActivity" />
+        <activity android:name=".user.UserBindEmailActivity"/>
+        <activity android:name=".user.UserBindPhoneActivity"/>
+        <activity android:name=".user.UserUpEmailActivity"/>
     </application>
 
 </manifest>

@@ -27,6 +27,8 @@ public class SignInEditClearLayout extends LinearLayout {
 
     private String hintText;
 
+    private boolean isShowClear = true;
+
     public SignInEditClearLayout(Context context) {
         this(context, null);
     }
@@ -88,11 +90,12 @@ public class SignInEditClearLayout extends LinearLayout {
     }
 
     void changeImgShowState() {
-        if (TextUtils.isEmpty(getText())) {
-            mBinding.imgEditClear.setVisibility(GONE);
-        } else {
-            mBinding.imgEditClear.setVisibility(VISIBLE);
-        }
+        if (isShowClear)
+            if (TextUtils.isEmpty(getText())) {
+                mBinding.imgEditClear.setVisibility(GONE);
+            } else {
+                mBinding.imgEditClear.setVisibility(VISIBLE);
+            }
     }
 
     public String getText() {
@@ -101,6 +104,11 @@ public class SignInEditClearLayout extends LinearLayout {
 
     public EditText getEditText() {
         return mBinding.edit;
+    }
+
+    public void setDownImgVisibilityGone() {
+        isShowClear = false;
+        mBinding.imgEditClear.setVisibility(GONE);
     }
 
 }

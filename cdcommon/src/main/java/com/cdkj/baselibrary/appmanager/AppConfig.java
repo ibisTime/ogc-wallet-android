@@ -45,6 +45,9 @@ public class AppConfig {
     public final static String LOCAL_COIN_CNY_SYMBOL = MoneyUtils.MONEYSING;// 币种显示类型 人民币
     public final static String LOCAL_COIN_KRW_SYMBOL = "₩";// 币种显示类型 韩币
 
+    // 智趣人脸识别
+    public static final String ZHIQU_APP_KEY = "nJXnQp568zYcnBdPQxC7TANqakUUCjRZqZK8TrwGt7";
+    public static final String ZHIQU_SECRET_KEY = "887DE27B914988C9CF7B2DEE15E3EDF8";
 
     //默认七牛url
     public static String IMGURL = "http://pajvine9a.bkt.clouddn.com/";
@@ -60,7 +63,8 @@ public class AppConfig {
 
 
     public static String getZenDeskUrl() {
-        return "https://thachainhelp.zendesk.com" + getZenDeskUrlLanguage();
+//        return "https://thachainhelp.zendesk.com" + getZenDeskUrlLanguage();
+        return "https://chengwallethelp.zendesk.com" + getZenDeskUrlLanguage();
     }
 
     /**

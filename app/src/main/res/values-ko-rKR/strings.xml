@@ -933,4 +933,11 @@
     <string name="order_cancel">已取消</string>
     <string name="user_order_cancel">用户取消订单</string>
     <string name="bank_list_empty">暂无银行卡</string>
+    <string name="wallet_input_order_title">充币订单</string>
+    <string name="user_setting_phone">绑定手机号</string>
+    <string name="input_email">请输入邮箱</string>
+    <string name="activity_email_modify_success">邮箱修改成功</string>
+    <string name="activity_eamil_title">修改邮箱</string>
+    <string name="user_iden_ok">身份认证已完成</string>
+    <string name="to_be_confirmed">待确认</string>
 </resources>

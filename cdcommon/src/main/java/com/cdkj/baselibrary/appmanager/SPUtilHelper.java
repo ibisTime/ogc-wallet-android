@@ -371,7 +371,7 @@ public class SPUtilHelper {
 
 
     /**
-     * 设置用户昵称
+     * 设置用户邮箱
      *
      * @param s
      */
@@ -380,7 +380,7 @@ public class SPUtilHelper {
     }
 
     /**
-     * 获取用户昵称
+     * 获取用户邮箱
      */
     public static String getUserEmail() {
         return SPUtils.getString(CdApplication.getContext(), "user_email", "");
