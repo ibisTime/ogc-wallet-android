@@ -75,8 +75,8 @@ public class SendPhoneCodePresenter {
     /**
      * 请求
      */
-    private void request(SendVerificationCode sendVerificationCode) {
-
+    public void request(SendVerificationCode sendVerificationCode) {
+        AL_IVERIFICATION_REQUEST_CODE = sendVerificationCode.getRequestCode();
         HashMap<String, String> hashMap = new HashMap<>();
 
         hashMap.put("systemCode", AppConfig.SYSTEMCODE);

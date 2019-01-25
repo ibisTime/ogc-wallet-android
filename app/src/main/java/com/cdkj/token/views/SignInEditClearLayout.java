@@ -28,6 +28,7 @@ public class SignInEditClearLayout extends LinearLayout {
     private String hintText;
 
     private boolean isShowClear = true;
+    private boolean isShowSplitLine = true;
 
     public SignInEditClearLayout(Context context) {
         this(context, null);
@@ -43,6 +44,8 @@ public class SignInEditClearLayout extends LinearLayout {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.sign_edit_clear_layout);
 
         hintText = ta.getString(R.styleable.sign_edit_clear_layout_hint_text);
+        isShowClear = ta.getBoolean(R.styleable.sign_edit_clear_layout_is_show_clear, true);
+        isShowSplitLine = ta.getBoolean(R.styleable.sign_edit_clear_layout_is_show_split_line, true);
         init();
     }
 
@@ -75,18 +78,19 @@ public class SignInEditClearLayout extends LinearLayout {
             mBinding.imgEditClear.setVisibility(GONE);
         });
 
-        mBinding.edit.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    changeImgShowState();
-                    mBinding.viewLine.setBackgroundResource(R.drawable.line_blue_gradient);
-                } else {
-                    mBinding.imgEditClear.setVisibility(GONE);
-                    mBinding.viewLine.setBackgroundResource(R.drawable.gray);
+        if (isShowSplitLine)
+            mBinding.edit.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if (b) {
+                        changeImgShowState();
+                        mBinding.viewLine.setBackgroundResource(R.drawable.line_blue_gradient);
+                    } else {
+                        mBinding.imgEditClear.setVisibility(GONE);
+                        mBinding.viewLine.setBackgroundResource(R.drawable.gray);
+                    }
                 }
-            }
-        });
+            });
     }
 
     void changeImgShowState() {

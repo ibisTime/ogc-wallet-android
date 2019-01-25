@@ -60,10 +60,7 @@ public class UserBindEmailActivity extends AbsActivity implements SendCodeInterf
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setSubLeftImgState(true);
-
         init();
-
-
         initListener();
     }
 
@@ -80,7 +77,7 @@ public class UserBindEmailActivity extends AbsActivity implements SendCodeInterf
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         mBinding.edtEmail.getText().toString(), "805086", "C", SPUtilHelper.getCountryInterCode());
 
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
             }
 
         });
@@ -173,13 +170,6 @@ public class UserBindEmailActivity extends AbsActivity implements SendCodeInterf
         disMissLoadingDialog();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCodePresenter != null) {
-            mSendCodePresenter.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 
     @Override
     protected void onDestroy() {

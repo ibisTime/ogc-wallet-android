@@ -56,7 +56,8 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(R.string.accounts_and_security);
-        setPageBgRes(R.drawable.my_bg);
+//        setPageBgRes(R.drawable.my_bg);
+        setPageBgRes(R.color.white);
         initListener();
         mGetUserInfoPresenter = new UserInfoPresenter(this, this);
 
@@ -137,9 +138,25 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
             }
             UserBindPhoneActivity.open(this);
         });
+        //修改手机号
+        mBinding.llMobile.setOnClickListener(view -> {
+            if (SPUtilHelper.getUserPhoneNum().isEmpty()) {
+                UITipDialog.showFail(this, "请先绑定手机号");
+                return;
+            }
+            UserUpPhoneActivity.open(this);
+        });
 
         //我的银行卡
         mBinding.llMyBanks.setOnClickListener(view -> UserBackCardActivity.open(this, false));
+
+        //绑定邮箱
+        mBinding.llMail.setOnClickListener(view -> {
+            if (!SPUtilHelper.getUserEmail().isEmpty()) {
+                return;
+            }
+            UserBindEmailActivity.open(this);
+        });
 
         //修改邮箱
         mBinding.llModifyMail.setOnClickListener(view -> {
@@ -150,22 +167,6 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
             UserUpEmailActivity.open(this);
         });
 
-        //绑定邮箱
-        mBinding.llMail.setOnClickListener(view -> {
-            if (!SPUtilHelper.getUserEmail().isEmpty()) {
-                return;
-            }
-            UserBindEmailActivity.open(this);
-        });
-
-        //修改手机号
-        mBinding.llMobile.setOnClickListener(view -> {
-            if (SPUtilHelper.getUserPhoneNum().isEmpty()) {
-                UITipDialog.showFail(this, "请先绑定手机号");
-                return;
-            }
-            UserUpPhoneActivity.open(this);
-        });
 
         //登录密码
         mBinding.llPassword.setOnClickListener(view -> {
@@ -195,9 +196,7 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
         IdentifyPresenter mIdentifyPresenter = new IdentifyPresenter(this, this);
 
         if (TextUtils.isEmpty(SPUtilHelper.getRealName())) {
-
             mIdentifyPresenter.startCardIndentify();
-
         } else {
             UITipDialog.showInfoNoIcon(this, getStrRes(R.string.user_iden_ok));
         }
@@ -261,6 +260,7 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
 
     }
 
+    //用户信息  获取成功回调
     @Override
     public void onFinishedGetUserInfo(UserInfoModel userInfo, String errorMsg) {
         init();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -18,7 +19,6 @@ import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivityUserUpPhoneBinding;
@@ -65,6 +65,9 @@ public class UserUpPhoneActivity extends AbsActivity implements SendCodeInterfac
         mBinding.edtPhoneOld.setDownImgVisibilityGone();
         mBinding.edtPhoneOld.getEditText().setEnabled(false);
         mBinding.edtPhoneOld.getEditText().setText(SPUtilHelper.getUserPhoneNum());
+
+        mBinding.edtPhoneOld.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        mBinding.edtPhoneNew.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
         mSendCodePresenter = new SendPhoneCodePresenter(this, this);
         initListener();
     }
@@ -83,7 +86,7 @@ public class UserUpPhoneActivity extends AbsActivity implements SendCodeInterfac
 
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         phone, "805061", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode(), 100);
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
             }
         });
 
@@ -99,7 +102,7 @@ public class UserUpPhoneActivity extends AbsActivity implements SendCodeInterfac
 
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         phone, "805061", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode(), 200);
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
             }
         });
 
@@ -196,18 +199,4 @@ public class UserUpPhoneActivity extends AbsActivity implements SendCodeInterfac
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mBinding.edtPhoneOld.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtPhoneOld.getLeftImage());
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCodePresenter != null) {
-            mSendCodePresenter.onActivityResult(requestCode, resultCode, data);
-        }
-    }
 }

@@ -14,6 +14,9 @@ public class SendVerificationCode {
     private String countryCode;
     private int requestCode;//跳转的请求码,用于  一个界面需要多个发送多个验证码的回调判断,可以不传
 
+
+
+
     public SendVerificationCode(String loginName, String bizType, String kind, String countryCode) {
         this.loginName = loginName;
         this.bizType = bizType;

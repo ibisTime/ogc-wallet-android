@@ -16,23 +16,17 @@ import com.cdkj.baselibrary.databinding.ActivityModifyPayPasswordBinding;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.SendCodeInterface;
 import com.cdkj.baselibrary.interfaces.SendPhoneCodePresenter;
-import com.cdkj.baselibrary.model.CountrySelectEvent;
 import com.cdkj.baselibrary.model.IsSuccessModes;
 import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Call;
-
-import static com.cdkj.baselibrary.utils.SystemUtils.paste;
 
 /**
  * 修改 设置 资金密码
@@ -45,8 +39,6 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
     private boolean mIsSetPwd;//是否设置过密码
 
     private SendPhoneCodePresenter mSendCoodePresenter;
-
-    private String selectCountryCode;//用户选择的国家
 
     private String bizType;
 
@@ -74,16 +66,10 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.imgCountry);
-        mBinding.tvCountryCode.setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-
-        selectCountryCode = SPUtilHelper.getCountryInterCode();
+//        selectCountryCode = SPUtilHelper.getCountryInterCode();
 
         setSubLeftImgState(true);
 
-        mBinding.llGoogle.setVisibility(SPUtilHelper.getGoogleAuthFlag() ? View.VISIBLE : View.GONE);
-        mBinding.lineGoogle.setVisibility(SPUtilHelper.getGoogleAuthFlag() ? View.VISIBLE : View.GONE);
 
         if (getIntent() != null) {
             mIsSetPwd = getIntent().getBooleanExtra("isSetPwd", false);
@@ -104,19 +90,7 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
      * 设置事件
      */
     private void setListener() {
-//        mBinding.linLayoutCountryCode.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                CdRouteHelper.openCountrySelect(false);
-//            }
-//        });
-        //粘贴
-        mBinding.btnPaste.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mBinding.edtGoogle.setText(paste(PayPwdModifyActivity.this));
-            }
-        });
+
 
 //发送验证码
         mBinding.btnSend.setOnClickListener(new View.OnClickListener() {
@@ -134,11 +108,9 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
                 }
 
                 String phone = mBinding.edtPhone.getText().toString().trim();
-
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
-                        phone, bizType, AppConfig.USERTYPE, selectCountryCode);
-
-                mSendCoodePresenter.openVerificationActivity(sendVerificationCode);
+                        phone, bizType, AppConfig.USERTYPE, null);
+                mSendCoodePresenter.request(sendVerificationCode);
 
 
             }
@@ -169,12 +141,6 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
             UITipDialog.showInfoNoIcon(PayPwdModifyActivity.this, getString(R.string.activity_paypwd_code_hint));
             return true;
         }
-        if (SPUtilHelper.getGoogleAuthFlag()) {
-            if (TextUtils.isEmpty(mBinding.edtGoogle.getText().toString())) {
-                UITipDialog.showInfoNoIcon(PayPwdModifyActivity.this, getString(R.string.activity_paypwd_google_hint));
-                return true;
-            }
-        }
         if (TextUtils.isEmpty(mBinding.edtPassword.getText())) {
             UITipDialog.showInfoNoIcon(PayPwdModifyActivity.this, getString(R.string.activity_paypwd_pwd_hint));
             return true;
@@ -204,7 +170,6 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
 
         object.put("userId", SPUtilHelper.getUserId());
         object.put("token", SPUtilHelper.getUserToken());
-        object.put("googleCaptcha", mBinding.edtGoogle.getText().toString());
         if (mIsSetPwd) {
             object.put("newTradePwd", mBinding.edtPassword.getText().toString().trim());
         } else {
@@ -261,12 +226,12 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
 
 
     @Override
-    public void CodeSuccess(String msg,int req) {
+    public void CodeSuccess(String msg, int req) {
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.btnSend));
     }
 
     @Override
-    public void CodeFailed(String code, String msg,int req) {
+    public void CodeFailed(String code, String msg, int req) {
         UITipDialog.showInfoNoIcon(PayPwdModifyActivity.this, msg);
     }
 
@@ -288,22 +253,4 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
             mSendCoodePresenter = null;
         }
     }
-
-    @Subscribe
-    public void countrySelectEvent(CountrySelectEvent countrySelectEvent) {
-        if (countrySelectEvent == null) return;
-        mBinding.tvCountryCode.setText(StringUtils.transformShowCountryCode(countrySelectEvent.getCountryCode()));
-        selectCountryCode = countrySelectEvent.getCountryCode();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCoodePresenter != null) {
-            mSendCoodePresenter.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-
 }

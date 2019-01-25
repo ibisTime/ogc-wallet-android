@@ -16,7 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            app:hint_text="旧邮箱">
+            app:hint_text="旧邮箱"
+            app:is_show_clear="false"
+            app:is_show_split_line="false">
 
         </com.cdkj.token.views.SignInEditClearLayout>
 
@@ -27,7 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            app:hint_text="请输入验证码" />
+            app:hint_text="请输入验证码"
+            app:is_show_clear="false"
+            app:is_show_split_line="false" />
 
 
         <com.cdkj.token.views.SignInEditClearLayout
@@ -36,7 +40,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            app:hint_text="新邮箱">
+            app:hint_text="新邮箱"
+            app:is_show_clear="false"
+            app:is_show_split_line="false">
 
         </com.cdkj.token.views.SignInEditClearLayout>
 
@@ -47,7 +53,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            app:hint_text="请输入验证码" />
+            app:hint_text="请输入验证码"
+            app:is_show_clear="false"
+            app:is_show_split_line="false" />
 
         <!--<View-->
         <!--android:layout_width="match_parent"-->

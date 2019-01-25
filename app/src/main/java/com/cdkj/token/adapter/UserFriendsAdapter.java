@@ -30,7 +30,7 @@ public class UserFriendsAdapter extends BaseQuickAdapter<UserFriendsModel.ListBe
         if (TextUtils.isEmpty(item.getPhoto())) {
             ivHead.setImageResource(R.drawable.photo_default);
         } else {
-            ImgUtils.loadImage(mContext, item.getPhoto(), ivHead);
+            ImgUtils.loadLogo(mContext, item.getPhoto(), ivHead);
         }
     }
 }

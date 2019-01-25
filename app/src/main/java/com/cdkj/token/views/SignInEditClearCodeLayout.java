@@ -27,6 +27,8 @@ public class SignInEditClearCodeLayout extends LinearLayout {
     public LayoutEditClearSendCodeBinding mBinding;
 
     private String hintText;
+    private boolean isShowClear;
+    private boolean isShowSplitLine;
 
     public SignInEditClearCodeLayout(Context context) {
         this(context, null);
@@ -42,6 +44,8 @@ public class SignInEditClearCodeLayout extends LinearLayout {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.sign_edit_clear_layout);
 
         hintText = ta.getString(R.styleable.sign_edit_clear_layout_hint_text);
+        isShowClear = ta.getBoolean(R.styleable.sign_edit_clear_layout_is_show_clear, true);
+        isShowSplitLine = ta.getBoolean(R.styleable.sign_edit_clear_layout_is_show_split_line, true);
         init();
     }
 
@@ -73,27 +77,28 @@ public class SignInEditClearCodeLayout extends LinearLayout {
             mBinding.edit.setText("");
             mBinding.imgEditClear.setVisibility(GONE);
         });
-
-        mBinding.edit.setOnFocusChangeListener(new OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                if (b) {
-                    changeImgShowState();
-                    mBinding.viewLine.setBackgroundResource(R.drawable.line_blue_gradient);
-                } else {
-                    mBinding.imgEditClear.setVisibility(GONE);
-                    mBinding.viewLine.setBackgroundResource(R.drawable.gray);
+        if (isShowSplitLine)
+            mBinding.edit.setOnFocusChangeListener(new OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View view, boolean b) {
+                    if (b) {
+                        changeImgShowState();
+                        mBinding.viewLine.setBackgroundResource(R.drawable.line_blue_gradient);
+                    } else {
+                        mBinding.imgEditClear.setVisibility(GONE);
+                        mBinding.viewLine.setBackgroundResource(R.drawable.gray);
+                    }
                 }
-            }
-        });
+            });
     }
 
     void changeImgShowState() {
-        if (TextUtils.isEmpty(getText())) {
-            mBinding.imgEditClear.setVisibility(GONE);
-        } else {
-            mBinding.imgEditClear.setVisibility(VISIBLE);
-        }
+        if (isShowClear)
+            if (TextUtils.isEmpty(getText())) {
+                mBinding.imgEditClear.setVisibility(GONE);
+            } else {
+                mBinding.imgEditClear.setVisibility(VISIBLE);
+            }
     }
 
     public String getText() {
@@ -108,6 +113,7 @@ public class SignInEditClearCodeLayout extends LinearLayout {
     public Button getSendCodeBtn() {
         return mBinding.btnSend;
     }
+
     public EditText getEditText() {
         return mBinding.edit;
     }

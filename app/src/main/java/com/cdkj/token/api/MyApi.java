@@ -40,6 +40,7 @@ import com.cdkj.token.model.LocalUSDTCoinBill;
 import com.cdkj.token.model.ManagementMoney;
 import com.cdkj.token.model.MarketCoinModel;
 import com.cdkj.token.model.MarketModel;
+import com.cdkj.token.model.MoneyTransactionTypeModel;
 import com.cdkj.token.model.MsgListModel;
 import com.cdkj.token.model.MyGetRedPackageBean;
 import com.cdkj.token.model.MyManamentMoneyProduct;
@@ -920,7 +921,7 @@ public interface MyApi {
     @POST("api")
     Call<BaseResponseModel<IsSuccessModes>> setDefaultOrUntyingBankCard(@Field("code") String code, @Field("json") String json);
 
-   /**
+    /**
      * 获取图表数据
      *
      * @param code
@@ -942,7 +943,7 @@ public interface MyApi {
     @POST("api")
     Call<BaseResponseModel<SymbolPriceModel>> getSymbolPrice(@Field("code") String code, @Field("json") String json);
 
-       /**
+    /**
      * 公共的成功接口
      *
      * @param code
@@ -974,6 +975,7 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<OrderListModel>> getOrdetList(@Field("code") String code, @Field("json") String json);
+
     /**
      * 订单详情
      *
@@ -1004,5 +1006,14 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<UserFriendsModel>> getMyFriend(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取钱包交易记录里面的  筛选数据
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<MoneyTransactionTypeModel>> getMoneyTransactionType(@Field("code") String code, @Field("json") String json);
 
 }

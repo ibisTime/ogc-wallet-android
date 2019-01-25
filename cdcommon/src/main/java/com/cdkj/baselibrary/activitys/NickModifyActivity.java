@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.cdkj.baselibrary.R;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
-import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsActivity;
 import com.cdkj.baselibrary.databinding.ActivityModifyNickBinding;
@@ -118,12 +117,8 @@ public class NickModifyActivity extends AbsActivity {
         Map<String, String> map = new HashMap<>();
         map.put("userId", SPUtilHelper.getUserId());
         map.put("nickname", mBinding.edtNickname.getText().toString());
-        map.put("token", SPUtilHelper.getUserToken());
-        map.put("companyCode", AppConfig.COMPANYCODE);
-        map.put("token", SPUtilHelper.getUserToken());
 
-
-        Call call = RetrofitUtils.getBaseAPiService().successRequest("805075", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.getBaseAPiService().successRequest("805082", StringUtils.getRequestJsonString(map));
 
         addCall(call);
 

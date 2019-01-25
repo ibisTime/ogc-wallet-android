@@ -87,7 +87,7 @@ public class UserUpEmailActivity extends AbsActivity implements SendCodeInterfac
 
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         eamil, "805070", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode(), 100);
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
             }
         });
 
@@ -106,7 +106,7 @@ public class UserUpEmailActivity extends AbsActivity implements SendCodeInterfac
                 String eamil = mBinding.edtEmailNew.getText().toString().trim();
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         eamil, "805070", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode(), 200);
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
             }
         });
 
@@ -199,21 +199,6 @@ public class UserUpEmailActivity extends AbsActivity implements SendCodeInterfac
         if (mSendCodePresenter != null) {
             mSendCodePresenter.clear();
             mSendCodePresenter = null;
-        }
-    }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        mBinding.edtPhoneOld.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-//        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtPhoneOld.getLeftImage());
-//    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCodePresenter != null) {
-            mSendCodePresenter.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

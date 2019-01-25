@@ -54,6 +54,8 @@
     <!---->
     <declare-styleable name="sign_edit_clear_layout">
         <attr name="hint_text" format="string"></attr>//输入框输入状态颜色
+        <attr name="is_show_clear" format="boolean"></attr>//是否显示清按钮  默认显示
+        <attr name="is_show_split_line" format="boolean"></attr>//选中分割线是否变色  默认变色
 
     </declare-styleable>
 

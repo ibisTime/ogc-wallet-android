@@ -24,14 +24,12 @@ import com.cdkj.baselibrary.model.UserLoginModel;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.common.ThaAppConstant;
 import com.cdkj.token.databinding.ActivitySignUp2Binding;
-import com.cdkj.token.user.CountryCodeListActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -82,13 +80,6 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
         initListener();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mBinding.edtMobile.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtMobile.getLeftImage());
-    }
-
 
     private void initListener() {
 
@@ -124,10 +115,10 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
             }
         });
 
-        //国家区号选择
-        mBinding.edtMobile.getLeftRootView().setOnClickListener(view -> {
-            CountryCodeListActivity.open(this, true);
-        });
+//        //国家区号选择
+//        mBinding.edtMobile.getLeftRootView().setOnClickListener(view -> {
+//            CountryCodeListActivity.open(this, true);
+//        });
 
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
             if (check("code")) {
@@ -145,7 +136,7 @@ public class SignUpActivity extends AbsStatusBarTranslucentActivity implements S
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         loginName, bizType, "C", SPUtilHelper.getCountryInterCode());
 
-                mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCodePresenter.request(sendVerificationCode);
 
             }
         });

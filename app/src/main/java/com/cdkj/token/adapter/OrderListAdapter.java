@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.disposables.Disposable;
@@ -47,7 +48,13 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
     private void setTypeView(TextView tvTime, TextView tvType, ImageView iv, OrderListModel.ListBean item) {
         switch (item.getStatus()) {
             case "0":
-                Disposable disposable = AppUtils.startTimeDown(10, tvTime, view -> {
+
+                Date startTime = new Date(item.getCreateDatetime());
+                Date endTime = new Date(item.getInvalidDatetime());
+                long startLong = startTime.getTime();
+                long endLong = endTime.getTime();
+                int remainingTime = (int) ((endLong - startLong) / 1000);
+                Disposable disposable = AppUtils.startTimeDown(remainingTime, tvTime, view -> {
                     item.setStatus("5");
                     stopTimeDow();
                     this.notifyDataSetChanged();

@@ -56,6 +56,7 @@ public class UserJoinActivity extends AbsStatusBarTranslucentActivity {
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(getStrRes(R.string.user_title_join));
 //        setPageBgRes(R.drawable.my_bg);
+        setPageBgRes(R.color.white);
         getCommnityList();
     }
 

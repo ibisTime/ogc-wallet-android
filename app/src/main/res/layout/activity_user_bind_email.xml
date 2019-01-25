@@ -27,11 +27,15 @@
             <com.cdkj.token.views.SignInEditClearLayout
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
+                app:is_show_clear="false"
+                app:is_show_split_line="false"
                 android:layout_height="wrap_content"
                 app:hint_text="@string/user_email_hint" />
 
             <com.cdkj.token.views.SignInEditClearCodeLayout
                 android:id="@+id/edt_code"
+                app:is_show_clear="false"
+                app:is_show_split_line="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

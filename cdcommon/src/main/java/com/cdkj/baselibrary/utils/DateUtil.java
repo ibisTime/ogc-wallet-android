@@ -346,6 +346,7 @@ public class DateUtil {
      * @param seconds
      */
     public static String formatSeconds(int seconds) {
+
         String str = "";
         if (seconds > 60) {
             int fen = seconds / 60;

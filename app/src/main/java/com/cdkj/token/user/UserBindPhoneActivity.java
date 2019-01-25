@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -68,14 +69,15 @@ public class UserBindPhoneActivity extends AbsActivity implements SendCodeInterf
     }
 
     private void initListener() {
+        mBinding.edtCode.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
         mBinding.edtCode.getSendCodeBtn().setOnClickListener(view -> {
             if (TextUtils.isEmpty(mBinding.edtPhone.getText().toString())) {
                 UITipDialog.showInfoNoIcon(this, getStrRes(R.string.activity_paypwd_mobile_hint));
                 return;
             }
             SendVerificationCode sendVerificationCode = new SendVerificationCode(
-                    mBinding.edtPhone.getText().toString(), "805060", "C", SPUtilHelper.getCountryInterCode());
-            mSendCodePresenter.openVerificationActivity(sendVerificationCode);
+                    mBinding.edtPhone.getText().toString(), "805060", "C", null);
+            mSendCodePresenter.request(sendVerificationCode);
 
         });
 

@@ -4,7 +4,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#657FFF"
         android:orientation="vertical">
 
@@ -33,7 +33,7 @@
 
         </FrameLayout>
 
-        <LinearLayout
+        <ScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -52,7 +52,7 @@
                     android:layout_height="100dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="30dp"
-                    android:src="@mipmap/app_icon" />
+                    android:src="@mipmap/invitation_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -95,6 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
                     android:gravity="center_vertical">
 
                     <TextView
@@ -115,37 +116,21 @@
                         android:textSize="13sp" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-
-                <!--</LinearLayout>-->
-
             </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="@color/invite_color_blue" />
 
-        <!--<LinearLayout-->
-        <!--android:id="@+id/linLayout_share"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="45dp">-->
-
         <TextView
-            android:background="#4D30C5"
             android:id="@+id/tv_save"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:background="#4D30C5"
             android:gravity="center"
             android:text="下载至本地"
             android:textColor="@color/white" />
-        <!--</LinearLayout>-->
-
     </LinearLayout>
 </layout>

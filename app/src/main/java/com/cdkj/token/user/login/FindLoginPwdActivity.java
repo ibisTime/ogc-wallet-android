@@ -20,11 +20,9 @@ import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivityFindPasswordBinding;
-import com.cdkj.token.user.CountryCodeListActivity;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -85,22 +83,12 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mBinding.edtMobile.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtMobile.getLeftImage());
-    }
 
 
     /**
      *
      */
     private void initListener() {
-        //国家区号选择
-        mBinding.edtMobile.getLeftRootView().setOnClickListener(view -> {
-            CountryCodeListActivity.open(this, true);
-        });
         mBinding.tvFinish.setOnClickListener(view -> finish());
 
         //发送验证码
@@ -118,7 +106,7 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         phone, "805063", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode());
 
-                mSendCOdePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCOdePresenter.request(sendVerificationCode);
 
             }
         });
@@ -248,14 +236,4 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
             mSendCOdePresenter = null;
         }
     }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCOdePresenter != null) {
-            mSendCOdePresenter.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
 }

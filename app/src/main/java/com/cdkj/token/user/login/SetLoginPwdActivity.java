@@ -20,7 +20,6 @@ import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.AppUtils;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivityFindPasswordBinding;
@@ -39,7 +38,6 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
 
 
     private SendPhoneCodePresenter mSendCOdePresenter;
-
 
     /**
      * 打开当前页面
@@ -69,7 +67,7 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
     public void afterCreate(Bundle savedInstanceState) {
 
 
-        if (SPUtilHelper.getLoginPwdFlag()) { // 设置过支付密码
+        if (SPUtilHelper.getLoginPwdFlag()) { // 设置过密码
             mBinding.tvTitle.setText(R.string.user_setting_password);
         } else {
             mBinding.tvTitle.setText(R.string.set_login_pwd);
@@ -89,13 +87,6 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
         mBinding.edtRePassword.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         mBinding.edtMobile.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
 
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mBinding.edtMobile.getLeftTextView().setText(StringUtils.transformShowCountryCode(SPUtilHelper.getCountryInterCode()));
-        ImgUtils.loadActImg(this, SPUtilHelper.getCountryFlag(), mBinding.edtMobile.getLeftImage());
     }
 
 
@@ -122,7 +113,7 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
                 String phone = mBinding.edtMobile.getText().toString().trim();
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         phone, "805063", AppConfig.USERTYPE, SPUtilHelper.getCountryInterCode());
-                mSendCOdePresenter.openVerificationActivity(sendVerificationCode);
+                mSendCOdePresenter.request(sendVerificationCode);
             }
         });
 
@@ -258,14 +249,5 @@ public class SetLoginPwdActivity extends AbsActivity implements SendCodeInterfac
             mSendCOdePresenter = null;
         }
     }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (mSendCOdePresenter != null) {
-            mSendCOdePresenter.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
 
 }

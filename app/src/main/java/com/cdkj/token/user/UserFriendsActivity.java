@@ -1,5 +1,6 @@
 package com.cdkj.token.user;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.token.R;
 import com.cdkj.token.adapter.UserFriendsAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.model.UserFriendsModel;
@@ -36,11 +38,12 @@ public class UserFriendsActivity extends AbsRefreshListActivity {
     }
 
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle("我的好友");
         initRefreshHelper(RefreshHelper.LIMITE);
-
+        mRefreshBinding.rv.setBackgroundResource(R.color.white);
     }
 
     @Override

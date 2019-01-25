@@ -1,6 +1,8 @@
 package com.cdkj.token.user.invite;
 
 import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -10,7 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsStatusBarTranslucentActivity;
@@ -81,7 +83,11 @@ public class InviteQrActivity2 extends AbsStatusBarTranslucentActivity {
         mBinding.tvFinish.setOnClickListener(view -> finish());
 
         mBinding.btnCopy.setOnClickListener(view -> {
-            copyShareURl();
+//            copyShareURl();  不用弹窗复制  直复制
+            ClipboardManager cmb = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clipData = ClipData.newPlainText(null, shareUrl);
+            cmb.setPrimaryClip(clipData);
+            UITipDialog.showInfoNoIcon(this, getStrRes(R.string.copy_success));
         });
 
         mBinding.tvFinish.setOnClickListener(view -> finish());
@@ -157,7 +163,7 @@ public class InviteQrActivity2 extends AbsStatusBarTranslucentActivity {
      * @param scrollView
      * @return
      */
-    public Bitmap getBitmapByView(LinearLayout scrollView) {
+    public Bitmap getBitmapByView(ScrollView scrollView) {
 
         int h = 0;
         Bitmap bitmap = null;

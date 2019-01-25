@@ -106,7 +106,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
                 return;
             }
             String phone = mBinding.edtUsername.getText().toString().trim();
-            
+
             SendVerificationCode sendVerificationCode = new SendVerificationCode(
                     phone, CODE_LOGIN_CODE, "C", SPUtilHelper.getCountryInterCode());
 
@@ -140,7 +140,6 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
                 }
             });
         }
-
     }
 
     /**
@@ -222,7 +221,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
 
 
     @Override
-    public void CodeSuccess(String msg,int req) {
+    public void CodeSuccess(String msg, int req) {
         //启动倒计时
         mSubscription.add(AppUtils.startCodeDown(60, mBinding.edtCode.getSendCodeBtn(), R.drawable.btn_code_blue_bg, R.drawable.gray,
                 ContextCompat.getColor(this, R.color.btn_blue), ContextCompat.getColor(this, R.color.white)));
@@ -230,7 +229,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     }
 
     @Override
-    public void CodeFailed(String code, String msg,int req) {
+    public void CodeFailed(String code, String msg, int req) {
         UITipDialog.showInfoNoIcon(this, msg);
     }
 

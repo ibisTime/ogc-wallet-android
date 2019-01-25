@@ -58,7 +58,8 @@ public class UserSettingActivity extends AbsStatusBarTranslucentActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         setMidTitle(getStrRes(R.string.setting));
-        setPageBgRes(R.drawable.my_bg);
+//        setPageBgRes(R.drawable.my_bg);
+        setPageBgRes(R.color.white);
         initClickListener();
         getVersion();
     }

@@ -31,6 +31,7 @@ import retrofit2.Call;
 public class UserBackCardActivity extends AbsRefreshListActivity {
 
     private boolean mIsselect;//用户打开类型是否是选择银行卡
+
     /**
      * @param context
      */
@@ -60,6 +61,7 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
     private void init() {
         mBaseBinding.titleView.setMidTitle("我的银行卡");
         mBaseBinding.titleView.setRightTitle("绑定");
+        mBaseBinding.linLayoutRoot.setBackgroundResource(R.color.white);
         if (getIntent() != null) {
             mIsselect = getIntent().getBooleanExtra("isSelect", true);
         }

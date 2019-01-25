@@ -7,10 +7,16 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
+import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
+import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
+import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
+import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
@@ -19,18 +25,15 @@ import com.cdkj.token.R;
 import com.cdkj.token.adapter.BillListAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityWalletBillBinding;
-import com.cdkj.token.model.BillFilterModel;
 import com.cdkj.token.model.BillModel;
 import com.cdkj.token.model.CoinAddressShowModel;
+import com.cdkj.token.model.MoneyTransactionTypeModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
-import com.cdkj.token.views.ScrollPicker;
-import com.cdkj.token.views.pop.PickerPop;
 import com.cdkj.token.wallet.private_wallet.WalletAddressShowActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,11 +55,12 @@ public class BillListActivity extends AbsLoadActivity {
     private BaseRefreshCallBack refreshCallBackback;
     private RefreshHelper refreshHelper;
 
+    private List<MoneyTransactionTypeModel> checkDate;
     private String filterType = "";
-    private String kind = "0";
+//    private String kind = "0";
 
-    private List<ScrollPicker.ScrollPickerData> filterTypeList; //筛选pop数据
-    private PickerPop filterPickerPop;
+//    private List<ScrollPicker.ScrollPickerData> filterTypeList; //筛选pop数据
+//    private PickerPop filterPickerPop;
 
 
     public static void open(Context context, WalletModel.AccountListBean mAccountBean) {
@@ -94,19 +98,39 @@ public class BillListActivity extends AbsLoadActivity {
 
     void initFilterTypeList() {
 
-        filterTypeList = new ArrayList<>();
+//        filterTypeList = new ArrayList<>();
+//
+//        String[] bizType = new String[]{"", "charge", "withdraw", "withdrawfee", "redpacket_back", "sendredpacket_in", "sendredpacket_out", "jf_lottery_in"};
+//
+//        String[] types = new String[]{getStrRes(R.string.bill_type_all), getStrRes(R.string.bill_type_charge), getStrRes(R.string.bill_type_withdraw),
+//                getStrRes(R.string.bill_type_withdrawfee), getString(R.string.redpacket_back), getString(R.string.redpacket_get), getString(R.string.send_red_package), getString(R.string.lottery)};
+//
+//        for (int i = 0; i < types.length; i++) {
+//            BillFilterModel billFilterModel = new BillFilterModel();
+//            billFilterModel.setItemText(types[i]);
+//            billFilterModel.setType(bizType[i]);
+//            filterTypeList.add(billFilterModel);
+//        }
 
-        String[] bizType = new String[]{"", "charge", "withdraw", "withdrawfee", "redpacket_back", "sendredpacket_in", "sendredpacket_out", "jf_lottery_in"};
+        HashMap<String, String> map = new HashMap<>();
+        map.put("parentKey", "jour_biz_type_user0");
+        Call<BaseResponseListModel<MoneyTransactionTypeModel>> moneyTransactionType = RetrofitUtils.createApi(MyApi.class).getMoneyTransactionType("630036", StringUtils.getRequestJsonString(map));
+        addCall(moneyTransactionType);
+        showLoadingDialog();
+        moneyTransactionType.enqueue(new BaseResponseListCallBack<MoneyTransactionTypeModel>(this) {
+            @Override
+            protected void onSuccess(List<MoneyTransactionTypeModel> data, String SucMessage) {
+                if (data == null) {
+                    return;
+                }
+                BillListActivity.this.checkDate = data;
+            }
 
-        String[] types = new String[]{getStrRes(R.string.bill_type_all), getStrRes(R.string.bill_type_charge), getStrRes(R.string.bill_type_withdraw),
-                getStrRes(R.string.bill_type_withdrawfee), getString(R.string.redpacket_back), getString(R.string.redpacket_get), getString(R.string.send_red_package), getString(R.string.lottery)};
-
-        for (int i = 0; i < types.length; i++) {
-            BillFilterModel billFilterModel = new BillFilterModel();
-            billFilterModel.setItemText(types[i]);
-            billFilterModel.setType(bizType[i]);
-            filterTypeList.add(billFilterModel);
-        }
+            @Override
+            protected void onFinish() {
+                disMissLoadingDialog();
+            }
+        });
     }
 
     private void initView() {
@@ -139,19 +163,35 @@ public class BillListActivity extends AbsLoadActivity {
 
         //筛选
         mBinding.tvFilter.setOnClickListener(view -> {
-            if (filterPickerPop == null) {
-                filterPickerPop = new PickerPop(this);
-                filterPickerPop.setPickerViewData(filterTypeList);
-                filterPickerPop.setOnSelectListener(selectPosition -> {
-                    if (selectPosition == null) {
-                        return;
+            if (checkDate == null) {
+                initFilterTypeList();
+            } else if (checkDate.size() == 0) {
+                UITipDialog.showFail(this, "暂无筛选数据");
+            } else {
+                OptionsPickerView payTypePicker = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
+                    @Override
+                    public void onOptionsSelect(int options1, int option2, int options3, View v) {
+                        MoneyTransactionTypeModel moneyTransactionTypeModel = checkDate.get(options1);
+                        filterType = moneyTransactionTypeModel.getDkey();
+                        refreshHelper.onDefaluteMRefresh(true);
                     }
-                    filterType = selectPosition.getSelectType();
-                    refreshHelper.onDefaluteMRefresh(true);
-                });
+                }).build();
+                payTypePicker.setPicker(checkDate, null, null);
+                payTypePicker.show();
             }
-
-            filterPickerPop.showPopupWindow();
+//
+//            if (filterPickerPop == null) {
+//                filterPickerPop = new PickerPop(this);
+//                filterPickerPop.setPickerViewData(filterTypeList);
+//                filterPickerPop.setOnSelectListener(selectPosition -> {
+//                    if (selectPosition == null) {
+//                        return;
+//                    }
+//                    filterType = selectPosition.getSelectType();
+//                    refreshHelper.onDefaluteMRefresh(true);
+//                });
+//            }
+//            filterPickerPop.showPopupWindow();
         });
 
         //充币
@@ -243,11 +283,11 @@ public class BillListActivity extends AbsLoadActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (filterPickerPop != null) {
-            filterPickerPop.dismiss();
-        }
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+////        if (filterPickerPop != null) {
+////            filterPickerPop.dismiss();
+////        }
+//    }
 }
