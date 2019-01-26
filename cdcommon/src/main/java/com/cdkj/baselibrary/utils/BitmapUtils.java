@@ -1,5 +1,6 @@
 package com.cdkj.baselibrary.utils;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +21,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -427,6 +432,64 @@ public class BitmapUtils {
         bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
         return baos.toByteArray();
     }
+    /**
+     * 网络图片转  bitmap
+     *
+     * @param imgurl
+     * @return
+     * @throws Exception
+     */
+    public static void getImage(final Activity activity, final String imgurl, final HttpCallBackListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                URL imageUrl = null;
+                try {
+                    imageUrl = new URL(imgurl);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    HttpURLConnection conn = (HttpURLConnection) imageUrl.openConnection();
+                    conn.setDoInput(true);
+                    conn.connect();
+                    InputStream is = conn.getInputStream();
+                    final Bitmap bitmap = BitmapFactory.decodeStream(is);
+//                    Bitmap bitmap1= createBitmapThumbnail(bitmap,false);
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (listener != null) {
+                                listener.onFinish(bitmap);
+                            }
+                        }
+                    });
 
+                    is.close();
+                } catch (final IOException e) {
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (listener != null) {
+                                listener.onError(e);
+                            }
+                        }
+                    });
+
+                    e.printStackTrace();
+                }
+            }
+
+        }).start();
+
+
+    }
+
+    //自定义一个接口
+    public interface HttpCallBackListener {
+        void onFinish(Bitmap bitmap);
+
+        void onError(Exception e);
+    }
 
 }

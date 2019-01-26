@@ -5,12 +5,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#657FFF"
+        android:background="#4D30C5"
         android:orientation="vertical">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="45dp"
+            android:background="#657FFF">
 
             <ImageView
                 android:id="@+id/tv_finish"
@@ -33,11 +34,16 @@
 
         </FrameLayout>
 
+        <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:orientation="vertical">-->
+
         <ScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -118,6 +124,11 @@
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+        <!--</LinearLayout>-->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <View
             android:layout_width="match_parent"

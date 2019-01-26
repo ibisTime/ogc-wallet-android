@@ -7,12 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cdkj.baselibrary.utils.AppUtils;
+import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.token.R;
 import com.cdkj.token.model.OrderListModel;
+import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,8 +51,7 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
     private void setTypeView(TextView tvTime, TextView tvType, ImageView iv, OrderListModel.ListBean item) {
         switch (item.getStatus()) {
             case "0":
-
-                Date startTime = new Date(item.getCreateDatetime());
+                Date startTime = new Date();
                 Date endTime = new Date(item.getInvalidDatetime());
                 long startLong = startTime.getTime();
                 long endLong = endTime.getTime();
@@ -75,7 +77,9 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
             case "1":
             case "2":
                 //买入是增加  卖出是减少
-                tvTime.setText(TextUtils.equals("0", item.getType()) ? ("+" + item.getCount()) : ("-" + item.getCount()));
+                BigDecimal btcNumber = BigDecimalUtils.div(new BigDecimal(item.getCount()), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
+
+                tvTime.setText(TextUtils.equals("0", item.getType()) ? ("+" + btcNumber) : ("-" + btcNumber));
                 tvType.setText(R.string.completed);
                 tvType.setTextColor(Color.parseColor("#D53D3D"));
                 tvTime.setTextColor(Color.parseColor("#333333"));

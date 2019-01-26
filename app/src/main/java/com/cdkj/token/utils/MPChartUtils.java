@@ -34,7 +34,7 @@ public class MPChartUtils {
         lineChart.setNoDataTextColor(Color.BLUE);//没有数据时显示文字的颜色
         lineChart.setDrawGridBackground(false);//chart 绘图区后面的背景矩形将绘制
         lineChart.setDrawBorders(false);//禁止绘制图表边框的线
-        lineChart.animateXY(1000, 1000);//启用动画
+//        lineChart.animateXY(1000, 1000);//启用动画
         //lineChart.setBorderColor(); //设置 chart 边框线的颜色。
         //lineChart.setBorderWidth(); //设置 chart 边界线的宽度，单位 dp。
         //lineChart.setLogEnabled(true);//打印日志
@@ -88,6 +88,7 @@ public class MPChartUtils {
 
     /**
      * 设置折线图的数据
+     *
      * @param lineChart
      * @param mdata
      */
@@ -106,12 +107,14 @@ public class MPChartUtils {
         LineData data = new LineData(dataSets);
         // 添加到图表中
         lineChart.setData(data);
+        lineChart.animateX(1000);//启用动画
         //绘制图表
         lineChart.invalidate();
     }
 
     /**
      * 设置数据  定点  折线圆滑度  make等
+     *
      * @param set1
      */
     private static void setLineChartSetStyle(LineDataSet set1) {

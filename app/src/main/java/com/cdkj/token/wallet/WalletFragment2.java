@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
@@ -160,7 +161,12 @@ public class WalletFragment2 extends BaseLazyFragment {
             @Override
             protected void onSuccess(WalletModel data, String SucMessage) {
                 mRefreshHelper.setData(data.getAccountList(), getString(R.string.no_assets), R.mipmap.order_none);
-                mBinding.tvTotalAmountCNY.setText("≈" + data.getTotalAmountCNY() + "  CNY");
+
+                if (AppConfig.LOCAL_MARKET_CNY.equals(SPUtilHelper.getLocalMarketSymbol())) {
+                    mBinding.tvTotalAmountCNY.setText("≈" + data.getTotalAmountCNY() + AppConfig.LOCAL_MARKET_CNY);
+                } else {
+                    mBinding.tvTotalAmountCNY.setText("≈" + data.getTotalAmountUSD() + AppConfig.LOCAL_MARKET_USD);
+                }
             }
 
             @Override

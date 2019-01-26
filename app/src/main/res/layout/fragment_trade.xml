@@ -24,7 +24,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="BTC交易区"
+                    android:text="@string/title_btc_trading"
                     android:textColor="@color/gray_333333"
                     android:textSize="18sp" />
 
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"
                     android:layout_marginRight="15dp"
-                    android:text="账单"
+                    android:text="@string/txt_biill"
                     android:textColor="@color/gray_333333"
                     android:textSize="16sp" />
             </FrameLayout>
@@ -55,14 +55,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="近30日走势图"
+                        android:text="@string/chart_title"
                         android:textColor="@color/gray_333333"
                         android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="买入价"
+                        android:text="@string/txt_buying_price"
                         android:textColor="@color/txt_333"
                         android:textSize="12sp" />
 
@@ -79,7 +79,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
-                        android:text="卖出价"
+                        android:text="@string/txt_selling_price"
                         android:textColor="@color/txt_333"
                         android:textSize="12sp" />
 
@@ -120,13 +120,13 @@
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="买入"
+                    android:text="@string/txt_purchase"
                     android:textSize="18sp" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="卖出"
+                    android:text="@string/txt_sell_out"
                     android:textSize="18sp" />
 
             </android.support.design.widget.TabLayout>
@@ -150,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="金额"
+                    android:text="@string/txt_amount"
                     android:textColor="@color/txt_333"
                     android:textSize="14sp" />
 
@@ -162,7 +162,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="请输入购买金额"
+                    android:hint="@string/txt_input_buy_amount"
                     android:inputType="numberDecimal"
                     android:textSize="14sp" />
 
@@ -201,7 +201,7 @@
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:background="@null"
-                    android:hint="请输入买入数量"
+                    android:hint="@string/input_buy_number"
                     android:inputType="numberDecimal"
                     android:textSize="14sp" />
 

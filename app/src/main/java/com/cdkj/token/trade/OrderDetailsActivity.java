@@ -12,9 +12,11 @@ import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
+import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.SystemUtils;
@@ -24,9 +26,12 @@ import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityOrderDetailsBinding;
 import com.cdkj.token.model.OrderListDetailsModel;
 import com.cdkj.token.model.submitOrdeMakeMoneyModel;
+import com.cdkj.token.utils.IsInstallWeChatOrAliPay;
+import com.cdkj.token.utils.LocalCoinDBUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -35,6 +40,8 @@ public class OrderDetailsActivity extends AbsLoadActivity {
     private ActivityOrderDetailsBinding mBinding;
     private String currentCode;
     private OrderListDetailsModel orderListDetailsModel;
+    private String allmsg;
+    private CommonDialog commonDialog;
 
     /**
      * 打开当前页面
@@ -104,7 +111,8 @@ public class OrderDetailsActivity extends AbsLoadActivity {
             ToastUtil.show(this, "复制成功");
         });
         mBinding.tvOnekeyCopy.setOnClickListener(v -> {
-            SystemUtils.copy(this, "一键复制");
+
+            SystemUtils.copy(this, allmsg);
             ToastUtil.show(this, "复制成功");
         });
         mBinding.tvPayeeCopy.setOnClickListener(v -> {
@@ -129,10 +137,51 @@ public class OrderDetailsActivity extends AbsLoadActivity {
         });
 
         mBinding.btnConfirm.setOnClickListener(v -> {
-            submitOrder(true);
+            if (TextUtils.equals("1", orderListDetailsModel.getReceiveType())) {
+                boolean isInstallAli = IsInstallWeChatOrAliPay.checkAliPayInstalled(this);
+                if (!isInstallAli) {
+                    UITipDialog.showInfo(this, "请先安装支付宝");
+                    return;
+                }
+//                showPayDialog();
+                startAli();
+            } else {
+                submitOrder(true);
+            }
         });
 
 
+    }
+
+    /**
+     * 启动跳转支付宝
+     */
+    private void startAli() {
+        IsInstallWeChatOrAliPay.startAli(this, orderListDetailsModel.getPic(), new IsInstallWeChatOrAliPay.StratAliLisenter() {
+            @Override
+            public void onSuccess() {
+                showPayDialog();
+            }
+
+            @Override
+            public void onError(String msg) {
+                UITipDialog.showInfo(OrderDetailsActivity.this, msg);
+            }
+        });
+    }
+
+    /**
+     * 显示支付宝支付回调的弹窗
+     */
+    private void showPayDialog() {
+        if (commonDialog == null)
+            commonDialog = new CommonDialog(this).builder();
+        commonDialog.setContentMsg("是否已打款")
+                .setPositiveBtn("前往打款", view -> {
+                    startAli();
+                }).setNegativeBtn("我已打款", view -> {
+            submitOrder(true);
+        }).setCanceledOnTouchOutside(true).show();
     }
 
     private void setViewData() {
@@ -211,7 +260,9 @@ public class OrderDetailsActivity extends AbsLoadActivity {
             mBinding.ivQr.setVisibility(View.VISIBLE);
             mBinding.llBack.setVisibility(View.GONE);
             mBinding.ivPayLogo.setImageResource(R.mipmap.icon_ali_logo);
-            mBinding.tvPayName.setText("支付宝");
+            mBinding.tvPayName.setText(orderListDetailsModel.getReceiveCardNo());
+            mBinding.btnConfirm.setText("去还款");
+            allmsg = orderListDetailsModel.getReceiveCardNo();
         } else {
             mBinding.ivQr.setVisibility(View.GONE);
             mBinding.llBack.setVisibility(View.VISIBLE);
@@ -221,6 +272,12 @@ public class OrderDetailsActivity extends AbsLoadActivity {
             mBinding.tvBankNumber.setText(orderListDetailsModel.getReceiveCardNo());
             mBinding.tvBankName.setText(orderListDetailsModel.getReceiveBank());
             mBinding.tvBankBranch.setText(orderListDetailsModel.getReceiveSubbranch());
+
+            //一键复制信息
+            allmsg = mBinding.tvPayee.getText().toString() + "\n"
+                    + mBinding.tvBankNumber.getText().toString() + "\n"
+                    + mBinding.tvBankName.getText().toString() + "\n"
+                    + mBinding.tvBankBranch.getText().toString();
         }
     }
 
@@ -228,7 +285,8 @@ public class OrderDetailsActivity extends AbsLoadActivity {
      * 设置公共部分的view
      */
     private void setOrderDetalisView() {
-        mBinding.tvTypeMsg.setText(TextUtils.equals("0", orderListDetailsModel.getType()) ? "买入" : "卖出" + orderListDetailsModel.getCount() + orderListDetailsModel.getTradeCoin());
+        BigDecimal btcNumber = BigDecimalUtils.div(new BigDecimal(orderListDetailsModel.getCount()), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
+        mBinding.tvTypeMsg.setText(TextUtils.equals("0", orderListDetailsModel.getType()) ? "买入" + btcNumber.toString() + orderListDetailsModel.getTradeCoin() : "卖出" + btcNumber.toString() + orderListDetailsModel.getTradeCoin());
         mBinding.tvTotalPrice.setText("总价" + orderListDetailsModel.getTradeAmount().toString());
         mBinding.tvOrderNumber.setText(currentCode);
         mBinding.tvBuyOrPay.setText(TextUtils.equals("0", orderListDetailsModel.getType()) ? "买入" : "卖出");

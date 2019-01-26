@@ -859,4 +859,14 @@
     <string name="activity_eamil_title">修改邮箱</string>
     <string name="user_iden_ok">身份认证已完成</string>
     <string name="to_be_confirmed">待确认</string>
+    <string name="txt_purchase">买入</string>
+    <string name="txt_sell_out">卖出</string>
+    <string name="title_btc_trading">BTC交易区</string>
+    <string name="txt_biill">账单</string>
+    <string name="chart_title">近30日走势图</string>
+    <string name="txt_buying_price">买入价</string>
+    <string name="txt_selling_price">卖出价</string>
+    <string name="txt_amount">金额</string>
+    <string name="txt_input_buy_amount">请输入购买金额</string>
+    <string name="input_buy_number">请输入买入数量</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.cdkj.token.trade;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.view.ViewGroup;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
+import com.cdkj.baselibrary.activitys.PayPwdModifyActivity;
 import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
@@ -25,6 +27,7 @@ import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -39,6 +42,7 @@ import com.cdkj.token.model.SymbolPriceModel;
 import com.cdkj.token.model.UserBankCardModel;
 import com.cdkj.token.user.UserBackCardActivity;
 import com.cdkj.token.utils.AmountUtil;
+import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.utils.MPChartUtils;
 import com.cdkj.token.utils.StringUtil;
 import com.cdkj.token.views.dialogs.PasswordInputDialog;
@@ -46,6 +50,7 @@ import com.github.mikephil.charting.data.Entry;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -242,6 +247,7 @@ public class TradeFragment extends BaseLazyFragment {
                 }
                 //重新获取数据
                 initLineChartData();
+                initSymbolPrice();
             }
 
             @Override
@@ -408,6 +414,16 @@ public class TradeFragment extends BaseLazyFragment {
         dialogView.tvMessage2.setText(StringUtil.highlight(mActivity, "转账请务必填写转账附信", "转账附信", "#4064E6", 0, 0));
         dialogView.tvConfirm.setOnClickListener(view1 -> {
             dialog.dismiss();
+            boolean tradePwdFlag = SPUtilHelper.getTradePwdFlag();
+            if (!tradePwdFlag) {
+                UITipDialog.showSuccess(mActivity, "请先设置资金密码", new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        PayPwdModifyActivity.open(mActivity, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserPhoneNum());
+                    }
+                });
+                return;
+            }
 
             //买入的时候不弹出输入密码的弹窗
             if (position == 0) {
@@ -451,7 +467,8 @@ public class TradeFragment extends BaseLazyFragment {
             map.put("tradePrice", symbolPriceModel.getSellerPrice().toString());//	必填,交易价格，当时行情价
             map.put("tradePwd", tradePwd);//	资金密码
         }
-        map.put("count", mBinding.etNumber.getText().toString().trim());//必填，出售数量
+//        map.put("count", mBinding.etNumber.getText().toString().trim());//必填，出售数量
+        map.put("count", BigDecimalUtils.multiply(new BigDecimal(mBinding.etNumber.getText().toString().trim()), LocalCoinDBUtils.getLocalCoinUnit("BTC")).toString());//必填，出售数量  btc的数量需要乘以10的八次方   每个币种的单位不同
         map.put("tradeAmount", mBinding.etMoney.getText().toString().trim());//必填,交易金额
         map.put("tradeCurrency", "BTC");//必填,交易币种
         map.put("userId", SPUtilHelper.getUserId());//userId
