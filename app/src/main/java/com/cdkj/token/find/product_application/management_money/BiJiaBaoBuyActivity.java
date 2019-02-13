@@ -11,7 +11,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.SeekBar;
 
+import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.api.BaseResponseModel;
+import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
@@ -24,7 +26,6 @@ import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
-import com.cdkj.token.common.ThaAppConstant;
 import com.cdkj.token.databinding.ActivityMoneyManagerBuyBinding;
 import com.cdkj.token.interfaces.ProductBuyListener;
 import com.cdkj.token.interfaces.UserInfoPresenter;
@@ -32,7 +33,6 @@ import com.cdkj.token.model.BiJiaBaoAvilModel;
 import com.cdkj.token.model.CoinModel;
 import com.cdkj.token.model.ManagementMoney;
 import com.cdkj.token.model.ProductBuyStep2Model;
-import com.cdkj.token.user.WebViewImgBgActivity;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.views.dialogs.MoneyProductBuyStep2Dialog;
 import com.cdkj.token.views.dialogs.MoneyProductBuySuccessDialog;
@@ -135,7 +135,6 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
                 mBinding.edtBuyAmount.setText((buyShare - 1) + "");
                 mBinding.edtBuyAmount.setSelection(mBinding.edtBuyAmount.getText().length());
             }
-
         });
 
         //增加份额
@@ -178,7 +177,18 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
         });
 
         mBinding.tvPopProtocol.setOnClickListener(view -> {
-            WebViewImgBgActivity.openkey(this, getString(R.string.pop_protocol), ThaAppConstant.getH5UrlLangage(ThaAppConstant.H5_POP_PROTOCOL));
+
+            String key;
+            String language = SPUtilHelper.getLanguage();
+            if (TextUtils.equals(AppConfig.ENGLISH, language)) {
+                key = "pop_protocol_en";
+            } else if (TextUtils.equals(AppConfig.SIMPLIFIED, language)) {
+                key = "pop_protocol";
+            } else {
+                key = "pop_protocol";
+            }
+            WebViewActivity.openkey(this, getString(R.string.pop_protocol), key);
+//            WebViewImgBgActivity.openkey(this, getString(R.string.pop_protocol), ThaAppConstant.getH5UrlLangage(ThaAppConstant.H5_POP_PROTOCOL));
         });
 
     }

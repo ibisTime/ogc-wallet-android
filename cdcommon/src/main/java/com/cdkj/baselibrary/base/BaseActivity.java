@@ -39,7 +39,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected LoadingDialog loadingDialog;
     private List<Call> mCallList;
-    protected CompositeDisposable mSubscription;
+    public CompositeDisposable mSubscription;
 
     @Subscribe
     @Override

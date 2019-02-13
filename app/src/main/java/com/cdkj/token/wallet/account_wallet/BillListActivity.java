@@ -113,7 +113,7 @@ public class BillListActivity extends AbsLoadActivity {
 //        }
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("parentKey", "jour_biz_type_user0");
+        map.put("parentKey", "app_jour_biz_type_user");
         Call<BaseResponseListModel<MoneyTransactionTypeModel>> moneyTransactionType = RetrofitUtils.createApi(MyApi.class).getMoneyTransactionType("630036", StringUtils.getRequestJsonString(map));
         addCall(moneyTransactionType);
         showLoadingDialog();
@@ -254,6 +254,7 @@ public class BillListActivity extends AbsLoadActivity {
         map.put("limit", limit + "");
         map.put("start", pageIndex + "");
         map.put("bizType", filterType);
+        map.put("type", "0");//type传0不查询冻结的数据
         map.put("accountNumber", mAccountBean.getAccountNumber());
         map.put("systemCode", AppConfig.SYSTEMCODE);
 

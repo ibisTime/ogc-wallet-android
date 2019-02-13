@@ -324,8 +324,8 @@ public class RefreshHelper<T> {
 
     public interface OnMyRefreshLoadmoreListener {
 
-        public void onRefresh(RefreshLayout refreshlayout);
+        void onRefresh(RefreshLayout refreshlayout);
 
-        public void onLoadmore(RefreshLayout refreshlayout);
+        void onLoadmore(RefreshLayout refreshlayout);
     }
 }

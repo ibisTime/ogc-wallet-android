@@ -58,13 +58,15 @@ public class AppConfig {
 
     // 环境访问地址
     public static final String BASE_URL_DEV = "http://120.26.6.213:5801/forward-service/"; // 研发
-    public static final String BASE_URL_TEST = "https://test.thachain.org/"; // 测试
+//    public static final String BASE_URL_TEST = "http://120.26.6.213:6801/forward-service/"; // 我们的测试
+    public static final String BASE_URL_TEST = "http://47.97.202.123:2801/forward-service/"; // 客户的测试
     public static final String BASE_URL_ONLINE = "https://app.tha.hichengdai.com/"; // 线上
 
 
     public static String getZenDeskUrl() {
 //        return "https://thachainhelp.zendesk.com" + getZenDeskUrlLanguage();
-        return "https://chengwallethelp.zendesk.com" + getZenDeskUrlLanguage();
+        LogUtil.E("帮助中心的url:"+"https://chengwallethelp.zendesk.com" + getZenDeskUrlLanguage());
+        return "https://moorebit.zendesk.com" + getZenDeskUrlLanguage();
     }
 
     /**

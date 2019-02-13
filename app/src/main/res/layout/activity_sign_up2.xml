@@ -114,7 +114,7 @@
                         android:layout_height="22dp"
                         android:layout_marginTop="0.5dp"
                         android:padding="5dp"
-                        android:src="@mipmap/sign_no_agree" />
+                        android:src="@mipmap/sign_agree" />
 
                     <TextView
                         android:layout_width="wrap_content"

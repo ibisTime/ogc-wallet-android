@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -120,19 +119,18 @@ public class WebViewActivity extends AbsActivity {
 //        webView = new WebView(this);
         mBinding.webview.getSettings().setJavaScriptEnabled(true);//js
         mBinding.webview.getSettings().setDefaultTextEncodingName("UTF-8");
-        mBinding.webview.getSettings().setSupportZoom(true);   //// 支持缩放
-        mBinding.webview.getSettings().setBuiltInZoomControls(true);//// 支持缩放
-        mBinding.webview.getSettings().setDomStorageEnabled(true);//开启DOM
-        mBinding.webview.getSettings().setLoadWithOverviewMode(true);//// 缩放至屏幕的大小
-        mBinding.webview.getSettings().setUseWideViewPort(true);//将图片调整到适合webview的大小
-        mBinding.webview.getSettings().setLoadsImagesAutomatically(true);//支持自动加载图片
+//        mBinding.webview.getSettings().setSupportZoom(true);   //// 支持缩放
+//        mBinding.webview.getSettings().setBuiltInZoomControls(true);//// 支持缩放
+//        mBinding.webview.getSettings().setDomStorageEnabled(true);//开启DOM
+//        mBinding.webview.getSettings().setLoadWithOverviewMode(true);//// 缩放至屏幕的大小
+//        mBinding.webview.getSettings().setUseWideViewPort(true);//将图片调整到适合webview的大小
+//        mBinding.webview.getSettings().setLoadsImagesAutomatically(true);//支持自动加载图片
+//        mBinding.webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         mBinding.webview.setWebChromeClient(new MyWebViewClient1());
-        mBinding.webview.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            mBinding.webview.getSettings().setMixedContentMode( mBinding.webview.getSettings().MIXED_CONTENT_ALWAYS_ALLOW);
 //        }
-//
 
         mBinding.webview.setWebViewClient(new WebViewClient() {
             @Override
@@ -208,7 +206,7 @@ public class WebViewActivity extends AbsActivity {
         map.put("systemCode", AppConfig.SYSTEMCODE);
         map.put("companyCode", AppConfig.COMPANYCODE);
 
-        Call call = RetrofitUtils.getBaseAPiService().getKeySystemInfo("660917", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.getBaseAPiService().getKeySystemInfo("630047", StringUtils.getRequestJsonString(map));
 
         addCall(call);
 
@@ -277,6 +275,4 @@ public class WebViewActivity extends AbsActivity {
         }
         super.onDestroy();
     }
-
-
 }

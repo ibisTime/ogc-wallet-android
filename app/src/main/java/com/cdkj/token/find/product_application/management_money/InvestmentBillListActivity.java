@@ -128,11 +128,11 @@ public class InvestmentBillListActivity extends AbsLoadActivity {
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
         map.put("date", selectDate);
-        map.put("symbol", symbol);
+        map.put("currency", symbol);
 
         if (isShowDialog) showLoadingDialog();
 
-        Call<BaseResponseModel<ResponseInListModel<InvestBillModel>>> call = RetrofitUtils.createApi(MyApi.class).getInvestBillList("802525", StringUtils.getRequestJsonString(map));
+        Call<BaseResponseModel<ResponseInListModel<InvestBillModel>>> call = RetrofitUtils.createApi(MyApi.class).getInvestBillList("805914", StringUtils.getRequestJsonString(map));
 
         call.enqueue(new BaseResponseModelCallBack<ResponseInListModel<InvestBillModel>>(this) {
             @Override

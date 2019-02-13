@@ -17,7 +17,6 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputMethodManager;
 
 import com.cdkj.baselibrary.utils.DisplayHelper;
-import com.cdkj.baselibrary.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +58,7 @@ public class SixPassWordView extends View {
         super(context, attrs, defStyleAttr);
         mPassList = new ArrayList<>();
 
-        //设置点击时弹出输入法
+//        //设置点击时弹出输入法
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,7 +32,9 @@ import com.cdkj.token.model.SystemParameterModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.utils.EditTextJudgeNumberWatcher;
+import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.utils.NetWorrkUtils;
+import com.cdkj.token.utils.wallet.WalletHelper;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -55,10 +55,9 @@ public class WithdrawActivity extends AbsLoadActivity {
 
     private WalletModel.AccountListBean model;
     private PermissionHelper permissionHelper;
-
     private TextPwdInputDialog inputDialog;
     private ActivityWithdrawBinding mBinding;
-    private String serviceCharge;
+//    private String serviceCharge;
 
 
     public static void open(Context context, WalletModel.AccountListBean model) {
@@ -88,9 +87,6 @@ public class WithdrawActivity extends AbsLoadActivity {
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
-//        setStatusBarBlue();
-//        setTitleBgBlue();
-
         mBaseBinding.titleView.setMidTitle("转出");
         mBaseBinding.titleView.setRightTitle(getString(R.string.wallet_charge_recode));
         init();
@@ -109,7 +105,6 @@ public class WithdrawActivity extends AbsLoadActivity {
         }
         String availablemountString = AmountUtil.transformFormatToString(model.getAmount(), model.getCurrency(), 8) + " " + model.getCurrency();
         mBinding.tvAmount.setText(availablemountString);
-//        mBinding.tvFeeCoin.setText(model.getCurrency());
         mBinding.tvFee.setText("0" + model.getCurrency());
 
     }
@@ -135,30 +130,30 @@ public class WithdrawActivity extends AbsLoadActivity {
             }
         });
         mBinding.edtNumber.addTextChangedListener(new EditTextJudgeNumberWatcher(mBinding.edtNumber, 15, 8));
-        mBinding.edtNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if (TextUtils.isEmpty(serviceCharge))
-                    return;
-                String number = mBinding.edtNumber.getText().toString().trim();
-                if (TextUtils.isEmpty(number) || !(Double.parseDouble(number) > 0)) {
-                    mBinding.tvFee.setText("0" + model.getCurrency());
-                    return;
-                }
-                String serviceChargeText = BigDecimalUtils.multiply(new BigDecimal(number), new BigDecimal(serviceCharge)).toString();
-                mBinding.tvFee.setText(AmountUtil.scale(serviceChargeText, 8) + model.getCurrency());
-            }
-        });
+//        mBinding.edtNumber.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//                if (TextUtils.isEmpty(serviceCharge))
+//                    return;
+//                String number = mBinding.edtNumber.getText().toString().trim();
+//                if (TextUtils.isEmpty(number) || !(Double.parseDouble(number) > 0)) {
+//                    mBinding.tvFee.setText("0" + model.getCurrency());
+//                    return;
+//                }
+//                String serviceChargeText = BigDecimalUtils.multiply(new BigDecimal(number), new BigDecimal(serviceCharge)).toString();
+//                mBinding.tvFee.setText(AmountUtil.scale(serviceChargeText, 8) + model.getCurrency());
+//            }
+//        });
     }
 
     //权限处理
@@ -240,10 +235,16 @@ public class WithdrawActivity extends AbsLoadActivity {
      * 获取手续费
      */
     private void getWithdrawFee() {
-        NetWorrkUtils.getSystemServer(this, "withdraw_fee", true, new NetWorrkUtils.SystemServerListener() {
+        String cKey;
+        if (TextUtils.equals("BTC", model.getCurrency())) {
+            cKey = "btc_withdraw_fee";
+        } else {
+            cKey = "usdt_withdraw_fee";
+        }
+        NetWorrkUtils.getSystemServer(this, cKey, true, new NetWorrkUtils.SystemServerListener() {
             @Override
             public void onSuccer(SystemParameterModel data) {
-                serviceCharge = data.getCvalue();
+                mBinding.tvFee.setText(data.getCvalue() + model.getCurrency());
             }
 
             @Override
@@ -293,15 +294,9 @@ public class WithdrawActivity extends AbsLoadActivity {
      */
     private void withdrawal(String tradePwd) {
 //        BigDecimal bigDecimal = new BigDecimal(mBinding.edtNumber.getText().toString().trim());
-
         Map<String, String> map = new HashMap<>();
-
-//        map.put("googleCaptcha", mBinding.editGoogleCode.getText().toString());
-//        map.put("token", SPUtilHelper.getUserToken());
-//        map.put("systemCode", AppConfig.SYSTEMCODE);
-
         map.put("accountNumber", model.getAccountNumber());
-        map.put("amount", mBinding.edtNumber.getText().toString().trim());
+        map.put("amount", BigDecimalUtils.multiply(new BigDecimal(mBinding.edtNumber.getText().toString().trim()), LocalCoinDBUtils.getLocalCoinUnit(WalletHelper.COIN_BTC)).toString());
         map.put("applyNote", "");
         map.put("applyUser", SPUtilHelper.getUserId());
         map.put("applyNote", model.getCurrency() + getString(R.string.bill_type_withdraw));
@@ -376,6 +371,8 @@ public class WithdrawActivity extends AbsLoadActivity {
                     return;
                 SPUtilHelper.saveTradePwdFlag(data.isTradepwdFlag());
                 SPUtilHelper.saveGoogleAuthFlag(data.isGoogleAuthFlag());
+                SPUtilHelper.saveTradePwdFlag(data.isTradepwdFlag());
+
             }
 
             @Override

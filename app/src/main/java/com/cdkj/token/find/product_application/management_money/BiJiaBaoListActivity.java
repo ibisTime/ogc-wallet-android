@@ -75,7 +75,7 @@ public class BiJiaBaoListActivity extends BaseActivity {
         mBinding.tvMyInvesment.setOnClickListener(view -> MyInvestmentDetails.open(this));
         mBinding.llVisible.setOnClickListener(view -> {
             if (mBinding.tvTotalInvest.getText().toString().equals("****** BTC")){
-                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
+                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
                 mBinding.ivEye.setImageResource(R.mipmap.eye_open_white);
             }else {
                 mBinding.tvTotalInvest.setText("****** BTC");
@@ -187,7 +187,7 @@ public class BiJiaBaoListActivity extends BaseActivity {
             @Override
             protected void onSuccess(InvestmentAmountModel data, String SucMessage) {
                 investment = data;
-                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
+                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
             }
 
             @Override

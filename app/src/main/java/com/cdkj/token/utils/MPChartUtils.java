@@ -30,7 +30,7 @@ public class MPChartUtils {
 //        description.setTextColor(Color.RED);//名字的演策
 //        description.setTextSize(20);//表格名字字体大小
 //        mBinding.lineChart.setDescription(description);//设置图表描述信息
-        lineChart.setNoDataText("没有数据熬");//没有数据时显示的文字
+        lineChart.setNoDataText("没有数据哦");//没有数据时显示的文字
         lineChart.setNoDataTextColor(Color.BLUE);//没有数据时显示文字的颜色
         lineChart.setDrawGridBackground(false);//chart 绘图区后面的背景矩形将绘制
         lineChart.setDrawBorders(false);//禁止绘制图表边框的线
@@ -119,7 +119,7 @@ public class MPChartUtils {
      */
     private static void setLineChartSetStyle(LineDataSet set1) {
         set1.setColor(Color.parseColor("#6455E6"));//设置线的颜色 6455E6
-        set1.setLineWidth(5f);//设置线宽
+        set1.setLineWidth(3f);//设置线宽
 //            set1.setCircleColor(Color.BLACK);//设置顶点显示圆圈的 颜色
 //            set1.setCircleRadius(3f);//设置焦点圆心的大小
         set1.enableDashedHighlightLine(10f, 5f, 0f);//点击后的高亮线的显示样式
@@ -131,7 +131,7 @@ public class MPChartUtils {
         set1.setDrawCircles(false);//是否绘制定点小圆圈
         set1.setDrawValues(false);//是否绘制x轴的值
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);//设置平滑的曲线  默认是直线
-        set1.setCubicIntensity(0.2f);//设置平滑度 也就是弯曲度   值越大越平滑
+        set1.setCubicIntensity(0.1f);//设置平滑度 也就是弯曲度   值越大越平滑
         // 填充曲线下方的区域，颜色，透明度。
         set1.setDrawFilled(true);
         set1.setFillAlpha(90);

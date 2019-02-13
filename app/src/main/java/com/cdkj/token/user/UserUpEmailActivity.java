@@ -156,7 +156,7 @@ public class UserUpEmailActivity extends AbsActivity implements SendCodeInterfac
             protected void onSuccess(IsSuccessModes data, String SucMessage) {
                 if (data.isSuccess()) {
                     showToast(getString(R.string.activity_email_modify_success));
-                    SPUtilHelper.saveUserPhoneNum(mBinding.edtEmailNew.getText().toString().trim());
+                    SPUtilHelper.saveUserEmail(mBinding.edtEmailNew.getText().toString().trim());
                     finish();
                 }
             }

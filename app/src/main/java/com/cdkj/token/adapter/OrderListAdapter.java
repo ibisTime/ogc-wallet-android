@@ -75,10 +75,17 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
                 tvTime.setTextColor(Color.parseColor("#0EC55B"));
                 break;
             case "1":
+
+                BigDecimal btcNumber1 = BigDecimalUtils.div(new BigDecimal(item.getCount()), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
+                tvTime.setText(TextUtils.equals("0", item.getType()) ? ("+" + btcNumber1) : ("-" + btcNumber1));
+                tvType.setText("已支付");
+                tvType.setTextColor(Color.parseColor("#D53D3D"));
+                tvTime.setTextColor(Color.parseColor("#333333"));
+                iv.setImageResource(R.mipmap.icon_pay_success);
+                break;
             case "2":
                 //买入是增加  卖出是减少
                 BigDecimal btcNumber = BigDecimalUtils.div(new BigDecimal(item.getCount()), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
-
                 tvTime.setText(TextUtils.equals("0", item.getType()) ? ("+" + btcNumber) : ("-" + btcNumber));
                 tvType.setText(R.string.completed);
                 tvType.setTextColor(Color.parseColor("#D53D3D"));
@@ -115,8 +122,11 @@ public class OrderListAdapter extends BaseQuickAdapter<OrderListModel.ListBean, 
      */
     public void stopTimeDow() {
         if (disposableList != null && disposableList.size() > 0) {
-            for (Disposable disposable : disposableList) {
+            for (int i = 0; i < disposableList.size(); i++) {
+                Disposable disposable = disposableList.get(0);
                 disposable.dispose();
+                disposable = null;
+                disposableList.remove(i);
             }
         }
     }

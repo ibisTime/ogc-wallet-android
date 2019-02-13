@@ -167,8 +167,10 @@ public class MyInvestmentDetails extends BaseActivity {
         call.enqueue(new BaseResponseModelCallBack<InvestmentAmountModel>(this) {
             @Override
             protected void onSuccess(InvestmentAmountModel data, String SucMessage) {
-                mBinding.tvTotalInvestBTC.setText(AmountUtil.transformFormatToString2(data.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
-                mBinding.tvTotalInvestBTC.setText(AmountUtil.transformFormatToString2(data.getTotalIncome(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
+                mBinding.tvTotalInvestBTC.setText(AmountUtil.transformFormatToString2(data.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
+                mBinding.tvTotalIncomeBTC.setText(AmountUtil.transformFormatToString2(data.getBtcTotalIncome(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4));
+                mBinding.tvTotalInvestUSDT.setText(AmountUtil.transformFormatToString2(data.getUsdtTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4));
+                mBinding.tvTotalIncomeUSDT.setText(AmountUtil.transformFormatToString2(data.getUsdtTotalIncome(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4));
             }
 
             @Override

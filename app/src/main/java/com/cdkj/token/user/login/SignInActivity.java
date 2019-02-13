@@ -25,6 +25,7 @@ import com.cdkj.baselibrary.model.SendVerificationCode;
 import com.cdkj.baselibrary.model.UserLoginModel;
 import com.cdkj.baselibrary.utils.AppUtils;
 import com.cdkj.baselibrary.utils.LogUtil;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.ActivitySignIn2Binding;
@@ -86,7 +87,7 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     }
 
     private void initEditInputType() {
-        mBinding.edtUsername.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
+        mBinding.edtUsername.getEditText().setInputType(InputType.TYPE_CLASS_TEXT);
         mBinding.edtPassword.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
     }
 
@@ -168,7 +169,11 @@ public class SignInActivity extends AbsStatusBarTranslucentActivity implements L
     public void loginSuccessNext(UserLoginModel user) {
         SPUtilHelper.saveUserId(user.getUserId());
         SPUtilHelper.saveUserToken(user.getToken());
-        SPUtilHelper.saveUserPhoneNum(mBinding.edtUsername.getText().toString().trim());
+        if (StringUtils.isEmail(mBinding.edtUsername.getText().toString().trim())) {
+            SPUtilHelper.saveUserEmail(mBinding.edtUsername.getText().toString().trim());
+        } else {
+            SPUtilHelper.saveUserPhoneNum(mBinding.edtUsername.getText().toString().trim());
+        }
         OtherLibManager.uemProfileSignIn(user.getUserId());
 
         if (canOpenMain) {

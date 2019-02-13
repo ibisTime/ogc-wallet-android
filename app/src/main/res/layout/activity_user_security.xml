@@ -120,7 +120,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/layout_item_height"
                     android:background="?attr/selectableItemBackground"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:layout_width="0dp"
@@ -146,7 +147,9 @@
 
                 </LinearLayout>
 
-                <View style="@style/style_split_line" />
+                <View
+                    style="@style/style_split_line"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/ll_mail"

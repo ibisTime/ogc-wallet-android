@@ -223,6 +223,11 @@ public class OrderDetailsActivity extends AbsLoadActivity {
                 }
                 break;
             case "1":
+                mBinding.ivType.setImageResource(R.mipmap.icon_pay_success);
+                mBinding.tvType.setText("已支付");
+                mBinding.tvTypeMassage.setText("已完成支付,等待审核");
+                setOrderDetalisView();
+                break;
             case "2":
                 mBinding.ivType.setImageResource(R.mipmap.icon_pay_success);
                 mBinding.tvType.setText("已完成");
@@ -261,7 +266,7 @@ public class OrderDetailsActivity extends AbsLoadActivity {
             mBinding.llBack.setVisibility(View.GONE);
             mBinding.ivPayLogo.setImageResource(R.mipmap.icon_ali_logo);
             mBinding.tvPayName.setText(orderListDetailsModel.getReceiveCardNo());
-            mBinding.btnConfirm.setText("去还款");
+            mBinding.btnConfirm.setText("去支付");
             allmsg = orderListDetailsModel.getReceiveCardNo();
         } else {
             mBinding.ivQr.setVisibility(View.GONE);

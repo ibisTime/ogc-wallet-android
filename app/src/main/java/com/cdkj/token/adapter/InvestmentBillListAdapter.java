@@ -30,18 +30,18 @@ public class InvestmentBillListAdapter extends BaseQuickAdapter<InvestBillModel,
         helper.setText(R.id.tv_name, item.getProductName());
         helper.setText(R.id.tv_date, DateUtil.formatStringData(item.getCreateDatetime(), DateUtil.DATE_MMddHHmm));
 
-        BigDecimal transAmount = new BigDecimal(item.getTransAmountString());
+        BigDecimal transAmount = new BigDecimal(item.getTransAmountString() == null ? "0" : item.getTransAmountString());
         int i = transAmount.compareTo(BigDecimal.ZERO);
         if (i == 1) {
-            helper.setText(R.id.tv_transAmount, "+" + AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8)+" "+item.getCurrency());
+            helper.setText(R.id.tv_transAmount, "+" + AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8) + " " + item.getCurrency());
             helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.invest_in_money));
         } else {
-            helper.setText(R.id.tv_transAmount, AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8)+" "+item.getCurrency());
+            helper.setText(R.id.tv_transAmount, AmountUtil.transformFormatToString(transAmount, item.getCurrency(), 8) + " " + item.getCurrency());
             helper.setTextColor(R.id.tv_transAmount, ContextCompat.getColor(mContext, R.color.invest_out_money));
         }
 
-        BigDecimal postAmount = new BigDecimal(item.getPostAmountString());
-        helper.setText(R.id.tv_postAmount, mContext.getString(R.string.balance)+AmountUtil.transformFormatToString(postAmount, item.getCurrency(), 8)+" "+item.getCurrency());
+        BigDecimal postAmount = new BigDecimal(item.getTransAmountString() == null ? "0" : item.getTransAmountString());
+        helper.setText(R.id.tv_postAmount, mContext.getString(R.string.balance) + AmountUtil.transformFormatToString(postAmount, item.getCurrency(), 8) + " " + item.getCurrency());
 
     }
 }

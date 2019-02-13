@@ -54,7 +54,7 @@
 
                 <TextView
                     android:layout_marginLeft="15dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:text="BTC"
                     android:textColor="@color/white"
@@ -64,7 +64,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -153,7 +153,7 @@
 
                 <TextView
                     android:layout_marginLeft="15dp"
-                    android:layout_width="33dp"
+                    android:layout_width="45dp"
                     android:layout_height="22.5dp"
                     android:text="USDT"
                     android:textColor="#FFFFFFFF"
@@ -164,7 +164,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 

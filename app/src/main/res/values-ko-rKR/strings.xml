@@ -421,7 +421,7 @@
     <string name="google_code_title">구글 인증번호</string>
     <string name="google_code_hint">구글 인증번호 입력</string>
     <string name="google_code_format_hint">정확한 구글 인증번호 입력</string>
-    <string name="user_about_copyright">2018Theia 저작권 소유</string>
+    <string name="user_about_copyright">2019Wallet 저작권 소유</string>
     <string name="coin_eth">이더리움</string>
     <string name="coin_btc">비트코인</string>
     <string name="biz_type_tradefee">거래 수수료</string>
@@ -950,4 +950,7 @@
     <string name="txt_amount">金额</string>
     <string name="txt_input_buy_amount">请输入购买金额</string>
     <string name="input_buy_number">请输入买入数量</string>
+    <string name="transaction_charges">交易手续费:</string>
+    <string name="zhifubao">支付宝</string>
+    <string name="invite_join">邀请您参加%s</string>
 </resources>

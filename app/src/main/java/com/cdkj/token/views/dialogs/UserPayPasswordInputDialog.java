@@ -6,16 +6,14 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.view.WindowManager;
 
 import com.cdkj.baselibrary.activitys.PayPwdModifyActivity;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.DialogPayPasswordInputBinding;
-import com.cdkj.token.databinding.DialogRedPacketBalanceBinding;
 import com.cdkj.token.views.password.SixPassWordView;
 
 /**
@@ -84,6 +82,13 @@ public class UserPayPasswordInputDialog extends Dialog {
             return;
         }
         super.show();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        //默认先弹出键盘
+        mBinding.passView.setFocusable(true);
+        mBinding.passView.setFocusableInTouchMode(true);
+        mBinding.passView.requestFocus();
+//        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.showSoftInput(SixPassWordView.this, InputMethodManager.RESULT_UNCHANGED_SHOWN);
     }
 
     public UserPayPasswordInputDialog setInfoTitle(String title) {
@@ -96,6 +101,4 @@ public class UserPayPasswordInputDialog extends Dialog {
         if (mBinding == null) return;
         mBinding.passView.clearPwd();
     }
-
-
 }

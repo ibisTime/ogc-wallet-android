@@ -387,6 +387,22 @@ public class SPUtilHelper {
     }
 
     /**
+     * 用户眼睛的状态   打开是 true 关闭是false
+     *
+     * @param s
+     */
+    public static void saveUserEye(boolean s) {
+        SPUtils.put(CdApplication.getContext(), "user_eye", s);
+    }
+
+    /**
+     * 用户眼睛的状态   打开是 true 关闭是false
+     */
+    public static boolean getUserEye() {
+        return SPUtils.getBoolean(CdApplication.getContext(), "user_eye", true);
+    }
+
+    /**
      * 设置用户手势密码
      *
      * @param s
@@ -445,6 +461,7 @@ public class SPUtilHelper {
     /**
      * 保存194之前版本的错误的BTC地址的地址和私钥，用于获取之前地址的BTC余额和转账
      * 以 地址+私钥 的形式保存
+     *
      * @param s
      */
     public static void savePastBtcInfo(String s) {

@@ -26,6 +26,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/linLayout_language"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_item_height"
@@ -58,6 +59,7 @@
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_width="match_parent"

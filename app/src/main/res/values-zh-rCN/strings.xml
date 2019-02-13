@@ -261,7 +261,7 @@
     <string name="google_code_hint">请输入谷歌验证码</string>
     <string name="google_code_format_hint">请输入正确的谷歌验证码</string>
 
-    <string name="user_about_copyright">2018Theia版权所有</string>
+    <string name="user_about_copyright">2019Wallet版权所有</string>
 
     // Util
     <string name="coin_eth">以太币</string>
@@ -869,4 +869,7 @@
     <string name="txt_amount">金额</string>
     <string name="txt_input_buy_amount">请输入购买金额</string>
     <string name="input_buy_number">请输入买入数量</string>
+    <string name="transaction_charges">交易手续费:</string>
+    <string name="zhifubao">支付宝</string>
+    <string name="invite_join">邀请您参加%s</string>
 </resources>

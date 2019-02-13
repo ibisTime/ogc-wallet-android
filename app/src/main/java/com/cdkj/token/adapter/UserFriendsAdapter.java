@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.widget.ImageView;
 
+import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.model.UserFriendsModel;
@@ -26,6 +27,7 @@ public class UserFriendsAdapter extends BaseQuickAdapter<UserFriendsModel.ListBe
     @Override
     protected void convert(BaseViewHolder helper, UserFriendsModel.ListBean item) {
         helper.setText(R.id.tv_name, item.getLoginName());
+        helper.setText(R.id.tv_time, DateUtil.format(item.getCreateDatetime(),DateUtil.DEFAULT_DATE_FMT));
         ImageView ivHead = helper.getView(R.id.iv_head);
         if (TextUtils.isEmpty(item.getPhoto())) {
             ivHead.setImageResource(R.drawable.photo_default);

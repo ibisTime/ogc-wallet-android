@@ -94,6 +94,7 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
     }
 
     /*（0草稿，1待审核，2审核通过，3审核不通过，4即将开始，5募集期，6停止交易，7产品封闭期，8还款成功，9募集失败)*/
+    /* 4.即将开始 5.认购中 6.募集成功 7.计息中 8.收款中 9.已收款 10.募集失败    敬请期待*/
 
     /**
      * 根据状态显示
@@ -112,22 +113,24 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
             case "5":
                 return mContext.getString(R.string.management_money_state_5);
             case "6":
-                return mContext.getString(R.string.management_money_state_6);
+                return "募集成功";
+//                return mContext.getString(R.string.management_money_state_6);
             case "7":
-                if (data.isIncomeFlag()) {
-                    return mContext.getString(R.string.management_money_state_jxz);
-                } else {
-                    return mContext.getString(R.string.management_money_state_7);
-                }
+                return mContext.getString(R.string.management_money_state_jxz);
+//                if (data.isIncomeFlag()) {
+//                } else {
+//                    return mContext.getString(R.string.management_money_state_7);
+//                }
             case "8":
-                return mContext.getString(R.string.management_money_state_8);
+                return "收款中";
+//                return mContext.getString(R.string.management_money_state_8);
             case "9":
-                return mContext.getString(R.string.management_money_state_9);
+                return "已收款";
+//                return mContext.getString(R.string.management_money_state_9);
+            case "10":
+                return "募集失败";
+            default:
+                return "敬请期待";
         }
-
-        return "";
-
     }
-
-
 }

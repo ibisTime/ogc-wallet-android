@@ -26,7 +26,11 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 import retrofit2.Call;
 
 public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.ListBean> {
@@ -41,12 +45,15 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.Lis
             return;
         }
         context.startActivity(new Intent(context, OrderListActivity.class));
+
+
     }
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(getStrRes(R.string.OrderListTitle));
         initRefreshHelper(RefreshHelper.LIMITE);
+
 
         mRefreshHelper.setOnRefreshLoadmoreListener(new RefreshHelper.OnMyRefreshLoadmoreListener() {
             @Override
@@ -112,9 +119,12 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.Lis
         });
     }
 
+
     @Subscribe
     public void refreshList(String msg) {
         if (TextUtils.equals(msg, "刷新订单")) {
+            OrderListAdapter adapter = (OrderListAdapter) mRefreshHelper.getmAdapter();
+            adapter.stopTimeDow();
             mRefreshHelper.onDefaluteMRefresh(true);
         }
     }

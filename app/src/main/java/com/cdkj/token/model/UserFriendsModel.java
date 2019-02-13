@@ -86,10 +86,19 @@ public class UserFriendsModel {
         private String userId;
         private String loginName;
         private String photo;
+        private String createDatetime;
         private boolean loginPwdFlag;
         private boolean tradepwdFlag;
         private boolean googleAuthFlag;
         private boolean emailBindFlag;
+
+        public String getCreateDatetime() {
+            return createDatetime;
+        }
+
+        public void setCreateDatetime(String createDatetime) {
+            this.createDatetime = createDatetime;
+        }
 
         public String getUserId() {
             return userId;

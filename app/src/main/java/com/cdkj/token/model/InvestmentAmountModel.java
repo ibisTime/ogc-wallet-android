@@ -9,22 +9,48 @@ import java.math.BigDecimal;
 
 public class InvestmentAmountModel {
 
-    private BigDecimal totalInvest;//投资总额
-    private BigDecimal totalIncome;//总收益
 
-    public BigDecimal getTotalInvest() {
-        return totalInvest;
+    /**
+     * btcTotalIncome : 0.0
+     * btcTotalInvest : 0.0
+     * usdtTotalIncome : 0.0
+     * usdtTotalInvest : 0.0
+     */
+
+    private BigDecimal btcTotalIncome;
+    private BigDecimal btcTotalInvest;
+    private BigDecimal usdtTotalIncome;
+    private BigDecimal usdtTotalInvest;
+
+    public BigDecimal getBtcTotalIncome() {
+        return btcTotalIncome;
     }
 
-    public void setTotalInvest(BigDecimal totalInvest) {
-        this.totalInvest = totalInvest;
+    public void setBtcTotalIncome(BigDecimal btcTotalIncome) {
+        this.btcTotalIncome = btcTotalIncome;
     }
 
-    public BigDecimal getTotalIncome() {
-        return totalIncome;
+    public BigDecimal getBtcTotalInvest() {
+        return btcTotalInvest;
     }
 
-    public void setTotalIncome(BigDecimal totalIncome) {
-        this.totalIncome = totalIncome;
+    public void setBtcTotalInvest(BigDecimal btcTotalInvest) {
+        this.btcTotalInvest = btcTotalInvest;
+    }
+
+    public BigDecimal getUsdtTotalIncome() {
+        return usdtTotalIncome;
+    }
+
+    public void setUsdtTotalIncome(BigDecimal usdtTotalIncome) {
+        this.usdtTotalIncome = usdtTotalIncome;
+    }
+
+    public BigDecimal getUsdtTotalInvest() {
+        return usdtTotalInvest;
+    }
+
+    public void setUsdtTotalInvest(BigDecimal usdtTotalInvest) {
+        this.usdtTotalInvest = usdtTotalInvest;
     }
 }

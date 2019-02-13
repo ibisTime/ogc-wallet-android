@@ -39,11 +39,14 @@ import com.cdkj.token.model.LineChartDataModel;
 import com.cdkj.token.model.PayTypeModel;
 import com.cdkj.token.model.SuccessModel;
 import com.cdkj.token.model.SymbolPriceModel;
+import com.cdkj.token.model.SystemParameterModel;
 import com.cdkj.token.model.UserBankCardModel;
+import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.user.UserBackCardActivity;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.utils.MPChartUtils;
+import com.cdkj.token.utils.NetWorrkUtils;
 import com.cdkj.token.utils.StringUtil;
 import com.cdkj.token.views.dialogs.PasswordInputDialog;
 import com.github.mikephil.charting.data.Entry;
@@ -55,7 +58,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import retrofit2.Call;
 
 /**
@@ -71,6 +80,7 @@ public class TradeFragment extends BaseLazyFragment {
     private UserBankCardModel.ListBean payBankModel;
     private OptionsPickerView payTypePicker;
     private PayTypeModel payTypeModel;
+    private Disposable subscribe;
 
     /**
      * 获得fragment实例
@@ -101,9 +111,45 @@ public class TradeFragment extends BaseLazyFragment {
         initLineChartData();
         initSymbolPrice();
         initPayType();
+        getDefaultBank();
+        initMinCnyAmount();
         initClickListener();
+
         return mBinding.getRoot();
 
+    }
+
+
+    /**
+     * 获取用户默认的银行卡  没有就不显示
+     */
+    private void getDefaultBank() {
+
+        Map<String, String> map = new HashMap<>();
+        map.put("status", "0");//0是可用的   1是 已解绑的
+//        map.put("type", "0");//0银行卡  1支付宝
+        map.put("userId", SPUtilHelper.getUserId());
+        Call<BaseResponseListModel<UserBankCardModel.ListBean>> bankListData = RetrofitUtils.createApi(MyApi.class).getBankListData("802031", StringUtils.getRequestJsonString(map));
+        addCall(bankListData);
+        bankListData.enqueue(new BaseResponseListCallBack<UserBankCardModel.ListBean>(mActivity) {
+            @Override
+            protected void onSuccess(List<UserBankCardModel.ListBean> data, String SucMessage) {
+
+                if (data != null && data.size() > 0) {
+                    for (UserBankCardModel.ListBean listBean : data) {
+                        if (TextUtils.equals("1", listBean.getIsDefault())) {
+                            payBankModel = listBean;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            protected void onFinish() {
+
+            }
+        });
     }
 
     /**
@@ -161,7 +207,6 @@ public class TradeFragment extends BaseLazyFragment {
                 } else {
                     mBinding.tvServiceCharge.setText(symbolPriceModel == null ? "" : AmountUtil.multiplyBigDecimalToDouble(symbolPriceModel.getSellerFeeRate(), 100, 2) + "%");
                 }
-
             }
 
             @Override
@@ -193,7 +238,6 @@ public class TradeFragment extends BaseLazyFragment {
         map.put("type", position + "");//0是  买入 1是卖出
         Call<BaseResponseListModel<LineChartDataModel>> lineChartData = RetrofitUtils.createApi(MyApi.class).getLineChartData("650200", StringUtils.getRequestJsonString(map));
         addCall(lineChartData);
-        showLoadingDialog();
         lineChartData.enqueue(new BaseResponseListCallBack<LineChartDataModel>(mActivity) {
             @Override
             protected void onSuccess(List<LineChartDataModel> data, String SucMessage) {
@@ -209,7 +253,36 @@ public class TradeFragment extends BaseLazyFragment {
 
             @Override
             protected void onFinish() {
-                disMissLoading();
+
+            }
+        });
+    }
+
+    /**
+     * 承兑商单笔买入最小金额
+     */
+    private void initMinCnyAmount() {
+        NetWorrkUtils.getSystemServer("accept_order_min_cny_amount", new NetWorrkUtils.SystemServerListener() {
+            @Override
+            public void onSuccer(SystemParameterModel data) {
+                mBinding.tvMinAmount.setText(data.getCvalue());
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+
+        NetWorrkUtils.getSystemServer("accept_order_max_cny_amount", new NetWorrkUtils.SystemServerListener() {
+            @Override
+            public void onSuccer(SystemParameterModel data) {
+                mBinding.tvMaxAmount.setText(data.getCvalue());
+            }
+
+            @Override
+            public void onError(String error) {
+
             }
         });
     }
@@ -241,8 +314,13 @@ public class TradeFragment extends BaseLazyFragment {
                 cleanEditText();
                 position = tab.getPosition();
                 if (position == 0) {
+                    mBinding.tlWay.setSelectedTabIndicatorColor(getResources().getColor(R.color.colorPrimary));
+                    mBinding.tlWay.setTabTextColors(getResources().getColor(R.color.invite_color_gray), getResources().getColor(R.color.colorPrimary));
                     initBuyView();
                 } else {
+                    mBinding.tlWay.setSelectedTabIndicatorColor(getResources().getColor(R.color.indicator_yealo_color));
+                    mBinding.tlWay.setTabTextColors(getResources().getColor(R.color.invite_color_gray), getResources().getColor(R.color.indicator_yealo_color));
+
                     initSellerView();
                 }
                 //重新获取数据
@@ -341,6 +419,38 @@ public class TradeFragment extends BaseLazyFragment {
     }
 
     /**
+     * 获取BTC币种余额  每次重新进入页面就重新获取一次  避免买币买币的额度没减去
+     */
+    public void getSymbolList() {
+        showLoadingDialog();
+        if (TextUtils.isEmpty(SPUtilHelper.getUserId())) {
+            return;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("userId", SPUtilHelper.getUserId());
+        map.put("token", SPUtilHelper.getUserToken());
+        map.put("currency", "BTC");
+
+        Call call = RetrofitUtils.createApi(MyApi.class).getSymbolList("802301", StringUtils.getRequestJsonString(map));
+        addCall(call);
+        call.enqueue(new BaseResponseModelCallBack<WalletModel>(mActivity) {
+            @Override
+            protected void onSuccess(WalletModel data, String SucMessage) {
+                if (data != null && data.getAccountList() != null && data.getAccountList().size() > 0) {
+                    WalletModel.AccountListBean item = data.getAccountList().get(0);
+                    String amount = AmountUtil.toMinWithUnit(item.getAmount(), item.getCurrency(), 8);
+                    mBinding.tvAvailableAssets.setText(amount);
+                }
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoading();
+            }
+        });
+    }
+
+    /**
      * 初始化买入界面
      */
     private void initBuyView() {
@@ -419,7 +529,13 @@ public class TradeFragment extends BaseLazyFragment {
                 UITipDialog.showSuccess(mActivity, "请先设置资金密码", new DialogInterface.OnDismissListener() {
                     @Override
                     public void onDismiss(DialogInterface dialogInterface) {
-                        PayPwdModifyActivity.open(mActivity, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserPhoneNum());
+                        if (!TextUtils.isEmpty(SPUtilHelper.getUserPhoneNum())) {
+                            PayPwdModifyActivity.open(mActivity, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserPhoneNum());
+                        } else if (!TextUtils.isEmpty(SPUtilHelper.getUserEmail())) {
+                            PayPwdModifyActivity.open(mActivity, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserEmail());
+                        } else {
+                            UITipDialog.showInfo(mActivity, "请先绑定手机号或者邮箱");
+                        }
                     }
                 });
                 return;
@@ -467,10 +583,9 @@ public class TradeFragment extends BaseLazyFragment {
             map.put("tradePrice", symbolPriceModel.getSellerPrice().toString());//	必填,交易价格，当时行情价
             map.put("tradePwd", tradePwd);//	资金密码
         }
-//        map.put("count", mBinding.etNumber.getText().toString().trim());//必填，出售数量
         map.put("count", BigDecimalUtils.multiply(new BigDecimal(mBinding.etNumber.getText().toString().trim()), LocalCoinDBUtils.getLocalCoinUnit("BTC")).toString());//必填，出售数量  btc的数量需要乘以10的八次方   每个币种的单位不同
         map.put("tradeAmount", mBinding.etMoney.getText().toString().trim());//必填,交易金额
-        map.put("tradeCurrency", "BTC");//必填,交易币种
+        map.put("tradeCurrency", "CNY");//必填,交易币种
         map.put("userId", SPUtilHelper.getUserId());//userId
 
         Call<BaseResponseModel<SuccessModel>> baseResponseModelCall = RetrofitUtils.createApi(MyApi.class).submitSuccess(code, StringUtils.getRequestJsonString(map));
@@ -491,11 +606,47 @@ public class TradeFragment extends BaseLazyFragment {
     }
 
     /**
-     * 每次切换  买入卖出的时候  清楚  因为不会自动换算
+     * 每次切换  买入卖出的时候  清楚  因为不会自802030动换算
      */
     private void cleanEditText() {
         mBinding.etMoney.setText("");
         mBinding.etNumber.setText("");
+    }
+
+
+    /**
+     * 启动定时器 每隔10秒 获取一次价格数据,
+     */
+    private void starttimer() {
+        if (subscribe != null) {
+            return;
+        }
+        //10秒后  开始  间隔10秒一次
+        subscribe = Observable.interval(10, 10, TimeUnit.SECONDS)
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        initSymbolPrice();
+                    }
+                });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        starttimer();
+        getSymbolList();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (subscribe != null) {
+            subscribe.dispose();
+            subscribe = null;
+        }
     }
 
     /**
@@ -514,4 +665,5 @@ public class TradeFragment extends BaseLazyFragment {
             mBinding.tvPayName.setText("尾号为:" + userBankCardModel.getBankcardNumber());
         }
     }
+
 }

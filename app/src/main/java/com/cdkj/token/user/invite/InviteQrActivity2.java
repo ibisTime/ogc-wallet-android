@@ -1,6 +1,7 @@
 package com.cdkj.token.user.invite;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -11,6 +12,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ScrollView;
 
@@ -61,6 +63,7 @@ public class InviteQrActivity2 extends AbsStatusBarTranslucentActivity {
         return false;
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void afterCreate(Bundle savedInstanceState) {
 
@@ -70,6 +73,10 @@ public class InviteQrActivity2 extends AbsStatusBarTranslucentActivity {
         mPermissionHelper = new PermissionHelper(this);
         setPageBgRes(R.drawable.invite_bg);
 
+        mBinding.tvName.setText(TextUtils.isEmpty(SPUtilHelper.getUserPhoneNum()) ? SPUtilHelper.getUserEmail() : SPUtilHelper.getUserPhoneNum());
+        mBinding.tvMsg.setText(getString(R.string.invite_join,getStrRes(R.string.app_name) ));
+//        mBinding.tvMsg.setText(getString(R.string.invite_32, "阿萨德阿萨德"));
+//        getStrRes(R.string.app_name)
         setStatusBarWhite();
 
         setClickListener();

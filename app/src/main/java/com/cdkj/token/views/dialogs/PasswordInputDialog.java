@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.cdkj.baselibrary.utils.DisplayHelper;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.DialogPasswInputBinding;
 
@@ -55,12 +58,12 @@ public class PasswordInputDialog extends Dialog {
         if (mActivity == null || mActivity.isFinishing()) {
             return;
         }
-//        int screenWidth = DisplayHelper.getScreenWidth(mActivity);
+        int screenWidth = DisplayHelper.getScreenWidth(mActivity);
 //        int screenHeight = DisplayHelper.getScreenHeight(mActivity);
         setContentView(mBinding.getRoot());
-//        getWindow().setLayout((int) (screenWidth * 0.9f), (int) (screenHeight * 0.6));
-//        getWindow().setGravity(Gravity.CENTER);
-        setCancelable(false);
+        getWindow().setLayout((int) (screenWidth * 0.9f), ViewGroup.LayoutParams.WRAP_CONTENT);
+        getWindow().setGravity(Gravity.CENTER);
+        setCancelable(true);
         setCanceledOnTouchOutside(false);
     }
 
@@ -84,6 +87,7 @@ public class PasswordInputDialog extends Dialog {
         }
         mBinding.myPVPsw.clean();
         super.show();
+        //弹出软键盘
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
     }
 

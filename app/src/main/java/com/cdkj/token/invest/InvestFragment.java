@@ -27,9 +27,11 @@ import com.cdkj.token.find.product_application.management_money.BijiaBaoDetailsA
 import com.cdkj.token.find.product_application.management_money.MyInvestmentDetails;
 import com.cdkj.token.model.InvestmentAmountModel;
 import com.cdkj.token.model.ManagementMoney;
+import com.cdkj.token.model.YesterdayAmountModel;
 import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.utils.wallet.WalletHelper;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,10 +49,11 @@ public class InvestFragment extends BaseLazyFragment {
     private RefreshHelper mRefreshHelper;
 
     // 投资总额
-    private InvestmentAmountModel investment;
+    private InvestmentAmountModel investment = new InvestmentAmountModel();//防止为空  为空默认为0
 
     private int tabPosition = 0;
     private String symbol = "BTC";
+    private YesterdayAmountModel yesterdayAmountModel = new YesterdayAmountModel();//防止为空  为空默认为0
 
     /**
      * 获得fragment实例
@@ -76,10 +79,11 @@ public class InvestFragment extends BaseLazyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(mActivity.getLayoutInflater(), R.layout.activity_refresh_money_manager, null, false);
-
+        init();
         initClickListener();
         initRefreshHelper();
         getUsrInvestAmount();
+        getYesterdayAmount();
 //        reflex(mBinding.tlWay);
 
         mRefreshHelper.onDefaluteMRefresh(true);
@@ -87,18 +91,22 @@ public class InvestFragment extends BaseLazyFragment {
         return mBinding.getRoot();
     }
 
+    private void init() {
+        mBinding.ivEye.setImageResource(SPUtilHelper.getUserEye() ? R.mipmap.eye_open_white : R.mipmap.eye_close_white);
+        if (!SPUtilHelper.getUserEye()) {
+            mBinding.tvTotalInvest.setText("****** " + symbol);
+            mBinding.tvBtcYestertay.setText("****** " + symbol);
+            mBinding.tvBtcTotal.setText("****** " + symbol);
+        }
+
+    }
+
     private void initClickListener() {
 
         mBinding.tvMyInvesment.setOnClickListener(view -> MyInvestmentDetails.open(mActivity));
 
         mBinding.llVisible.setOnClickListener(view -> {
-            if (mBinding.tvTotalInvest.getText().toString().equals("****** BTC")) {
-                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
-                mBinding.ivEye.setImageResource(R.mipmap.eye_open_white);
-            } else {
-                mBinding.tvTotalInvest.setText("****** BTC");
-                mBinding.ivEye.setImageResource(R.mipmap.eye_close_white);
-            }
+            initAnminoutData();
         });
 
         mBinding.tlWay.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -109,6 +117,18 @@ public class InvestFragment extends BaseLazyFragment {
 
                 symbol = tabPosition == 0 ? "BTC" : "USDT";
                 mRefreshHelper.onDefaluteMRefresh(true);
+
+                if (SPUtilHelper.getUserEye()) {
+                    mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+                    //昨日收益
+                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(yesterdayAmountModel.getYesterdayIncome()), symbol, AmountUtil.SCALE_4) + " " + symbol);
+                    //累计收益
+                    mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+                } else {
+                    mBinding.tvTotalInvest.setText("****** " + symbol);
+                    mBinding.tvBtcTotal.setText("****** " + symbol);
+                    mBinding.tvBtcYestertay.setText("****** " + symbol);
+                }
             }
 
             @Override
@@ -119,6 +139,24 @@ public class InvestFragment extends BaseLazyFragment {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
+
+    private void initAnminoutData() {
+        if (mBinding.tvTotalInvest.getText().toString().equals("****** " + symbol)) {
+            mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
+            mBinding.ivEye.setImageResource(R.mipmap.eye_open_white);
+            SPUtilHelper.saveUserEye(true);
+            //昨日收益
+            mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(yesterdayAmountModel.getYesterdayIncome()), symbol, AmountUtil.SCALE_4) + " " + symbol);
+            //累计收益
+            mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+        } else {
+            mBinding.ivEye.setImageResource(R.mipmap.eye_close_white);
+            SPUtilHelper.saveUserEye(false);
+            mBinding.tvTotalInvest.setText("****** " + symbol);
+            mBinding.tvBtcTotal.setText("****** " + symbol);
+            mBinding.tvBtcYestertay.setText("****** " + symbol);
+        }
     }
 
     void initRefreshHelper() {
@@ -225,7 +263,43 @@ public class InvestFragment extends BaseLazyFragment {
             @Override
             protected void onSuccess(InvestmentAmountModel data, String SucMessage) {
                 investment = data;
-                mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " BTC");
+                if (SPUtilHelper.getUserEye()) {
+
+                    if (symbol.equals("BTC")) {
+                        mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
+                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
+                    } else {
+                        mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
+                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getBtcTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
+                    }
+                }
+            }
+
+            @Override
+            protected void onFinish() {
+
+            }
+        });
+    }
+
+    /**
+     * 获取昨日收益
+     */
+    public void getYesterdayAmount() {
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("userId", SPUtilHelper.getUserId());
+        map.put("symbol", symbol);
+
+        Call<BaseResponseModel<YesterdayAmountModel>> yesterdayAmount = RetrofitUtils.createApi(MyApi.class).getYesterdayAmount("625529", StringUtils.getRequestJsonString(map));
+        addCall(yesterdayAmount);
+        yesterdayAmount.enqueue(new BaseResponseModelCallBack<YesterdayAmountModel>(mActivity) {
+            @Override
+            protected void onSuccess(YesterdayAmountModel data, String SucMessage) {
+                yesterdayAmountModel = data;
+                if (SPUtilHelper.getUserEye())
+                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(data.getYesterdayIncome()), symbol.equals("BTC") ? WalletHelper.COIN_BTC : WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " BTC");
             }
 
             @Override
@@ -234,9 +308,16 @@ public class InvestFragment extends BaseLazyFragment {
             }
         });
 
-
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mRefreshHelper != null) {
+            mRefreshHelper.onDestroy();
+        }
+    }
 //    public void reflex(final TabLayout tabLayout){
 //        //了解源码得知 线的宽度是根据 tabView的宽度来设置的
 //        tabLayout.post(new Runnable() {
@@ -300,11 +381,4 @@ public class InvestFragment extends BaseLazyFragment {
 //    }
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mRefreshHelper != null) {
-            mRefreshHelper.onDestroy();
-        }
-    }
 }

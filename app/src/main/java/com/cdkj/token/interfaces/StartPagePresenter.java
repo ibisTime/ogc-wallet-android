@@ -167,7 +167,8 @@ public class StartPagePresenter {
         if (SPUtilHelper.isLoginNoStart()) {
             startMain();
         } else {
-            getCountryList();
+//            getCountryList();
+            startLogin();
         }
     }
 

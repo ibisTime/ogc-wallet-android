@@ -119,7 +119,13 @@ public class UserSecurityActivity extends AbsStatusBarTranslucentActivity implem
 
         //资金密码
         mBinding.llTradePwd.setOnClickListener(view -> {
-            PayPwdModifyActivity.open(this, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserPhoneNum());
+            if (!TextUtils.isEmpty(SPUtilHelper.getUserPhoneNum())) {
+                PayPwdModifyActivity.open(this, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserPhoneNum());
+            } else if (!TextUtils.isEmpty(SPUtilHelper.getUserEmail())) {
+                PayPwdModifyActivity.open(this, SPUtilHelper.getTradePwdFlag(), SPUtilHelper.getUserEmail());
+            } else {
+                UITipDialog.showInfo(this, "请先绑定手机号或者邮箱");
+            }
         });
 
         //身份认证

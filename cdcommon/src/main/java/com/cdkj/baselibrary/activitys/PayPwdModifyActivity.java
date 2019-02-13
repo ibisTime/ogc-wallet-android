@@ -106,7 +106,6 @@ public class PayPwdModifyActivity extends AbsActivity implements SendCodeInterfa
                     bizType = "805066";
 
                 }
-
                 String phone = mBinding.edtPhone.getText().toString().trim();
                 SendVerificationCode sendVerificationCode = new SendVerificationCode(
                         phone, bizType, AppConfig.USERTYPE, null);

@@ -59,10 +59,10 @@ android {
 
     signingConfigs {
         config {
-            storeFile file("../tha.jks")
-            storePassword "tha123456"
-            keyAlias "tha"
-            keyPassword "thakey123456"
+            storeFile file("../cwallet.jks")
+            storePassword "cwallet123456"
+            keyAlias "cwalletkey"
+            keyPassword "cwalletkey123456"
         }
     }
 

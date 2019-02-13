@@ -14,6 +14,7 @@ import zendesk.core.Zendesk;
 import zendesk.support.Support;
 import zendesk.support.UiConfig;
 import zendesk.support.guide.HelpCenterActivity;
+import zendesk.support.guide.HelpCenterUiConfig;
 
 /**
  * 集成第三方管理
@@ -33,8 +34,8 @@ public class OtherLibManager {
 //                "71d2ca9aba0cccc12deebfbdd352fbae8c53cd8999dd10bc",
 //                "mobile_sdk_client_7af3526c83d0c1999bc3");
         Zendesk.INSTANCE.init(context, AppConfig.getZenDeskUrl(),
-                "572a044301abb3cec5bc7efba47802dc225375622ee399eb",
-                "mobile_sdk_client_1315e07d5bbe64e76b61");
+                "3006217d048e0c25c210e014be2cc72bdfad90c96709835f",
+                "mobile_sdk_client_e92fbb186a7406874c6b");
 
         Identity identity = new AnonymousIdentity();
         Zendesk.INSTANCE.setIdentity(identity);
@@ -48,7 +49,7 @@ public class OtherLibManager {
     public static void openZendeskHelpCenter(Activity activity) {
 
         UiConfig helpCenterConfig = HelpCenterActivity.builder().withContactUsButtonVisible(false).config();
-
+        HelpCenterUiConfig.Builder builder = HelpCenterActivity.builder();
         HelpCenterActivity.builder()
                 .show(activity,helpCenterConfig);
     }

@@ -18,46 +18,46 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <FrameLayout
+                    android:visibility="gone"
+                    android:id="@+id/fl_title"
+                    android:layout_marginTop="25dp"
+                    android:background="@color/colorPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_finish"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/back_white" />
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="30dp"
+                        android:text="@string/my_investment_details"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/title_mid_size" />
+
+
+                </FrameLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@drawable/gradient_bg"
                     android:orientation="vertical">
 
-                    <FrameLayout
-                        android:visibility="gone"
-                        android:id="@+id/fl_title"
-                        android:layout_marginTop="25dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:id="@+id/iv_finish"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="15dp"
-                            android:paddingRight="15dp"
-                            android:paddingTop="10dp"
-                            android:src="@drawable/back_white" />
-
-                        <TextView
-                            android:id="@+id/tv_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginRight="30dp"
-                            android:text="@string/my_investment_details"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/title_mid_size" />
-
-
-                    </FrameLayout>
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -549,6 +549,7 @@
                         android:textSize="15sp" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
@@ -581,6 +582,7 @@
                         android:textSize="15sp" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"
@@ -613,6 +615,7 @@
                         android:textSize="15sp" />
 
                     <ImageView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="15dp"

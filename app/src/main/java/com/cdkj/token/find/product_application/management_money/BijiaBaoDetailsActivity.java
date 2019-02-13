@@ -71,6 +71,8 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
     public void afterCreate(Bundle savedInstanceState) {
         setWhiteTitle();
         setPageBgRes(R.drawable.money_manager_bg2);
+        mBaseBinding.fraLayoutTitle.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
         if (getIntent() != null) {
             mProductCode = getIntent().getStringExtra(CdRouteHelper.DATASIGN);
         }
@@ -82,21 +84,21 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
 
     private void initClickListener() {
 
-        //购买属性
-        mbinding.linLayoutBuyInfo.setOnClickListener(view -> {
-            setViewToggleShow(mbinding.webview1);
-        });
+//        //购买属性
+//        mbinding.linLayoutBuyInfo.setOnClickListener(view -> {
+//            setViewToggleShow(mbinding.webview1);
+//        });
 
-        //赎回属性
-        mbinding.linLayoutBackInfo.setOnClickListener(view -> {
-            setViewToggleShow(mbinding.webview2);
-
-        });
-
-        //说明书
-        mbinding.linLayoutProductInfo.setOnClickListener(view -> {
-            setViewToggleShow(mbinding.webview3);
-        });
+//        //赎回属性
+//        mbinding.linLayoutBackInfo.setOnClickListener(view -> {
+//            setViewToggleShow(mbinding.webview2);
+//
+//        });
+//
+//        //说明书
+//        mbinding.linLayoutProductInfo.setOnClickListener(view -> {
+//            setViewToggleShow(mbinding.webview3);
+//        });
 
         //购买
 
@@ -209,7 +211,8 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
 
         mbinding.tvStartTime.setText(DateUtil.formatStringData(managementMoney.getStartDatetime(), DATE_YMD));
         mbinding.tvIncomeTime.setText(DateUtil.formatStringData(managementMoney.getIncomeDatetime(), DATE_YMD));
-        mbinding.tvEndTime.setText(DateUtil.formatStringData(managementMoney.getArriveDatetime(), DATE_YMD));
+//        mbinding.tvEndTime.setText(DateUtil.formatStringData(managementMoney.getArriveDatetime(), DATE_YMD));
+        mbinding.tvEndTime.setText(DateUtil.formatStringData(managementMoney.getRepayDatetime(), DATE_YMD));
 
         //购买属性
         mbinding.webview1.loadData(getBuyDescByLanguage(managementMoney), "text/html;charset=UTF-8", "UTF-8");
@@ -217,10 +220,6 @@ public class BijiaBaoDetailsActivity extends AbsStatusBarTranslucentActivity {
         mbinding.webview2.loadData(getRedeemDescByLanguage(managementMoney), "text/html;charset=UTF-8", "UTF-8");
         //说明书
         mbinding.webview3.loadData(getDirectionsDescByLanguage(managementMoney), "text/html;charset=UTF-8", "UTF-8");
-
-        mbinding.webview1.setVisibility(View.GONE);
-        mbinding.webview2.setVisibility(View.GONE);
-        mbinding.webview3.setVisibility(View.GONE);
 
         if (managementMoney.getStatus().equals("5")) { // 5-募集期
             mbinding.btnToBuy.setVisibility(View.VISIBLE);

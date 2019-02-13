@@ -72,6 +72,7 @@ import com.cdkj.token.model.UserSettingModel;
 import com.cdkj.token.model.VersionModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.model.WithdrawOrderModel;
+import com.cdkj.token.model.YesterdayAmountModel;
 import com.cdkj.token.model.db.LocalCoinDbModel;
 import com.cdkj.token.model.submitOrdeMakeMoneyModel;
 
@@ -127,6 +128,15 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<InvestmentAmountModel>> getUserInvestAmount(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取昨日收益
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<YesterdayAmountModel>> getYesterdayAmount(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取红包详情
@@ -900,7 +910,7 @@ public interface MyApi {
     Call<BaseResponseModel<String>> addBankCard(@Field("code") String code, @Field("json") String json);
 
     /**
-     * 获取用户绑定的银行卡数据
+     * 获取用户绑定的银行卡数据 分页
      *
      * @param code
      * @param json
@@ -909,6 +919,16 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<UserBankCardModel>> getBankData(@Field("code") String code, @Field("json") String json);
+   /**
+     * 获取用户绑定的银行卡数据 列表
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<UserBankCardModel.ListBean>> getBankListData(@Field("code") String code, @Field("json") String json);
 
     /**
      * 设置默认银行卡  或者 解绑银行卡  入参相同  code不同

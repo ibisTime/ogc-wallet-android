@@ -143,6 +143,7 @@ public class UserInfoPresenter {
                 SPUtilHelper.saveRealName(data.getRealName());
                 SPUtilHelper.saveUserEmail(data.getEmail());
                 SPUtilHelper.saveRealName(data.getMobile());
+                SPUtilHelper.saveTradePwdFlag(data.isTradepwdFlag());
 
                 if (mListener != null) {
                     mListener.onFinishedGetUserInfo(data, "");

@@ -53,9 +53,10 @@
 
         <TextView
             android:id="@+id/tv_confirm"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:gravity="center"
             android:text="我知道了"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>

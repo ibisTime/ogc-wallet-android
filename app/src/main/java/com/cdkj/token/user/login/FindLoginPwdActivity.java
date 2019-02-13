@@ -79,7 +79,6 @@ public class FindLoginPwdActivity extends AbsActivity implements SendCodeInterfa
 
         mBinding.edtPassword.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         mBinding.edtRePassword.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        mBinding.edtMobile.getEditText().setInputType(InputType.TYPE_CLASS_PHONE);
 
     }
 
