@@ -100,6 +100,8 @@ public abstract class BaseResponseModelCallBack<T> implements Callback<BaseRespo
             onSuccess(t, baseModelNew.getErrorInfo());
 
         } else if (TextUtils.equals(errorCode, REQUESTFECODE4)) {
+            onLoginFailure(context, context.getString(R.string.login_fail));
+        } else if (TextUtils.equals(baseModelNew.getErrorInfo(), "您的账号已被拉入黑名单")) {
             onLoginFailure(context, baseModelNew.getErrorInfo());
         } else if (TextUtils.equals(errorCode, REQUESTFECODE3)) {
             onReqFailure(baseModelNew.getErrorBizCode(), baseModelNew.getErrorInfo());

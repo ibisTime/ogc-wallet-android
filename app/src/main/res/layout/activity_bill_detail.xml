@@ -163,6 +163,7 @@
             <View style="@style/style_split_line" />
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
@@ -191,7 +192,7 @@
 
             </LinearLayout>
 
-            <View style="@style/style_split_line" />
+            <!--<View style="@style/style_split_line" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"

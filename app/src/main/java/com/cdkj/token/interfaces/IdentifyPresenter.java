@@ -51,13 +51,13 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
         detectEngine = new DetectEngine();
     }
 
-    public void startCardIndentify(){
+    public void startCardIndentify() {
         if (null == detectEngine)
             return;
 
         try {
 
-            if (detectEngine.id_ocr(mActivity, ZHIQU_APP_KEY, ZHIQU_SECRET_KEY, this) != ErrorCode.SUCCESS.getCode()){
+            if (detectEngine.id_ocr(mActivity, ZHIQU_APP_KEY, ZHIQU_SECRET_KEY, this) != ErrorCode.SUCCESS.getCode()) {
                 ToastUtil.show(mActivity, "证件接口调用失败");
                 mListener.onError("证件接口调用失败");
             }
@@ -70,13 +70,13 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
         }
     }
 
-    private void startFaceIndentify(){
+    private void startFaceIndentify() {
         if (null == detectEngine)
             return;
 
         try {
 
-            if (detectEngine.face_liveness(mActivity, ZHIQU_APP_KEY, ZHIQU_SECRET_KEY, 1, this) != ErrorCode.SUCCESS.getCode()){
+            if (detectEngine.face_liveness(mActivity, ZHIQU_APP_KEY, ZHIQU_SECRET_KEY, 1, this) != ErrorCode.SUCCESS.getCode()) {
                 ToastUtil.show(mActivity, "活体接口调用失败");
                 mListener.onError("活体接口调用失败");
             }
@@ -94,7 +94,7 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
 
         mListener.onIdEnd(result);
 
-        if (ErrorCode.SUCCESS.getCode() == result.result_code){
+        if (ErrorCode.SUCCESS.getCode() == result.result_code) {
 
             // 保存证件照正反面
             dataList.add(result.front_image);
@@ -114,12 +114,12 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
 
         mListener.onFaceEnd(result);
 
-        if (ErrorCode.SUCCESS.getCode() == result.result_code){
+        if (ErrorCode.SUCCESS.getCode() == result.result_code) {
 
             // 保存脸图
             dataList.add(result.face_image);
 
-            if (dataList.size() == 3){
+            if (dataList.size() == 3) {
                 uploadPic();
             }
 
@@ -129,7 +129,7 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
 
     }
 
-    private void uploadPic(){
+    private void uploadPic() {
         if (qiNiuHelper == null) {
             qiNiuHelper = new QiNiuHelper(mActivity);
         }
@@ -139,7 +139,7 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
         qiNiuHelper.upLoadListPicByBitmap(dataList, new QiNiuHelper.upLoadListImageListener() {
             @Override
             public void onChange(int index, String url) {
-                switch (index){
+                switch (index) {
                     case 0:
                         frontImage = url;
                         break;
@@ -191,10 +191,15 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
             }
 
             @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                super.onReqFailure(errorCode, errorMessage);
+                mListener.onError(errorMessage);
+            }
+
+            @Override
             protected void onFinish() {
                 mListener.onUpLoadFinish();
             }
         });
-
     }
 }

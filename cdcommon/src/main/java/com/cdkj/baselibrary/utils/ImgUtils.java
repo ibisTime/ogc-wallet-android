@@ -100,6 +100,28 @@ public class ImgUtils {
         }
     }
 
+    /**
+     * 加载原型图片  开圆角
+     * @param context
+     * @param imgid
+     * @param img
+     */
+    public static void loadCircular(Context context, String imgid, ImageView img) {
+        if (context == null || img == null) {
+            return;
+        }
+        LogUtil.E("图片" + imgid);
+
+        try {
+            if (isHaveHttp(imgid)) {
+                GlideApp.with(context).load(imgid).transform(new CircleCrop()).into(img);
+            } else {
+                GlideApp.with(context).load(SPUtilHelper.getQiniuUrl() + imgid).transform(new CircleCrop()).into(img);
+            }
+        } catch (Exception e) {
+        }
+    }
+
 
     public static void loadActImg(Activity context, String imgid, ImageView img) {
 

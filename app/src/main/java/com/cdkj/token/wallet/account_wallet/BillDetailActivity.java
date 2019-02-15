@@ -74,8 +74,9 @@ public class BillDetailActivity extends AbsLoadActivity {
         mBinding.tvBefore.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPreAmountString()), coinUnit, 8));
         mBinding.tvAfter.setText(AmountUtil.transformFormatToString(new BigDecimal(bean.getPostAmountString()), coinUnit, 8));
         mBinding.tvDate.setText(DateUtil.formatStringData(bean.getCreateDatetime(), DEFAULT_DATE_FMT));
-        mBinding.tvStatus.setText(AmountUtil.formatBillStatus(bean.getStatus()));
-        mBinding.tvType.setText(AmountUtil.formatBizType(bean.getRemark()));
+//        mBinding.tvStatus.setText(AmountUtil.formatBillStatus(bean.getStatus()));
+//        mBinding.tvType.setText(AmountUtil.formatBizType(bean.getRemark()));
+        mBinding.tvType.setText(bean.getBizNote());
     }
 
 

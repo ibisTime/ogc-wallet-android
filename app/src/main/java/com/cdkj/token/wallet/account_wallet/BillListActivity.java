@@ -13,12 +13,14 @@ import com.bigkoo.pickerview.view.OptionsPickerView;
 import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
+import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
+import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -30,6 +32,7 @@ import com.cdkj.token.model.CoinAddressShowModel;
 import com.cdkj.token.model.MoneyTransactionTypeModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
+import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.wallet.private_wallet.WalletAddressShowActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -147,6 +150,8 @@ public class BillListActivity extends AbsLoadActivity {
     private void initData() {
         if (mAccountBean != null) {
             mBinding.tvTitle.setText(mAccountBean.getCurrency());
+            String coinLogo = SPUtilHelper.getQiniuUrl() + LocalCoinDBUtils.getCoinIconByCoinSymbol(mAccountBean.getCurrency());
+            ImgUtils.loadCircular(this, coinLogo, mBinding.ivIcon);
         }
         refreshHelper = new RefreshHelper(this, refreshCallBackback);
         refreshHelper.init(10);

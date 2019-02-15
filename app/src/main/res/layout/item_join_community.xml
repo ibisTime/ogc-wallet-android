@@ -7,7 +7,6 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_twitter"
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_item_height"
         android:background="?attr/selectableItemBackground"

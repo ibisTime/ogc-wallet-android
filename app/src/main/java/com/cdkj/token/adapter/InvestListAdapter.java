@@ -44,7 +44,7 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
 
 
         helper.setText(R.id.tv_state, getStateString(item));
-        helper.setTextColor(R.id.tv_state, Color.parseColor("#4064E6"));
+        helper.setTextColor(R.id.tv_state, getStateTextColor(item));
 
         helper.setText(R.id.tv_limite_days, mContext.getString(R.string.product_days, item.getLimitDays() + ""));
         helper.setText(R.id.tv_avil_amount,
@@ -83,14 +83,24 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
         }
 
         switch (item.getStatus()) {
-            case "4":                       //蓝色
-                return Color.parseColor("#FF4064E6");
+            case "4":
+                //橘色
+                return  Color.parseColor("#ffff6400");
+            case "5":
+               //绿色
+                return  Color.parseColor("#0EC55B");
+
+            case "6":
+            case "7":
+                //蓝色
+                return  Color.parseColor("#ffff6400");
             case "8":
-                //灰色
-                return Color.parseColor("#ff999999");
+                //红色  还款中
+                return Color.parseColor("#E15E5E");
+
         }
-        //橘色
-        return Color.parseColor("#ffff6400");
+       //灰色
+        return  Color.parseColor("#ff999999");
     }
 
     /*（0草稿，1待审核，2审核通过，3审核不通过，4即将开始，5募集期，6停止交易，7产品封闭期，8还款成功，9募集失败)*/
@@ -125,7 +135,7 @@ public class InvestListAdapter extends BaseQuickAdapter<ManagementMoney, BaseVie
                 return "收款中";
 //                return mContext.getString(R.string.management_money_state_8);
             case "9":
-                return "已收款";
+                return "已结束";
 //                return mContext.getString(R.string.management_money_state_9);
             case "10":
                 return "募集失败";

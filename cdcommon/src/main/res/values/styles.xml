@@ -41,15 +41,6 @@
     </style>
 
     <!--所有编辑框公用属性设置-->
-    <style name="style_edit">
-        <item name="android:background">@null</item>
-        <item name="android:textColorHint">@color/text_hint_color</item>
-        <item name="android:textColor">@color/text_color</item>
-        <item name="android:cursorVisible">true</item>
-        <item name="android:textCursorDrawable">@drawable/edit_cursor_color</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-    </style>
 
     <!--加载框-->
     <style name="LoadingDialogLight" parent="@android:style/Theme.Dialog">
@@ -89,13 +80,6 @@
     </style>
 
     <!--长的分割线styles设置-->
-    <style name="style_split_line_mg18">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0.5dp</item>
-        <item name="android:background">@color/gray_9f9f9f</item>
-        <item name="android:layout_marginLeft">20dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-    </style>
 
     <!--activity_share dialog style-->
     <style name="ActivityDialogStyleBottom" parent="@style/Theme.AppCompat.NoActionBar">
@@ -118,23 +102,6 @@
         <!-- 模糊 -->
     </style>
 
-
-    <style name="ActivityTXLoginDialog" parent="@style/Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
-        <item name="android:windowIsFloating">false</item>
-        <!-- 是否浮现在activity之上 -->
-        <item name="android:windowIsTranslucent">true</item>
-        <!-- 半透明 -->
-        <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <!-- 背景透明 -->
-        <item name="android:backgroundDimEnabled">false</item>
-        <!-- 模糊 -->
-
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    </style>
 
     //底部弹出动画
 

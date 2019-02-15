@@ -4,48 +4,31 @@
     <string name="wallet_withdraw_balance">잔액</string>
 
     <string name="wallet_withdraw_address">입금주소</string>
-    <string name="wallet_withdraw_address_input_hint">주소입력 혹은 QR코드스캔</string>
-    <string name="wallet_withdraw_amount">출금수량</string>
     <string name="wallet_withdraw_free">수수료\u3000</string>
     <string name="wallet_withdraw_tip">수수료는 출금시 공제</string>
-    <string name="wallet_withdraw_confirm">출금확인</string>
     <string name="wallet_withdraw_order_title">출금주문</string>
     <string name="wallet_withdraw_order_none">출금기록 없음</string>
     <string name="wallet_title">나의자산</string>
-    <string name="bill_frozen_none">동결내역 없음</string>
     <string name="wallet_title_bill_detail">명세서 내역</string>
     <string name="wallet_bill_detail_before">변동전 금액</string>
     <string name="wallet_bill_detail_after">변동후 금액</string>
     <string name="wallet_bill_detail_date">변동시간</string>
     <string name="wallet_bill_detail_status">명세서 상태</string>
     <string name="wallet_bill_detail_type">명세서 요약</string>
-    <string name="wallet_title_bill_list">명세서</string>
     <string name="wallet_title_charge">입금</string>
     <string name="wallet_charge_recode">기록</string>
 
     <string name="wallet_charge_address_copy_success">주소 복사완료</string>
-    <string name="wallet_title_withdraw">출금</string>
-    <string name="wallet_withdraw_address_hint">보낼 주소입력</string>
     <string name="wallet_withdraw_success">출금신청 완료</string>
-    <string name="wallet_transfer_success">이체신청 완료</string>
-    <string name="user_address_tag_hint">주소 태그입력</string>
     <string name="user_address_hint">주소입력</string>
-    <string name="user_title_address">주소관리</string>
-    <string name="user_address_none">주소없음</string>
-    <string name="user_address_delete_confirm">주소를 삭제하시겠습니까？</string>
-    <string name="user_address_delete_success">삭제완료</string>
     <string name="user_title_language">언어설정</string>
     <string name="user_language_simplified">中文简体</string>
-    <string name="user_language_traditional">중문번체</string>
     <string name="user_title_google">구글 검증</string>
     <string name="user_google_open">작동</string>
     <string name="user_google_close">미작동</string>
     <string name="user_google_btn_open">구글 검증작동</string>
     <string name="user_title_sign_up">회원가입</string>
-    <string name="user_sign_up_protocol">가입 협협약서</string>
-    <string name="user_nick_hint">닉네임 만들기</string>
     <string name="user_code_hint">인증번호 입력</string>
-    <string name="user_code_format_hint">인증번호 입력오</string>
     <string name="user_password_hint">비밀번호 입력</string>
     <string name="user_repassword_hint">비밀번호 확인</string>
     <string name="user_repassword_two_hint">비밀번호 입력 일치하지 않음</string>
@@ -53,18 +36,12 @@
     <string name="user_sign_up_success">가입성공 자동로그인</string>
     <string name="user_sign_up_failure">가입실패</string>
 
-    <string name="user_address_add_address">출금주소</string>
-    <string name="user_address_add_code">핸드폰 인증번호</string>
     <string name="user_address_add_code_hint">인증번호 입력</string>
-    <string name="user_address_add_is_default">본 계정을 인증된 계정으로 설치</string>
-    <string name="user_address_add_tip">인증된 계정으로 출금시 비밀번호와 구글검증번호 입력할 필요 없음</string>
     <string name="user_title_email_bind">이메일로그인</string>
     <string name="user_title_email_modify">이메일수정</string>
     <string name="user_email_bind_success">로그인완료</string>
     <string name="user_email_modify_success">수정완료</string>
-    <string name="user_email">이메일</string>
     <string name="user_email_hint">이메일 주소입력</string>
-    <string name="user_email_code">이메일 검증번호</string>
     <string name="user_email_code_hint">이메일 검증번호 입력</string>
 
     <string name="user_google_key">구글키</string>
@@ -78,70 +55,32 @@
     <string name="user_setting_password">비밀번호 수정</string>
     <string name="user_setting_google">구글검증</string>
     <string name="user_setting_sign_out">로그아웃</string>
-    <string name="user_tip_language">언어설정</string>
-    <string name="user_address_add">주소추가</string>
-    <string name="user_address">나의 주소</string>
-    <string name="user_setting">시스템 설치</string>
-    <string name="user_tip">수동설치</string>
     <string name="user_issue">고객센터</string>
-    <string name="user_services">콜 센터</string>
     <string name="user_about">우리</string>
-    <string name="user_about_update">최신버전으로 갱신</string>
-    <string name="user_about_updated">현재는 최신버전</string>
-    <string name="user_sign_up_referee">추천인 핸드폰机</string>
-    <string name="user_sign_up_referee_hint">추천인 핸드폰 번호(선택사항)</string>
-    <string name="user_invite_url">링크공유</string>
-    <string name="user_invite_pic">QR코드공유</string>
 
-    <string name="email_code_send_success">인증번호는 메일로 보내드렸습니다</string>
-    <string name="email_code_send_failure">메일발송 실패</string>
     <string name="sms_code_title">핸드폰 인증번호</string>
-    <string name="consult_title">홈 페이지</string>
 
-    <string name="consult_statistics_none">거래없음</string>
-    <string name="consult_statistics_title">거래내역</string>
-    <string name="wallet_withdraw_amount_hint2">출금한도액</string>
     <string name="call_phone">상대방 연락</string>
-    <string name="want_to_pay">바로결재</string>
-
-
-    <string name="pay_confirm">결재확인</string>
-
-    <string name="pay_amount">결재수량</string>
-
-    <string name="pay_succ">결재완료</string>
-    <string name="pay_fall">결재실패</string>
-    <string name="biz_type_trans">거래</string>
 
 
     <string name="consult_none_title">준비 중</string>
-    <string name="user_wallet_setting">월렛설치</string>
     <string name="user_join">커뮤니티 가입</string>
-    <string name="wallet_bill_list_charge">입금</string>
-    <string name="wallet_bill_list_withdraw">출금</string>
     <string name="create_wallet">월렛 만들기</string>
-    <string name="put_wallet">월렛 임포트</string>
     <string name="please_set_transaction_pass_word">거래비밀번호 설치</string>
     <string name="please_check_transaction">비밀번호 확인</string>
     <string name="password_error">비밀번호 입력 일치하지 않음</string>
     <string name="wallet_create_success">새로운 월렛 생성 완료</string>
-    <string name="important_hints">주의사</string>
-    <string name="create_wallet_tip">월렛 백업자료만 있으면 월렛을 이용할수 있으니 사용전 안전하게 백업하시고 안전한 곳에 저장하시기를 바랍니다</string>
-    <string name="now_backup">백업시작</string>
     <string name="next_step">다음</string>
     <string name="sure_1">확인</string>
-    <string name="now_check">바로인증</string>
     <string name="import_wallet">월렛 임포트</string>
     <string name="wallet_import_success">월렛 임포트 완료</string>
     <string name="now_use">사용시작</string>
     <string name="wallet_create_fail">월렛 생성실패</string>
     <string name="check_words_fail">복구키 인증실패</string>
-    <string name="please_input_words">복구키 입력</string>
     <string name="dont_screenshot">복구키 분실시 자산도난 위험이 있으니 잘 적어두시고 캡쳐삼가해 주시기를 바랍니다</string>
     <string name="wallet_import_fail">월렛 임포트 실패</string>
     <string name="please_remember_and_save">월렛의 복구키는 안전한 곳에 보관해 놓으세요</string>
     <string name="words_tip_1">복구키는 월렛의 자산복구에 사용하며 월렛을 사용하는 중요한 부분임으로 반드시 안전한 곳에 저장하시길 바랍니다.THA는 사용자의 복구키를 저장하지 않습니다.분실시 되찾아드릴수 없습니다.</string>
-    <string name="words_tip_2">월렛의 복구키를 입력하십시요（12개 영문단어），빈칸으로 띄여쓰기</string>
     <string name="check_your_words">복구키 인증</string>
     <string name="words_tip_3">적어놓은 복구키를 순서대로 클릭하여 확인</string>
     <string name="update_password_success">비밀번호 수정완료</string>
@@ -158,10 +97,6 @@
     <string name="private_key">프라이빗 키</string>
     <string name="export_private_key">프라이빗 키 임포트</string>
     <string name="coin_key_name">이것은 %s의 주소와 프라이빗 키，복사하기</string>
-    <string name="coin_eth_ename">이더리움</string>
-    <string name="coin_wan_ename">완 코인</string>
-    <string name="coin_eth_cname">이더리움</string>
-    <string name="coin_wan_came">완완</string>
     <string name="get_money">수납</string>
     <string name="service_money_tip">마이너의 개스비는 잔액에서 공제되고 잔액 부족시 이체금에서 공제</string>
     <string name="transfer">이체</string>
@@ -174,26 +109,13 @@
 
     <string name="privacy_agreement">프라이버시 합의</string>
     <string name="transaction_details">겨래내역</string>
-    <string name="sure_delete_wallet">월렛 복구키 인증완료,월렛을 삭제하시겠습니까？</string>
-    <string name="sure_delete">삭제확인</string>
     <string name="choose_fees">수수료 선택</string>
     <string name="choose_fee_tip">경제적인 수수료를 선택시 거래시간은 길어질수 있습니다.급한 상황이면 우선거래를 선택하십시요</string>
     <string name="priority">우선</string>
     <string name="extract_amount">출금금액</string>
     <string name="transaction_record">거래기록</string>
-    <string name="business_app">상업 애플리케이션</string>
-    <string name="coin_to_coin">코인에서 코인</string>
-    <string name="tha_planet">THA별나라</string>
-    <string name="ybb">위비보</string>
-    <string name="facebook">페이스 북</string>
     <string name="twitter">Twitter</string>
-    <string name="telegram">텔래그램</string>
-    <string name="thasddoddfvb">thasddoddfvb</string>
-    <string name="qq_group">QQ 그룹</string>
-    <string name="wechat">Wechat</string>
     <string name="transfer_number">이체수량</string>
-    <string name="google_verification_code">구글인증번호</string>
-    <string name="please_input_google_code">구글인증번호 입력</string>
     <string name="please_input_withdraw_address">입금주소 입력</string>
     <string name="withdraw_address">입금주소</string>
     <string name="transfer_out_address">이체주소</string>
@@ -202,12 +124,8 @@
     <string name="transction_code">거래번호</string>
     <string name="transction_time">거래시간</string>
     <string name="view_more_detials">더 많은 정보보기</string>
-    <string name="affix">붙이기</string>
-    <string name="btc_wallet_tip">BTC월렛 주소에는 BTC외 암호화폐중전 금지되여있으니 BTC외 암호화폐중진하여 분실시 되찾을수 없습니다</string>
     <string name="private_key_tip">주의！프라이빗 키로 모든 자산을 거래할수 있으니 다른사람에게 알려 줘서는 안됩니다</string>
 
-    <string name="i_agree_this_terms">서비스 이용 약관에 동의합니다</string>
-    <string name="wallet_delete_tip">주의！월렛 삭제시 반드시 복구키를 백업하지 않으면 모든 자산 분실 위험이 있습니다</string>
     <string name="add_assets">자산추가</string>
     <string name="error_wallet_address">잘못된 주소</string>
     <string name="resolve_wallet_address_fail">실패원인 분석중</string>
@@ -228,13 +146,9 @@
     <string name="accounts_and_security">계정과 안전</string>
     <string name="local_coin">현지 화폐</string>
     <string name="language">언어</string>
-    <string name="please_create_or_import_wallet">월렛 만들기 혹은 기종 월렛 생성</string>
     <string name="no_assets">자산없음</string>
-    <string name="my_private_wallet">프라이빗 키 월렛(%s)</string>
 
-    <string name="chain">중국</string>
     <string name="now_register">회원가입</string>
-    <string name="no_account">계정 없나요？</string>
     <string name="register">가입！</string>
     <string name="find_pwd_sure">확인</string>
     <string name="find_pwd">비밀번호 되찾기！</string>
@@ -242,55 +156,28 @@
     <string name="choose_country">국가 선택</string>
     <string name="wallet_tool">월렛 공구</string>
     <string name="wallet_delete_success">월렛 삭제완료</string>
-    <string name="me_red_package">나의 캔디</string>
-    <string name="send_red_package">캔디 발송</string>
-    <string name="send_you_red_package">훙빠우 받았습니다</string>
-    <string name="defaut_red_package_mesg">캔디속에 황금만냥</string>
 
 
     <string name="hello_blank_fragment">빈 조각</string>
-    <string name="my_red_package">나의 캔디</string>
-    <string name="get_red_package">받은 캔디</string>
-    <string name="send_red_package2">보낸 캔디</string>
-    <string name="sub_total_red_package">보낸캔디 총 개수</string>
     <string name="red_package_db">코인</string>
-    <string name="red_package_sub_total">코인총액</string>
     <string name="red_package_unit">개</string>
     <string name="red_package_number">캔디 수량</string>
     <string name="red_package_number_unit">개</string>
-    <string name="red_package_msg">축하말 입력</string>
     <string name="red_package_set">캔디 모냄</string>
-    <string name="red_package_send">캔디 나눔</string>
     <string name="red_package_have">소지</string>
-    <string name="red_package_total">총량</string>
-    <string name="red_package_empty_type">사용할수 있는 코인없음</string>
-    <string name="red_package_please_set_type">결재 비밀번호 설치</string>
     <string name="red_package_min_number">훙빠우 개수 최소1개</string>
     <string name="red_package_pleas_number">훙빠우 개수 입력</string>
     <string name="red_package_min_numer">최소 단위는%s개</string>
     <string name="red_package_piease_send_number">보내실 개수입력</string>
     <string name="red_package_please_type">코인선택</string>
-    <string name="red_package_set_hand">럭케 훙빠우로 변경</string>
-    <string name="red_package_set_ordinary">일반 훙빠우로 변경</string>
-    <string name="red_package_please_sing_number">개당 수량입력</string>
-    <string name="red_package_please_total_number">총량 입력</string>
     <string name="red_package_please_number">수량 입력</string>
-    <string name="red_package_my">나의 캔디</string>
     <string name="red_package_get_empty">받은 훙빠우 없음</string>
-    <string name="api_error">api접수 오류</string>
     <string name="red_package_send_empty">보낸 기록 없음</string>
-    <string name="red_package_form_user">에서 보낸</string>
-    <string name="red_package_send_success">발송완료,QR코드 스캔하여 훙빠우 수락</string>
-    <string name="assets">자산</string>
-    <string name="my_coin_address">나의%s수납주소</string>
     <string name="red_pg">캔디 발송</string>
     <string name="main_tag_consult">새로운 발견</string>
-    <string name="main_tab_wallet">월렛</string>
     <string name="main_tab_my">나의</string>
-    <string name="my_red_package_title">나의 훙빠우</string>
     <string name="sen_red_packet_note">훙빠우에는 황금 만냥</string>
     <string name="user_language_english">English</string>
-    <string name="user_sign_up_mobile">핸드폰 번호</string>
     x
     <string name="user_sign_in_forget">비밀번호 되찾기?</string>
     <string name="user_title_sign_in">로그인</string>
@@ -300,14 +187,10 @@
     <string name="recommend_application">어플 추천</string>
     <string name="copy_success">복사완료</string>
     <string name="user_language_korea">한국어</string>
-    <string name="account_login">계정비밀번호 로그인</string>
     <string name="transfer_2">"이체 "</string>
     <string name="wait_title_2">위삐보:</string>
-    <string name="telegram_address">https://t.me/THAWallet_cn</string>
-    <string name="share">"공유 공유 "</string>
     <string name="wallet_charge_record">"거래 내역 "</string>
     <string name="please_wait">기대하십시요</string>
-    <string name="biz_type_withdraw">수령</string>
     <string name="biz_type_charge">충전</string>
     <string name="sms_code_send">인증번호 발송</string>
     <string name="user_setting_mail">이메일 등록</string>
@@ -315,14 +198,9 @@
     <string name="user_password_re">비밀번호 확인</string>
     <string name="user_password_re_hint">최소 6자리</string>
     <string name="user_password_new_hint">최소 6자리</string>
-    <string name="user_sign_up_repwd_hint">최소 6자리</string>
-    <string name="user_sign_up_pwd_hint">최소 6자리</string>
-    <string name="user_sign_up_repwd">비밀번호 확인</string>
-    <string name="user_sign_up_pwd">새 비밀번호</string>
     <string name="user_sign_up_send">인정번호 발송</string>
     <string name="user_sign_up_code_hint">인증번호 입력</string>
     <string name="user_sign_in_mobile_hint">핸드폰번호 입력</string>
-    <string name="user_sign_up_mobile_hint">핸드폰번호 입력</string>
     <string name="user_title_join">커뮤니티 가입</string>
 
 
@@ -330,45 +208,13 @@
     <string name="tip">제시</string>
     <string name="tip_update">새로 고침</string>
     <string name="confirm">확인</string>
-    <string name="attention">주의</string>
-    <string name="kick_logout">다른 설비에서 로기인중,재 등록</string>
-    <string name="deal">거래</string>
-    <string name="good">좋아요</string>
-    <string name="trust">믿음</string>
-    <string name="build_type">환경 전환</string>
-    <string name="property_eth">이더리움 자산</string>
-    <string name="property_btc">비트코인 자산</string>
     <string name="freeze">동결</string>
-    <string name="wallet_charge_my_address">비트코인 입금주소</string>
-    <string name="wallet_charge_address_copy">(주소복사)</string>
-    <string name="wallet_charge_address">주소</string>
     <string name="wallet_assets">주소 복사완료(%s)</string>
-    <string name="wallet_frozen_0">동결0</string>
-    <string name="wallet_charge">입금</string>
-    <string name="wallet_withdraw">출금</string>
-    <string name="wallet_bill">계산서</string>
     <string name="bill_type_all">전부</string>
-    <string name="bill_type_charge">입금</string>
     <string name="bill_type_withdraw">현금 출금</string>
-    <string name="bill_type_withdrawfee">수수료 출금</string>
-    <string name="bill_type_withdrawfrozen">현금출금 동결</string>
-    <string name="bill_type_withdrawunfrozen">현금출금 동결해제</string>
     <string name="bill_type_select">선택</string>
-    <string name="bill_title_all">잔액 명세</string>
-    <string name="bill_title_charge">충전 명세</string>
-    <string name="bill_title_withdraw">출금 명세</string>
-    <string name="bill_title_frozen">동결 명세</string>
     <string name="bill_none">기록 없음</string>
-    <string name="bill_all_none">잔약명세 없음</string>
-    <string name="bill_charge_none">충전명세 없음</string>
-    <string name="bill_withdraw_none">출금명세 없음</string>
     <string name="wallet_withdraw_amount_hint">수량 기입</string>
-    <string name="wallet_none">월렛 없음</string>
-    <string name="market_quantity">양</string>
-    <string name="deal_type_select_tip">거래유형 선택</string>
-    <string name="popup_scan">QR코드 스캔</string>
-    <string name="popup_paste">주소 붙이기</string>
-    <string name="copy_tip_none">복사된 내용 없음</string>
     <string name="qrcode_parsing_failure">QR코드 인식 실패</string>
     <string name="camera_refused">카메라 사용금지</string>
     <string name="order_status_daishenpi">심사 준비중</string>
@@ -377,33 +223,13 @@
     <string name="order_status_guangbozhong">방송 중</string>
     <string name="order_status_shibai">방송 실패</string>
     <string name="order_status_chenggong">방송완료</string>
-    <string name="address_attestation">인증완료</string>
-    <string name="address_unattestation">인증안됨</string>
-    <string name="user_title_address_add">주소추가</string>
-    <string name="user_title_address_add_success">주소추가 완료</string>
     <string name="user_google_btn_close">구글 인증닫기</string>
     <string name="user_google_btn_modify">구글 인증수정</string>
-    <string name="user_title_wallet">월렛 설치</string>
-    <string name="user_title_invite_history">기존 추천내용</string>
-    <string name="invite_history_none">과거 추천내용 없음</string>
-    <string name="user_title_published">나의 광고</string>
-    <string name="user_published_none">발표 사항 없음</string>
-    <string name="user_title_setting">보안 설치</string>
     <string name="user_identity_success">실명인증 통과</string>
-    <string name="user_title_person">개인 페이지</string>
-    <string name="user_title_tip">개인 설치</string>
     <string name="user_mobile_hint">핸드폰번호 입력</string>
-    <string name="user_mobile_format_hint">핸드폰번호 무효</string>
     <string name="user_password_format_hint">비밀번호는 최소 6자리</string>
-    <string name="user_title_trust">믿을수 있는</string>
-    <string name="user_trust_none">불확실한 내용</string>
-    <string name="user_sign_in_confirm">로그인 확인</string>
-    <string name="user_sign_up_nick">닉네임</string>
-    <string name="user_sign_up_nick_hint">닉네임 만들기</string>
-    <string name="user_sign_up_code">핸드폰 인증번호</string>
     <string name="user_sign_up_agree">내용확인 및 동의</string>
     <string name="user_sign_up_profile">《신청협약서》</string>
-    <string name="user_sign_up_confirm">가입 확인</string>
     <string name="user_password_pwdold_hint">기존 비밀번호 입력</string>
     <string name="user_password_google_hint">구글 인증번호 입력</string>
     <string name="user_password_pwdnew_hint">새 비밀번호 입력</string>
@@ -422,8 +248,6 @@
     <string name="google_code_hint">구글 인증번호 입력</string>
     <string name="google_code_format_hint">정확한 구글 인증번호 입력</string>
     <string name="user_about_copyright">2019Wallet 저작권 소유</string>
-    <string name="coin_eth">이더리움</string>
-    <string name="coin_btc">비트코인</string>
     <string name="biz_type_tradefee">거래 수수료</string>
     <string name="biz_type_withdrawfee">출금 수수료</string>
     <string name="biz_status_daiduizhang">장부 대조</string>
@@ -436,16 +260,10 @@
     <string name="please_set_account_money_password">자금 비밀번호 설치</string>
     <string name="CNY">CNY</string>
     <string name="USD">USD</string>
-    <string name="red_package_sub_single">개개 수량</string>
-    <string name="us_web">홈 페이지</string>
-    <string name="email_address">이메일</string>
-    <string name="sina_">sina 블로그</string>
     <string name="waite_content_1">얻을수 있다.그리고 제자가 Theia월렛으로 재텍제품 및 위보비를 구매시 스승도 일정한 혜택을 받을소 있다.</string>
-    <string name="waite_title_1">최초 놀이법</string>
     <string name="waite_content_2">위어보는 Theia Wallet산하 암호화폐관련 추가 서비스 및 암호화폐 일반 예금서비스 입니다.장점은 조작이 편리하고 조건이 쉬우며 또한 수수로가 없어 바로 사용할수 있음으로 고객님의 디지털 자산을 보다 편리하게 </string>
     <string name="waite_content_3">Theia Wallet는 고객들에게 많은 종류의 재텍제픔을 제공하고 고객들은 비트코인,이더리움등 암포화폐로 구매사여 수익을 얻을수 있습니다.</string>
     <string name="consult_1">최초 놀이법</string>
-    <string name="code_login">로기인 비밀번호 확인</string>
     <string name="set_login_pwd">로그인 비밀번호 설치</string>
     <string name="login_pwd_sed_success">비밀번호 설치완료</string>
     <string name="activity_setting_failure">비밀번호 설치실패</string>
@@ -454,8 +272,6 @@
 
 
     <string name="my_wallet_introduction">개인계정은 탈중심화 지갑이고 Theia에서 대신 프라이빗키를 보관하고 있습니다. 중심화된 지갑에서는 지갑분실시 되찾을수 있어서 인증만 통과하면 되찾을수 있고 그외 더욱많은 서비스를 이용할수 있습니다.</string>
-    <string name="my_private_wallet_title">프라이빗 키 월렛</string>
-    <string name="my_private_wallet_introduction">프라이빗 지갑은 탈중심화 지갑이고 탈중심화 지갑관련 모든 신상정보,거래비밀번호,프라이빗키,복구키등 모든 내용은 사용자의 핸드폰에 저장되고 중심화된 서버에 저장되지 않습니다.만약 사용자 실수로 지급을 삭제시 또한 백업해논 프라이빗키 혹은 복구키도 분실되면 지갑은 되찾을수 없습니다.</string>
     <string name="advantage">장점</string>
     <string name="only_user_save_key">사용자만 프라이빗키 보관</string>
     <string name="defect">단점</string>
@@ -482,17 +298,11 @@
     <string name="backup_introtation_dialog_title">면책성명</string>
     <string name="backup_introtation_dialog_content">백업된 자료는 안전한 곳에 보관하고 Theia는 월렛 분실,도난,비빌번호 분실등으로 발생한 손실에대해서는 책임지지 않습니다!</string>
     <string name="my_coin_address_2">나의 계좌번호</string>
-    <string name="qr_share_tip_1">QR코드 스캔 및 Theia 훙빠우수령</string>
-    <string name="qr_share_tip_2">QR코드공유</string>
-    <string name="red_packet_rule">훙빠우 규칙</string>
-    <string name="red_packet_type_1">일바 훙빠우 </string>
-    <string name="red_packet_type_2">럭키 훙빠우</string>
     <string name="sure_pay">결재확인</string>
     <string name="account_balance">계자내 잔액</string>
     <string name="now_pay">즉시 결재 </string>
     <string name="transfer_user_funds">자금입금</string>
 
-    <string name="red_packet">훙빠우</string>
     <string name="welcome_back">어서오세요</string>
     <string name="set_pattern_pwd">패터비밀번호 설치</string>
     <string name="draw_your_pattern_pwd">사용자의 패터비밀번호 설정</string>
@@ -509,14 +319,8 @@
     <string name="wallet_name_input_hint">지갑이름 입력</string>
     <string name="red_packet_tab_title_info">디지털 아셋 훙빠우을 보낸후 출금과 입금기록 확인 가능</string>
     <string name="coin_list">코인 리스트</string>
-    <string name="redpacket_back">훙빠우 반납 </string>
-    <string name="redpacket_get">훙빠우 빼앗기</string>
     <string name="pattern_pwd">패터비밀번호</string>
-    <string name="capital_pwd_error">자금 비밀번호 틀림</string>
     <string name="please_input_transaction_pwd">거래비밀번호 입력 </string>
-    <string name="yubibao_intro">수시 입출금으로 자유롭게 재정관리</string>
-    <string name="lianghualicai_intro">낮은 리스크、높은 수익、정기적인 재정관리 제품</string>
-    <string name="first_play_intro">사제 교육적 노리법、양측 보너스 제도</string>
     <string name="android_txt">Android</string>
     <string name="ios_text">iOS</string>
 
@@ -577,8 +381,6 @@
 
     <string name="question_state_2">순환 실패</string>
 
-    <string name="question_state_3">확인완료</string>
-
     <string name="question_state_4">포상</string>
 
     <string name="question_state_5">포상확인중</string>
@@ -602,16 +404,9 @@
 
     <string name="question_state_8">장려금지급중</string>
 
-    <string name="question_fix">버전복원</string>
     <!--奖励金额   bug等级  修复版本-->
 
     <string name="question_done"><Data><![CDATA[<font color="#4064E6">%1$s</font> %2$s 장려하고 이미 %3$s 버전으로 복원함]]></Data></string>
-
-    <string name="bug_level_1_1">심각</string>
-
-    <string name="bug_level_2_1">일반</string>
-
-    <string name="bug_level_3_1">최적</string>
 
     <string name="setting">설정</string>
 
@@ -619,16 +414,7 @@
     <string name="version_update_info">버전업데이트가능</string>
     <string name="invite_gift">선물요청</string>
     <string name="invite_btn_1">초대요청</string>
-    <string name="invite_btn_2">홍바오요청</string>
-    <string name="invite_text_1">초대요청을 클릭하고 캡쳐본을 친구에게 보내시오</string>
-    <string name="friend_qrimg_1">QR코드스캔</string>
-    <string name="invite_text_2">친구요청</string>
-    <string name="invite_text_3">Theia지갑</string>
     <string name="my_management_money">나의자산</string>
-    <string name="item_management_meony_1">구매금액</string>
-    <string name="item_management_meony_2">총수익</string>
-    <string name="item_management_meony_3">만료시간</string>
-    <string name="invite_my_name">저는%s입니다.Theia지갑을 사용하세요.</string>
     <string name="buy_success">구입성공</string>
     <string name="management_money_detail_1">계약번호</string>
     <string name="management_money_detail_2">거래시간</string>
@@ -665,7 +451,6 @@
     <string name="delay_to_start">%s초후자동연기</string>
     <string name="look_buy_history">구매기록관리</string>
     <string name="no_product">상품없음</string>
-    <string name="product_buy_minamount"><Data><![CDATA[%1$s<font color="#999999"> 구매시작</font>]]></Data></string>
     <string name="money_product_details">보유상품정보</string>
     <string name="product_days">%s일</string>
     <string name="payment_type">만기후에 자동으로 이체됩니다</string>
@@ -680,9 +465,6 @@
     <string name="my_managment_money">나의자산</string>
     <string name="increment">증가</string>
     <string name="management_money_state_4">출시예정</string>
-    <string name="management_money_state_6">거래중지</string>
-    <string name="management_money_state_7">매진</string>
-    <string name="management_money_state_9">종류</string>
     <string name="money_product_check_1">구입한도액초과</string>
     <string name="money_product_check_2">누진구매액에따라 구매하시오</string>
     <string name="money_product_check_3">사용가능잔액부족</string>
@@ -692,10 +474,7 @@
     <string name="product_buy_state_1">보유중</string>
     <string name="product_buy_state_2">환급됨</string>
     <string name="product_buy_state_3">모집실패</string>
-    <string name="product_buy_end"><Data><![CDATA[<font color="#999999">잔액 </font>%1$s]]></Data></string>
     <string name="transaction_confirm_state">거래확인중</string>
-    <string name="management_money_state_8">기한</string>
-    <string name="management_money_state_10">모집마감</string>
     <string name="management_money_state_jxz">계산중</string>
     <string name="lhlc_invest">재테크 투자 를 양적 으로 정하다</string>
     <string name="lhlc_repay">재테크 대금을 측정하다</string>
@@ -711,7 +490,6 @@
     <string name="save_success">저장되었습니다</string>
 
     <string name="save_fail">저장되지 않았습니다</string>
-    <string name="Theia_planet">Theia_planet</string>
 
     <!--dfdfdf-->
     <string name="credit_score">신용 점수</string>
@@ -737,11 +515,7 @@
 
     <string name="from">부터</string>
 
-    <string name="info_share_cancel">공유 취소</string>
-
     <string name="info_share_fail">공유 실패</string>
-
-    <string name="info_share_succ">나눔의 성공</string>
 
     <string name="input_smart_transfer_number">전송 횟수를 입력하십시오.</string>
 
@@ -842,8 +616,6 @@
     <string name="smart_transfer_fee"><Data><![CDATA[이번 광부 조달비는<font color="#333333">%1$s </font>%2$s]]></Data> </string>
 
     <string name="smart_transfer_fee2"><Data><![CDATA[송금 수수료는<font color="#333333">%1$s </font>입니다%2$s]]></Data></string>
-
-    <string name="smart_transfer_success">성공적인 전송</string>
 
     <string name="theia_red_packet">Theia 빨간 봉투 </string>
 

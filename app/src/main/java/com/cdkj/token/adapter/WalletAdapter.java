@@ -27,7 +27,7 @@ public class WalletAdapter extends BaseQuickAdapter<WalletModel.AccountListBean,
     protected void convert(BaseViewHolder helper, WalletModel.AccountListBean item) {
         if (item.getCurrency() != null) {
             String coinLogo = SPUtilHelper.getQiniuUrl() + LocalCoinDBUtils.getCoinIconByCoinSymbol(item.getCurrency());
-            ImgUtils.loadLogo(mContext, coinLogo, helper.getView(R.id.iv_symbol));
+            ImgUtils.loadImage(mContext, coinLogo, helper.getView(R.id.iv_symbol));
             helper.setText(R.id.tv_symbol, item.getCurrency().toUpperCase());
         }
 

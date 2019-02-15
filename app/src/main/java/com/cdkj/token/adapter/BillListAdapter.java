@@ -7,10 +7,9 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.cdkj.baselibrary.utils.DateUtil;
-import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.token.R;
-import com.cdkj.token.utils.AmountUtil;
 import com.cdkj.token.model.BillModel;
+import com.cdkj.token.utils.AmountUtil;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -18,7 +17,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import static com.cdkj.baselibrary.utils.DateUtil.DATE_MMddHHmm;
-import static com.cdkj.token.utils.LocalCoinDBUtils.getCoinWatermarkWithCurrency;
 
 /**
  * 中心化钱包账单流水
@@ -111,14 +109,12 @@ public class BillListAdapter extends BaseQuickAdapter<BillModel.ListBean, BaseVi
         } else { // 冻结流水
 
             if (item.getTransAmountString().contains("-")) { // 金额是负数
-                ImgUtils.loadImage(mContext, getCoinWatermarkWithCurrency(item.getCurrency(), 3), ivType);
+                ivType.setImageResource(R.drawable.coin_out);
+//                ImgUtils.loadImage(mContext, getCoinWatermarkWithCurrency(item.getCurrency(), 3), ivType);
             } else {
-                ImgUtils.loadImage(mContext, getCoinWatermarkWithCurrency(item.getCurrency(), 2), ivType);
+                ivType.setImageResource(R.drawable.coin_in);
+//                ImgUtils.loadImage(mContext, getCoinWatermarkWithCurrency(item.getCurrency(), 2), ivType);
             }
-
         }
-
     }
-
-
 }

@@ -54,7 +54,7 @@ public class EditInputFilter implements InputFilter {
 
         String sourceText = source.toString();
         String destText = dest.toString();
-//验证删除等按键
+        //验证删除等按键
         if (TextUtils.isEmpty(sourceText)) {
             if (dstart == 0 && destText.indexOf(POINTER) == 1) {//保证小数点不在第一个位置
                 return "0";
@@ -84,10 +84,11 @@ public class EditInputFilter implements InputFilter {
             } else {
                 if ((POINTER.equals(source)) && dstart == 0) {//第一个位置输入小数点的情况
                     return "0.";
-                } else if ("0".equals(source) && dstart == 0) {
-                    //用于修复能输入多位0
-                    return "";
                 }
+//                else if ("0".equals(source) && dstart == 0) {
+//                    //用于修复能输入多位0
+//                    return "";
+//                }
             }
         }
 //        dstart

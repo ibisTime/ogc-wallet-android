@@ -22,10 +22,6 @@
 
     <string name="activity_find_mobile_hint">핸드폰 번호입력</string>
 
-    <string name="activity_image_system_open">오픈</string>
-
-
-    <string name="activity_image_system_cancel">취소</string>
 
     <string name="activity_nick_title">닉네임 수정</string>
 
@@ -38,7 +34,6 @@
     <string name="activity_paypwd_title_set">자금 비밀번호 설치</string>
     <string name="activity_paypwd_mobile_hint">핸드폰 번호 입력</string>
     <string name="activity_paypwd_code_hint">인증번호 입력</string>
-    <string name="activity_paypwd_google_hint">구글인정번호 입력</string>
     <string name="activity_paypwd_pwd_hint">자금 비밀번호 입력</string>
     <string name="activity_paypwd_pwd_format_hint">자금 비밀번호은 최소 6자리입니다</string>
     <string name="activity_paypwd_modify_sucess">수정완료</string>
@@ -67,9 +62,6 @@
     <string name="net_req_fail">인터넷 연결실패</string>
     <string name="upload_pic_fail">그림파일 업로드 실패</string>
     <string name="qiniu_token_error">token실패</string>
-    <string name="no_camera">카메라 없음</string>
-    <string name="no_sd_card">SD카드 없음</string>
-    <string name="get_pic_fail">그림파일 다운로드 실패</string>
 
     <string name="activity_authenticate_id_format_hint">정확한 신분증번호를 기입하십시요</string>
 
@@ -78,61 +70,36 @@
     <string name="open_browser_error">브라우저 오류</string>
     <string name="code_down">다시시도%d</string>
     <string name="resend_code">다시시도</string>
-    <string name="back">이전화면</string>
-    <string name="load_error">로드오류</string>
     <string name="choose">선택</string>
     <string name="please_input_account">계정 입력</string>
     <string name="sign_in_success">로그인완료</string>
     <string name="sign_in_fail">로그인실패</string>
-    <string name="send_to_friend">친구에게 발송</string>
-    <string name="save_to_photo">핸드폰에 저장</string>
     <string name="take_a_photo">사진촬영</string>
     <string name="choose_from_album">사진롤에서 선택</string>
-    <string name="password_input_hint">최소 6자리</string>
 
     <string name="ssl_error">ssl 증서 검증 실패 했 다</string>
     <string name="cancel">취소</string>
     <string name="go_on">계속</string>
     <string name="confirm">확인</string>
     <string name="activity_mobile_modify_success">핸드폰번호 입력</string>
-    <string name="sure_">확인</string>
     <string name="prompt">제시</string>
-    <string name="delete_succ">삭제 완료</string>
-    <string name="delete">삭제</string>
-    <string name="show_big_photo">큰 그림보기</string>
-    <string name="do_fall">설치 실패</string>
     <string name="sure">확인</string>
-    <string name="web_create_pic_failure">그림다운 실패</string>
-    <string name="storage_refused">메모리 사용거부</string>
-    <string name="smscode_send_failure">인증번호 발송실패</string>
     <string name="smscode_send_success">인증번호 발송완료</string>
     <string name="user_invite_share_pyq">모멘트</string>
     <string name="user_invite_share_wx">위채트</string>
-    <string name="user_invite_share_title">보내기</string>
     <string name="activity_mobile_mobile">새로운 핸드폰번호</string>
-    <string name="activity_paypwd_pwd">자금 비밀번호</string>
     <string name="activity_find_send">인증번호 받기</string>
     <string name="activity_find_code_hint">인증번호 입려</string>
-    <string name="activity_find_google_hint">구글 인증번호입력</string>
     <string name="activity_find_password_hint">비밀번호 입력</string>
     <string name="activity_find_repassword_hint">비밀번호 다시 입력</string>
     <string name="activity_find_password_format_hint">비밀번호는 최소6자리</string>
     <string name="activity_find_repassword_format_hint">비밀번호 입력 일치하지 않음</string>
     <string name="activity_find_success">비밀번호 수정완료</string>
     <string name="activity_find_failure">비밀번소 수정실패</string>
-    <string name="activity_image_unknow_error">오류 발생</string>
-    <string name="activity_image_tip">제시</string>
-    <string name="activity_image_no_camera">카메라 없음</string>
-    <string name="activity_image_confirm">확인</string>
-    <string name="activity_image_no_cdcard">메모리카드 없음</string>
-    <string name="activity_image_getimg_failure">그림다운 실패</string>
-    <string name="activity_image_system_tip">시스템 제시</string>
     <string name="activity_image_system_content">카메라 인식실패 혹은 메모리 사용공강 부족으로 이기능을 사용할수 없습니다.설치 화면에서 재 설치 바랍니다.</string>
     <string name="activity_find_password">새로운 비밀번호</string>
     <string name="activity_find_repassword">비밀번호 확인</string>
     <string name="buy_product_get_income">예상수입</string>
-    <string name="activity_find_google_paste">붙이기</string>
-    <string name="activity_find_google">구글인정번호</string>
     <string name="pull_down_to_refresh">내려서 회복하시오</string>
     <string name="refreshing">회복중입니다...</string>
     <string name="loading">다운로드중입니다...</string>

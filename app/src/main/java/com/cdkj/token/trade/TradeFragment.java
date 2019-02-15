@@ -9,12 +9,13 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.view.WindowManager;
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
 import com.bigkoo.pickerview.view.OptionsPickerView;
@@ -23,18 +24,25 @@ import com.cdkj.baselibrary.api.BaseResponseListModel;
 import com.cdkj.baselibrary.api.BaseResponseModel;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.BaseLazyFragment;
+import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.dialog.UITipDialog;
+import com.cdkj.baselibrary.model.UserInfoModel;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.BigDecimalUtils;
 import com.cdkj.baselibrary.utils.DateUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
+import com.cdkj.baselibrary.utils.ToastUtil;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.DialogPayMessageBinding;
 import com.cdkj.token.databinding.FragmentTradeBinding;
 import com.cdkj.token.interfaces.EditInputFilter;
+import com.cdkj.token.interfaces.IdentifyInterface;
+import com.cdkj.token.interfaces.IdentifyPresenter;
+import com.cdkj.token.interfaces.UserInfoInterface;
+import com.cdkj.token.interfaces.UserInfoPresenter;
 import com.cdkj.token.model.LineChartDataModel;
 import com.cdkj.token.model.PayTypeModel;
 import com.cdkj.token.model.SuccessModel;
@@ -50,9 +58,9 @@ import com.cdkj.token.utils.NetWorrkUtils;
 import com.cdkj.token.utils.StringUtil;
 import com.cdkj.token.views.dialogs.PasswordInputDialog;
 import com.github.mikephil.charting.data.Entry;
-
+import com.zqzn.idauth.sdk.FaceResultCallback;
+import com.zqzn.idauth.sdk.IdResultCallback;
 import org.greenrobot.eventbus.Subscribe;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,7 +68,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -71,7 +78,7 @@ import retrofit2.Call;
  * Created by cdkj on 2018/12/27.
  */
 
-public class TradeFragment extends BaseLazyFragment {
+public class TradeFragment extends BaseLazyFragment implements IdentifyInterface, UserInfoInterface {
 
     private FragmentTradeBinding mBinding;
     private int position;//0是  买入  1是卖出
@@ -81,6 +88,8 @@ public class TradeFragment extends BaseLazyFragment {
     private OptionsPickerView payTypePicker;
     private PayTypeModel payTypeModel;
     private Disposable subscribe;
+    private UserInfoPresenter mGetUserInfoPresenter;
+    private String symbol;
 
     /**
      * 获得fragment实例
@@ -106,7 +115,8 @@ public class TradeFragment extends BaseLazyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(mActivity.getLayoutInflater(), R.layout.fragment_trade, null, false);
-
+        mGetUserInfoPresenter = new UserInfoPresenter(this, mActivity);
+        mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         initLineChart();
         initLineChartData();
         initSymbolPrice();
@@ -192,7 +202,6 @@ public class TradeFragment extends BaseLazyFragment {
     private void initSymbolPrice() {
         HashMap<String, String> map = new HashMap<>();
         map.put("symbol", "BTC");
-
         Call<BaseResponseModel<SymbolPriceModel>> symbolPrice = RetrofitUtils.createApi(MyApi.class).getSymbolPrice("650201", StringUtils.getRequestJsonString(map));
         addCall(symbolPrice);
         symbolPrice.enqueue(new BaseResponseModelCallBack<SymbolPriceModel>(mActivity) {
@@ -211,7 +220,7 @@ public class TradeFragment extends BaseLazyFragment {
 
             @Override
             protected void onFinish() {
-                disMissLoading();
+
             }
         });
     }
@@ -303,6 +312,20 @@ public class TradeFragment extends BaseLazyFragment {
         });
         //提交按钮
         mBinding.btnConfirm.setOnClickListener(view -> {
+//            SPUtilHelper.get
+            if (SPUtilHelper.getRealName() == null || SPUtilHelper.getRealName().equals("")) {
+//                startIdentity();
+                new CommonDialog(mActivity).builder()
+                        .setTitle("请先进行实名认证")
+                        .setNegativeBtn("取消", null)
+                        .setPositiveBtn("确定", new CommonDialog.OnPositiveListener() {
+                            @Override
+                            public void onPositive(View view) {
+                                startIdentity();
+                            }
+                        }).show();
+                return;
+            }
             if (checkSubmit()) {
                 showSubmitDialog();
             }
@@ -350,7 +373,10 @@ public class TradeFragment extends BaseLazyFragment {
         //用点击事件会有bug
 //        mBinding.etNumber.setOnClickListener(view -> isMoneyInput = false);
 //        mBinding.etMoney.setOnClickListener(view -> isMoneyInput = true);
-
+        //设置只能输入小数和整数
+        mBinding.etMoney.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        mBinding.etNumber.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        //设置最多输入小数的位数
         mBinding.etMoney.setFilters(new InputFilter[]{new EditInputFilter(2)});
         mBinding.etNumber.setFilters(new InputFilter[]{new EditInputFilter(8)});
         mBinding.etMoney.addTextChangedListener(new TextWatcher() {
@@ -476,9 +502,17 @@ public class TradeFragment extends BaseLazyFragment {
         if (payBankModel != null) {
 
             if (!TextUtils.isEmpty(payBankModel.getBankcardNumber()) && payBankModel.getBankcardNumber().length() > 5) {
-                mBinding.tvPayName.setText("尾号为:" + payBankModel.getBankcardNumber().substring(payBankModel.getBankcardNumber().length() - 4, payBankModel.getBankcardNumber().length()));
+                if (TextUtils.equals("支付宝", payBankModel.getBankName())) {
+                    mBinding.tvPayName.setText("支付宝尾号为:" + payBankModel.getBankcardNumber().substring(payBankModel.getBankcardNumber().length() - 4, payBankModel.getBankcardNumber().length()));
+                } else {
+                    mBinding.tvPayName.setText("银行卡尾号为:" + payBankModel.getBankcardNumber().substring(payBankModel.getBankcardNumber().length() - 4, payBankModel.getBankcardNumber().length()));
+                }
             } else {
-                mBinding.tvPayName.setText("尾号为:" + payBankModel.getBankcardNumber());
+                if (TextUtils.equals("支付宝", payBankModel.getBankName())) {
+                    mBinding.tvPayName.setText("支付宝尾号为:" + payBankModel.getBankcardNumber());
+                } else {
+                    mBinding.tvPayName.setText("银行卡尾号为:" + payBankModel.getBankcardNumber());
+                }
             }
         } else {
             mBinding.tvPayName.setText("");
@@ -650,6 +684,92 @@ public class TradeFragment extends BaseLazyFragment {
     }
 
     /**
+     * 启动身份证实名认证
+     */
+    private void startIdentity() {
+        IdentifyPresenter mIdentifyPresenter = new IdentifyPresenter(mActivity, this);
+
+        if (TextUtils.isEmpty(SPUtilHelper.getRealName())) {
+            mIdentifyPresenter.startCardIndentify();
+        } else {
+            UITipDialog.showInfoNoIcon(mActivity, getStrRes(R.string.user_iden_ok));
+        }
+    }
+
+    //************身份证实名认证回调
+    @Override
+    public void onError(String msg) {
+        disMissLoading();
+    }
+
+
+    @Override
+    public void onIdStart() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void onIdEnd(IdResultCallback.IdResult result) {
+
+    }
+
+    @Override
+    public void onFaceStart() {
+
+    }
+
+    @Override
+    public void onFaceEnd(FaceResultCallback.FaceResult result) {
+    }
+
+    @Override
+    public void onUpLoadStart() {
+        showLoadingDialog();
+    }
+
+    @Override
+    public void onUpLoadFailure(String info) {
+        disMissLoading();
+        ToastUtil.show(mActivity, info);
+    }
+
+    @Override
+    public void onUpLoadSuccess() {
+        //重新获取用户信息
+        showLoadingDialog();
+        mGetUserInfoPresenter.getUserInfoRequest();
+    }
+
+
+    //身份认证上传回调完成  无论成功失败
+    @Override
+    public void onUpLoadFinish() {
+//        disMissLoading();
+    }
+
+    /**
+     * 用户信息回调
+     */
+    @Override
+    public void onStartGetUserInfo() {
+        showLoadingDialog();
+    }
+
+    //用户信息  获取成功回调
+    @Override
+    public void onFinishedGetUserInfo(UserInfoModel userInfo, String errorMsg) {
+        disMissLoading();
+        if (TextUtils.isEmpty(errorMsg)) {
+            new CommonDialog(mActivity).builder()
+                    .setTitle("认证成功")
+                    .setPositiveBtn("确定", null)
+                    .show();
+        }
+    }
+
+    //************身份证实名认证回调
+
+    /**
      * 选择银行卡的回调
      *
      * @param userBankCardModel
@@ -660,10 +780,17 @@ public class TradeFragment extends BaseLazyFragment {
         if (userBankCardModel == null)
             return;
         if (!TextUtils.isEmpty(userBankCardModel.getBankcardNumber()) && userBankCardModel.getBankcardNumber().length() > 5) {
-            mBinding.tvPayName.setText("尾号为:" + userBankCardModel.getBankcardNumber().substring(userBankCardModel.getBankcardNumber().length() - 4, userBankCardModel.getBankcardNumber().length()));
+            if (TextUtils.equals("支付宝", payBankModel.getBankName())) {
+                mBinding.tvPayName.setText("支付宝尾号为:" + payBankModel.getBankcardNumber().substring(payBankModel.getBankcardNumber().length() - 4, payBankModel.getBankcardNumber().length()));
+            } else {
+                mBinding.tvPayName.setText("银行卡尾号为:" + payBankModel.getBankcardNumber().substring(payBankModel.getBankcardNumber().length() - 4, payBankModel.getBankcardNumber().length()));
+            }
         } else {
-            mBinding.tvPayName.setText("尾号为:" + userBankCardModel.getBankcardNumber());
+            if (TextUtils.equals("支付宝", payBankModel.getBankName())) {
+                mBinding.tvPayName.setText("支付宝尾号为:" + payBankModel.getBankcardNumber());
+            } else {
+                mBinding.tvPayName.setText("银行卡尾号为:" + payBankModel.getBankcardNumber());
+            }
         }
     }
-
 }

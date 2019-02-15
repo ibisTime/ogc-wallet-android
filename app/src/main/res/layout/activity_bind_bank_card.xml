@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="持卡人"
+                android:text="姓名"
                 android:textColor="@color/fontColor_gray"
                 android:textSize="15sp" />
 
@@ -33,7 +33,7 @@
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="请输入开户名"
+                android:hint="请输入姓名"
                 android:textColor="#333333"
                 android:textColorHint="@color/fontColor_hint"
                 android:textSize="15sp" />
@@ -56,7 +56,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="银行"
+                android:text="收款方式"
                 android:textColor="@color/fontColor_gray"
                 android:textSize="15sp" />
 
@@ -67,7 +67,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="请选择银行"
+                android:hint="请选择收款方式"
                 android:textColor="#333333"
                 android:textColorHint="@color/fontColor_hint"
                 android:textSize="15sp" />
@@ -87,6 +87,8 @@
             android:background="@color/lineColor" />
 
         <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_cardZH"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -120,17 +122,19 @@
             android:background="@color/lineColor" />
 
         <LinearLayout
+            android:id="@+id/ll_cardId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_cardId"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="银行卡号"
+                android:text="收款账号"
                 android:textColor="@color/fontColor_gray"
                 android:textSize="15sp" />
 
@@ -140,8 +144,7 @@
                 android:layout_height="50dp"
                 android:layout_marginRight="15dp"
                 android:background="@null"
-                android:hint="请输入银行卡号"
-                android:inputType="number"
+                android:hint="请输入收款账号"
                 android:textColor="#333333"
                 android:textColorHint="@color/fontColor_hint"
                 android:textSize="15sp" />

@@ -2,66 +2,32 @@
     <string name="app_name">橙Wallet</string>
 
     <string name="main_tag_consult">发现</string>
-    <string name="main_tab_wallet">钱包</string>
     <string name="main_tab_my">我的</string>
     <string name="exit_confirm">确认退出？</string>
 
     <string name="tip">提示</string>
     <string name="tip_update">更新提示</string>
     <string name="confirm">确认</string>
-    <string name="attention">注意</string>
-    <string name="kick_logout">您的账号已在其他终端登录,重新登录</string>
-
-    <string name="deal">交易</string>
-    <string name="good">好评</string>
-    <string name="trust">信任</string>
-
-    <string name="build_type">环境切换</string>
 
 
-    <string name="property_eth">以太币资产(ETH)</string>
-    <string name="property_btc">比特币资产(BTC)</string>
     <string name="freeze">冻结</string>
 
 
-    <string name="wallet_charge_my_address">我的比特币收款地址</string>
-    <string name="wallet_charge_address_copy">(点击复制地址)</string>
-    <string name="wallet_charge_address">地址</string>
-
     <string name="wallet_withdraw_balance">可用余额</string>
     <string name="wallet_withdraw_address">接收地址</string>
-    <string name="wallet_withdraw_address_input_hint">请粘贴地址或扫码录入</string>
-    <string name="wallet_withdraw_amount">提币数量</string>
     <string name="wallet_withdraw_free">手续费\u3000</string>
     <string name="wallet_withdraw_tip">手续费将在提币金额中扣除</string>
-    <string name="wallet_withdraw_confirm">确认提币</string>
 
     <string name="wallet_withdraw_order_title">提币订单</string>
     <string name="wallet_withdraw_order_none">暂无提现记录</string>
 
     <string name="wallet_title">我的资产</string>
     <string name="wallet_assets">总资产(%s)</string>
-    <string name="wallet_frozen_0">冻结0</string>
-    <string name="wallet_charge">充币</string>
-    <string name="wallet_withdraw">提币</string>
-    <string name="wallet_bill">账单</string>
 
     <string name="bill_type_all">全部</string>
-    <string name="bill_type_charge">充币</string>
     <string name="bill_type_withdraw">提现</string>
-    <string name="bill_type_withdrawfee">取现手续费</string>
-    <string name="bill_type_withdrawfrozen">取现冻结</string>
-    <string name="bill_type_withdrawunfrozen">取现解冻</string>
     <string name="bill_type_select">筛选</string>
-    <string name="bill_title_all">余额明细</string>
-    <string name="bill_title_charge">充值明细</string>
-    <string name="bill_title_withdraw">提币明细</string>
-    <string name="bill_title_frozen">冻结明细</string>
     <string name="bill_none">暂无记录</string>
-    <string name="bill_all_none">暂无余额明细</string>
-    <string name="bill_charge_none">暂无充值明细</string>
-    <string name="bill_withdraw_none">暂无提币明细</string>
-    <string name="bill_frozen_none">暂无冻结明细</string>
 
     <string name="wallet_title_bill_detail">账单详情</string>
     <string name="wallet_bill_detail_before">变动前金额</string>
@@ -70,28 +36,14 @@
     <string name="wallet_bill_detail_status">明细状态</string>
     <string name="wallet_bill_detail_type">明细摘要</string>
 
-    <string name="wallet_title_bill_list">账单</string>
-
     <string name="wallet_title_charge">充币</string>
     <string name="wallet_charge_recode">记录</string>
     <string name="wallet_charge_address_copy_success">地址已复制</string>
 
-    <string name="wallet_title_withdraw">提币</string>
-    <string name="wallet_withdraw_address_hint">请输入发送地址</string>
     <string name="wallet_withdraw_amount_hint">请输入数量</string>
     <string name="wallet_withdraw_success">提现申请成功</string>
-    <string name="wallet_transfer_success">转账申请成功</string>
 
 
-    <string name="wallet_none">暂无钱包</string>
-
-    <string name="market_quantity">量</string>
-
-    <string name="deal_type_select_tip">请选择交易类型</string>
-
-    <string name="popup_scan">扫描二维码</string>
-    <string name="popup_paste">粘贴地址</string>
-    <string name="copy_tip_none">您还没有复制内容</string>
     <string name="qrcode_parsing_failure">解析二维码失败</string>
     <string name="camera_refused">已拒绝打开相机</string>
 
@@ -105,23 +57,12 @@
 
 
     // 我的
-    <string name="address_attestation">已认证</string>
-    <string name="address_unattestation">未认证</string>
 
-    <string name="user_title_address_add">添加地址</string>
-    <string name="user_title_address_add_success">添加地址成功</string>
-    <string name="user_address_tag_hint">请输入地址标签</string>
     <string name="user_address_hint">请输入地址</string>
-
-    <string name="user_title_address">地址管理</string>
-    <string name="user_address_none">暂无地址</string>
-    <string name="user_address_delete_confirm">您确定要删除该地址吗？</string>
-    <string name="user_address_delete_success">删除成功</string>
 
     <string name="user_title_language">语言设置</string>
     <string name="user_language_english">English</string>
     <string name="user_language_simplified">中文简体</string>
-    <string name="user_language_traditional">中文繁体</string>
 
     <string name="user_title_google">谷歌验证</string>
     <string name="user_google_open">已开启</string>
@@ -132,34 +73,14 @@
 
     <string name="user_title_join">加入社群</string>
 
-    <string name="user_title_wallet">钱包设置</string>
-
-    <string name="user_title_invite_history">推荐历史</string>
-    <string name="invite_history_none">暂无推荐历史</string>
-
-    <string name="user_title_published">我的广告</string>
-    <string name="user_published_none">暂无发布</string>
-
-    <string name="user_title_setting">安全设置</string>
     <string name="user_identity_success">您已通过实名认证</string>
-
-    <string name="user_title_person">个人主页</string>
-
-    <string name="user_title_tip">个性设置</string>
 
     <string name="user_title_sign_in">登  录</string>
     <string name="user_mobile_hint">请输入手机号码</string>
-    <string name="user_mobile_format_hint">手机号码格式不正确</string>
     <string name="user_password_format_hint">密码长度不能小于6位</string>
 
-    <string name="user_title_trust">受信任的</string>
-    <string name="user_trust_none">暂无信任人</string>
-
     <string name="user_title_sign_up">注  册</string>
-    <string name="user_sign_up_protocol">注册协议</string>
-    <string name="user_nick_hint">请设置您的昵称</string>
     <string name="user_code_hint">请输入验证码</string>
-    <string name="user_code_format_hint">验证码格式不正确</string>
     <string name="user_password_hint">请输入密码</string>
     <string name="user_repassword_hint">请确认密码</string>
     <string name="user_repassword_two_hint">两次输入的密码不相同</string>
@@ -169,37 +90,20 @@
 
 
     <string name="user_sign_in_mobile_hint">请输入手机号</string>
-    <string name="user_sign_in_confirm">确认登录</string>
     <string name="user_sign_in_forget">忘记密码?</string>
 
-    <string name="user_sign_up_nick">昵称</string>
-    <string name="user_sign_up_nick_hint">请设置您的昵称</string>
-    <string name="user_sign_up_mobile">手机号</string>
-    <string name="user_sign_up_mobile_hint">请输入手机号码</string>
-    <string name="user_sign_up_code">手机验证码</string>
     <string name="user_sign_up_code_hint">请输入验证码</string>
     <string name="user_sign_up_send">获取验证码</string>
-    <string name="user_sign_up_pwd">新密码</string>
-    <string name="user_sign_up_pwd_hint">不少于6位</string>
-    <string name="user_sign_up_repwd">确认密码</string>
-    <string name="user_sign_up_repwd_hint">不少于6位</string>
     <string name="user_sign_up_agree">我已阅读并同意</string>
     <string name="user_sign_up_profile">《注册协议》</string>
-    <string name="user_sign_up_confirm">确认注册</string>
 
-    <string name="user_address_add_address">提币地址</string>
-    <string name="user_address_add_code">手机验证码</string>
     <string name="user_address_add_code_hint">请输入验证码</string>
-    <string name="user_address_add_is_default">将该账户设置为认证账户</string>
-    <string name="user_address_add_tip">向认证账户提现不再输入资金密码、谷歌验证码</string>
 
     <string name="user_title_email_bind">绑定邮箱</string>
     <string name="user_title_email_modify">修改邮箱</string>
     <string name="user_email_bind_success">绑定成功</string>
     <string name="user_email_modify_success">修改成功</string>
-    <string name="user_email">邮箱</string>
     <string name="user_email_hint">请输入邮箱</string>
-    <string name="user_email_code">邮箱验证码</string>
     <string name="user_email_code_hint">请输入邮箱验证码</string>
 
     <string name="user_google_key">密钥</string>
@@ -232,25 +136,8 @@
     <string name="user_setting_google">谷歌验证</string>
     <string name="user_setting_sign_out">退出登录</string>
 
-    <string name="user_tip_language">语言设置</string>
-
-    <string name="user_address_add">添加新地址</string>
-    <string name="user_address">我的地址</string>
-    <string name="user_setting">系统设置</string>
-    <string name="user_tip">个性设置</string>
     <string name="user_issue">帮助中心</string>
-    <string name="user_services">联系客服</string>
     <string name="user_about">关于我们</string>
-
-    <string name="user_about_update">更新至最新版本</string>
-    <string name="user_about_updated">已经是最新版本</string>
-    <string name="user_sign_up_referee">推荐人手机</string>
-    <string name="user_sign_up_referee_hint">推荐人手机号(选填)</string>
-    <string name="user_invite_url">分享链接</string>
-    <string name="user_invite_pic">分享二维码</string>
-
-    <string name="email_code_send_success">验证码已经发送至邮箱，请注意查收</string>
-    <string name="email_code_send_failure">邮箱验证码发送失败</string>
 
     <string name="sms_code_title">手机验证码</string>
     <string name="sms_code_send">获取验证码</string>
@@ -263,11 +150,8 @@
     <string name="user_about_copyright">2019Wallet版权所有</string>
 
     // Util
-    <string name="coin_eth">以太币</string>
-    <string name="coin_btc">比特币</string>
 
     <string name="biz_type_charge">充值</string>
-    <string name="biz_type_withdraw">取现</string>
     <string name="biz_type_tradefee">交易手续费</string>
     <string name="biz_type_withdrawfee">提现手续费</string>
 
@@ -276,49 +160,26 @@
     <string name="biz_status_zhangbuping">帐不平待调账审批</string>
     <string name="biz_status_yiduibuping">已对账且账不平</string>
     <string name="biz_status_wuxuduizhang">无需对账</string>
-    <string name="consult_title">首页</string>
-    <string name="consult_statistics_none">暂无流水</string>
-    <string name="consult_statistics_title">交易流水</string>
-    <string name="wallet_withdraw_amount_hint2">您最多可以提现</string>
     <string name="call_phone">联系对方</string>
-    <string name="want_to_pay">我要支付</string>
-
-    <string name="pay_confirm">确认支付</string>
-
-    <string name="pay_amount">支付数量</string>
-
-    <string name="pay_succ">支付成功</string>
-    <string name="pay_fall">支付失败</string>
-    <string name="biz_type_trans">划转</string>
 
     <string name="consult_none_title">敬请期待</string>
-    <string name="user_wallet_setting">钱包设置</string>
     <string name="user_join">加入社群</string>
-    <string name="wallet_bill_list_charge">充币</string>
-    <string name="wallet_bill_list_withdraw">提币</string>
     <string name="create_wallet">创建钱包</string>
-    <string name="put_wallet">导入钱包</string>
     <string name="please_set_transaction_pass_word">请设置交易密码</string>
     <string name="please_check_transaction">请确认交易密码</string>
     <string name="password_error">两次输入密码不一致</string>
     <string name="wallet_create_success">新钱包创建成功</string>
-    <string name="important_hints">重要提示</string>
-    <string name="create_wallet_tip">拥有钱包备份就能完全控制钱包资产，因此强烈建议您在使用钱包前做好备份，并将钱包备份保存到安全的地方。</string>
-    <string name="now_backup">立即备份</string>
     <string name="next_step">下一步</string>
     <string name="sure_1">确认</string>
-    <string name="now_check">立即验证</string>
     <string name="import_wallet">导入钱包</string>
     <string name="wallet_import_success">钱包导入成功</string>
     <string name="now_use">立即体验</string>
     <string name="wallet_create_fail">钱包创建失败</string>
     <string name="check_words_fail">助记词验证失败</string>
-    <string name="please_input_words">请输入助记词</string>
     <string name="dont_screenshot">泄露助记词将导致资产丢失，请认真抄写，切勿截屏</string>
     <string name="wallet_import_fail">钱包导入失败</string>
     <string name="please_remember_and_save">请记下您的钱包助记词并保存到安全的地方</string>
     <string name="words_tip_1">钱包助记词用于恢复钱包资产，拥有助记词即可完全控制钱包资产，请务必妥善保管，丢失助记词即丢失钱包资产。Theia不存储用户助记词，无法提供找回功能。</string>
-    <string name="words_tip_2">请输入备份的钱包助记词（12个英文单词），按空格分离</string>
     <string name="check_your_words">验证你的钱包助记词</string>
     <string name="words_tip_3">根据你记下的助记词，顺序点击，验证你备份的记助词正确无误。</string>
     <string name="update_password_success">密码修改成功</string>
@@ -335,10 +196,6 @@
     <string name="private_key">私钥</string>
     <string name="export_private_key">导出私钥</string>
     <string name="coin_key_name">以下是%s的地址和私钥，点击可复制</string>
-    <string name="coin_eth_ename">Ethereum</string>
-    <string name="coin_wan_ename">Wancoin</string>
-    <string name="coin_eth_cname">以太坊</string>
-    <string name="coin_wan_came">WAN</string>
     <string name="get_money">收款</string>
     <string name="service_money_tip">矿工费将在可用余额中扣除</string>
     <string name="transfer">转账</string>
@@ -349,26 +206,13 @@
     <string name="please_open_the_net">请先打开网络</string>
     <string name="privacy_agreement">隐私协议</string>
     <string name="transaction_details">交易详情</string>
-    <string name="sure_delete_wallet">钱包助记词验证通过，确认是否删除钱包？</string>
-    <string name="sure_delete">确认删除</string>
     <string name="choose_fees">选择手续费</string>
     <string name="choose_fee_tip">选择经济的手续费，可能会导致延长交易确认时间。对时间有要求的交易，请选择优先</string>
     <string name="priority">优先</string>
     <string name="extract_amount">提币金额</string>
     <string name="transaction_record">交易记录</string>
-    <string name="business_app">商业应用</string>
-    <string name="coin_to_coin">币生币</string>
-    <string name="tha_planet">Theia星球</string>
-    <string name="ybb">余币宝</string>
-    <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
-    <string name="telegram">Telegram</string>
-    <string name="thasddoddfvb">thasddoddfvb</string>
-    <string name="qq_group">QQ Group</string>
-    <string name="wechat">Wechat</string>
     <string name="transfer_number">转账数量</string>
-    <string name="google_verification_code">谷歌验证码</string>
-    <string name="please_input_google_code">请输入谷歌验证码</string>
     <string name="please_input_withdraw_address">请输入收款地址</string>
     <string name="withdraw_address">收款地址</string>
     <string name="transfer_out_address">转出地址</string>
@@ -377,12 +221,8 @@
     <string name="transction_code">交易号</string>
     <string name="transction_time">交易时间</string>
     <string name="view_more_detials">查看更多详情</string>
-    <string name="affix">粘贴</string>
-    <string name="btc_wallet_tip">BTC钱包地址禁止充值除BTC之外的其他资产，任何BTC资产充值将不可找回</string>
     <string name="private_key_tip">注意！拥有私钥就能完全控制该地址的资产，不要分享给任何人</string>
     <string name="please_wait">敬请期待</string>
-    <string name="i_agree_this_terms">我已阅读并同意服务及隐私条款</string>
-    <string name="wallet_delete_tip">注意！删除钱包前,请务必确认已备份号钱包助记词，否则将丢失您的钱包资产。</string>
     <string name="add_assets">添加资产</string>
     <string name="error_wallet_address">错误的地址</string>
     <string name="resolve_wallet_address_fail">解析地址失败</string>
@@ -404,12 +244,8 @@
     <string name="accounts_and_security">账户与安全</string>
     <string name="local_coin">本地货币</string>
     <string name="language">语言</string>
-    <string name="please_create_or_import_wallet">请先创建或导入钱包</string>
     <string name="no_assets">暂无资产</string>
-    <string name="my_private_wallet">私钥钱包(%s)</string>
-    <string name="chain">中国</string>
     <string name="now_register">立即注册</string>
-    <string name="no_account">还没账号？</string>
     <string name="register">注册</string>
     <string name="find_pwd_sure">确 定</string>
     <string name="find_pwd">找回密码</string>
@@ -417,64 +253,32 @@
     <string name="choose_country">选择国家</string>
     <string name="wallet_tool">钱包工具</string>
     <string name="wallet_delete_success">钱包删除成功</string>
-    <string name="me_red_package">我的红包</string>
-    <string name="send_red_package">发红包</string>
-    <string name="send_you_red_package">给您发送了一个红包</string>
-    <string name="defaut_red_package_mesg">红包一响,黄金万两</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="my_red_package">我的红包</string>
-    <string name="get_red_package">我收到的</string>
-    <string name="send_red_package2">我发出的</string>
-    <string name="sub_total_red_package">总共发送</string>
     <string name="red_package_db">代币类型</string>
-    <string name="red_package_sub_total">代币总额</string>
     <string name="red_package_unit">枚</string>
     <string name="red_package_number">红包个数</string>
     <string name="red_package_number_unit">个</string>
-    <string name="red_package_msg">请输入祝福语</string>
     <string name="red_package_set">塞进红包</string>
-    <string name="red_package_send">发红包</string>
     <string name="red_package_have">个人账户余额</string>
-    <string name="red_package_total">总量</string>
-    <string name="red_package_empty_type">暂无可用币种</string>
-    <string name="red_package_please_set_type">请先设置支付密码</string>
     <string name="red_package_min_number">红包个数最少为1个</string>
     <string name="red_package_pleas_number">请输入要发红包数量</string>
     <string name="red_package_min_numer">总额最小为%s枚</string>
     <string name="red_package_piease_send_number">请输入要发的数量</string>
     <string name="red_package_please_type">请选择代币</string>
-    <string name="red_package_set_hand">改为拼手气红包</string>
-    <string name="red_package_set_ordinary">改为普通红包</string>
-    <string name="red_package_please_sing_number">请输入单个数量</string>
-    <string name="red_package_please_total_number">请输入总数量</string>
     <string name="red_package_please_number">请输入数量</string>
-    <string name="red_package_my">我的红包</string>
     <string name="red_package_get_empty">暂无抢到的红包</string>
-    <string name="api_error">请求接口错误</string>
     <string name="red_package_send_empty">暂无发送记录</string>
-    <string name="red_package_form_user">来自</string>
-    <string name="red_package_send_success">发送成功,请扫描二维码抢红包</string>
-    <string name="assets">资产</string>
-    <string name="my_coin_address">我的%s收款地址</string>
     <string name="red_pg">发红包</string>
-    <string name="my_red_package_title">抢到红包</string>
     <string name="red_package_mxn_number">红包个数最多为%d个</string>
     <string name="red_package_max_numer">总额最多为%d枚</string>
-    <string name="share">分享</string>
     <string name="please_set_account_money_password">请先设置资金密码</string>
     <string name="wallet_charge_record">记录</string>
     <string name="CNY">CNY</string>
     <string name="USD">USD</string>
     <string name="sen_red_packet_note">红包一响,黄金万两</string>
-    <string name="red_package_sub_single">单个数量</string>
-    <string name="us_web">官网</string>
-    <string name="email_address">邮箱地址</string>
-    <string name="sina_">新浪微博</string>
-    <string name="telegram_address">https://t.me/THAWallet_cn</string>
     <string name="waite_content_1">Theia用户可以通过邀请制收取徒弟，并根据任务引导来教育徒弟，从而获得算力。另外，徒弟使用Theia钱包购买量化理财或余币宝，师父可获得徒弟一定比例的收益奖励。</string>
-    <string name="waite_title_1">全球师徒首创玩法:</string>
     <string name="waite_content_2">余币宝是Theia Wallet旗下的数字货币增值服务和活期数字货币管理服务产品。特点是操作简便、低门槛、零手续费、可随取随用，让您更灵活的管理数字资产。</string>
     <string name="wait_title_2">余币宝：</string>
     <string name="waite_content_3">Theia Wallet为用户提供多种类型的优质理财产品，用户可以使用比特币、以太坊等数字货币购买理财产品而获得收益。</string>
@@ -485,8 +289,6 @@
     <string name="recommend_application">推荐应用</string>
     <string name="copy_success">复制成功</string>
     <string name="transfer_2">转账</string>
-    <string name="account_login">账号密码登录</string>
-    <string name="code_login">验证码登录</string>
     <string name="set_login_pwd">设置登录密码</string>
     <string name="login_pwd_sed_success">密码设置成功</string>
     <string name="activity_setting_failure">密码设置失败</string>
@@ -496,8 +298,6 @@
     <string name="version_num">-：V %s</string>
     <string name="my_account_wallet">个人账户</string>
     <string name="my_wallet_introduction">个人账户就是指中心化钱包,是由Theia替您保存私钥。在中心化钱包中,不存在钱包丢失了无法找回的情况,可以通过验证找回您的钱包，并且可以让你体验到更多的服务。</string>
-    <string name="my_private_wallet_title">私钥钱包</string>
-    <string name="my_private_wallet_introduction">私钥钱包就是去中心化钱包，在去中心化钱包中，所有的用户身份验证内容，如交易密码、私钥、助记词等都保存在用户手机本地，并不是保存在中心化服务器中。如果用户误删钱包，忘记备份私钥或者助记词，将无法找回钱包。</string>
     <string name="advantage">优点</string>
     <string name="only_user_save_key">只有用户保存私钥。</string>
     <string name="defect">缺点</string>
@@ -524,16 +324,10 @@
     <string name="backup_introtation_dialog_title">免责声明</string>
     <string name="backup_introtation_dialog_content">请确保已备份钱包至安全的地方，Theia不承担任何钱包丢失、被盗、忘记密码等产生的资产损失！</string>
     <string name="my_coin_address_2">我的收款地址</string>
-    <string name="qr_share_tip_1">扫描二维码领取Theia红包</string>
-    <string name="qr_share_tip_2">截图分享二维码</string>
-    <string name="red_packet_rule">红包规则</string>
-    <string name="red_packet_type_1">当前为普通红包</string>
-    <string name="red_packet_type_2">当前为拼手气红包</string>
     <string name="sure_pay">确认付款</string>
     <string name="account_balance">账户余额</string>
     <string name="now_pay">立即付款</string>
     <string name="transfer_user_funds">转入资金</string>
-    <string name="red_packet">红包</string>
     <string name="welcome_back">欢迎回来</string>
     <string name="set_pattern_pwd">设置手势密码</string>
     <string name="draw_your_pattern_pwd">请绘制您的手势密码</string>
@@ -551,13 +345,7 @@
     <string name="red_packet_tab_title_info">发数字货币红包、查收发记录和提现</string>
     <string name="pattern_pwd">手势密码</string>
     <string name="coin_list">币种列表</string>
-    <string name="redpacket_back">红包退回</string>
-    <string name="redpacket_get">抢红包</string>
-    <string name="capital_pwd_error">资金密码错误</string>
     <string name="please_input_transaction_pwd">请输入交易密码</string>
-    <string name="yubibao_intro">随存随取、灵活理财</string>
-    <string name="lianghualicai_intro">低风险、高收益、定期理财产品</string>
-    <string name="first_play_intro">师徒教育玩法、双向奖励机制</string>
 
     <string name="android_txt">Android</string>
     <string name="ios_text">iOS</string>
@@ -592,7 +380,6 @@
     <string name="question_final_level">最终确认等级</string>
     <string name="question_state_1">待确认</string>
     <string name="question_state_2">复现不成功</string>
-    <string name="question_state_3">已确认</string>
     <string name="question_state_4">奖励</string>
     <string name="question_state_5">奖励确认中</string>
     <string name="commit_time">提交时间</string>
@@ -603,13 +390,7 @@
     <string name="bug_level_2">一般缺陷</string>
     <string name="bug_level_3">优化缺陷</string>
     <string name="question_state_8">奖励发放中</string>
-    <string name="question_fix">版本修复</string>
 
-    <string name="bug_level_1_1">严重</string>
-
-    <string name="bug_level_2_1">一般</string>
-
-    <string name="bug_level_3_1">优化</string>
     <string name="bga_pp_take_picture">拍摄照片</string>
     <!--奖励金额   bug等级  修复版本-->
     <string name="question_done"><Data><![CDATA[奖励<font color="#4064E6">%1$s</font>--%2$s, 已于 %3$s 版本修复]]></Data></string>
@@ -618,16 +399,7 @@
     <string name="version_update_info">有可更新版本</string>
     <string name="invite_gift">邀请有礼</string>
     <string name="invite_btn_1">海报邀请</string>
-    <string name="invite_btn_2">发红包邀请好友</string>
-    <string name="invite_text_1">点击生成邀请海报并截图给好友</string>
-    <string name="friend_qrimg_1">扫描二维码领取奖励</string>
-    <string name="invite_text_2">邀请好友</string>
-    <string name="invite_text_3">注册Theia钱包</string>
     <string name="my_management_money">我的理财</string>
-    <string name="item_management_meony_1">购买金额</string>
-    <string name="item_management_meony_2">总收益</string>
-    <string name="item_management_meony_3">到期时间</string>
-    <string name="invite_my_name">我是%s,邀请您使用Theia钱包</string>
     <string name="buy_success">购买成功</string>
     <string name="management_money_detail_1">合约编号</string>
     <string name="management_money_detail_2">交易时间</string>
@@ -663,8 +435,6 @@
     <string name="delay_to_start">%s秒钟自动跳转</string>
     <string name="look_buy_history">查看购买记录</string>
     <string name="no_product">暂无产品</string>
-    <string name="product_buy_minamount"><Data><![CDATA[%1$s<font color="#999999"> 起购</font>]]></Data></string>
-    <string name="product_buy_end"><Data><![CDATA[<font color="#999999">剩余 </font>%1$s]]></Data></string>
     <string name="money_product_details">理财产品详情</string>
     <string name="product_days">%s天</string>
     <string name="payment_type">期满自动转入个人账户</string>
@@ -679,10 +449,6 @@
     <string name="my_managment_money">我的理财</string>
     <string name="increment">递增</string>
     <string name="management_money_state_4">即将开始</string>
-    <string name="management_money_state_6">已售罄</string>
-    <string name="management_money_state_7">已售罄</string>
-    <string name="management_money_state_9">已结束</string>
-    <string name="management_money_state_10">募集结束</string>
     <string name="management_money_state_jxz">计息中</string>
     <string name="money_product_check_1">起购额度为</string>
     <string name="money_product_check_2">请按递增额度购买</string>
@@ -694,7 +460,6 @@
     <string name="product_buy_state_2">已回款</string>
     <string name="product_buy_state_3">募集失败</string>
     <string name="transaction_confirm_state">交易确认中</string>
-    <string name="management_money_state_8">已到期</string>
     <string name="lhlc_invest">量化理财投资</string>
     <string name="lhlc_repay">量化理财还款</string>
     <string name="confirm_buy">确认购买</string>
@@ -704,7 +469,6 @@
     <string name="no_file_permission">没有获取到文件读写权限，无法保存图片</string>
     <string name="save_success">保存成功</string>
     <string name="save_fail">保存失败</string>
-    <string name="Theia_planet">Theia星球</string>
 
     <string name="smart_transfer_fee"><Data><![CDATA[本次划转矿工费为<font color="#333333">%1$s </font>%2$s]]></Data></string>
     <string name="smart_transfer_fee2"><Data><![CDATA[本次划转手续费为<font color="#333333">%1$s </font>%2$s]]></Data></string>
@@ -726,9 +490,7 @@
     <string name="coin_type_select">请选择代币种类</string>
 
 
-    <string name="info_share_succ">分享成功</string>
     <string name="info_share_fail">分享失败</string>
-    <string name="info_share_cancel">取消分享</string>
     <string name="scan_get_redpacket">扫码领红包</string>
     <string name="share_to">— 分享到 —</string>
     <string name="my_redpacket_history">我的红包记录</string>
@@ -772,7 +534,6 @@
     <string name="share_cancel">取消分享</string>
     <string name="wx_install_">请先安装微信</string>
     <string name="smart_transfer_ail">划转失败</string>
-    <string name="smart_transfer_success">划转成功</string>
     <string name="redpacket_back_info">如24小时未领取红包，则红包退回原地址</string>
     <string name="me">我自己</string>
     <string name="now_get_coin">马上提币</string>

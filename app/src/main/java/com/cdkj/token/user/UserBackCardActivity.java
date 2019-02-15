@@ -59,7 +59,7 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
     }
 
     private void init() {
-        mBaseBinding.titleView.setMidTitle("我的银行卡");
+        mBaseBinding.titleView.setMidTitle("我的收款账号");
         mBaseBinding.titleView.setRightTitle("绑定");
         mBaseBinding.linLayoutRoot.setBackgroundResource(R.color.white);
         if (getIntent() != null) {
@@ -127,7 +127,7 @@ public class UserBackCardActivity extends AbsRefreshListActivity {
         bankData.enqueue(new BaseResponseModelCallBack<UserBankCardModel>(this) {
             @Override
             protected void onSuccess(UserBankCardModel data, String SucMessage) {
-                mRefreshHelper.setData(data.getList(), getString(R.string.bank_list_empty), 0);
+                mRefreshHelper.setData(data.getList(), "暂无收款账号", 0);
             }
 
             @Override

@@ -60,7 +60,7 @@ public class AddBackCardActivity extends AbsLoadActivity {
 
     @Override
     public void afterCreate(Bundle savedInstanceState) {
-        mBaseBinding.titleView.setMidTitle("绑定银行卡");
+        mBaseBinding.titleView.setMidTitle("绑定我的收款账号");
 
         //添加银行类型
         mBinding.txtBankName.setOnClickListener(v -> {
@@ -80,26 +80,28 @@ public class AddBackCardActivity extends AbsLoadActivity {
             public void onClick(View v) {
 
                 if (TextUtils.isEmpty(mBinding.editName.getText().toString())) {
-                    showToast("请输入开户名");
+                    showToast("请输入姓名");
                     return;
                 }
                 if (TextUtils.isEmpty(mSelectCardId)) {
-                    showToast("请选择开户行");
+                    showToast("请选择收款方式");
                     return;
                 }
-                if (TextUtils.isEmpty(mBinding.edtCardZH.getText().toString().trim())) {
-                    showToast("请填写开户支行");
-                    return;
+                if (!TextUtils.equals(mBinding.txtBankName.getText(), "支付宝")) {
+                    if (TextUtils.isEmpty(mBinding.edtCardZH.getText().toString().trim())) {
+                        showToast("请填写开户支行");
+                        return;
+                    }
                 }
                 if (TextUtils.isEmpty(mBinding.edtCardId.getText().toString())) {
-                    showToast("请输入银行卡号");
+                    showToast("请输入账号");
                     return;
                 }
 
-                if (mBinding.edtCardId.getText().toString().length() < 16) {
-                    showToast("银行卡号最低为16位数字");
-                    return;
-                }
+//                if (mBinding.edtCardId.getText().toString().length() < 16) {
+//                    showToast("银行卡号最低为16位数字");
+//                    return;
+//                }
                 addCard();
             }
         });
@@ -114,7 +116,7 @@ public class AddBackCardActivity extends AbsLoadActivity {
         object.put("bankName", mBinding.txtBankName.getText().toString().trim());
         object.put("bankcardNumber", mBinding.edtCardId.getText().toString().trim());
         object.put("realName", mBinding.editName.getText().toString().trim());
-        object.put("subbranch", mBinding.edtCardZH.getText().toString().trim());
+        object.put("subbranch", TextUtils.equals("支付宝", mBinding.txtBankName.getText()) ? "支付宝" : mBinding.edtCardZH.getText().toString().trim());
         object.put("type", "0");//0 银行卡 1支付宝
         object.put("userId", SPUtilHelper.getUserId());
 //        object.put("systemCode", AppConfig.SYSTEMCODE);
@@ -180,6 +182,13 @@ public class AddBackCardActivity extends AbsLoadActivity {
 //                        txtBankCard.setText(list.get(which).getBankName());
                         mBinding.txtBankName.setText(mBankNames[which]);
                         mSelectCardId = mBankCodes[which];
+
+                        if (TextUtils.equals(mBankNames[which], "支付宝")) {
+                            mBinding.llCardZH.setVisibility(View.GONE);
+                        } else {
+                            mBinding.llCardZH.setVisibility(View.VISIBLE);
+                        }
+
                         LogUtil.E("选择银行卡code" + mSelectCardId);
                         dialog.dismiss();
                     }

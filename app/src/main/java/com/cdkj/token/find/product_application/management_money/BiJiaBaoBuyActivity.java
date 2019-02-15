@@ -344,7 +344,7 @@ public class BiJiaBaoBuyActivity extends AbsLoadActivity implements ProductBuyLi
 
         Call call = RetrofitUtils.createApi(MyApi.class).getAccount("802301", StringUtils.getRequestJsonString(map));
 
-        call.enqueue(new BaseResponseModelCallBack<CoinModel>(null) {
+        call.enqueue(new BaseResponseModelCallBack<CoinModel>(this) {
             @Override
             protected void onSuccess(CoinModel data, String SucMessage) {
                 if (data == null || StringUtils.checkPostionCrossingInList(data.getAccountList(), 0)) {

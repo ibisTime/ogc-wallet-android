@@ -131,7 +131,7 @@ public class MPChartUtils {
         set1.setDrawCircles(false);//是否绘制定点小圆圈
         set1.setDrawValues(false);//是否绘制x轴的值
         set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);//设置平滑的曲线  默认是直线
-        set1.setCubicIntensity(0.1f);//设置平滑度 也就是弯曲度   值越大越平滑
+        set1.setCubicIntensity(0.2f);//设置平滑度 也就是弯曲度   值越大越平滑
         // 填充曲线下方的区域，颜色，透明度。
         set1.setDrawFilled(true);
         set1.setFillAlpha(90);

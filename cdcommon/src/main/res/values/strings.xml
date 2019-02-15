@@ -12,25 +12,14 @@
     <string name="activity_find_title">找回密码</string>
     <string name="activity_find_mobile_hint">请输入手机号码</string>
     <string name="activity_find_code_hint">请输入验证码</string>
-    <string name="activity_find_google_hint">请输入谷歌验证码</string>
     <string name="activity_find_password_hint">请输入密码</string>
     <string name="activity_find_repassword_hint">请重新输入密码</string>
     <string name="activity_find_password_format_hint">密码不少于6位</string>
-    <string name="password_input_hint">不少于6位</string>
     <string name="activity_find_repassword_format_hint">两次密码输入不一致</string>
     <string name="activity_find_success">密码修改成功</string>
     <string name="activity_find_failure">密码修改失败</string>
-    <string name="activity_image_unknow_error">出现未知错误</string>
-    <string name="activity_image_tip">提示</string>
-    <string name="activity_image_no_camera">没有可用相机</string>
-    <string name="activity_image_confirm">确定</string>
     <string name="confirm">确定</string>
-    <string name="activity_image_no_cdcard">内存卡不存在</string>
-    <string name="activity_image_getimg_failure">图片获取失败</string>
-    <string name="activity_image_system_tip">系统提示</string>
     <string name="activity_image_system_content">未取得您的相机、存储空间使用权限，此功能无法使用。请前往应用权限设置打开权限。</string>
-    <string name="activity_image_system_open">去打开</string>
-    <string name="activity_image_system_cancel">取消</string>
     <string name="activity_nick_title">修改昵称</string>
     <string name="activity_nick_name_hint">请输入昵称</string>
     <string name="activity_nick_success">修改成功</string>
@@ -38,7 +27,6 @@
     <string name="activity_paypwd_title_set">设置资金密码</string>
     <string name="activity_paypwd_mobile_hint">请输入手机号</string>
     <string name="activity_paypwd_code_hint">请输入验证码</string>
-    <string name="activity_paypwd_google_hint">请输入谷歌验证码</string>
     <string name="activity_paypwd_pwd_hint">请输入资金密码</string>
     <string name="activity_paypwd_pwd_format_hint">资金密码不能低于6位数</string>
     <string name="activity_paypwd_modify_sucess">修改成功</string>
@@ -58,30 +46,18 @@
     <string name="activity_find_code">手机验证码</string>
     <string name="activity_find_password">新密码</string>
     <string name="activity_find_repassword">确认密码</string>
-    <string name="activity_find_google_paste">粘贴</string>
-    <string name="activity_find_google">谷歌验证码</string>
     <string name="activity_find_send">获取验证码</string>
-    <string name="activity_paypwd_pwd">资金密码</string>
     <string name="activity_mobile_mobile">新手机号</string>
 
-    <string name="user_invite_share_title">分享到</string>
     <string name="user_invite_share_wx">微信</string>
     <string name="user_invite_share_pyq">朋友圈</string>
 
     <string name="smscode_send_success">验证码已经发送请注意查收</string>
-    <string name="smscode_send_failure">验证码发送失败</string>
-    <string name="storage_refused">已拒绝获取您的内存权限</string>
-    <string name="web_create_pic_failure">生成图片失败</string>
 
 
     <string name="sure">确定</string>
-    <string name="do_fall">操作失败</string>
     <string name="no_camera_permission">没有获取到权限，无法使用相机和相册功能</string>
-    <string name="show_big_photo">查看大图</string>
-    <string name="delete">删除</string>
-    <string name="delete_succ">删除成功</string>
     <string name="prompt">提示</string>
-    <string name="sure_">确定</string>
     <string name="content">内容</string>
     <string name="net_error">网络加载异常</string>
     <string name="net_service_time_out">服务器响应超时</string>
@@ -93,23 +69,16 @@
     <string name="net_req_fail">网络请求失败</string>
     <string name="upload_pic_fail">图片上传失败</string>
     <string name="qiniu_token_error">token失败</string>
-    <string name="no_camera">没有可用相机</string>
-    <string name="no_sd_card">SD卡不存在</string>
-    <string name="get_pic_fail">图片获取失败</string>
 
     <string name="please_choose_browser">请选择浏览器</string>
     <string name="no_browser">没有可用浏览器</string>
     <string name="open_browser_error">打开浏览器出现错误</string>
     <string name="code_down">重新获取(%d)</string>
     <string name="resend_code">重新获取</string>
-    <string name="back">返回</string>
-    <string name="load_error">加载错误</string>
     <string name="choose">选择</string>
     <string name="please_input_account">请输入帐号</string>
     <string name="sign_in_success">登录成功</string>
     <string name="sign_in_fail">登录失败</string>
-    <string name="send_to_friend">发送给朋友</string>
-    <string name="save_to_photo">保存到手机</string>
     <string name="take_a_photo">拍照</string>
     <string name="choose_from_album">从手机相册选择</string>
 

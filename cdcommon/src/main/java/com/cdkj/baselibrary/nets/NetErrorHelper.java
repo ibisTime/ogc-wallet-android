@@ -11,7 +11,6 @@ import com.cdkj.baselibrary.appmanager.OtherLibManager;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.model.AllFinishEvent;
-import com.cdkj.baselibrary.model.LoginFailureEvent;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.ToastUtil;
 
@@ -181,18 +180,15 @@ public class NetErrorHelper {
      * @param errorMessage
      */
     public static void onLoginFailure(Context context, String errorMessage) {
-
+        if (context != null) {
+//            ToastUtil.show(context, context.getString(R.string.login_fail));
+            ToastUtil.show(context, errorMessage);
+        }
         SPUtilHelper.logOutClear();
         OtherLibManager.uemProfileSignOff();
-        if (context != null) {
-            ToastUtil.show(context, context.getString(R.string.login_fail));
-        }
-
         EventBus.getDefault().post(new AllFinishEvent());//登录失效
 
         // 路由跳转登录页面
         CdRouteHelper.openLogin(true);
     }
-
-
 }

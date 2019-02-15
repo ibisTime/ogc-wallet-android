@@ -2,65 +2,21 @@
 
     <string name="app_name">橙Wallet</string>
     <string name="main_tag_consult">Discover</string>
-    <string name="main_tab_wallet">Wallet </string>
     <string name="main_tab_my">Me</string>
     <string name="exit_confirm">Confirm exit?</string>
     <string name="tip">Hint</string>
     <string name="tip_update">Update hint </string>
     <string name="confirm">Confirm </string>
 
-    <string name="attention">Note </string>
-
-    <string name="kick_logout">Your account is already logged in at another terminal, log on again </string>
-    <string name="deal">Trading </string>
-    <string name="good">Praise </string>
-
-    <string name="trust">Rust</string>
-
-    <string name="build_type">Environment switch</string>
-    <string name="property_eth">Ethernet Currency Asset (ETH) </string>
-    <string name="property_btc">Bitcoin asset (BTC) </string>
-
     <string name="freeze">Frozen</string>
-    <string name="wallet_charge_my_address">My bit-currency billing address </string>
-    <string name="wallet_charge_address_copy">(Click copy address) </string>
-
-    <string name="wallet_charge_address">Address</string>
 
 
-    <string name="wallet_frozen_0">Frozen 0</string>
-    <string name="wallet_charge"> Coin-filled </string>
-    <string name="wallet_withdraw">Coin </string>
-
-    <string name="wallet_bill"> Bill </string>
     <string name="bill_type_all">All </string>
-    <string name="bill_type_charge"> Coin-filled </string>
     <string name="bill_type_withdraw">Now </string>
-    <string name="bill_type_withdrawfee">The Handling fee is</string>
 
-    <string name="bill_type_withdrawfrozen">Frozen is</string>
-
-    <string name="bill_type_withdrawunfrozen"> The to unfreeze</string>
     <string name="bill_type_select">Filter</string>
-    <string name="bill_title_all"> Balance detail </string>
-    <string name="bill_title_charge"> Recharge detail </string>
-    <string name="bill_title_withdraw">Coin detail </string>
-    <string name="bill_title_frozen">Frozen detail </string>
     <string name="bill_none"> No record </string>
-    <string name="bill_all_none">Bo balance details </string>
-    <string name="bill_charge_none"> Bo recharge details </string>
-    <string name="bill_withdraw_none">No currency details</string>
-    <string name="wallet_none">No wallet </string>
-    <string name="market_quantity">Quantity </string>
 
-
-    <string name="deal_type_select_tip">Please select the transaction type</string>
-
-    <string name="popup_scan"> Scan two-dimensional code </string>
-
-    <string name="popup_paste">Paste address </string>
-
-    <string name="copy_tip_none"> You content copied have not the</string>
 
     <string name="qrcode_parsing_failure">Code failure parse to two-dimensional</string>
 
@@ -73,60 +29,26 @@
 
     <string name="order_status_chenggong">Broadcast successfully </string>
 
-    <string name="address_attestation">Been certified has</string>
-
-    <string name="address_unattestation">Certified is not</string>
-    <string name="user_title_address_add">Add address</string>
-    <string name="user_title_address_add_success">Add address successfully</string>
-
     <string name="user_google_btn_close">Close Google verification </string>
 
     <string name="user_google_btn_modify">Google modify to validation</string>
 
     <string name="user_title_join">Join community</string>
 
-    <string name="user_title_wallet">Wallet settings </string>
-    <string name="user_title_invite_history"> recommended history </string>
-
-    <string name="invite_history_none">No history recommended</string>
-    <string name="user_title_published">My ad </string>
-
-    <string name="user_published_none">No release </string>
-    <string name="user_title_setting"> Security settings </string>
-
     <string name="user_identity_success"> You have passed the real-name authentication </string>
 
-    <string name="user_title_person">Personal homepage </string>
-
-    <string name="user_title_tip"> personality settings </string>
     <string name="user_title_sign_in"> login </string>
     <string name="user_mobile_hint"> Please fill in the mobile number </string>
-    <string name="user_mobile_format_hint"> mobile number format is incorrect </string>
 
     <string name="user_password_format_hint">The be cannot length less password than 6 bits</string>
 
-    <string name="user_title_trust"> trusted </string>
-    <string name="user_trust_none">and no person trust</string>
-
     <string name="user_sign_in_mobile_hint"> Enter mobile number </string>
 
-    <string name="user_sign_in_confirm"> Confirm login </string>
-
     <string name="user_sign_in_forget">Forgot? </string>
-    <string name="user_sign_up_nick"> nickname </string>
-    <string name="user_sign_up_nick_hint">nickname please set your</string>
-    <string name="user_sign_up_mobile"> Mobile number </string>
-    <string name="user_sign_up_mobile_hint">Please enter mobile number your</string>
-    <string name="user_sign_up_code"> Mobile verification Code </string>
     <string name="user_sign_up_code_hint"> Enter code</string>
     <string name="user_sign_up_send">Get code</string>
-    <string name="user_sign_up_pwd"> new password </string>
-    <string name="user_sign_up_pwd_hint"> not less than 6-bit </string>
-    <string name="user_sign_up_repwd"> Confirm password </string>
-    <string name="user_sign_up_repwd_hint"> not less than 6-bit </string>
     <string name="user_sign_up_agree"> I\'ve read and agreed to </string>
     <string name="user_sign_up_profile"> registration Agreement </string>
-    <string name="user_sign_up_confirm"> Confirm registration </string>
     <string name="user_password_new_hint">Not less than 6-bit </string>
     <string name="user_password_re"> Confirm password </string>
     <string name="user_password_re_hint">Not less than 6-bit </string>
@@ -157,11 +79,8 @@
     <string name="google_code_format_hint">Google Please code correct enter the verification</string>
 
     <string name="user_about_copyright">2019Wallet All rights reserved </string>
-    <string name="coin_eth"> Ethernet currency </string>
 
-    <string name="coin_btc">Bit currency </string>
     <string name="biz_type_charge">Recharge </string>
-    <string name="biz_type_withdraw">Take the present </string>
     <string name="biz_type_tradefee">Transaction fees </string>
 
     <string name="biz_type_withdrawfee">A fee </string>
@@ -177,49 +96,32 @@
 
     <string name="wallet_withdraw_balance">Available balance </string>
     <string name="wallet_withdraw_address">Receiver’s address</string>
-    <string name="wallet_withdraw_address_input_hint">Please paste the address or scan code entry </string>
-    <string name="wallet_withdraw_amount">Amount </string>
     <string name="wallet_withdraw_free">Mining  fee\u3000</string>
     <string name="wallet_withdraw_tip">Mining fee will be deducted from the amount you sent out</string>
-    <string name="wallet_withdraw_confirm">Confirm </string>
     <string name="wallet_withdraw_order_title">Transaction </string>
     <string name="wallet_withdraw_order_none">No withdraw records </string>
     <string name="wallet_title">My assets</string>
-    <string name="bill_frozen_none">No frozen details</string>
     <string name="wallet_title_bill_detail">Transaction Record </string>
     <string name="wallet_bill_detail_before">Balance before transaction</string>
     <string name="wallet_bill_detail_after">Balance after transaction</string>
     <string name="wallet_bill_detail_date">Transaction time</string>
     <string name="wallet_bill_detail_status">Transaction status</string>
     <string name="wallet_bill_detail_type">Transaction summary</string>
-    <string name="wallet_title_bill_list">Billing </string>
     <string name="wallet_title_charge">Recharge</string>
     <string name="wallet_charge_record">Record </string>
 
     <string name="wallet_charge_address_copy_success">Address has been copied</string>
-    <string name="wallet_title_withdraw">Send</string>
-    <string name="wallet_withdraw_address_hint">Please input the sending address </string>
     <string name="wallet_withdraw_success"> withdraw the application successfully </string>
-    <string name="wallet_transfer_success">Transfer application successfully </string>
-    <string name="user_address_tag_hint">Please input the address tag </string>
     <string name="user_address_hint">Please input the address </string>
-    <string name="user_title_address">Address management </string>
-    <string name="user_address_none">No address </string>
-    <string name="user_address_delete_confirm">Are you sure you want to delete this address? </string>
-    <string name="user_address_delete_success">delete successfully </string>
     <string name="user_title_language">language settings </string>
     <string name="user_language_simplified">中文简体</string><!--Chinese simplified -->
-    <string name="user_language_traditional">Chinese Traditional </string>
     <string name="user_title_google">Google Verification</string>
     <string name="user_google_open">Is turned on </string>
     <string name="user_google_close">Not open </string>
     <string name="user_google_btn_open">Open Google Verification</string>
     <string name="user_title_sign_up">registration </string>
-    <string name="user_sign_up_protocol">Registration Agreement </string>
-    <string name="user_nick_hint">Please set your username </string>
 
     <string name="user_code_hint">Please input the verification code </string>
-    <string name="user_code_format_hint">The format of the verification code is incorrect </string>
     <string name="user_password_hint">Please input a password</string>
     <string name="user_repassword_hint">Confirm  password </string>
     <string name="user_repassword_two_hint">The passwords must be same </string>
@@ -228,18 +130,12 @@
     <string name="user_sign_up_failure">Registration failed </string>
 
 
-    <string name="user_address_add_address">Withdraw address </string>
-    <string name="user_address_add_code">Verification code </string>
     <string name="user_address_add_code_hint">Enter code </string>
-    <string name="user_address_add_is_default">Set this account as an authentication account </string>
-    <string name="user_address_add_tip">Withdraw the funds to the authentication account and no longer input the fund password, Google verification code </string>
     <string name="user_title_email_bind">Bind mailbox</string>
     <string name="user_title_email_modify">Modify the mailbox </string>
     <string name="user_email_bind_success">Binding success </string>
     <string name="user_email_modify_success">Modifying success </string>
-    <string name="user_email">Mailbox </string>
     <string name="user_email_hint">Please input the mailbox </string>
-    <string name="user_email_code">Mailbox verification code </string>
     <string name="user_email_code_hint">Please input the email verification code </string>
 
 
@@ -255,62 +151,25 @@
     <string name="user_setting_password"> Modify login password </string>
     <string name="user_setting_google">Google Verification</string>
     <string name="user_setting_sign_out">Log out </string>
-    <string name="user_tip_language">Language settings </string>
-    <string name="user_address_add">Add a new address</string>
-    <string name="user_address">My address </string>
-    <string name="user_setting">System Settings </string>
-    <string name="user_tip"> personality settings </string>
     <string name="user_issue">Help center</string>
-    <string name="user_services">Contact customer service</string>
     <string name="user_about">About us</string>
-    <string name="user_about_update">update to the latest version </string>
-    <string name="user_about_updated">Is already the latest version </string>
 
 
-    <string name="user_sign_up_referee">Referee mobile phone </string>
-    <string name="user_sign_up_referee_hint">Referee mobile phone number (optional) </string>
-    <string name="user_invite_url">Share link </string>
-    <string name="user_invite_pic">Share QR code</string>
-
-
-    <string name="email_code_send_success">Verification code has been sent to the email, please check </string>
-    <string name="email_code_send_failure">Mailbox verification code failed to send </string>
     <string name="sms_code_title">Mobile Verification Code </string>
-    <string name="consult_title">Home </string>
 
-    <string name="consult_statistics_none">No flow </string>
-    <string name="consult_statistics_title">transaction flow </string>
-    <string name="wallet_withdraw_amount_hint2">You can withdraw up to </string>
     <string name="wallet_withdraw_amount_hint">Please enter the quantity </string>
     <string name="call_phone">Contact the other party </string>
-    <string name="want_to_pay">I want to pay </string>
-
-    <string name="pay_confirm">Confirm payment </string>
-
-    <string name="pay_amount">Payment amount </string>
-
-    <string name="pay_succ">Payment success </string>
-    <string name="pay_fall">Payment failed </string>
-    <string name="biz_type_trans">transaction </string>
 
 
     <string name="consult_none_title">Stay tuned </string>
-    <string name="user_wallet_setting">Wallet settings </string>
     <string name="user_join">Join the community</string>
-    <string name="wallet_bill_list_charge">Charge </string>
-    <string name="wallet_bill_list_withdraw">Withdraw </string>
     <string name="create_wallet">Create a wallet</string>
-    <string name="put_wallet">Import wallet </string>
     <string name="please_set_transaction_pass_word">Please set the transaction password </string>
     <string name="please_check_transaction">Please confirm the transaction password </string>
     <string name="password_error">Inconsistent input passwords </string>
     <string name="wallet_create_success">New wallet created successfully</string>
-    <string name="important_hints">Important </string>
-    <string name="create_wallet_tip">With wallet backup, you have full control over your wallet assets, so it\'s highly recommended that you make a backup before using your wallet and save your wallet backup to a safe place. </string>
-    <string name="now_backup">Back up now </string>
     <string name="next_step">Next </string>
     <string name="sure_1">Confirm </string>
-    <string name="now_check">check now </string>
 
 
     <string name="import_wallet">Import wallet </string>
@@ -318,12 +177,10 @@
     <string name="now_use">use now </string>
     <string name="wallet_create_fail">wallet creation failed</string>
     <string name="check_words_fail"> mnemonic verification failed</string>
-    <string name="please_input_words">Please input the mnemonic </string>
     <string name="dont_screenshot">Leaking the mnemonic will result in the loss of assets, please y copy carefully, do not screen </string>
     <string name="wallet_import_fail">wallet import failed</string>
     <string name="please_remember_and_save">Please remember your wallet mnemonic </string>
     <string name="words_tip_1">The wallet mnemonic is used to restore the wallet assets. With the mnemonic, you can completely control the wallet assets. Please keep it safe. If you lose your mnemonic, you will lose your wallet assets. Theia does not store user mnemonics and cannot provide a retrieval function. </string>
-    <string name="words_tip_2">Please input the backup wallet mnemonic (12 English words), separated by space </string>
     <string name="check_your_words">Verify your wallet mnemonic </string>
     <string name="words_tip_3">According to the mnemonics you wrote down, click in the order to verify that the backup mnemonics you made are correct. </string>
     <string name="update_password_success">Password modified successfully </string>
@@ -340,10 +197,6 @@
     <string name="private_key"> Private key </string>
     <string name="export_private_key">Export private key </string>
     <string name="coin_key_name">The following is the address and private key of %s, click to copy </string>
-    <string name="coin_eth_ename">Ethereum</string>
-    <string name="coin_wan_ename">Wancoin</string>
-    <string name="coin_eth_cname">Ethereum </string>
-    <string name="coin_wan_came">WAN</string>
     <string name="get_money">Receive</string>
     <string name="service_money_tip">Transaction Fees will be deducted from the available balance </string>
     <string name="transfer">Transfer </string>
@@ -358,26 +211,13 @@
     <string name="transaction_details">Transaction details </string>
 
 
-    <string name="sure_delete_wallet">pass the wallet mnemonic verification, confirm whether to delete the wallet? </string>
-    <string name="sure_delete">Confirm delete </string>
     <string name="choose_fees">Select a fee </string>
     <string name="choose_fee_tip">Selecting an economic fee may result in an extended transaction confirmation time. For transactions that require time, please choose prioritized fee</string>
     <string name="priority">Priority </string>
     <string name="extract_amount">to raise the amount of money </string>
     <string name="transaction_record">Transactions</string>
-    <string name="business_app">Business Application</string>
-    <string name="coin_to_coin">coin coin </string>
-    <string name="tha_planet">Theia Planet </string>
-    <string name="ybb">Yubi Bao</string>
-    <string name="facebook">Facebook</string>
     <string name="twitter">Twitter</string>
-    <string name="telegram">Telegram</string>
-    <string name="thasddoddfvb">thasddoddfvb</string>
-    <string name="qq_group">QQ Group</string>
-    <string name="wechat">Wechat</string>
     <string name="transfer_number"> transfer amount </string>
-    <string name="google_verification_code">Google Verification Code </string>
-    <string name="please_input_google_code">Please input Google verification code</string>
     <string name="please_input_withdraw_address">Please input the payment address </string>
     <string name="withdraw_address">receipt address </string>
     <string name="transfer_out_address"> transfer address </string>
@@ -386,12 +226,8 @@
     <string name="transction_code">transaction number </string>
     <string name="transction_time">transaction time </string>
     <string name="view_more_detials">View more details</string>
-    <string name="affix">paste</string>
-    <string name="btc_wallet_tip">BTC wallet prohibits recharging of assets other than BTC, any BTC asset recharge will not be retrieved</string>
     <string name="private_key_tip">Attention! Have a private key to fully control the assets of the address, do not share it with anyone </string>
     <string name="please_wait"> Stay tuned </string>
-    <string name="i_agree_this_terms">I have read and agree to the Service and Privacy Policy</string>
-    <string name="wallet_delete_tip">Note! Before deleting your wallet, be sure to check the backup wallet mnemonic, otherwise your wallet assets will be lost. </string>
     <string name="add_assets">Add assets </string>
     <string name="error_wallet_address">Wrong address</string>
     <string name="resolve_wallet_address_fail">Failed to resolve address</string>
@@ -414,12 +250,8 @@
     <string name="accounts_and_security">Account and Security</string>
     <string name="local_coin">Local currency </string>
     <string name="language">Language </string>
-    <string name="please_create_or_import_wallet">Please create or import a wallet first</string>
     <string name="no_assets">no assets </string>
-    <string name="my_private_wallet">Private Key Wallet(%s)</string>
-    <string name="chain">China</string>
     <string name="now_register">Register now</string>
-    <string name="no_account">No account yet? </string>
     <string name="register">Register </string>
     <string name="find_pwd_sure">Confirm </string>
     <string name="find_pwd">Find the password </string>
@@ -427,72 +259,41 @@
     <string name="choose_country">Select a country </string>
     <string name="wallet_tool">Wallet tool </string>
     <string name="wallet_delete_success">Wallet deleted successfully</string>
-    <string name="send_red_package">Sent red packet</string>
-    <string name="send_you_red_package"> Sent you a red packet </string>
-    <string name="defaut_red_package_mesg"> Red Packet Rings, Money Rises </string>
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="my_red_package">My red packets</string>
-    <string name="get_red_package"> Received</string>
-    <string name="send_red_package2">Send</string>
-    <string name="sub_total_red_package"> Total Amount</string>
     <string name="red_package_db">Token </string>
-    <string name="red_package_sub_total">Token Amount </string>
     <string name="red_package_unit"> </string>
     <string name="red_package_number">Quantity </string>
 
 
-    <string name="red_package_msg">Best wishes</string>
     <string name="red_package_set"> Prepare red packet </string>
-    <string name="red_package_send">Send red packet</string>
     <string name="red_package_have">Balance</string>
 
-    <string name="red_package_total"> Total </string>
-    <string name="red_package_empty_type">No currency available</string>
-    <string name="red_package_please_set_type">Please set the payment password first</string>
     <string name="red_package_min_number">The minimum number of red packets is 1 </string>
     <string name="red_package_pleas_number">Please input the number of red packets to be sent</string>
     <string name="red_package_min_numer">The minimum amount is %s </string>
     <string name="red_package_piease_send_number">Please input the quantity to be sent</string>
     <string name="red_package_please_type">Please select tokens</string>
-    <string name="red_package_set_hand"> changed to a lucky red packets </string>
-    <string name="red_package_set_ordinary"> changed to ordinary red packets </string>
-    <string name="red_package_please_sing_number">Please input quantity</string>
-    <string name="red_package_please_total_number">Enter number </string>f
+    f
     <string name="red_package_please_number">Enter Quantity </string>
-    <string name="red_package_my">My red packets</string>
     <string name="red_package_get_empty">None </string>
-    <string name="api_error">Request interface error </string>
     <string name="red_package_send_empty">No record sent </string>
-    <string name="red_package_form_user">from </string>
-    <string name="red_package_send_success">Successfully sent, please scan the QR code to get the red packet</string>
-    <string name="assets">Assets</string>
-    <string name="my_coin_address">My %s collection address </string>
     <string name="red_pg">Red packet </string>
     <string name="wallet_charge_recode">Transactions</string>
     <string name="user_language_english">English</string>
-    <string name="me_red_package">my red packet</string>
 
     <string name="red_package_number_unit"> </string>
     <string name="CNY">CNY</string>
     <string name="USD">USD</string>
 
-    <string name="red_package_sub_single">Token single</string>
     <string name="wallet_assets">Total Assets(%s)</string>
-    <string name="my_red_package_title">My red packets</string>
 
     <string name="red_package_mxn_number">the maximum amount of red packets is %d</string>
     <string name="red_package_max_numer">the maximum total amount is %d</string>
     <string name="sen_red_packet_note">Red packets come, coins sound</string>
 
-    <string name="share">share</string>
-    <string name="us_web">官网</string>
-    <string name="email_address">邮箱地址</string>
-    <string name="sina_">新浪微博</string>
-    <string name="telegram_address">https://t.me/THAWallet_en</string>
     <string name="waite_content_1">Theia Users can receive apprentice through the invitation system, and instruct apprentice according to the task, thus obtain the calculation force. In addition, the apprentice uses Theia Wallet to purchase quantitative financial products or Yubibao, masters can obtain a certain percentage of the Apprentice reward.</string>
-    <string name="waite_title_1">Global Master and Apprentice Initiative: </string>
     <string name="waite_content_2">Yubibao is the digital currency value-added service and demand digital money management service product of Theia wallet. It is easy to operate, has low threshold, without handling fees,  and are available with access, so that you can manage your digital assets with more flexibility. </string>
     <string name="wait_title_2">Yubibao:</string>
     <string name="waite_content_3">Theia Wallet provides users with a variety of quality management products, users can use Bitcoin, Ethernet and other digital currencies to buy money products and gain income.</string>
@@ -502,8 +303,6 @@
     <string name="lianghualicai">Quantitative Finance</string>
     <string name="recommend_application">Recommend Applications</string>
     <string name="copy_success">replicated</string>
-    <string name="account_login">Account login</string>
-    <string name="code_login">Code Login</string>
     <string name="set_login_pwd">Setting Login password</string>
     <string name="login_pwd_sed_success">Password Setting successfully</string>
     <string name="activity_setting_failure">Password Setting failure</string>
@@ -514,8 +313,6 @@
     <string name="my_account_wallet">Platform Account</string>
 
     <string name="my_wallet_introduction">A personal account refers to a central wallet, which is saved by Theia for your private key. In a central wallet, there is no loss of wallet that cannot be recovered, and can be verified to retrieve your wallet and allow you to experience more services. </string>
-    <string name="my_private_wallet_title">Private Key Wallet</string>
-    <string name="my_private_wallet_introduction">The private key wallet is to go to the central wallet, in the central wallet, all user authentication content, such as trading passwords, private keys, mnemonics, etc. are stored in the user\'s mobile phone local, not stored in the centralized server. If the user mistakenly deletes the wallet, forgets to back up the private key or mnemonics, will not be able to retrieve the wallet. </string>
     <string name="advantage">Advantages</string>
     <string name="only_user_save_key">Your private keys are 100% managed by yourself</string>
     <string name="defect">Defect</string>
@@ -542,16 +339,11 @@
     <string name="backup_introtation_dialog_title">Disclaimer</string>
     <string name="backup_introtation_dialog_content">Please ensure that the wallet has been backed up safely Theia does not bear any loss of loss of wallet, stolen, forgotten password and other assets lost!</string>
     <string name="my_coin_address_2">My address</string>
-    <string name="qr_share_tip_1">Scan the QR-code for Theia red envelopes</string>
-    <string name="qr_share_tip_2">Screenshot the QR-code for sharing </string>
-    <string name="red_packet_rule">Rules of Red Envelope </string>
-    <string name="red_packet_type_1">This is ordinary red envelopes</string>
-    <string name="red_packet_type_2">This is Red Envelope for spell luck </string>f
+    f
     <string name="sure_pay">Payment Confirmed</string>
     <string name="account_balance">Account balance</string>
     <string name="now_pay">Prompt payment</string>
     <string name="transfer_user_funds">Transfer-in funds</string>
-    <string name="red_packet">red_packet</string>
     <string name="welcome_back">Pattern Password</string>
     <string name="set_pattern_pwd">Set Gesture Password</string>
     <string name="draw_your_pattern_pwd">Please draw your gesture password</string>
@@ -568,14 +360,8 @@
     <string name="wallet_name_input_hint">Please enter the wallet name</string>
     <string name="red_packet_tab_title_info">Send a digital currency in red envelope,check the receive records and cash the balance</string>
     <string name="coin_list">Currency</string>
-    <string name="redpacket_back">Red Envelopes returned</string>
-    <string name="redpacket_get">Grab a red envelope</string>
     <string name="pattern_pwd">Gesture Password</string>
-    <string name="capital_pwd_error">Capital password error</string>
     <string name="please_input_transaction_pwd">Please enter the trading password.</string>
-    <string name="yubibao_intro">Flexible financial management,Save in and cash the balance anytime</string>
-    <string name="lianghualicai_intro">Regular financial product,Low risk high return </string>
-    <string name="first_play_intro">Two-way incentive mechanism,master and apprentice orientation</string>
     <string name="android_txt">Android</string>
     <string name="ios_text">iOS</string>
 
@@ -635,8 +421,6 @@
 
     <string name="question_state_2">Reproduction failed</string>
 
-    <string name="question_state_3">Confirmed</string>
-
     <string name="question_state_4">Reward</string>
 
     <string name="question_state_5">Reward confirmation processing</string>
@@ -660,17 +444,9 @@
 
     <string name="question_state_8">In the award release</string>
 
-    <string name="question_fix">Repair Version</string>
-
     <!--<string name="question_done">Reward %1$s&#45;&#45;Optimization flaw, has been repaired in %2$s version</string>-->
     <!--奖励金额   bug等级  修复版本-->
     <string name="question_done"><Data><![CDATA[Reward<font color="#4064E6">%1$s</font>--%2$s, has been repaired in %3$s version]]></Data></string>
-
-    <string name="bug_level_1_1">Serious</string>
-
-    <string name="bug_level_2_1">Normal</string>
-
-    <string name="bug_level_3_1">Optimization</string>
 
 
     <!---->
@@ -686,25 +462,7 @@
 
     <string name="invite_btn_1">Invitation</string>
 
-    <string name="invite_btn_2">Send out gifts to invite friends</string>
-
-    <string name="invite_text_1">Click to generate invitation, take a screenshot and sent it to your friends</string>
-
-    <string name="friend_qrimg_1">Scan QR code to get rewards</string>
-
-    <string name="invite_text_2">Invite friend</string>
-
-    <string name="invite_text_3">Register for Theia Wallet</string>
-
     <string name="my_management_money">My finance</string>
-
-    <string name="item_management_meony_1">Purchase amount</string>
-
-    <string name="item_management_meony_2">Total earnings</string>
-
-    <string name="item_management_meony_3">Due date</string>
-
-    <string name="invite_my_name">I\'m%s, inviting you to try out Theia Wallet</string>
 
     <string name="buy_success">Purchase successful</string>
 
@@ -778,8 +536,6 @@
 
     <string name="no_product">No product</string>
 
-    <string name="product_buy_minamount"><Data><![CDATA[%1$s<font color="#999999"> Purchase minimum amount</font>]]></Data></string>
-
 
     <string name="money_product_details">Financial product details</string>
 
@@ -809,14 +565,6 @@
 
     <string name="management_money_state_4">Starting soon</string>
 
-    <string name="management_money_state_6">Stop transaction</string>
-
-    <string name="management_money_state_7">Sold out</string>
-
-    <string name="management_money_state_9">End</string>
-
-    <string name="management_money_state_10">Fundraising end</string>
-
     <string name="management_money_state_jxz">Valuing</string>
 
     <string name="money_product_check_1">Purchase minimum amount is</string>
@@ -839,10 +587,6 @@
 
     <string name="transaction_confirm_state">Transaction confirming</string>
 
-    <string name="management_money_state_8">Due</string>
-
-    <string name="product_buy_end"><Data><![CDATA[<font color="#999999">Remaining </font>%1$s]]></Data></string>
-
     <string name="lhlc_invest">Quantitative Finance investment</string>
 
     <string name="lhlc_repay">Quantitative Finance repayment </string>
@@ -858,7 +602,6 @@
     <string name="save_success">Save successfully</string>
 
     <string name="save_fail">Save failed</string>
-    <string name="Theia_planet">Theia_planet</string>
 
 
     <string name="credit_score">Credit</string>
@@ -885,11 +628,7 @@
 
     <string name="from">form</string>
 
-    <string name="info_share_cancel">Cancel share</string>
-
     <string name="info_share_fail">Share fail</string>
-
-    <string name="info_share_succ">Share successful</string>
 
     <string name="input_smart_transfer_number">Please enter transfer amount</string>
 
@@ -989,8 +728,6 @@
     <string name="smart_transfer_fee"><Data><![CDATA[Transaction fee is<font color="#333333">%1$s </font>%2$s]]></Data></string>
 
     <string name="smart_transfer_fee2"><Data><![CDATA[Transaction fee is<font color="#333333">%1$s </font>%2$s]]></Data></string>
-
-    <string name="smart_transfer_success">Transfer successful</string>
 
     <string name="theia_red_packet">Theia gifts</string>
 

@@ -2,6 +2,7 @@ package com.cdkj.token.adapter;
 
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.view.View;
 
 import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.token.R;
@@ -35,6 +36,11 @@ public class UserBankCardAdapter extends BaseQuickAdapter<UserBankCardModel.List
 
 
         helper.setText(R.id.txt_name, item.getBankName());
+        if(TextUtils.equals("支付宝",item.getBankName())){
+            helper.getView(R.id.txt_type).setVisibility(View.INVISIBLE);
+        }else{
+            helper.getView(R.id.txt_type).setVisibility(View.VISIBLE);
+        }
         helper.setText(R.id.txt_number, item.getBankName());
         if (!TextUtils.isEmpty(item.getBankcardNumber()) && item.getBankcardNumber().length() > 5) {
             helper.setText(R.id.txt_number, item.getBankcardNumber().substring(item.getBankcardNumber().length() - 4, item.getBankcardNumber().length()));
