@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.cdkj.baselibrary.R;
 import com.cdkj.baselibrary.databinding.ActivityAbsBaseBinding;
-import com.cdkj.baselibrary.utils.UIStatusBarHelper;
 
 
 /**
@@ -56,9 +55,7 @@ public abstract class AbsActivity extends BaseActivity {
         if (mMainView != null) {
             mBaseBinding.contentView.addView(mMainView, 1);
         }
-
         afterCreate(savedInstanceState);
-
     }
 
     /**

@@ -2,11 +2,12 @@
 <litepal>
     <dbname value="tha"></dbname>
 
-    <version value="16"></version>
+    <version value="17"></version>
 
     <list>
         <mapping class="com.cdkj.token.model.db.LocalCoinDbModel"></mapping><!--缓存币种-->
         <mapping class="com.cdkj.token.model.db.WalletDBModel"></mapping><!--钱包数据-->
         <mapping class="com.cdkj.token.model.db.UserConfigDBModel"></mapping><!--自选币种-->
+        <mapping class="com.cdkj.token.model.db.NavigationBean"></mapping><!--app配置 导航栏或者是功能的显示隐藏-->
     </list>
 </litepal>

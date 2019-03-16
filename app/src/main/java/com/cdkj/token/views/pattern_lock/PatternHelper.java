@@ -3,11 +3,9 @@ package com.cdkj.token.views.pattern_lock;
 import android.text.TextUtils;
 
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
-import com.cdkj.baselibrary.utils.SPUtils;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MyApplication;
 import com.cdkj.token.R;
-import com.cdkj.token.utils.StringUtil;
 
 import java.util.List;
 
@@ -129,6 +127,7 @@ public class PatternHelper {
 
     private void saveToStorage(String gesturePwd) {
         SPUtilHelper.saveUserPatternPwd(gesturePwd);
+        SPUtilHelper.saveSetPatternPwd(true);
     }
 
     private String getFromStorage() {

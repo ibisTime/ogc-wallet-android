@@ -48,6 +48,7 @@
                 <View style="@style/style_split_line" />
 
                 <LinearLayout
+                    android:id="@+id/ll_switch_view"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/layout_item_height"
                     android:background="?attr/selectableItemBackground"

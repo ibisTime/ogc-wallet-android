@@ -450,11 +450,27 @@ public class SPUtilHelper {
         return SPUtils.getBoolean(CdApplication.getContext(), "is_assets_show", true);
     }
 
+//    /**
+//     * 是否设置过用户手势密码
+//     */
+//    public static boolean isSetPatternPwd() {
+//        return !TextUtils.isEmpty(getUserPatternPwd());
+//    }
+
+    /**
+     * * 是否设置过用户手势密码
+     *
+     * @param select
+     */
+    public static void saveSetPatternPwd(boolean select) {
+        SPUtils.put(CdApplication.getContext(), "is_set_pattern_pwd", select);
+    }
+
     /**
      * 是否设置过用户手势密码
      */
     public static boolean isSetPatternPwd() {
-        return !TextUtils.isEmpty(getUserPatternPwd());
+        return SPUtils.getBoolean(CdApplication.getContext(), "is_set_pattern_pwd", false);
     }
 
 

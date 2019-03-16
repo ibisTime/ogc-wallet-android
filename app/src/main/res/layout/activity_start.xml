@@ -7,14 +7,14 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="-20dp"
-        android:src="@mipmap/app_icon" />
+        android:src="@mipmap/icon_start_bg" />
 
-    <ImageView
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/cheng_wallet" />
+    <!--<ImageView-->
+        <!--android:layout_width="75dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/cheng_wallet" />-->
 
 </LinearLayout>

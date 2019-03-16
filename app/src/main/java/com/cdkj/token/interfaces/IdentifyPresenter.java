@@ -105,6 +105,7 @@ public class IdentifyPresenter implements IdResultCallback, FaceResultCallback {
 
         } else {
             ToastUtil.show(mActivity, "证件认证失败");
+            mListener.onError("证件认证失败");
         }
 
     }

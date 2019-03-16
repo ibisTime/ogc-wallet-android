@@ -12,7 +12,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="textAllCaps">false</item>
-
     </style>
 
     <!-- 底部弹出层 -->

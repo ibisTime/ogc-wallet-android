@@ -26,15 +26,19 @@ import com.cdkj.baselibrary.utils.ImgUtils;
 import com.cdkj.baselibrary.utils.QiNiuHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.baselibrary.utils.ToastUtil;
+import com.cdkj.token.MainActivity;
 import com.cdkj.token.R;
 import com.cdkj.token.databinding.FragmentUser2Binding;
 import com.cdkj.token.interfaces.UserInfoInterface;
 import com.cdkj.token.interfaces.UserInfoPresenter;
+import com.cdkj.token.model.db.NavigationBean;
 import com.cdkj.token.user.invite.InviteQrActivity2;
 import com.cdkj.token.user.setting.UserSettingActivity;
+import com.cdkj.token.utils.NavigationDBUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +58,7 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
     private CommonDialog commonDialog;
 
     private UserInfoPresenter mGetUserInfoPresenter;//获取用户信息
+    private ArrayList<NavigationBean> userNavigationList;
 
 
     @Nullable
@@ -64,9 +69,70 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
         initClickListener();
 
-        mGetUserInfoPresenter = new UserInfoPresenter(this, mActivity);
+        initShowHind();
 
+        mGetUserInfoPresenter = new UserInfoPresenter(this, mActivity);
+        mGetUserInfoPresenter.getUserInfoRequest();
         return mBinding.getRoot();
+    }
+
+    private void initShowHind() {
+        NavigationBean navigationBean = ((MainActivity) mActivity).navigationList.get(MainActivity.USER);
+        userNavigationList = NavigationDBUtils.getNavigationparentCode(navigationBean.getCode());
+
+        for (NavigationBean bean : userNavigationList) {
+            switch (bean.getName()) {
+                case "账户与安全":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.linLayoutUserAccount.setVisibility(View.GONE);
+                    }else {
+                        mBinding.linLayoutUserAccount.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case "我的好友":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.llFriends.setVisibility(View.GONE);
+                        mBinding.lineFriends.setVisibility(View.GONE);
+                    }else{
+                        mBinding.llFriends.setVisibility(View.VISIBLE);
+                        mBinding.lineFriends.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case "邀请有礼":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.linLayoutInvite.setVisibility(View.GONE);
+                    }else{
+                        mBinding.linLayoutInvite.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case "加入社群":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.joinUs.setVisibility(View.GONE);
+                        mBinding.lineJoinUs.setVisibility(View.GONE);
+                    }else {
+                        mBinding.joinUs.setVisibility(View.VISIBLE);
+                        mBinding.lineJoinUs.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case "帮助中心":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.helper.setVisibility(View.GONE);
+                        mBinding.lineHelper.setVisibility(View.GONE);
+                    }else {
+                        mBinding.helper.setVisibility(View.VISIBLE);
+                        mBinding.lineHelper.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                case "设置":
+                    if (TextUtils.equals("0", bean.getStatus())) {
+                        mBinding.setting.setVisibility(View.GONE);
+                    }else{
+                        mBinding.setting.setVisibility(View.VISIBLE);
+                    }
+                    break;
+            }
+        }
+
     }
 
     @Override
@@ -112,7 +178,10 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
         });
 
         //账户与安全
-        mBinding.linLayoutUserAccount.setOnClickListener(view -> UserSecurityActivity.open(mActivity));
+        mBinding.linLayoutUserAccount.setOnClickListener(view -> {
+            UserSecurityActivity.open(mActivity, getFunctionBean("账户与安全"));
+
+        });
 
         //我的好友
         mBinding.llFriends.setOnClickListener(view -> UserFriendsActivity.open(mActivity));
@@ -125,15 +194,17 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
             OtherLibManager.openZendeskHelpCenter(mActivity);
         });
         //设置
-        mBinding.setting.setOnClickListener(view -> UserSettingActivity.open(mActivity));
+        mBinding.setting.setOnClickListener(view -> {
+            UserSettingActivity.open(mActivity, getFunctionBean("设置"));
+        });
 
     }
 
     @Override
     protected void lazyLoad() {
-        if (mBinding != null && mGetUserInfoPresenter != null) {
-            mGetUserInfoPresenter.getUserInfoRequest();
-        }
+//        if (mBinding != null && mGetUserInfoPresenter != null) {
+//            mGetUserInfoPresenter.getUserInfoRequest();
+//        }
     }
 
     @Override
@@ -141,6 +212,15 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
 
     }
 
+
+    private String getFunctionBean(String name) {
+        for (NavigationBean navigationBean : userNavigationList) {
+            if (TextUtils.equals(name, navigationBean.getName())) {
+                return navigationBean.getCode();
+            }
+        }
+        return "";
+    }
 
     /**
      * 设置用户数据显示
@@ -271,5 +351,12 @@ public class UserFragment extends BaseLazyFragment implements UserInfoInterface 
     @Override
     public void onFinishedGetUserInfo(UserInfoModel userInfo, String errorMsg) {
         setShowData(userInfo);
+    }
+
+    @Subscribe
+    public void refreshView(String msg) {
+        if (TextUtils.equals(msg, "更新布局")) {
+            initShowHind();
+        }
     }
 }

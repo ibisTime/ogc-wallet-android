@@ -15,5 +15,7 @@
         android:minHeight="56dp"
         android:minWidth="120dp"
         android:orientation="vertical"
-        android:padding="16dp" />
+        android:padding="16dp" >
+
+    </LinearLayout>
 </merge>

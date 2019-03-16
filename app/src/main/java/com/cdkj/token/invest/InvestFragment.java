@@ -117,13 +117,14 @@ public class InvestFragment extends BaseLazyFragment {
 
                 symbol = tabPosition == 0 ? "BTC" : "USDT";
                 mRefreshHelper.onDefaluteMRefresh(true);
-
+                getYesterdayAmount();
+                getUsrInvestAmount();
                 if (SPUtilHelper.getUserEye()) {
-                    mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
-                    //昨日收益
-                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(yesterdayAmountModel.getYesterdayIncome()), symbol, AmountUtil.SCALE_4) + " " + symbol);
-                    //累计收益
-                    mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+//                    mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+//                    //昨日收益
+//                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(yesterdayAmountModel.getYesterdayIncome()), symbol, AmountUtil.SCALE_4) + " " + symbol);
+//                    //累计收益
+//                    mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalIncome() : investment.getUsdtTotalIncome(), symbol, AmountUtil.SCALE_4) + " " + symbol);
                 } else {
                     mBinding.tvTotalInvest.setText("****** " + symbol);
                     mBinding.tvBtcTotal.setText("****** " + symbol);
@@ -149,7 +150,7 @@ public class InvestFragment extends BaseLazyFragment {
             //昨日收益
             mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(yesterdayAmountModel.getYesterdayIncome()), symbol, AmountUtil.SCALE_4) + " " + symbol);
             //累计收益
-            mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalInvest() : investment.getUsdtTotalInvest(), symbol, AmountUtil.SCALE_4) + " " + symbol);
+            mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(symbol.equals("BTC") ? investment.getBtcTotalIncome() : investment.getUsdtTotalIncome(), symbol, AmountUtil.SCALE_4) + " " + symbol);
         } else {
             mBinding.ivEye.setImageResource(R.mipmap.eye_close_white);
             SPUtilHelper.saveUserEye(false);
@@ -267,10 +268,10 @@ public class InvestFragment extends BaseLazyFragment {
 
                     if (symbol.equals("BTC")) {
                         mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
-                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getBtcTotalInvest(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
+                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getBtcTotalIncome(), WalletHelper.COIN_BTC, AmountUtil.SCALE_4) + " " + symbol);
                     } else {
-                        mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getBtcTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
-                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getBtcTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
+                        mBinding.tvTotalInvest.setText("≈ " + AmountUtil.transformFormatToString2(investment.getUsdtTotalInvest(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
+                        mBinding.tvBtcTotal.setText(AmountUtil.transformFormatToString2(data.getUsdtTotalIncome(), WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " " + symbol);
                     }
                 }
             }
@@ -299,7 +300,7 @@ public class InvestFragment extends BaseLazyFragment {
             protected void onSuccess(YesterdayAmountModel data, String SucMessage) {
                 yesterdayAmountModel = data;
                 if (SPUtilHelper.getUserEye())
-                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(data.getYesterdayIncome()), symbol.equals("BTC") ? WalletHelper.COIN_BTC : WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " BTC");
+                    mBinding.tvBtcYestertay.setText(AmountUtil.transformFormatToString2(new BigDecimal(data.getYesterdayIncome()), symbol.equals("BTC") ? WalletHelper.COIN_BTC : WalletHelper.COIN_USDT, AmountUtil.SCALE_4) + " "+symbol);
             }
 
             @Override

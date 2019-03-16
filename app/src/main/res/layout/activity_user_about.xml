@@ -32,16 +32,16 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="77dp"
-                android:layout_height="77dp"
-                android:layout_marginTop="36dp"
-                android:background="@mipmap/app_icon" />
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:background="@mipmap/icon_version_logo" />
 
-            <ImageView
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@mipmap/cheng_wallet" />
+            <!--<ImageView-->
+                <!--android:layout_width="75dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@mipmap/cheng_wallet" />-->
 
             <View
                 style="@style/style_split_line"

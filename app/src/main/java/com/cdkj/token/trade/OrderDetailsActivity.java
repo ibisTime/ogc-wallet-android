@@ -290,13 +290,14 @@ public class OrderDetailsActivity extends AbsLoadActivity {
      * 设置公共部分的view
      */
     private void setOrderDetalisView() {
-        BigDecimal btcNumber = BigDecimalUtils.div(new BigDecimal(orderListDetailsModel.getCount()), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
+        BigDecimal btcNumber = BigDecimalUtils.div(orderListDetailsModel.getCount(), LocalCoinDBUtils.getLocalCoinUnit("BTC"), 8);
         mBinding.tvTypeMsg.setText(TextUtils.equals("0", orderListDetailsModel.getType()) ? "买入" + btcNumber.toString() + orderListDetailsModel.getTradeCoin() : "卖出" + btcNumber.toString() + orderListDetailsModel.getTradeCoin());
         mBinding.tvTotalPrice.setText("总价" + orderListDetailsModel.getTradeAmount().toString());
         mBinding.tvOrderNumber.setText(currentCode);
         mBinding.tvBuyOrPay.setText(TextUtils.equals("0", orderListDetailsModel.getType()) ? "买入" : "卖出");
-        mBinding.tvMoney.setText("¥" + orderListDetailsModel.getTradeAmount().toString());
+        mBinding.tvMoney.setText("¥" + orderListDetailsModel.getTradePrice().toString());
         mBinding.tvTime.setText(DateUtil.format(orderListDetailsModel.getCreateDatetime(), DateUtil.DEFAULT_DATE_FMT));
+
     }
 
     /**

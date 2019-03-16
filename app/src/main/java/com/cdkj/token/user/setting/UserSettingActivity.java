@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.appmanager.AppConfig;
+import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.base.AbsStatusBarTranslucentActivity;
 import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.model.AllFinishEvent;
@@ -18,9 +20,12 @@ import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityUserSettingBinding;
 import com.cdkj.token.model.VersionModel;
+import com.cdkj.token.model.db.NavigationBean;
+import com.cdkj.token.utils.NavigationDBUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,12 +44,14 @@ public class UserSettingActivity extends AbsStatusBarTranslucentActivity {
 
     private VersionModel versionModel;
     private boolean isUpdate;
+    private String parentCode;
 
-    public static void open(Context context) {
+    public static void open(Context context, String parentCode) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, UserSettingActivity.class);
+        intent.putExtra(CdRouteHelper.DATASIGN, parentCode);
         context.startActivity(intent);
     }
 
@@ -60,8 +67,28 @@ public class UserSettingActivity extends AbsStatusBarTranslucentActivity {
         setMidTitle(getStrRes(R.string.setting));
 //        setPageBgRes(R.drawable.my_bg);
         setPageBgRes(R.color.white);
+        if (getIntent() != null) {
+            parentCode = getIntent().getStringExtra(CdRouteHelper.DATASIGN);
+        }
+        initShowHind();
         initClickListener();
         getVersion();
+    }
+
+    private void initShowHind() {
+        ArrayList<NavigationBean> navigationparentCode = NavigationDBUtils.getNavigationparentCode(parentCode);
+        for (NavigationBean bean : navigationparentCode) {
+            switch (bean.getName()) {
+                case "本地货币":
+                    if (TextUtils.equals("0", bean.getStatus()))
+                        mBinding.linLayoutLocalCoin.setVisibility(View.GONE);
+                    break;
+                case "版本更新":
+                    if (TextUtils.equals("0", bean.getStatus()))
+                        mBinding.versionUpdate.setVisibility(View.GONE);
+                    break;
+            }
+        }
     }
 
     void initClickListener() {

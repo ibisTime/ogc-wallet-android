@@ -383,4 +383,21 @@ public class DateUtil {
         return mon;
     }
 
+    /**
+     * 返回当前时间的前一个月的  时间
+     *
+     * @param fmt 返回时间的格式
+     * @param dayNumber 想减少几天或者增加几天的日期   正数为增加  负数为减少
+     * @return
+     */
+    public static String fristDay(String fmt,int dayNumber) {
+        //过去一月
+        Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(Calendar.DAY_OF_YEAR, dayNumber);
+        Date m = c.getTime();
+        String mon = format(m, fmt);
+        return mon;
+    }
+
 }

@@ -1,18 +1,13 @@
 <resources>
-    <string name="app_name">橙Wallet</string>
+    <string name="app_name">MooreBit</string>
 
     <string name="main_tag_consult">发现</string>
     <string name="main_tab_my">我的</string>
     <string name="exit_confirm">确认退出？</string>
-
     <string name="tip">提示</string>
     <string name="tip_update">更新提示</string>
     <string name="confirm">确认</string>
-
-
     <string name="freeze">冻结</string>
-
-
     <string name="wallet_withdraw_balance">可用余额</string>
     <string name="wallet_withdraw_address">接收地址</string>
     <string name="wallet_withdraw_free">手续费\u3000</string>
@@ -54,8 +49,6 @@
     <string name="order_status_guangbozhong">广播中</string>
     <string name="order_status_shibai">广播失败</string>
     <string name="order_status_chenggong">广播成功</string>
-
-
     // 我的
 
     <string name="user_address_hint">请输入地址</string>
@@ -147,9 +140,7 @@
     <string name="google_code_hint">请输入谷歌验证码</string>
     <string name="google_code_format_hint">请输入正确的谷歌验证码</string>
 
-    <string name="user_about_copyright">2019Wallet版权所有</string>
-
-    // Util
+    <string name="user_about_copyright">2019MooreBit版权所有</string>
 
     <string name="biz_type_charge">充值</string>
     <string name="biz_type_tradefee">交易手续费</string>
@@ -586,8 +577,8 @@
     <string name="no_income_rank">暂无排行</string>
     <string name="my_income">我的收益</string>
     <string name="no_bill">暂无账单</string>
-    <string name="pop_protocol">Theia钱包理财产品服务协议</string>
-    <string name="read_buy_pop_protocol"><Data><![CDATA[我已经仔细阅读<font color="#3D76FF">《Theia钱包理财产品服务协议》</font>，同意协议中的有关条款。充分了解银行和自身的权利和义务。]]></Data></string>
+    <string name="pop_protocol">MooreBit钱包理财产品服务协议</string>
+    <string name="read_buy_pop_protocol"><Data><![CDATA[我已经仔细阅读<font color="#3D76FF">《MooreBit钱包理财产品服务协议》</font>，同意协议中的有关条款。充分了解银行和自身的权利和义务。]]></Data></string>
     <string name="global_income_rank">全球收益榜</string>
     <string name="expect_income_btc">预估收益(BTC)</string>
     <string name="income_share">他的分享</string>
@@ -646,5 +637,6 @@
     <string name="transaction_charges">交易手续费:</string>
     <string name="zhifubao">支付宝</string>
     <string name="invite_join">邀请您加入%s</string>
+    <string name="mian_tab_assets">资产</string>
 
 </resources>

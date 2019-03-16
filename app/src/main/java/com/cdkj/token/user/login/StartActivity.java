@@ -53,8 +53,34 @@ public class StartActivity extends BaseActivity implements StartPageView {
         pagePresenter.start();
 
         int width = DisplayHelper.getScreenWidth(this);
-        Log.e("width", width+"px");
-        Log.e("width", DisplayHelper.px2dp(this, width)+"dp");
+        Log.e("width", width + "px");
+        Log.e("width", DisplayHelper.px2dp(this, width) + "dp");
+
+    }
+
+
+    /**
+     * 获取导航配置失败
+     */
+    @Override
+    public void onNavigationError() {
+
+//        ToastUtil.show(this,"获取配置失败");
+
+        CommonDialog commonDialog = new CommonDialog(this).builder()
+                .setTitle("获取配置失败是否重新获取")
+                .setPositiveBtn(getString(com.cdkj.baselibrary.R.string.activity_base_confirm), view -> {
+                    //点击确定重新获取
+                    if (pagePresenter != null)
+                        pagePresenter.start();
+                })
+                .setNegativeBtn(getString(com.cdkj.baselibrary.R.string.activity_base_cancel), view -> {
+                    //点击取消  退出app
+//                    CdRouteHelper.openLogin(true);
+                    EventBus.getDefault().post(new AllFinishEvent());
+                }, false);
+
+        commonDialog.show();
 
     }
 

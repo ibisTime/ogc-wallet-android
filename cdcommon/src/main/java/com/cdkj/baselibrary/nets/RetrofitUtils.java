@@ -24,6 +24,7 @@ public class RetrofitUtils {
      * @return Retrofit
      */
     private static Retrofit getInstance() {
+
         if (retrofitInstance == null) {
             retrofitInstance = new Retrofit.Builder()
                     .baseUrl(getBaseURL())

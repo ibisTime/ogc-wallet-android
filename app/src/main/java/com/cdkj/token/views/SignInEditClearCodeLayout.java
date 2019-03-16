@@ -77,6 +77,7 @@ public class SignInEditClearCodeLayout extends LinearLayout {
             mBinding.edit.setText("");
             mBinding.imgEditClear.setVisibility(GONE);
         });
+
         if (isShowSplitLine)
             mBinding.edit.setOnFocusChangeListener(new OnFocusChangeListener() {
                 @Override

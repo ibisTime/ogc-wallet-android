@@ -19,7 +19,7 @@ public class LineChartDataModel {
     private String type;
     private String symbol;
     private String period;
-    private int price;
+    private float price;
     private String createDatetime;
 
     public int getId() {
@@ -54,11 +54,11 @@ public class LineChartDataModel {
         this.period = period;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

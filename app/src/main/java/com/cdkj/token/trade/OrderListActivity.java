@@ -20,17 +20,14 @@ import com.cdkj.token.R;
 import com.cdkj.token.adapter.OrderListAdapter;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.model.OrderListModel;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import retrofit2.Call;
 
 public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.ListBean> {
@@ -45,8 +42,6 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.Lis
             return;
         }
         context.startActivity(new Intent(context, OrderListActivity.class));
-
-
     }
 
     @Override
@@ -67,6 +62,9 @@ public class OrderListActivity extends AbsRefreshListActivity<OrderListModel.Lis
             public void onLoadmore(RefreshLayout refreshlayout) {
                 OrderListAdapter adapter = (OrderListAdapter) mRefreshHelper.getmAdapter();
                 adapter.stopTimeDow();
+                BaseQuickAdapter baseQuickAdapter = mRefreshHelper.getmAdapter();
+                if (baseQuickAdapter != null)
+                    baseQuickAdapter.notifyDataSetChanged();
             }
         });
 

@@ -173,6 +173,7 @@ public class UITipDialog extends Dialog {
         if (activity == null || activity.isFinishing()) {
             return;
         }
+
         tipDialog = new UITipDialog.Builder(activity)
                 .setIconType(UITipDialog.Builder.ICON_TYPE_INFO)
                 .setTipWord(info)
@@ -297,7 +298,6 @@ public class UITipDialog extends Dialog {
                 }
 
                 contentWrap.addView(imageView);
-
             }
 
             if (mTipWord != null && mTipWord.length() > 0) {

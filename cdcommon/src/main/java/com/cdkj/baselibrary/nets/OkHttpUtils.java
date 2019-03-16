@@ -4,13 +4,9 @@ package com.cdkj.baselibrary.nets;
 import com.cdkj.baselibrary.utils.LogUtil;
 
 import java.net.URLDecoder;
-import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.CipherSuite;
-import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
-import okhttp3.TlsVersion;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
@@ -19,9 +15,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class OkHttpUtils {
 
-    private final static int CONNECT_TIMEOUT = 30;//连接超时
-    private final static int READ_TIMEOUT = 30;//数据返回超时
-    private final static int WRITE_TIMEOUT = 30;//请求超时
+    private final static int CONNECT_TIMEOUT = 60;//连接超时
+    private final static int READ_TIMEOUT = 60;//数据返回超时
+    private final static int WRITE_TIMEOUT = 60;//请求超时
 
     public OkHttpUtils() {
     }

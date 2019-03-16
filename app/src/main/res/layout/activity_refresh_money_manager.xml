@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient_bg"
             android:orientation="vertical">
-            <!--android:background="@drawable/gradient_bg"-->
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="45dp"

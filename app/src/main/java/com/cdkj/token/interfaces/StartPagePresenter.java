@@ -11,8 +11,10 @@ import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.MyApplication;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.model.CountryCodeMode;
+import com.cdkj.token.model.db.NavigationBean;
 import com.cdkj.token.model.SystemParameterModel;
 import com.cdkj.token.model.VersionModel;
+import com.cdkj.token.utils.NavigationDBUtils;
 import com.cdkj.token.utils.wallet.WalletDBAegisUtils;
 
 import java.util.HashMap;
@@ -55,7 +57,39 @@ public class StartPagePresenter {
      * 开始
      */
     public void start() {
-        checkVersion();
+
+        getNavigation();
+//        checkVersion();
+    }
+
+    /**
+     * 获取本地导航列表
+     */
+    public void getNavigation() {
+        Map<String, String> map = new HashMap<>();
+//        map.put("parentCode", "DH201810120023250000000");
+        map.put("type", "app_menu");
+
+        Call<BaseResponseListModel<NavigationBean>> navigation = RetrofitUtils.createApi(MyApi.class).getNavigation("630508", StringUtils.getRequestJsonString(map));
+        navigation.enqueue(new BaseResponseListCallBack<NavigationBean>(null) {
+            @Override
+            protected void onSuccess(List<NavigationBean> data, String SucMessage) {
+                NavigationDBUtils.updateNavigationList(data);
+                checkVersion();
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                super.onReqFailure(errorCode, errorMessage);
+                startPageView.onNavigationError();
+            }
+
+            @Override
+            protected void onFinish() {
+
+            }
+        });
+
     }
 
     /**

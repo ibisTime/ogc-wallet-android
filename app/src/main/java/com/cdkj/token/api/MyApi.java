@@ -45,6 +45,7 @@ import com.cdkj.token.model.MsgListModel;
 import com.cdkj.token.model.MyGetRedPackageBean;
 import com.cdkj.token.model.MyManamentMoneyProduct;
 import com.cdkj.token.model.MySendRedPackageBean;
+import com.cdkj.token.model.db.NavigationBean;
 import com.cdkj.token.model.OrderDetailModel;
 import com.cdkj.token.model.OrderListDetailsModel;
 import com.cdkj.token.model.OrderListModel;
@@ -91,6 +92,15 @@ import retrofit2.http.Url;
 
 public interface MyApi {
 
+
+    /**
+     * 获取投资流水
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<NavigationBean>> getNavigation(@Field("code") String code, @Field("json") String json);
 
     /**
      * 获取投资流水

@@ -55,13 +55,11 @@ public class AppConfig {
     // 拍照文件保存路径
     public static final String CACHDIR = "tha_photo";
 
-
     // 环境访问地址
     public static final String BASE_URL_DEV = "http://120.26.6.213:5801/forward-service/"; // 研发
-//    public static final String BASE_URL_TEST = "http://120.26.6.213:6801/forward-service/"; // 我们的测试
-    public static final String BASE_URL_TEST = "http://47.97.202.123:2801/forward-service/"; // 客户的测试
-    public static final String BASE_URL_ONLINE = "https://app.tha.hichengdai.com/"; // 线上
-
+    public static final String BASE_URL_TEST = "http://120.26.6.213:6801/forward-service/"; // 客户的测试
+//    public static final String BASE_URL_ONLINE = "http://47.97.202.123:2801/forward-service/"; // 线上
+    public static final String BASE_URL_ONLINE = "https://moorebit.io/"; // 线上
 
     public static String getZenDeskUrl() {
 //        return "https://thachainhelp.zendesk.com" + getZenDeskUrlLanguage();
@@ -231,6 +229,4 @@ public class AppConfig {
     public static boolean isLocalMarketKRW(String coinType) {
         return TextUtils.equals(coinType, AppConfig.LOCAL_MARKET_KRW);
     }
-
-
 }

@@ -16,7 +16,6 @@ import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import com.cdkj.baselibrary.R;
 import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.base.AbsActivity;
@@ -26,10 +25,8 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.StringUtils;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import retrofit2.Call;
 
 

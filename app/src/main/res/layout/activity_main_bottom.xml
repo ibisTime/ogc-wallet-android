@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -17,8 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:clickable="false"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/ll_invest"
@@ -33,14 +32,14 @@
                     android:id="@+id/iv_invest"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/main_invest_dark" />
+                    tools:src="@mipmap/main_invest_dark" />
 
                 <TextView
                     android:id="@+id/tv_invest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="@string/mian_tab_invest"
+                    tools:text="@string/mian_tab_invest"
                     android:textColor="@color/gray_666666"
                     android:textSize="11sp" />
 
@@ -59,14 +58,14 @@
                     android:id="@+id/iv_trade"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/main_trade_dark" />
+                    tools:src="@mipmap/main_trade_dark" />
 
                 <TextView
                     android:id="@+id/tv_trade"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="@string/mian_tab_trade"
+                    tools:text="@string/mian_tab_trade"
                     android:textColor="@color/gray_666666"
                     android:textSize="11sp" />
 
@@ -85,14 +84,14 @@
                     android:id="@+id/iv_wallet"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/main_wallet_dark" />
+                    tools:src="@mipmap/main_wallet_dark" />
 
                 <TextView
                     android:id="@+id/tv_wallet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="资产"
+                    tools:text="@string/mian_tab_assets"
                     android:textColor="@color/gray_666666"
                     android:textSize="11sp" />
 
@@ -111,14 +110,14 @@
                     android:id="@+id/iv_my"
                     android:layout_width="19dp"
                     android:layout_height="19dp"
-                    android:src="@mipmap/main_my_dark" />
+                    tools:src="@mipmap/main_my_dark" />
 
                 <TextView
                     android:id="@+id/tv_my"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="@string/main_tab_my"
+                    tools:text="@string/main_tab_my"
                     android:textColor="@color/gray_666666"
                     android:textSize="11sp" />
 

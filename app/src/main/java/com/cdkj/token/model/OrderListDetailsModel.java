@@ -42,7 +42,7 @@ public class OrderListDetailsModel {
     private String tradeCurrency;
     private String tradeCoin;
     private BigDecimal tradePrice;
-    private int count;
+    private BigDecimal count;
     private BigDecimal tradeAmount;
     private int fee;
     private String invalidDatetime;
@@ -122,11 +122,11 @@ public class OrderListDetailsModel {
         this.tradePrice = tradePrice;
     }
 
-    public int getCount() {
+    public BigDecimal getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(BigDecimal count) {
         this.count = count;
     }
 

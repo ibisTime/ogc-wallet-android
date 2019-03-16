@@ -51,8 +51,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            <!--android:windowSoftInputMode="stateVisible|adjustPan"-->
         <activity
-            android:windowSoftInputMode="stateVisible|adjustPan"
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:launchMode="singleTask" />
         <activity

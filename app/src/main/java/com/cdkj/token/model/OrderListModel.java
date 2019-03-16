@@ -1,6 +1,7 @@
 package com.cdkj.token.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -106,7 +107,7 @@ public class OrderListModel implements Serializable {
         private String tradeCurrency;
         private String tradeCoin;
         private int tradePrice;
-        private int count;
+        private BigDecimal count;
         private int tradeAmount;
         private int fee;
         private String invalidDatetime;
@@ -120,6 +121,7 @@ public class OrderListModel implements Serializable {
         private String status;
         private String createDatetime;
         private String pic;
+        private int remainTime;
         private UserBean user;
 
         public String getCode() {
@@ -186,11 +188,11 @@ public class OrderListModel implements Serializable {
             this.tradePrice = tradePrice;
         }
 
-        public int getCount() {
+        public BigDecimal getCount() {
             return count;
         }
 
-        public void setCount(int count) {
+        public void setCount(BigDecimal count) {
             this.count = count;
         }
 
@@ -296,6 +298,14 @@ public class OrderListModel implements Serializable {
 
         public void setPic(String pic) {
             this.pic = pic;
+        }
+
+        public int getRemainTime() {
+            return remainTime;
+        }
+
+        public void setRemainTime(int remainTime) {
+            this.remainTime = remainTime;
         }
 
         public UserBean getUser() {
