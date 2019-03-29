@@ -12,15 +12,15 @@ import android.text.TextWatcher;
 import android.view.View;
 
 import com.alibaba.fastjson.JSON;
+import com.cdkj.baselibrary.activitys.WebViewActivity;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.utils.ToastUtil;
 import com.cdkj.token.R;
+import com.cdkj.token.common.ThaAppConstant;
 import com.cdkj.token.databinding.ActivityCreateWalletStartBinding;
 import com.cdkj.token.model.db.WalletDBModel;
-import com.cdkj.token.user.WebViewImgBgActivity;
-import com.cdkj.token.common.ThaAppConstant;
 import com.cdkj.token.utils.wallet.WalletHelper;
 import com.cdkj.token.wallet.import_guide.ImportWalletStartActivity;
 
@@ -47,6 +47,7 @@ public class CreateWalletStartActivity extends AbsLoadActivity {
         if (context == null) {
             return;
         }
+
         Intent intent = new Intent(context, CreateWalletStartActivity.class);
         context.startActivity(intent);
     }
@@ -172,7 +173,7 @@ public class CreateWalletStartActivity extends AbsLoadActivity {
 
         //隐私协议
         mBinding.tvRead.setOnClickListener(view -> {
-            WebViewImgBgActivity.openkey(this, getString(R.string.privacy_agreement), ThaAppConstant.getH5UrlLangage(ThaAppConstant.H5_PRIVACY));
+            WebViewActivity.openkey(this, getString(R.string.privacy_agreement), ThaAppConstant.getH5UrlLangage(ThaAppConstant.H5_PRIVACY));
         });
 
     }

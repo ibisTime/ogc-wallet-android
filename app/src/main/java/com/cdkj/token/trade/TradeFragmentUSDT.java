@@ -128,12 +128,14 @@ public class TradeFragmentUSDT extends BaseLazyFragment implements IdentifyInter
         mHelper = new PermissionHelper(this);
         mBinding.tvSymbol.setText("USDT");
         initLineChart();
-//        initLineChartData();
         initSymbolPrice();
         initPayType();
         getDefaultBank();
         initMinCnyAmount();
         initClickListener();
+
+        starttimer();
+        getSymbolList();
 
         return mBinding.getRoot();
 
@@ -687,22 +689,6 @@ public class TradeFragmentUSDT extends BaseLazyFragment implements IdentifyInter
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        starttimer();
-        getSymbolList();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (subscribe != null) {
-            subscribe.dispose();
-            subscribe = null;
-        }
-    }
-
     /**
      * 启动身份证实名认证
      */
@@ -832,6 +818,36 @@ public class TradeFragmentUSDT extends BaseLazyFragment implements IdentifyInter
     }
 
     //************身份证实名认证回调
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        LogUtil.E("pppppp2   isVisibleToUser值为:" + isVisibleToUser);
+        LogUtil.E("pppppp2   getUserVisibleHint()值为:" + getUserVisibleHint());
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        LogUtil.E("pppppp开始请求数据USDT");
+        if (mActivity != null) {
+            starttimer();
+            getSymbolList();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        LogUtil.E("pppppp结束请求数据USDT");
+        if (subscribe != null) {
+            subscribe.dispose();
+            subscribe = null;
+        }
+    }
 
     /**
      * 选择银行卡的回调

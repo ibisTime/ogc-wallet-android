@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MooreBit</string>
+    <string name="app_name">金米钱包</string>
 
     <string name="main_tag_consult">发现</string>
     <string name="main_tab_my">我的</string>
@@ -148,7 +148,7 @@
     <string name="google_code_hint">请输入谷歌验证码</string>
     <string name="google_code_format_hint">请输入正确的谷歌验证码</string>
 
-    <string name="user_about_copyright">2019MooreBit版权所有</string>
+    <string name="user_about_copyright">2019金米钱包版权所有</string>
 
     // Util
 
@@ -578,8 +578,8 @@
     <string name="no_income_rank">暂无排行</string>
     <string name="my_income">我的收益</string>
     <string name="no_bill">暂无账单</string>
-    <string name="pop_protocol">MooreBit钱包理财产品服务协议</string>
-    <string name="read_buy_pop_protocol"><Data><![CDATA[我已经仔细阅读<font color="#3D76FF">《MooreBit钱包理财产品服务协议》</font>，同意协议中的有关条款。充分了解银行和自身的权利和义务。]]></Data></string>
+    <string name="pop_protocol">金米钱包理财产品服务协议</string>
+    <string name="read_buy_pop_protocol"><Data><![CDATA[我已经仔细阅读<font color="#3D76FF">《金米钱包理财产品服务协议》</font>，同意协议中的有关条款。充分了解银行和自身的权利和义务。]]></Data></string>
     <string name="global_income_rank">全球收益榜</string>
     <string name="expect_income_btc">预估收益(BTC)</string>
     <string name="income_share">他的分享</string>

@@ -19,6 +19,172 @@
             android:clickable="false"
             android:orientation="horizontal">
 
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_1"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_1"-->
+                    <!--android:layout_width="19dp"-->
+                    <!--android:layout_height="19dp"-->
+                    <!--android:src="@mipmap/main_invest_dark" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_1"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:textColor="@color/gray_666666"-->
+                    <!--android:textSize="11sp"-->
+                    <!--tools:text="应用" />-->
+
+            <!--</LinearLayout>-->
+
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_2"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_2"-->
+                    <!--android:layout_width="19dp"-->
+                    <!--android:layout_height="19dp"-->
+                    <!--tools:src="@mipmap/main_invest_dark" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_2"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:textColor="@color/gray_666666"-->
+                    <!--android:textSize="11sp"-->
+                    <!--tools:text="@string/mian_tab_invest" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_3"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_3"-->
+                    <!--android:layout_width="19dp"-->
+                    <!--android:layout_height="19dp"-->
+                    <!--tools:src="@mipmap/main_trade_dark" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_3"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:textColor="@color/gray_666666"-->
+                    <!--android:textSize="11sp"-->
+                    <!--tools:text="@string/mian_tab_trade" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_4"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_4"-->
+                    <!--android:layout_width="19dp"-->
+                    <!--android:layout_height="19dp"-->
+                    <!--tools:src="@mipmap/main_wallet_dark" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_4"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:textColor="@color/gray_666666"-->
+                    <!--android:textSize="11sp"-->
+                    <!--tools:text="@string/mian_tab_assets" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_5"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="?attr/selectableItemBackground"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="vertical"-->
+                <!--android:visibility="gone">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/iv_5"-->
+                    <!--android:layout_width="19dp"-->
+                    <!--android:layout_height="19dp"-->
+                    <!--tools:src="@mipmap/main_my_dark" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tv_5"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="5dp"-->
+                    <!--android:textColor="@color/gray_666666"-->
+                    <!--android:textSize="11sp"-->
+                    <!--tools:text="@string/main_tab_my" />-->
+
+            <!--</LinearLayout>-->
+
+
+
+            <LinearLayout
+                android:id="@+id/ll_app"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_app"
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@mipmap/main_invest_dark" />
+
+                <TextView
+                    android:id="@+id/tv_app"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="11sp"
+                    tools:text="应用" />
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/ll_invest"
                 android:layout_width="0dp"
@@ -26,7 +192,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_invest"
@@ -39,9 +206,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    tools:text="@string/mian_tab_invest"
                     android:textColor="@color/gray_666666"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    tools:text="@string/mian_tab_invest" />
 
             </LinearLayout>
 
@@ -52,7 +219,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_trade"
@@ -65,9 +233,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    tools:text="@string/mian_tab_trade"
                     android:textColor="@color/gray_666666"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    tools:text="@string/mian_tab_trade" />
 
             </LinearLayout>
 
@@ -78,7 +246,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_wallet"
@@ -91,9 +260,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    tools:text="@string/mian_tab_assets"
                     android:textColor="@color/gray_666666"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    tools:text="@string/mian_tab_assets" />
 
             </LinearLayout>
 
@@ -104,7 +273,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/iv_my"
@@ -117,9 +287,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    tools:text="@string/main_tab_my"
                     android:textColor="@color/gray_666666"
-                    android:textSize="11sp" />
+                    android:textSize="11sp"
+                    tools:text="@string/main_tab_my" />
 
             </LinearLayout>
 

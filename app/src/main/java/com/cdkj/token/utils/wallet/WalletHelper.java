@@ -130,6 +130,9 @@ public class WalletHelper {
     public final static String WAN_NODE_URL_DEV = "http://120.26.6.213:8546";
 
 
+    public static final String WALLET_USER = SPUtilHelper.getUserId();
+
+
     /**
      * 根据币种和环境类型获取节点url
      *
@@ -451,6 +454,9 @@ public class WalletHelper {
         walletDBModel.setBtcAddress(keyBTC.toAddress(getBtcMainNetParams()).toString());
         walletDBModel.setBtcPrivateKey(keyBTC.getPrivateKeyAsWiF(getBtcMainNetParams()));
 
+        walletDBModel.setUsdtAddress(keyBTC.toAddress(getBtcMainNetParams()).toString());
+        walletDBModel.setUsdtPrivateKey(keyBTC.getPrivateKeyAsWiF(getBtcMainNetParams()));
+
 //        // 钱包主秘钥
 //        DeterministicKey keyBTC = HDKeyDerivation
 //                .createMasterPrivateKey(seed.getSeedBytes());
@@ -461,7 +467,6 @@ public class WalletHelper {
 //
 //        walletDBModel.setBtcAddress(addressBTC);
 //        walletDBModel.setBtcPrivateKey(privateKeyBTC);
-
 
 
         return walletDBModel;
@@ -503,12 +508,16 @@ public class WalletHelper {
 
         //--------------------------1--------------------------
 
+
         List<ChildNumber> keyPathBTC = HDUtils.parsePath(getBtcHDPath());
 
         DeterministicKey keyBTC = keyChain.getKeyByPath(keyPathBTC, true);
 
         walletDBModel.setBtcAddress(keyBTC.toAddress(getBtcMainNetParams()).toString());
         walletDBModel.setBtcPrivateKey(keyBTC.getPrivateKeyAsWiF(getBtcMainNetParams()));
+
+        walletDBModel.setUsdtAddress(keyBTC.toAddress(getBtcMainNetParams()).toString());
+        walletDBModel.setUsdtPrivateKey(keyBTC.getPrivateKeyAsWiF(getBtcMainNetParams()));
 
 //
 //        LogUtil.E("地址  " + credentials2.getAddress());
@@ -842,6 +851,7 @@ public class WalletHelper {
         Web3j web3j = Web3jFactory.build(new HttpService(getNodeUrlByCoinType(COIN_ETH)));
         EthGetBalance ethGetBalance = web3j.ethGetBalance(address, DefaultBlockParameterName.LATEST).send();
         BigInteger balance = ethGetBalance.getBalance();
+
         return balance;
     }
 
@@ -988,7 +998,7 @@ public class WalletHelper {
 
                     long afterFee = (148 * inputNum + 34 * 2 + 10) * rate; // 设置找零后输出 + 转账地址输出
 
-                    if (totalMoney >= (value + afterFee)){
+                    if (totalMoney >= (value + afterFee)) {
 
                         return afterFee;
 
@@ -1021,8 +1031,8 @@ public class WalletHelper {
 
         long totalMoney = 0; //utxo数量总值
 
-        if (CollectionUtils.isEmpty(unSpentBTCList)){ // BTC余额为0，没有UTXO时，默认一个输入，一个输出
-           return calMinerFee(1, 1, rate);
+        if (CollectionUtils.isEmpty(unSpentBTCList)) { // BTC余额为0，没有UTXO时，默认一个输入，一个输出
+            return calMinerFee(1, 1, rate);
         }
 
         for (UTXOModel us : unSpentBTCList) {
@@ -1041,7 +1051,7 @@ public class WalletHelper {
 
                 long afterFee = calMinerFee(inputNum, 2, rate); // 设置找零后输出 + 转账地址输出
 
-                if (totalMoney >= (value + afterFee)){
+                if (totalMoney >= (value + afterFee)) {
 
                     return afterFee;
 
@@ -1053,9 +1063,6 @@ public class WalletHelper {
 
             }
         }
-
-
-
         return fee;
     }
 
@@ -1076,7 +1083,7 @@ public class WalletHelper {
 
         long totalMoney = 0; //utxo数量总值
 
-        if (CollectionUtils.isEmpty(unSpentBTCList)){ // BTC余额为0，没有UTXO时，默认一个输入，两个输出
+        if (CollectionUtils.isEmpty(unSpentBTCList)) { // BTC余额为0，没有UTXO时，默认一个输入，两个输出
             return calMinerFee(1, 2, rate);
         }
 
@@ -1096,7 +1103,7 @@ public class WalletHelper {
 
                 long afterFee = calMinerFee(inputNum, 3, rate); // 设置找零后输出 + 转账地址输出
 
-                if (totalMoney >= (value + afterFee)){
+                if (totalMoney >= (value + afterFee)) {
 
                     return afterFee;
 
@@ -1399,10 +1406,6 @@ public class WalletHelper {
     }
 
 
-
-
-
-
     public static String signUSDTTransactionData(Activity activity, @NonNull List<UTXOModel> unSpentBTCList, @NonNull String from, @NonNull String to,
                                                  @NonNull String privateKey, long amount, int rate) {
 
@@ -1499,6 +1502,7 @@ public class WalletHelper {
 
     /**
      * 预估本次交易矿工费
+     *
      * @param inCount
      * @param outCount
      * @return
@@ -1552,7 +1556,7 @@ public class WalletHelper {
     }
 
 
-    public static void getPastBtcAddress(){
+    public static void getPastBtcAddress() {
 
         List<String> memonic = getHelpWordsListByUserId(SPUtilHelper.getUserId());
 
@@ -1569,10 +1573,56 @@ public class WalletHelper {
 
         String addressBTC = keyBTC.toAddress(getBtcMainNetParams()).toString();
 
-        SPUtilHelper.savePastBtcInfo(addressBTC+"+"+privateKeyBTC);
+        SPUtilHelper.savePastBtcInfo(addressBTC + "+" + privateKeyBTC);
 
-        Log.e("pastBTC","a="+addressBTC);
-        Log.e("pastBTC","p="+privateKeyBTC);
+        Log.e("pastBTC", "a=" + addressBTC);
+        Log.e("pastBTC", "p=" + privateKeyBTC);
+    }
+
+
+    /**
+     * 根据用户Id获取用户钱包信息 （私钥 助记词等）
+     *
+     * @param userId
+     * @return
+     */
+    public static WalletDBModel getUserWalletInfoByUserId(String userId) {
+
+        Cursor cursor = getUserInfoCursorByUserId(WalletHelper.WALLET_USER);
+
+        WalletDBModel walletDBModel = new WalletDBModel();
+
+        try {
+            if (cursor != null && cursor.moveToFirst()) {
+
+                walletDBModel.setUserId(userId);
+
+                walletDBModel.setWalletPassWord(cursor.getString(cursor.getColumnIndex(WALLETPASSWORD)));
+                walletDBModel.setHelpWordsEn(cursor.getString(cursor.getColumnIndex(WalletDBColumn.HELPWORDSEN)));
+
+                walletDBModel.setBtcAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.BTCADDRESS)));
+                walletDBModel.setBtcPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.BTCPRIVATEKEY)));
+
+                walletDBModel.setEthAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.ETHADDRESS)));
+                walletDBModel.setEthPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.ETHPRIVATEKEY)));
+
+
+                walletDBModel.setWanAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WANADDRESS)));
+                walletDBModel.setWanPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WANPRIVATEKEY)));
+
+                walletDBModel.setUsdtAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.USDTADDRESS)));
+                walletDBModel.setUsdtPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.USDTPRIVATEKEY)));
+
+                walletDBModel.setWalletName(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WALLET_NAME)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return walletDBModel;
     }
 
 }

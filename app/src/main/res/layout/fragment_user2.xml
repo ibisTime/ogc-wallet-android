@@ -119,36 +119,76 @@
                     app:cardUseCompatPadding="true">
 
                     <LinearLayout
-
-                        android:id="@+id/linLayout_user_account"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:background="?attr/selectableItemBackground"
-                        android:gravity="center_vertical">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                        <ImageView
-                            android:layout_width="@dimen/user_fragment_item_img_width"
-                            android:layout_height="@dimen/user_fragment_item_img_height"
-                            android:layout_marginLeft="15dp"
-                            android:src="@drawable/user_security" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:layout_weight="1"
-                            android:text="@string/accounts_and_security"
-                            android:textColor="@color/black"
-                            android:textSize="14sp" />
+                        <LinearLayout
+                            android:id="@+id/linLayout_user_account"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center_vertical">
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@mipmap/more" />
+                            <ImageView
+                                android:layout_width="@dimen/user_fragment_item_img_width"
+                                android:layout_height="@dimen/user_fragment_item_img_height"
+                                android:layout_marginLeft="15dp"
+                                android:src="@drawable/user_security" />
 
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:text="@string/accounts_and_security"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:background="@mipmap/more" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/line_jinmi_money"
+                            style="@style/style_split_line"
+                            android:layout_marginLeft="48dp" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_jinmi_money"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/user_fragment_item_img_width"
+                                android:layout_height="@dimen/user_fragment_item_img_height"
+                                android:layout_marginLeft="15dp"
+                                android:src="@mipmap/icon_jinmi_money" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:text="金米钱包"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:background="@mipmap/more" />
+
+                        </LinearLayout>
                     </LinearLayout>
-
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
@@ -230,7 +270,40 @@
 
                         </LinearLayout>
 
+                        <View
+                            android:id="@+id/line_jinmi_fraction"
+                            style="@style/style_split_line"
+                            android:layout_marginLeft="48dp" />
 
+                        <LinearLayout
+                            android:id="@+id/ll_jinmi_fraction"
+                            android:layout_width="match_parent"
+                            android:layout_height="60dp"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/user_fragment_item_img_width"
+                                android:layout_height="@dimen/user_fragment_item_img_height"
+                                android:layout_marginLeft="15dp"
+                                android:src="@mipmap/icon_jinmi_fufen" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_weight="1"
+                                android:text="金米福分"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:background="@mipmap/more" />
+
+                        </LinearLayout>
                     </LinearLayout>
 
 

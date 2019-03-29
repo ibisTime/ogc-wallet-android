@@ -14,8 +14,13 @@ import java.util.Locale;
 public class AppConfig {
 
     //系统参数
-    public final static String COMPANYCODE = "CD-OGC000019";
-    public final static String SYSTEMCODE = "CD-OGC000019";
+    //云南钱包系统参数
+//    public final static String COMPANYCODE = "CD-OGC000019";
+//    public final static String SYSTEMCODE = "CD-OGC000019";
+
+    //金米系统参数
+    public final static String COMPANYCODE = "CD-OGC000021";
+    public final static String SYSTEMCODE = "CD-OGC000021";
     public final static String USERTYPE = "C";//用户类型
 
 
@@ -55,15 +60,18 @@ public class AppConfig {
     // 拍照文件保存路径
     public static final String CACHDIR = "tha_photo";
 
-    // 环境访问地址
+    //  云南钱包环境访问地址
+//    public static final String BASE_URL_DEV = "http://120.26.6.213:5801/forward-service/"; // 研发
+//    public static final String BASE_URL_TEST = "http://120.26.6.213:6801/forward-service/"; // 客户的测试
+//    public static final String BASE_URL_ONLINE = "https://moorebit.io/"; // 线上
+
+    //  金米环境访问地址
     public static final String BASE_URL_DEV = "http://120.26.6.213:5801/forward-service/"; // 研发
-    public static final String BASE_URL_TEST = "http://120.26.6.213:6801/forward-service/"; // 客户的测试
-//    public static final String BASE_URL_ONLINE = "http://47.97.202.123:2801/forward-service/"; // 线上
-    public static final String BASE_URL_ONLINE = "https://moorebit.io/"; // 线上
+    public static final String BASE_URL_TEST = "http://3.1.207.21:2801/forward-service/"; // 客户的测试
+    public static final String BASE_URL_ONLINE = "http://3.1.207.21:2801/forward-service/"; // 线上
 
     public static String getZenDeskUrl() {
-//        return "https://thachainhelp.zendesk.com" + getZenDeskUrlLanguage();
-        LogUtil.E("帮助中心的url:"+"https://chengwallethelp.zendesk.com" + getZenDeskUrlLanguage());
+        LogUtil.E("帮助中心的url:" + "https://chengwallethelp.zendesk.com" + getZenDeskUrlLanguage());
         return "https://moorebit.zendesk.com" + getZenDeskUrlLanguage();
     }
 
@@ -107,6 +115,7 @@ public class AppConfig {
         if (LogUtil.isLog) {
             switch (SPUtilHelper.getAPPBuildType()) {
                 case BUILD_TYPE_TEST: // 测试
+
                     return AppConfig.BASE_URL_TEST;
                 default: // 研发
                     return AppConfig.BASE_URL_DEV;

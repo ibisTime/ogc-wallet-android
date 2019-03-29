@@ -46,6 +46,10 @@ public class WalletDBColumn {
 
     public static final String WANPRIVATEKEY = "wanprivatekey";
 
+    public static final String USDTADDRESS = "usdtaddress";
+
+    public static final String USDTPRIVATEKEY = "usdtprivatekey";
+
     public static final String CHOOSECOINIDS = "choosecoins";
 
     public static final String ISCHOOSED = "ischoosed";

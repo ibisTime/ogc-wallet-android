@@ -27,9 +27,9 @@ public class WalletBalanceAdapter extends BaseQuickAdapter<WalletBalanceModel, B
     protected void convert(BaseViewHolder helper, WalletBalanceModel item) {
 
 
-        if (TextUtils.equals(item.getAddress(), SPUtilHelper.getPastBtcInfo().split("\\+")[0])){
+        if (TextUtils.equals(item.getAddress(), SPUtilHelper.getPastBtcInfo().split("\\+")[0])) {
             // 老BTC地址需要加上老版本标示
-            helper.setText(R.id.tv_coin_name, item.getCoinSymbol()+"(old version)");
+            helper.setText(R.id.tv_coin_name, item.getCoinSymbol() + "(old version)");
         } else {
             helper.setText(R.id.tv_coin_name, item.getCoinSymbol());
         }
@@ -43,6 +43,8 @@ public class WalletBalanceAdapter extends BaseQuickAdapter<WalletBalanceModel, B
         helper.setText(R.id.tv_market_price, getMarketPriceString(item));
 
         helper.setText(R.id.tv_amount_cny, getAmountString(item));
+        helper.addOnClickListener(R.id.ll_item);
+//        ll_item
 
     }
 

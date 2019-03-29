@@ -134,7 +134,8 @@ public class TradeFragmentBTC extends BaseLazyFragment implements IdentifyInterf
         getDefaultBank();
         initMinCnyAmount();
         initClickListener();
-
+        starttimer();
+        getSymbolList();
         return mBinding.getRoot();
 
     }
@@ -271,7 +272,7 @@ public class TradeFragmentBTC extends BaseLazyFragment implements IdentifyInterf
 
                 ArrayList<Entry> values1 = new ArrayList<>();
                 for (int i = 0; i < data.size(); i++) {
-                    values1.add(new Entry(i,data.get(i).getPrice()));
+                    values1.add(new Entry(i, data.get(i).getPrice()));
                 }
                 MPChartUtils.setLineChartData(mBinding.lineChart, values1);
             }
@@ -681,21 +682,17 @@ public class TradeFragmentBTC extends BaseLazyFragment implements IdentifyInterf
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        starttimer();
-        getSymbolList();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (subscribe != null) {
-            subscribe.dispose();
-            subscribe = null;
-        }
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//
+//    }
 
     /**
      * 启动身份证实名认证
@@ -745,7 +742,7 @@ public class TradeFragmentBTC extends BaseLazyFragment implements IdentifyInterf
     @Override
     public void onIdStart() {
         loadingMesgDialog = new LoadingMesgDialog(mActivity, "正在认证中");
-        showLoadingDialog();
+//        showLoadingDialog();
     }
 
 
@@ -826,6 +823,24 @@ public class TradeFragmentBTC extends BaseLazyFragment implements IdentifyInterf
     }
 
     //************身份证实名认证回调
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mActivity != null) {
+            starttimer();
+            getSymbolList();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (subscribe != null) {
+            subscribe.dispose();
+            subscribe = null;
+        }
+    }
 
     /**
      * 选择银行卡的回调

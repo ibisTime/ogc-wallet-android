@@ -196,7 +196,7 @@ public class WebViewImgBgActivity extends AbsStatusBarTranslucentActivity {
         map.put("systemCode", AppConfig.SYSTEMCODE);
         map.put("companyCode", AppConfig.COMPANYCODE);
 
-        Call call = RetrofitUtils.getBaseAPiService().getKeySystemInfo("660917", StringUtils.getRequestJsonString(map));
+        Call call = RetrofitUtils.getBaseAPiService().getKeySystemInfo("630047", StringUtils.getRequestJsonString(map));
 
         addCall(call);
 

@@ -72,7 +72,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
      * @param context
      * @param localCoinModel
      */
-    public static void open(Context context, WalletBalanceModel localCoinModel,boolean isPastBtc) {
+    public static void open(Context context, WalletBalanceModel localCoinModel, boolean isPastBtc) {
         if (context == null) {
             return;
         }
@@ -86,6 +86,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
     @Override
     public View addMainView() {
         mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_wallet_bill, null, false);
+
         return mBinding.getRoot();
     }
 
@@ -94,13 +95,15 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
         setStatusBarBlue();
         setTitleBgBlue();
+        setShowTitle(false);
 
-        isPastBtc = getIntent().getBooleanExtra(CdRouteHelper.DATASIGN2,false);
+        isPastBtc = getIntent().getBooleanExtra(CdRouteHelper.DATASIGN2, false);
         accountListBean = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
-
+            //设置标题
         if (accountListBean != null) {
-            mBaseBinding.titleView.setMidTitle(accountListBean.getCoinSymbol());
+//            mBaseBinding.titleView.setMidTitle(accountListBean.getCoinSymbol());
 //            ImgUtils.loadCircleImg(WalletCoinDetailsActivity.this, accountListBean.getCoinImgUrl(), mBinding.ivIcon);
+            mBinding.tvTitle.setText(accountListBean.getCoinSymbol());
             setAmountInfo();
         }
 
@@ -129,6 +132,8 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
     private void initClickListener() {
 
+        mBinding.imgFinish.setOnClickListener(v -> finish());
+
         //收款
         mBinding.linLayoutInCoin.setOnClickListener(view -> {
             if (accountListBean != null) {
@@ -152,7 +157,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
                 return;
             }
 
-            if (isUSDT()){
+            if (isUSDT()) {
                 WalletUSDTTransferActivity.open(this, accountListBean);
                 return;
             }
@@ -183,7 +188,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
                     return getEthTokenCoinDetailsListAdapter(listData);
                 }
 
-                if (isUSDT()){ // USDT
+                if (isUSDT()) { // USDT
                     return getUSDTBillListAdapter(listData);
                 }
 
@@ -192,7 +197,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
             @Override
             public void getListDataRequest(int pageindex, int limit, boolean isShowDialog) {
-                if (accountListBean == null){
+                if (accountListBean == null) {
                     return;
                 }
 
@@ -204,7 +209,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
                     getEthTokenCoinBillList(pageindex, limit, isShowDialog);
 
-                } else if (isUSDT()){ // USDT
+                } else if (isUSDT()) { // USDT
 
                     getUSDTBillRequest(pageindex, limit, isShowDialog);
 
@@ -256,7 +261,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
         map.put("start", pageindex + "");
         map.put("limit", limit + "");
 
-        Call<BaseResponseModel<ResponseInListModel<BTCBillModel>>> btcBillCall = RetrofitUtils.createApi(MyApi.class).getBTCBillList("802221", StringUtils.getRequestJsonString(map));
+        Call<BaseResponseModel<ResponseInListModel<BTCBillModel>>> btcBillCall = RetrofitUtils.createApi(MyApi.class).getBTCBillList("802224", StringUtils.getRequestJsonString(map));
 
         addCall(btcBillCall);
 

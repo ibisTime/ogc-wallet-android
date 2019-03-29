@@ -43,6 +43,7 @@ public abstract class BaseFragment extends Fragment {
         mSubscription=new CompositeDisposable();
     }
     protected void addCall(Call call) {
+        if (mCallList!=null)
         mCallList.add(call);
     }
 
@@ -71,7 +72,7 @@ public abstract class BaseFragment extends Fragment {
      * 显示dialog
      */
     public void showLoadingDialog() {
-        if(loadingDialog==null){
+        if(loadingDialog==null&&mActivity!=null){
             loadingDialog=new LoadingDialog(mActivity);
         }
 

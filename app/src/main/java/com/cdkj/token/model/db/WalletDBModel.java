@@ -25,6 +25,15 @@ public class WalletDBModel extends DataSupport {
     public String wanAddress;//地址
     public String wanPrivateKey;//私钥
 
+    public String usdtAddress;//地址
+    public String usdtPrivateKey;//私钥
+
+    public String ethTokenAddress;//地址
+    public String ethTokenPrivateKey;//私钥
+
+    public String wanTokenAddress;//地址
+    public String wanTokenPrivateKey;//私钥
+
 
     //以下为140之前版本兼容  历史遗留问题............
     private String helpcenterEn;// 助记词 英文
@@ -142,6 +151,54 @@ public class WalletDBModel extends DataSupport {
 
     public void setWanPrivateKey(String wanPrivateKey) {
         this.wanPrivateKey = wanPrivateKey;
+    }
+
+    public String getUsdtAddress() {
+        return usdtAddress;
+    }
+
+    public void setUsdtAddress(String usdtAddress) {
+        this.usdtAddress = usdtAddress;
+    }
+
+    public String getUsdtPrivateKey() {
+        return usdtPrivateKey;
+    }
+
+    public void setUsdtPrivateKey(String usdtPrivateKey) {
+        this.usdtPrivateKey = usdtPrivateKey;
+    }
+
+    public String getEthTokenAddress() {
+        return ethTokenAddress;
+    }
+
+    public void setEthTokenAddress(String ethTokenAddress) {
+        this.ethTokenAddress = ethTokenAddress;
+    }
+
+    public String getEthTokenPrivateKey() {
+        return ethTokenPrivateKey;
+    }
+
+    public void setEthTokenPrivateKey(String ethTokenPrivateKey) {
+        this.ethTokenPrivateKey = ethTokenPrivateKey;
+    }
+
+    public String getWanTokenAddress() {
+        return wanTokenAddress;
+    }
+
+    public void setWanTokenAddress(String wanTokenAddress) {
+        this.wanTokenAddress = wanTokenAddress;
+    }
+
+    public String getWanTokenPrivateKey() {
+        return wanTokenPrivateKey;
+    }
+
+    public void setWanTokenPrivateKey(String wanTokenPrivateKey) {
+        this.wanTokenPrivateKey = wanTokenPrivateKey;
     }
 }
 

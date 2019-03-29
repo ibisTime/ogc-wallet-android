@@ -17,12 +17,12 @@
 
     <color name="black_000000">#000000</color>
     <color name="black">#484848</color>
-
+    <color name="white">#ffffff</color>
     <color name="blue">#4064E6</color>
     <color name="blue_4368EF">#4368EF</color>
     <color name="blue_0064ff">#0064FF</color>
     <color name="text_blue">#4064E6</color>
-
+    <color name="gray">#ececec</color>
     <color name="oragne">#ff7d0e</color>
     <color name="oragne_ff6953">#FF6953</color>
 

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"></FrameLayout>
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical">-->
+
+        <!--<View-->
+            <!--style="@style/style_split_line"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="12dp"-->
+            <!--android:layout_marginRight="12dp" />-->
+
+
+        <!--<com.mcxtzhang.swipemenulib.SwipeMenuLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:clickable="true">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_item"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="vertical">-->
+
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/rl_normal"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:paddingLeft="20dp"-->
+                    <!--android:paddingRight="20dp">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/img_coin_logo"-->
+                        <!--android:layout_width="31dp"-->
+                        <!--android:layout_height="31dp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_coin_name"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/img_coin_logo"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:textStyle="bold"-->
+                        <!--tools:text="BTC" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_top_right"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignTop="@+id/img_coin_logo"-->
+                        <!--android:layout_alignBottom="@+id/img_coin_logo"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_toRightOf="@+id/img_coin_logo"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_market_price"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="14sp"-->
+                            <!--tools:text="≈ 45660CNY" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_amount"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:shadowColor="@color/black"-->
+                            <!--android:text="0.00000000"-->
+                            <!--android:textColor="@color/text_black_cd"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:textStyle="bold" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_symbol"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="3dp"-->
+                            <!--android:shadowColor="@color/black"-->
+                            <!--android:textColor="@color/text_black_cd"-->
+                            <!--android:textSize="14sp"-->
+                            <!--tools:text="BTC" />-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_alignBottom="@+id/tv_coin_name"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_toRightOf="@+id/img_coin_logo"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_rate"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="0.00%"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="14sp" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:id="@+id/iv_rate"-->
+                            <!--android:layout_width="7dp"-->
+                            <!--android:layout_height="10dp"-->
+                            <!--android:layout_marginLeft="3dp"-->
+                            <!--android:gravity="bottom" />-->
+                    <!--</LinearLayout>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_amount_cny"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@+id/tv_coin_name"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginTop="8dp"-->
+                        <!--android:shadowColor="@color/black"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="14sp"-->
+                        <!--tools:text="≈ 0CNY" />-->
+                <!--</RelativeLayout>-->
+
+                <!--<RelativeLayout-->
+                    <!--android:visibility="gone"-->
+                    <!--android:id="@+id/rl_load"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:paddingLeft="20dp"-->
+                    <!--android:paddingRight="20dp">-->
+
+                    <!--<ImageView-->
+                        <!--android:id="@+id/img_coin_logo_load"-->
+                        <!--android:layout_width="31dp"-->
+                        <!--android:layout_height="31dp" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_coin_name_load"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@+id/img_coin_logo_load"-->
+                        <!--android:layout_marginTop="5dp"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:textStyle="bold"-->
+                        <!--tools:text="BTC" />-->
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_top_right_load"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignTop="@+id/img_coin_logo_load"-->
+                        <!--android:layout_alignBottom="@+id/img_coin_logo_load"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_toRightOf="@+id/img_coin_logo_load"-->
+                        <!--android:gravity="center_vertical"-->
+                        <!--android:orientation="horizontal">-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_market_price_load"-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="14sp"-->
+                            <!--tools:text="≈ 45660CNY" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_amount_load"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:shadowColor="@color/black"-->
+                            <!--android:text="0.00000000"-->
+                            <!--android:textColor="@color/text_black_cd"-->
+                            <!--android:textSize="16sp"-->
+                            <!--android:textStyle="bold" />-->
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_symbol_load"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="3dp"-->
+                            <!--android:shadowColor="@color/black"-->
+                            <!--android:textColor="@color/text_black_cd"-->
+                            <!--android:textSize="14sp"-->
+                            <!--tools:text="BTC" />-->
+
+                    <!--</LinearLayout>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:layout_alignBottom="@+id/tv_coin_name_load"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_toRightOf="@+id/tv_coin_name_load"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content">-->
+                        <!--<TextView-->
+                            <!--android:id="@+id/tv_rate_load"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="0.00%"-->
+                            <!--android:textColor="@color/black"-->
+                            <!--android:textSize="14sp" />-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_gravity="center"-->
+                            <!--android:id="@+id/iv_rate_load"-->
+                            <!--android:layout_width="7dp"-->
+                            <!--android:layout_height="10dp"-->
+                            <!--android:layout_marginLeft="3dp"-->
+                            <!--android:gravity="bottom" />-->
+                    <!--</LinearLayout>-->
+
+                    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/tv_rate_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignBottom="@+id/tv_coin_name_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_toRightOf="@+id/tv_coin_name_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="0.00%"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textColor="@color/black"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="14sp" />&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/iv_rate_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="7dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_alignBottom="@+id/tv_rate_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="3dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_toRightOf="@+id/tv_rate_load"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:gravity="bottom" />&ndash;&gt;-->
+
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tv_amount_cny_load"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBottom="@+id/tv_coin_name_load"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginTop="8dp"-->
+                        <!--android:shadowColor="@color/black"-->
+                        <!--android:textColor="@color/black"-->
+                        <!--android:textSize="14sp"-->
+                        <!--tools:text="≈ 0CNY" />-->
+                <!--</RelativeLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!--&lt;!&ndash; 以下都是侧滑菜单的内容依序排列 &ndash;&gt;-->
+            <!--<Button-->
+                <!--android:id="@+id/btn_charge"-->
+                <!--android:layout_width="65dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#c3c3c3"-->
+                <!--android:text="@string/wallet_bill_list_charge"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="15sp" />-->
+
+            <!--<Button-->
+                <!--android:id="@+id/btn_withdraw"-->
+                <!--android:layout_width="65dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#ff4545"-->
+                <!--android:text="@string/wallet_bill_list_withdraw"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:textSize="15sp" />-->
+
+        <!--</com.mcxtzhang.swipemenulib.SwipeMenuLayout>-->
+
+
+    <!--</LinearLayout>-->
+
+
+</layout>

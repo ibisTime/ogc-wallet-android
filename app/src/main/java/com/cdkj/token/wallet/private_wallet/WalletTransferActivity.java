@@ -321,7 +321,7 @@ public class WalletTransferActivity extends AbsLoadActivity {
         Call<BaseResponseModel<GasPrice>> call = null;
 
         if (canGetETHGasPrice()) {
-            call = RetrofitUtils.createApi(MyApi.class).getGasPrice("802117", "{}");  //ETH gas
+            call = RetrofitUtils.createApi(MyApi.class).getGasPrice("802109", "{}");  //ETH gas
         } else {
             call = RetrofitUtils.createApi(MyApi.class).getGasPrice("802358", "{}");
         }

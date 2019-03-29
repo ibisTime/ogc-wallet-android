@@ -22,17 +22,20 @@ import com.cdkj.token.model.ConsultListModel;
 import com.cdkj.token.model.ConsultModel;
 import com.cdkj.token.model.ConsultingModel;
 import com.cdkj.token.model.CountryCodeMode;
+import com.cdkj.token.model.DAppModel;
 import com.cdkj.token.model.DealDetailModel;
 import com.cdkj.token.model.DealHistoryModel;
 import com.cdkj.token.model.DealModel;
 import com.cdkj.token.model.DealResultModel;
 import com.cdkj.token.model.DealUserDataModel;
 import com.cdkj.token.model.ExchangeModel;
+import com.cdkj.token.model.FufenBean;
 import com.cdkj.token.model.GasPrice;
 import com.cdkj.token.model.IncomeRankTopModel;
 import com.cdkj.token.model.InvestBillModel;
 import com.cdkj.token.model.InvestmentAmountModel;
 import com.cdkj.token.model.InviteModel;
+import com.cdkj.token.model.JinmiTeamBean;
 import com.cdkj.token.model.LineChartDataModel;
 import com.cdkj.token.model.LocalCoinBill;
 import com.cdkj.token.model.LocalEthTokenCoinBill;
@@ -45,7 +48,6 @@ import com.cdkj.token.model.MsgListModel;
 import com.cdkj.token.model.MyGetRedPackageBean;
 import com.cdkj.token.model.MyManamentMoneyProduct;
 import com.cdkj.token.model.MySendRedPackageBean;
-import com.cdkj.token.model.db.NavigationBean;
 import com.cdkj.token.model.OrderDetailModel;
 import com.cdkj.token.model.OrderListDetailsModel;
 import com.cdkj.token.model.OrderListModel;
@@ -63,6 +65,7 @@ import com.cdkj.token.model.SymbolPriceModel;
 import com.cdkj.token.model.SystemMessageModel;
 import com.cdkj.token.model.SystemParameterListModel;
 import com.cdkj.token.model.SystemParameterModel;
+import com.cdkj.token.model.TradeTypeBean;
 import com.cdkj.token.model.TrustModel;
 import com.cdkj.token.model.TxHashModel;
 import com.cdkj.token.model.UTXOListModel;
@@ -75,6 +78,7 @@ import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.model.WithdrawOrderModel;
 import com.cdkj.token.model.YesterdayAmountModel;
 import com.cdkj.token.model.db.LocalCoinDbModel;
+import com.cdkj.token.model.db.NavigationBean;
 import com.cdkj.token.model.submitOrdeMakeMoneyModel;
 
 import io.reactivex.Observable;
@@ -1045,5 +1049,52 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<MoneyTransactionTypeModel>> getMoneyTransactionType(@Field("code") String code, @Field("json") String json);
+ /**
+     * 获取钱包交易记录里面的  筛选数据
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<ResponseInListModel<DAppModel>>> getDAppList(@Field("code") String code, @Field("json") String json);
+ /**
+     * 获取钱包交易记录里面的  筛选数据
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<DAppModel>> getDApp(@Field("code") String code, @Field("json") String json);
+    /**
+     * 获取金米福分数据
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<FufenBean>> getFufen(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取金米福分数据
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseListModel<TradeTypeBean>> getTradeType(@Field("code") String code, @Field("json") String json);
+ /**
+     * 获取金米福分数据
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<JinmiTeamBean>> getJinmiTeam(@Field("code") String code, @Field("json") String json);
 
 }

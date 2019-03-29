@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -15,12 +16,14 @@ import com.cdkj.baselibrary.appmanager.AppConfig;
 import com.cdkj.baselibrary.appmanager.CdRouteHelper;
 import com.cdkj.baselibrary.appmanager.SPUtilHelper;
 import com.cdkj.baselibrary.base.AbsLoadActivity;
+import com.cdkj.baselibrary.dialog.CommonDialog;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseListCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.ImgUtils;
+import com.cdkj.baselibrary.utils.PermissionHelper;
 import com.cdkj.baselibrary.utils.RefreshHelper;
 import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
@@ -32,6 +35,7 @@ import com.cdkj.token.model.CoinAddressShowModel;
 import com.cdkj.token.model.MoneyTransactionTypeModel;
 import com.cdkj.token.model.WalletModel;
 import com.cdkj.token.utils.AmountUtil;
+import com.cdkj.token.utils.IdentityVerificationUtils;
 import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.wallet.private_wallet.WalletAddressShowActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -60,7 +64,8 @@ public class BillListActivity extends AbsLoadActivity {
 
     private List<MoneyTransactionTypeModel> checkDate;
     private String filterType = "";
-//    private String kind = "0";
+    private PermissionHelper permissionHelper;
+    //    private String kind = "0";
 
 //    private List<ScrollPicker.ScrollPickerData> filterTypeList; //筛选pop数据
 //    private PickerPop filterPickerPop;
@@ -213,6 +218,19 @@ public class BillListActivity extends AbsLoadActivity {
         mBinding.linLayoutOutCoin.setOnClickListener(view -> {
             if (mAccountBean == null)
                 return;
+//            IdentityVerificationUtils
+
+            if (SPUtilHelper.getRealName() == null || SPUtilHelper.getRealName().equals("")) {
+                new CommonDialog(this).builder()
+                        .setTitle("请先进行实名认证")
+                        .setNegativeBtn("取消", null)
+                        .setPositiveBtn("确定", view1 -> {
+                            IdentityVerificationUtils identityVerificationUtils = new IdentityVerificationUtils();
+                            permissionHelper = identityVerificationUtils.start(this);
+                        })
+                        .show();
+                return;
+            }
             WithdrawActivity.open(this, mAccountBean);
         });
     }
@@ -288,6 +306,16 @@ public class BillListActivity extends AbsLoadActivity {
         });
 
     }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (permissionHelper != null) {
+            permissionHelper.handleRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 
 //    @Override
 //    protected void onDestroy() {

@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+
+//    aaptOptions.cruncherEnabled = false
+//    aaptOptions.useNewCruncher = false
     compileSdkVersion 28
 
     /*多渠道设置*/ // AndroidManifest.xml 里面UMENG_CHANNEL的value为 ${UMENG_CHANNEL_VALUE}
@@ -55,6 +58,7 @@ android {
                 arguments = [moduleName: project.getName()]
             }
         }
+
     }
 
     signingConfigs {
@@ -139,6 +143,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':cdcommon')
     //人脸识别
+    implementation 'com.android.support:support-v4:28.0.0'
     compile(name: 'idauthsdk', ext: 'aar')
     //魔蝎
 //    compile(name: 'moxie-client-2.3.5', ext: 'aar')

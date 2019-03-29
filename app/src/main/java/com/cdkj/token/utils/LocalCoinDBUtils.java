@@ -273,9 +273,9 @@ public class LocalCoinDBUtils {
      */
     public static int getPrivateCoinStataIconByState(String direction) {
         if (isInState(direction)) {
-            return R.drawable.private_coin_in;
+            return R.drawable.coin_in;
         }
-        return R.drawable.private_coin_out;
+        return R.drawable.coin_out;
     }
 
     /**
