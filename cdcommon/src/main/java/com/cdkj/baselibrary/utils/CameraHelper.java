@@ -40,7 +40,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by cdkj on 2017/11/7.
  */
 //由CameraHelper2 修改而来 通过反射打开Activity从而兼容Fragment和Activity
-//TODO 裁剪接口抽取
+// 裁剪接口抽取
 public class CameraHelper {
 
     public final static int CAPTURE_PHOTO_CODE = 3;//相机

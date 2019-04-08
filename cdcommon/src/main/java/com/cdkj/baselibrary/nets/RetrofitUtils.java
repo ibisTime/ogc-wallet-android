@@ -6,6 +6,7 @@ import com.cdkj.baselibrary.api.BaseApiServer;
 import retrofit2.Retrofit;
 
 import static com.cdkj.baselibrary.appmanager.AppConfig.getBaseURL;
+import static com.cdkj.baselibrary.appmanager.AppConfig.getOtherBaseURL;
 
 /**
  * 服务器api
@@ -14,6 +15,7 @@ import static com.cdkj.baselibrary.appmanager.AppConfig.getBaseURL;
 public class RetrofitUtils {
 
     private static Retrofit retrofitInstance = null;
+    private static Retrofit otherRetrofitInstance = null;
 
     private RetrofitUtils() {
     }
@@ -34,6 +36,24 @@ public class RetrofitUtils {
                     .build();
         }
         return retrofitInstance;
+    }
+
+    /**
+     * 获取Retrofit实例
+     *
+     * @return Retrofit
+     */
+    public static Retrofit getOtherInstance() {
+
+        if (otherRetrofitInstance == null) {
+            otherRetrofitInstance = new Retrofit.Builder()
+                    .baseUrl(getOtherBaseURL())
+                    .client(OkHttpUtils.getInstance())
+                    .addConverterFactory(FastJsonConVerter.create())
+//                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build();
+        }
+        return otherRetrofitInstance;
     }
 
     public static void reSetInstance() {

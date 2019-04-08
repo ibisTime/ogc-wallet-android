@@ -70,7 +70,7 @@ public class UserInfoPresenter {
                     return;
                 }
 
-                //TODO 用户信息保存优化
+                // 用户信息保存优化
                 SPUtilHelper.saveSecretUserId(data.getSecretUserId());
                 SPUtilHelper.saveUserPhoto(data.getPhoto());
                 SPUtilHelper.saveUserEmail(data.getEmail());

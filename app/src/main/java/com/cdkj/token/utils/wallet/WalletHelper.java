@@ -18,6 +18,7 @@ import com.cdkj.token.model.UTXOModel;
 import com.cdkj.token.model.db.LocalCoinDbModel;
 import com.cdkj.token.model.db.UserConfigDBModel;
 import com.cdkj.token.model.db.WalletDBModel;
+import com.cdkj.token.org.tron.walletserver.Wallet;
 import com.cdkj.token.utils.LocalCoinDBUtils;
 import com.cdkj.token.utils.wan.WanRawTransaction;
 import com.cdkj.token.utils.wan.WanRawTransactionManager;
@@ -101,9 +102,9 @@ import static com.cdkj.token.utils.wallet.WalletDBColumn.WALLET_NAME;
  * 钱包工具类
  * Created by cdkj on 2018/6/6.
  */
-//TODO 加密方法抽取
-//TODO 工具类方法优化 转账交易方法入参优化
-//TODO 转账方法流程逻辑封装 除了单币种转账 还有一键划转， 如果逻辑改变，需要修改好几处地方，不方便
+// 加密方法抽取
+// 工具类方法优化 转账交易方法入参优化
+// 转账方法流程逻辑封装 除了单币种转账 还有一键划转， 如果逻辑改变，需要修改好几处地方，不方便
 public class WalletHelper {
 
     //助记词分隔符
@@ -113,12 +114,14 @@ public class WalletHelper {
 
     public final static String HDPATHBTC = "M/44H/0H/0H/0/0";//BTC生成助记词和解析时使用
     public final static String HDPATHBTC_TEST = "M/44H/1H/0H/0/0";//BTC生成助记词和解析时使用
+    public final static String HDPATHTRX = "M/44H/60H/0H/0/0";//波场
 
 
     public final static String COIN_ETH = "ETH";// 币种类型 ETH
     public final static String COIN_WAN = "WAN";// 币种类型 WAN
     public final static String COIN_BTC = "BTC";// 币种类型 BTC
     public final static String COIN_USDT = "USDT";// 币种类型 USDT
+    public final static String COIN_TRX = "TRX";// 币种类型 USDT
 
 
     //ETH 节点地址
@@ -238,6 +241,7 @@ public class WalletHelper {
      * @return
      */
     private static String getBtcHDPath() {
+
         switch (getThisNodeType()) {
             case NODE_DEV:
                 return HDPATHBTC_TEST;
@@ -421,9 +425,7 @@ public class WalletHelper {
         // 助记词
         List<String> mnemonicList = seed.getMnemonicCode();
 
-        DeterministicKeyChain keyChain = DeterministicKeyChain.builder()
-                .seed(seed).build();
-
+        DeterministicKeyChain keyChain = DeterministicKeyChain.builder().seed(seed).build();
 
         List<ChildNumber> keyPathETH = HDUtils.parsePath(HDPATHETH);
 
@@ -435,16 +437,12 @@ public class WalletHelper {
         WalletDBModel walletDBModel = new WalletDBModel();
 
         walletDBModel.setHelpWordsEn(StringUtils.listToString(mnemonicList, HELPWORD_SPACE_SYMBOL)); //储存下来 用，分割
-
-
         //ETH WAN
         walletDBModel.setEthAddress(credentialsETH.getAddress());
         walletDBModel.setEthPrivateKey(keyEth.getPrivateKeyAsHex());
 
         walletDBModel.setWanAddress(credentialsETH.getAddress());
         walletDBModel.setWanPrivateKey(keyEth.getPrivateKeyAsHex());
-
-
         //BTC
 
         List<ChildNumber> keyPathBTC = HDUtils.parsePath(getBtcHDPath());
@@ -469,9 +467,32 @@ public class WalletHelper {
 //        walletDBModel.setBtcPrivateKey(privateKeyBTC);
 
 
+//        //下面是 波场的  代码
+//        //波场  TRX
+
+        //波场 私钥
+        List<ChildNumber> trxPath = HDUtils.parsePath(HDPATHTRX);
+        DeterministicKey keyTrx = keyChain.getKeyByPath(trxPath, true);
+        String trxPrivateKey = keyTrx.getPrivKey().toString(16);
+
+        com.cdkj.token.org.tron.common.crypto.ECKey TRXEcky = com.cdkj.token.org.tron.common.crypto.ECKey.fromPrivate(keyTrx.getPrivKey());
+
+        walletDBModel.setTrxPrivateKey(trxPrivateKey);
+        String trxAddress = Wallet.encode58Check(TRXEcky.getAddress());
+        walletDBModel.setTrxAddress(trxAddress);
+
+        LogUtil.E("ppppppTRX私钥:" + trxPrivateKey);
+        LogUtil.E("ppppppTRX地址:" + trxAddress);
+
+
         return walletDBModel;
+
     }
 
+    //=================================================
+
+
+    //===================================
 
     /**
      * 根据助记词生成ETH WAN BTC私钥和地址
@@ -479,7 +500,6 @@ public class WalletHelper {
      * @param defaultMnenonic
      */
     public static WalletDBModel createAllCoinPrivateKeybyMnenonic(List<String> defaultMnenonic) {
-
 
         DeterministicSeed seed = new DeterministicSeed(defaultMnenonic,
                 null, "", Utils.currentTimeSeconds());
@@ -519,6 +539,16 @@ public class WalletHelper {
         walletDBModel.setUsdtAddress(keyBTC.toAddress(getBtcMainNetParams()).toString());
         walletDBModel.setUsdtPrivateKey(keyBTC.getPrivateKeyAsWiF(getBtcMainNetParams()));
 
+
+        List<ChildNumber> keyPathTRX = HDUtils.parsePath(HDPATHTRX);
+        DeterministicKey keyTRX = keyChain.getKeyByPath(keyPathTRX, true);
+        String trxPrivateKey = keyTRX.getPrivKey().toString(16);
+        com.cdkj.token.org.tron.common.crypto.ECKey TRXEcky = com.cdkj.token.org.tron.common.crypto.ECKey.fromPrivate(keyTRX.getPrivKey());
+
+        walletDBModel.setTrxPrivateKey(trxPrivateKey);
+        String trxAddress = Wallet.encode58Check(TRXEcky.getAddress());
+        walletDBModel.setTrxAddress(trxAddress);
+        walletDBModel.setTrxPrivateKey(keyTRX.getPrivateKeyAsHex());
 //
 //        LogUtil.E("地址  " + credentials2.getAddress());
 //        LogUtil.E("私钥1  " + keyBTC.getPrivateKeyAsHex());
@@ -612,6 +642,9 @@ public class WalletHelper {
                 walletDBModel.setWanAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WANADDRESS)));
                 walletDBModel.setWanPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WANPRIVATEKEY)));
 
+                walletDBModel.setTrxAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.TRXADDRESS)));
+                walletDBModel.setTrxPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.TRXPRIVATEKEY)));
+
                 walletDBModel.setWalletName(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WALLET_NAME)));
             }
         } catch (Exception e) {
@@ -666,6 +699,8 @@ public class WalletHelper {
                 return walletDBModel2.getWanPrivateKey();
             case COIN_BTC:
                 return walletDBModel2.getBtcPrivateKey();
+            case COIN_TRX:
+                return walletDBModel2.getTrxPrivateKey();
         }
         return "";
     }
@@ -1613,6 +1648,9 @@ public class WalletHelper {
                 walletDBModel.setUsdtAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.USDTADDRESS)));
                 walletDBModel.setUsdtPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.USDTPRIVATEKEY)));
 
+                walletDBModel.setTrxAddress(cursor.getString(cursor.getColumnIndex(WalletDBColumn.TRXADDRESS)));
+                walletDBModel.setTrxPrivateKey(cursor.getString(cursor.getColumnIndex(WalletDBColumn.TRXPRIVATEKEY)));
+
                 walletDBModel.setWalletName(cursor.getString(cursor.getColumnIndex(WalletDBColumn.WALLET_NAME)));
             }
         } catch (Exception e) {
@@ -1626,3 +1664,4 @@ public class WalletHelper {
     }
 
 }
+

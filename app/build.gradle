@@ -91,14 +91,14 @@ android {
         }
 
         devtest {
-            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "boolean", "IS_DEBUG", "false"
             buildConfigField "String", "umeng", "\"5b73d987a40fa33a1e00017e\""
             minifyEnabled false
         }
 
         debug {
             signingConfig signingConfigs.config
-            buildConfigField "boolean", "IS_DEBUG", "true"
+            buildConfigField "boolean", "IS_DEBUG", "false"
             buildConfigField "String", "umeng", "\"5b73d987a40fa33a1e00017e\""
             minifyEnabled false
         }
@@ -174,6 +174,8 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.sina.weibo.sdk:core:4.3.0:openDefaultRelease@aar'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+//        波场币 地址
+//    implementation 'com.github.tronprotocol:java-tron:develop-SNAPSHOT'
 
 }
 

@@ -230,7 +230,6 @@ public class LocalCoinDBUtils {
     }
 
 
-    //TODO 添加枚举参数
 
     /**
      * @param currency 币种[Thiea]USDT对接

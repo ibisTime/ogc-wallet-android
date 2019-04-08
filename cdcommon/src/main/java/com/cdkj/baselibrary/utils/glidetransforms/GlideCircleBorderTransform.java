@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
-import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 
 /**Glide 圆形图片带边框
@@ -52,7 +51,7 @@ public class GlideCircleBorderTransform extends BitmapTransformation {
         int size = (int) (Math.min(source.getWidth(), source.getHeight()) - (mBorderWidth / 2));
         int x = (source.getWidth() - size) / 2;
         int y = (source.getHeight() - size) / 2;
-        // TODO this could be acquired from the pool too
+        //  this could be acquired from the pool too
         Bitmap squared = Bitmap.createBitmap(source, x, y, size, size);
         Bitmap result = pool.get(size, size, Bitmap.Config.ARGB_8888);
         if (result == null) {

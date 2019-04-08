@@ -126,6 +126,25 @@ public class AppConfig {
         }
     }
 
+    /**
+     * 获取其他网络请求URL 这里是波产的地址
+     *
+     * @return
+     */
+    public static String getOtherBaseURL() {
+        if (LogUtil.isLog) {
+            switch (SPUtilHelper.getAPPBuildType()) {
+                case BUILD_TYPE_TEST: // 测试
+                    return "https://apilist.tronscan.org/";
+                default: // 研发
+                    return "https://apilist.tronscan.org/";
+            }
+        } else {
+            // 线上
+            return "https://apilist.tronscan.org/";
+        }
+    }
+
 
     /**
      * 设置APP使用的语言

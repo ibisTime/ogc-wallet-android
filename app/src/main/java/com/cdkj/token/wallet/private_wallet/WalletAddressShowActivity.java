@@ -1,6 +1,7 @@
 package com.cdkj.token.wallet.private_wallet;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -66,15 +67,19 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
         return true;
     }
 
+    @SuppressLint("StringFormatInvalid")
     @Override
     public void afterCreate(Bundle savedInstanceState) {
         mBaseBinding.titleView.setMidTitle(R.string.get_money);
         mBaseBinding.titleView.setRightTitle(getStrRes(R.string.wallet_charge_record));
-
+//        cion_input_message
         if (getIntent() != null) {
             coinAddressShowModel = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
         }
         mPermissionHelper = new PermissionHelper(this);
+        String coinSymbol = coinAddressShowModel.getCoinSymbol();
+
+        mBinding.tvMsg.setText(getString(R.string.cion_input_message,coinSymbol,coinSymbol,coinSymbol));
         initQRCodeAndAddress();
         initListener();
     }
@@ -85,8 +90,9 @@ public class WalletAddressShowActivity extends AbsLoadActivity {
 
         try {
             String coinLogo = SPUtilHelper.getQiniuUrl() + LocalCoinDBUtils.getCoinIconByCoinSymbol(coinAddressShowModel.getCoinSymbol());
-
+            mBinding.txtAddress.setText(coinAddressShowModel.getAddress());
             GlideApp.with(this).asBitmap().load(coinLogo)
+                    .error(R.mipmap.icon_pay_bank_logo)
                     .into(new SimpleTarget<Bitmap>() {
 
                         @Override

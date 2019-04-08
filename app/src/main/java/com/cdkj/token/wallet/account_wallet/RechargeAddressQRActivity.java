@@ -40,7 +40,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
 
-//TODO 地址显示优化WalletAddressShowActivity界面重复
+// 地址显示优化WalletAddressShowActivity界面重复
 public class RechargeAddressQRActivity extends AbsLoadActivity {
 
     private ActivityAddressQrimgShowBinding mBinding;

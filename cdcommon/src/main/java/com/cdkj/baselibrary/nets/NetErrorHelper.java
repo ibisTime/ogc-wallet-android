@@ -132,7 +132,6 @@ public class NetErrorHelper {
     }
 
 
-    //TODO 错误编号优化
 
     /**
      * @param errorCode       错误编号
@@ -173,7 +172,6 @@ public class NetErrorHelper {
 
 
     /**
-     * TODO 登录失效接口抽取
      * 重新登录
      *
      * @param context

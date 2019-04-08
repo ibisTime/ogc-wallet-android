@@ -66,7 +66,7 @@ public class MyIncomeBillModel {
     private String adjustUser;
     private String adjustNote;
     @SerializedName("adjustDate time")
-    private String _$AdjustDateTime136; // FIXME check this code
+    private String _$AdjustDateTime136;
     private String systemCode;
     private String companyCode;
     private String productName;

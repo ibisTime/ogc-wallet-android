@@ -50,6 +50,7 @@ import static com.cdkj.token.utils.LocalCoinDBUtils.getCoinIconByCoinSymbol;
  */
 public class PrivateJinMinMoneyActivity extends AbsLoadActivity {
 
+    private static String TrxAddress = "";
     private ActivityPrivateJinMinMoneyBinding mBinding;
     private RefreshHelper mRefreshHelper;
     private BalanceListModel mPrivateWalletData;
@@ -63,8 +64,8 @@ public class PrivateJinMinMoneyActivity extends AbsLoadActivity {
     @Override
     public View addMainView() {
         mBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_private_jin_min_money, null, false);
-
-        return mBinding.getRoot();
+        View view = mBinding.getRoot();
+        return view;
     }
 
     @Override
@@ -201,12 +202,17 @@ public class PrivateJinMinMoneyActivity extends AbsLoadActivity {
                     break;
                 case "1":
                     coinTypeAndAddress.setAddress(walletDBModel.getBtcAddress());
+//                    coinTypeAndAddress.setAddress("");//btc地址后台有问题 先暂时不添加  到时候  要去掉这一行啊啊啊啊
                     break;
                 case "2":
                     coinTypeAndAddress.setAddress(walletDBModel.getWanAddress());
                     break;
                 case "3":
                     coinTypeAndAddress.setAddress(walletDBModel.getUsdtAddress());
+                    break;
+                case "4":
+//                    TrxAddress = walletDBModel.getTrxAddress();
+                    coinTypeAndAddress.setAddress(walletDBModel.getTrxAddress());
                     break;
                 case "0T":
                     coinTypeAndAddress.setAddress(walletDBModel.getEthAddress());
@@ -344,6 +350,17 @@ public class PrivateJinMinMoneyActivity extends AbsLoadActivity {
                 }
 //                if (isSetRecyclerData) {
                 List<WalletBalanceModel> walletBalanceModels = checkWalletBalanceModels();
+
+
+//                WalletBalanceModel texbean1 = new WalletBalanceModel();
+//                texbean1.setCoinSymbol("TRX");
+//                texbean1.setAddress(TrxAddress);
+//                texbean1.setCoinBalance(100000+"");
+//                texbean1.setAccountNumber(10000+"");
+//                texbean1.setLocalAmount(10000+"");
+//                texbean1.setAvailableAmount(new BigDecimal(10000));
+//                walletBalanceModels.add(texbean1);
+
 //                    mRefreshHelper.setPageIndex(1);
                 mRefreshHelper.setData(walletBalanceModels, getString(R.string.no_assets), R.mipmap.order_none);
 //                }
@@ -377,6 +394,7 @@ public class PrivateJinMinMoneyActivity extends AbsLoadActivity {
                 }
             }
         }
+
         return walletBalanceModels;
     }
 }

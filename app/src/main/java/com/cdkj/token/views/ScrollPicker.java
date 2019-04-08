@@ -23,7 +23,6 @@ import java.util.List;
  * 滑动选择
  * Created by Administrator on 2016/6/28.
  */
-//TODO 循环逻辑处理
 public class ScrollPicker extends View {
 
     public interface ScrollPickerData {

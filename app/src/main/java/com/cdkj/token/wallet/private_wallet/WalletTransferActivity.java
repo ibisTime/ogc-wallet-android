@@ -21,6 +21,7 @@ import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.LogUtil;
 import com.cdkj.baselibrary.utils.PermissionHelper;
+import com.cdkj.baselibrary.utils.StringUtils;
 import com.cdkj.token.R;
 import com.cdkj.token.api.MyApi;
 import com.cdkj.token.databinding.ActivityTransferBinding;
@@ -38,6 +39,8 @@ import org.web3j.crypto.WalletUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -128,11 +131,11 @@ public class WalletTransferActivity extends AbsLoadActivity {
             UITipDialog.showInfo(this, getString(R.string.please_to_address));
             return true;
         }
-
-        if (!WalletUtils.isValidAddress(mBinding.editToAddress.getText().toString().trim())) {
-            UITipDialog.showInfo(this, getStrRes(R.string.error_wallet_address));
-            return true;
-        }
+        if (!TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX))
+            if (!WalletUtils.isValidAddress(mBinding.editToAddress.getText().toString().trim())) {
+                UITipDialog.showInfo(this, getStrRes(R.string.error_wallet_address));
+                return true;
+            }
 
         if (isSameAddressByCoin()) {
 
@@ -143,49 +146,49 @@ public class WalletTransferActivity extends AbsLoadActivity {
             UITipDialog.showInfo(this, getString(R.string.please_input_transaction_number));
             return true;
         }
+        if (!TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX))//todo 删除
+            try {
 
-        try {
+                if (accountListBean == null || TextUtils.isEmpty(accountListBean.getCoinBalance())) {
+                    UITipDialog.showInfo(this, getStrRes(R.string.no_balance));
+                    return true;
+                }
 
-            if (accountListBean == null || TextUtils.isEmpty(accountListBean.getCoinBalance())) {
-                UITipDialog.showInfo(this, getStrRes(R.string.no_balance));
-                return true;
-            }
+                BigInteger amountBigInteger = AmountUtil.bigIntegerFormat(new BigDecimal(mBinding.edtAmount.getText().toString().trim()), accountListBean.getCoinSymbol()); //转账数量
 
-            BigInteger amountBigInteger = AmountUtil.bigIntegerFormat(new BigDecimal(mBinding.edtAmount.getText().toString().trim()), accountListBean.getCoinSymbol()); //转账数量
+                if (amountBigInteger.compareTo(BigInteger.ZERO) == 0 || amountBigInteger.compareTo(BigInteger.ZERO) == -1) {
+                    UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
+                    return true;
+                }
 
-            if (amountBigInteger.compareTo(BigInteger.ZERO) == 0 || amountBigInteger.compareTo(BigInteger.ZERO) == -1) {
+                if (transferGasPrice == null) return true;
+
+                if (!LocalCoinDBUtils.isTokenCoinBySymbol(accountListBean.getCoinSymbol())) { //token币不进行手续费校验
+
+                    BigInteger allBigInteger = WalletHelper.getDeflutGasLimit().multiply(transferGasPrice).add(amountBigInteger);//手续费+转账数量
+
+                    int checkInt = allBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger()); //比较
+
+                    if (checkInt == 1) {
+                        UITipDialog.showInfo(this, getString(R.string.no_balance));
+                        return true;
+                    }
+
+                } else {
+
+                    int checkInt = amountBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger());
+
+                    if (checkInt == 1) {
+                        UITipDialog.showInfo(this, getString(R.string.no_balance));
+                        return true;
+                    }
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
                 UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
                 return true;
             }
-
-            if (transferGasPrice == null) return true;
-
-            if (!LocalCoinDBUtils.isTokenCoinBySymbol(accountListBean.getCoinSymbol())) { //token币不进行手续费校验
-
-                BigInteger allBigInteger = WalletHelper.getDeflutGasLimit().multiply(transferGasPrice).add(amountBigInteger);//手续费+转账数量
-
-                int checkInt = allBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger()); //比较
-
-                if (checkInt == 1) {
-                    UITipDialog.showInfo(this, getString(R.string.no_balance));
-                    return true;
-                }
-
-            } else {
-
-                int checkInt = amountBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger());
-
-                if (checkInt == 1) {
-                    UITipDialog.showInfo(this, getString(R.string.no_balance));
-                    return true;
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
-            return true;
-        }
         return false;
     }
 
@@ -248,6 +251,41 @@ public class WalletTransferActivity extends AbsLoadActivity {
         }
     }
 
+    private void transferTRX() {
+
+        String trxPrvKey = "";
+        WalletDBModel userWalletInfoByUsreId = WalletHelper.getUserWalletInfoByUsreId(SPUtilHelper.getUserId());
+        trxPrvKey = WalletHelper.getPrivateKeyByCoinType(userWalletInfoByUsreId, "TRX");
+        showLoadingDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("privateKey", trxPrvKey);
+        map.put("toAddress", mBinding.editToAddress.getText().toString().trim());
+        BigDecimal trxUnit = LocalCoinDBUtils.getLocalCoinUnit(WalletHelper.COIN_TRX);
+        BigInteger bigInteger = new BigDecimal(mBinding.edtAmount.getText().toString().trim()).multiply(trxUnit).toBigInteger();
+        map.put("amount", bigInteger.toString());
+        Call<BaseResponseModel<String>> baseResponseModelCall = RetrofitUtils.createApi(MyApi.class).transferTRX("802501", StringUtils.getRequestJsonString(map));
+        baseResponseModelCall.enqueue(new BaseResponseModelCallBack<String>(this) {
+            @Override
+            protected void onSuccess(String data, String SucMessage) {
+                UITipDialog.showSuccess(WalletTransferActivity.this, getString(R.string.transaction_success), dialogInterface -> finish());
+
+            }
+
+            @Override
+            protected void onReqFailure(String errorCode, String errorMessage) {
+                super.onReqFailure(errorCode, errorMessage);
+                //转账失败
+//                UITipDialog.showFail(WalletTransferActivity.this, getString(R.string.transfer_fail));
+
+            }
+
+            @Override
+            protected void onFinish() {
+                disMissLoadingDialog();
+            }
+        });
+    }
+
     /**
      * 转账操作
      */
@@ -285,7 +323,7 @@ public class WalletTransferActivity extends AbsLoadActivity {
 
         WalletDBModel w = WalletHelper.getUserWalletInfoByUsreId(SPUtilHelper.getUserId());
 
-        if (TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_WAN)) {   //TODO 转账地址优化
+        if (TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_WAN)) {   // 转账地址优化
             return WalletHelper.transferForWan(w, mBinding.editToAddress.getText().toString(), mBinding.edtAmount.getText().toString().trim(), WalletHelper.getDeflutGasLimit(), transferGasPrice);
         }
 
@@ -383,8 +421,12 @@ public class WalletTransferActivity extends AbsLoadActivity {
                         UITipDialog.showInfoNoIcon(this, getString(R.string.transaction_password_error));
                         return;
                     }
-
-                    transfer();
+                    if (TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX)) {
+                        //Trx转账先调接口
+                        transferTRX();
+                    } else {
+                        transfer();
+                    }
                 })
                 .setNegativeBtn(getStrRes(R.string.cancel), null)
                 .setContentMsg("");

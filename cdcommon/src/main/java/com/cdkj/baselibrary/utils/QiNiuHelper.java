@@ -197,7 +197,7 @@ public class QiNiuHelper {
     }
 
 
-    //TODO 多图上传优化
+    // 多图上传优化
 
     /**
      * 多图片上传

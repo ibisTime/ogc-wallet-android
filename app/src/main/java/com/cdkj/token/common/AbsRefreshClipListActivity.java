@@ -26,6 +26,7 @@ public abstract class AbsRefreshClipListActivity<T> extends AbsLoadActivity {
     @Override
     public View addMainView() {
         mRefreshBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_refresh_clip, null, false);
+
         return mRefreshBinding.getRoot();
     }
 

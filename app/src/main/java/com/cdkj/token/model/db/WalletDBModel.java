@@ -34,6 +34,9 @@ public class WalletDBModel extends DataSupport {
     public String wanTokenAddress;//地址
     public String wanTokenPrivateKey;//私钥
 
+    public String trxAddress;//波场地址
+    public String trxPrivateKey;//波场私钥
+
 
     //以下为140之前版本兼容  历史遗留问题............
     private String helpcenterEn;// 助记词 英文
@@ -199,6 +202,22 @@ public class WalletDBModel extends DataSupport {
 
     public void setWanTokenPrivateKey(String wanTokenPrivateKey) {
         this.wanTokenPrivateKey = wanTokenPrivateKey;
+    }
+
+    public String getTrxAddress() {
+        return trxAddress;
+    }
+
+    public void setTrxAddress(String trxAddress) {
+        this.trxAddress = trxAddress;
+    }
+
+    public String getTrxPrivateKey() {
+        return trxPrivateKey;
+    }
+
+    public void setTrxPrivateKey(String trxPrivateKey) {
+        this.trxPrivateKey = trxPrivateKey;
     }
 }
 

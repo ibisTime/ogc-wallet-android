@@ -275,7 +275,7 @@
     <string name="slow">Slow</string>
     <string name="create_wallet_intro_1">Attention! Theia does not store user passwords, can not provide recovery or reset unctions, passwords must be backed up well by users. Passwords are used to encrypt the private key, and strength is also important.</string>
     <string name="backup_introtation_dialog_title">Disclaimer</string>
-    <string name="backup_introtation_dialog_content">Please ensure that the wallet has been backed up safely Theia does not bear any loss of loss of wallet, stolen, forgotten password and other assets lost!</string>
+    <string name="backup_introtation_dialog_content">Please ensure that the wallet has been backed up safely KI MII does not bear any loss of loss of wallet, stolen, forgotten password and other assets lost!</string>
     <string name="my_coin_address_2">My address</string>
     <string name="sure_pay">Payment Confirmed</string>
     <string name="account_balance">Account balance</string>
@@ -777,6 +777,7 @@
     <string name="zhifubao">支付宝</string>
     <string name="invite_join">邀请您加入%s</string>
     <string name="mian_tab_assets">资产</string>
+    <string name="cion_input_message">%1$s钱包地址禁止充值除%2$s之外额其它资产,任何%3$s资产充值将不可找回</string>
 </resources>
 
 

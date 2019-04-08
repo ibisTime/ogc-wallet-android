@@ -58,7 +58,6 @@ import static com.cdkj.token.utils.LocalCoinDBUtils.getCoinIconByCoinSymbol;
  * 钱包资产
  * Created by cdkj on 2018/6/28.
  */
-//TODO 代码分离优化  请求嵌套优化
 public class WalletFragment extends BaseLazyFragment {
 
     public static final String HIND_SIGN = "****"; // 隐藏金额

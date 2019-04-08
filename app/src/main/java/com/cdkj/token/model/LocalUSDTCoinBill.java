@@ -35,7 +35,7 @@ public class LocalUSDTCoinBill implements Parcelable {
     private BigDecimal amount;
     private int block;
     private String blockHash;
-    private int blockTime;
+    private long blockTime;
     private int confirmations;
     private String divisible;
     private BigDecimal fee;
@@ -106,11 +106,11 @@ public class LocalUSDTCoinBill implements Parcelable {
         this.blockHash = blockHash;
     }
 
-    public int getBlockTime() {
+    public long getBlockTime() {
         return blockTime;
     }
 
-    public void setBlockTime(int blockTime) {
+    public void setBlockTime(long blockTime) {
         this.blockTime = blockTime;
     }
 
@@ -227,7 +227,7 @@ public class LocalUSDTCoinBill implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeInt(block);
         parcel.writeString(blockHash);
-        parcel.writeInt(blockTime);
+        parcel.writeLong(blockTime);
         parcel.writeInt(confirmations);
         parcel.writeString(divisible);
         parcel.writeString(ismine);

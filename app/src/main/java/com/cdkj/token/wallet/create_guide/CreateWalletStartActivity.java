@@ -230,7 +230,7 @@ public class CreateWalletStartActivity extends AbsLoadActivity {
 
                             WalletDBModel walletDBModel2 = WalletHelper.createAllPrivateKey();
 
-                            walletDBModel2.setWalletPassWord(pass);  //TODO 缺少BTC
+                            walletDBModel2.setWalletPassWord(pass);  // 缺少BTC
 
                             walletDBModel2.setUserId(SPUtilHelper.getUserId());
 
@@ -255,6 +255,47 @@ public class CreateWalletStartActivity extends AbsLoadActivity {
                         })
         );
 
+
     }
+
+//    /**
+//     * 保存助记词
+//     *
+//     * @param password
+//     */
+//    public void saveMnemonicWords(String password, WalletDBModel walletDBModel2) {
+//        showLoadingDialog();
+//        mSubscription.add(
+//                Observable.just(password)
+//                        .subscribeOn(Schedulers.newThread())
+//                        .map(pass -> {
+//
+////                                        WalletDBModel walletDBModel2 = WalletHelper.createAllPrivateKey(null);
+//
+//                            walletDBModel2.setWalletPassWord(pass);  //缺少BTC
+//
+//                            walletDBModel2.setUserId(SPUtilHelper.getUserId());
+//
+//                            walletDBModel2.setWalletName(mBinding.editWalletName.getText());
+//
+//                            return JSON.toJSONString(walletDBModel2); //转为String暂存 用户只有进行备份之后才会使用
+//
+//                        })
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .doOnComplete(() -> disMissLoadingDialog())
+//                        .subscribe(walletString -> {
+//                            if (!TextUtils.isEmpty(walletString)) {
+//                                SPUtilHelper.createWalletCache(walletString); //转为String暂存 用户只有进行备份之后才会使用
+//                                CreateWalletSuccessActivity.open(CreateWalletStartActivity.this);
+//                                finish();
+//                            } else {
+//                                UITipDialog.showFail(this, getString(R.string.wallet_create_fail));
+//                            }
+//                        }, throwable -> {
+//                            ToastUtil.show(this, getString(R.string.wallet_create_fail));
+//                            finish();
+//                        })
+//        );
+//    }
 
 }

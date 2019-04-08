@@ -50,6 +50,10 @@ public class WalletDBColumn {
 
     public static final String USDTPRIVATEKEY = "usdtprivatekey";
 
+    public static final String TRXADDRESS = "trxaddress";
+
+    public static final String TRXPRIVATEKEY = "trxprivatekey";
+
     public static final String CHOOSECOINIDS = "choosecoins";
 
     public static final String ISCHOOSED = "ischoosed";

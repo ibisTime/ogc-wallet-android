@@ -314,6 +314,7 @@ public class MainActivity extends BaseActivity {
             protected void onSuccess(List<NavigationBean> data, String SucMessage) {
                 NavigationDBUtils.updateNavigationList(data);
                 EventBus.getDefault().post("更新布局");
+
             }
 
             @Override

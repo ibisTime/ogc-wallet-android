@@ -225,6 +225,7 @@ public class BillListActivity extends AbsLoadActivity {
                         .setTitle("请先进行实名认证")
                         .setNegativeBtn("取消", null)
                         .setPositiveBtn("确定", view1 -> {
+//                            WithdrawActivity.open(this, mAccountBean);
                             IdentityVerificationUtils identityVerificationUtils = new IdentityVerificationUtils();
                             permissionHelper = identityVerificationUtils.start(this);
                         })

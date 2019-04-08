@@ -26,8 +26,8 @@ import static com.cdkj.baselibrary.nets.NetErrorHelper.getThrowableStateString;
 
 /**
  * Retrofit帮助类
+ * 网络请求处理接口抽取
  */
-//TODO 网络请求处理接口抽取
 public class RxTransformerHelper {
 
     /**

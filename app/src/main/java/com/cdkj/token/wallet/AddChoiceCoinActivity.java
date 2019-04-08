@@ -28,7 +28,6 @@ import java.util.Map;
 import retrofit2.Call;
 
 /**
- * //TODO 资产配置数据存取优化
  * 资产配置
  * Created by cdkj on 2018/5/25.
  */

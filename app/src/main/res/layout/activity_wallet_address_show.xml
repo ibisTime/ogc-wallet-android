@@ -31,7 +31,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="BTC钱包地址禁止充值除BTC之外额其它资产,任何BTC资产充值将不可找回"
+                    android:text="@string/cion_input_message"
                     android:textColor="#F59218"
                     android:textSize="12sp" />
 

@@ -53,7 +53,7 @@ import static com.cdkj.token.utils.LocalCoinDBUtils.isUSDT;
 import static com.cdkj.token.utils.wallet.WalletHelper.COIN_BTC;
 
 /**
- * TODO  一键划转 每个币种的操作都一样但是由于不同币种的判断条件不一致和数据源不一致导致结构混乱 需要重构
+ * 一键划转 每个币种的操作都一样但是由于不同币种的判断条件不一致和数据源不一致导致结构混乱 需要重构
  * Created by cdkj on 2018/9/10.
  */
 
@@ -510,7 +510,7 @@ public class SmartTransferActivity extends AbsLoadActivity implements SmartTrans
 
 
     /**
-     * //TODO 余额+手续费检测
+     * 余额+手续费检测
      *
      * @return
      */

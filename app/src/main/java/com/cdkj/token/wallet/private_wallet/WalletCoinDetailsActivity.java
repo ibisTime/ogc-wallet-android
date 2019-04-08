@@ -16,6 +16,7 @@ import com.cdkj.baselibrary.base.AbsLoadActivity;
 import com.cdkj.baselibrary.dialog.UITipDialog;
 import com.cdkj.baselibrary.interfaces.BaseRefreshCallBack;
 import com.cdkj.baselibrary.nets.BaseResponseModelCallBack;
+import com.cdkj.baselibrary.nets.NetErrorHelper;
 import com.cdkj.baselibrary.nets.NetUtils;
 import com.cdkj.baselibrary.nets.RetrofitUtils;
 import com.cdkj.baselibrary.utils.RefreshHelper;
@@ -34,6 +35,7 @@ import com.cdkj.token.model.CoinTypeAndAddress;
 import com.cdkj.token.model.LocalCoinBill;
 import com.cdkj.token.model.LocalEthTokenCoinBill;
 import com.cdkj.token.model.LocalUSDTCoinBill;
+import com.cdkj.token.model.TRXTransferListBean;
 import com.cdkj.token.model.TransferSuccessEvent;
 import com.cdkj.token.model.WalletBalanceModel;
 import com.cdkj.token.utils.AmountUtil;
@@ -49,6 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.cdkj.token.utils.AmountUtil.ALLSCALE;
@@ -57,7 +60,7 @@ import static com.cdkj.token.utils.AmountUtil.ALLSCALE;
  * 去中心化钱包币种详情
  * Created by cdkj on 2018/6/8.
  */
-//TODO 本地币种适配器请求抽象抽取
+// 本地币种适配器请求抽象抽取
 public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
     private ActivityWalletBillBinding mBinding;
@@ -99,7 +102,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
         isPastBtc = getIntent().getBooleanExtra(CdRouteHelper.DATASIGN2, false);
         accountListBean = getIntent().getParcelableExtra(CdRouteHelper.DATASIGN);
-            //设置标题
+        //设置标题
         if (accountListBean != null) {
 //            mBaseBinding.titleView.setMidTitle(accountListBean.getCoinSymbol());
 //            ImgUtils.loadCircleImg(WalletCoinDetailsActivity.this, accountListBean.getCoinImgUrl(), mBinding.ivIcon);
@@ -213,6 +216,13 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
                     getUSDTBillRequest(pageindex, limit, isShowDialog);
 
+                } else if (isTRX()) {
+                    //这个的分页是  1-10  10-20  20-30
+                    if (pageindex == 1) {
+                        getTRXBillRequest(pageindex, limit, isShowDialog);
+                    } else {
+                        getTRXBillRequest(limit, pageindex * limit, isShowDialog);
+                    }
                 } else {                                                                //其它币种
                     getBillRequest(pageindex, limit, isShowDialog);
                 }
@@ -434,6 +444,89 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
     }
 
     /**
+     * 获取波场流水
+     *
+     * @param pageindex
+     * @param limit
+     * @param isShowDialog
+     */
+    public void getTRXBillRequest(int pageindex, int limit, boolean isShowDialog) {
+        Call<TRXTransferListBean> trxTransferList = RetrofitUtils.getOtherInstance().create(MyApi.class).getTRXTransferList(accountListBean.getAddress(), pageindex, limit);
+        addCall(trxTransferList);
+
+        if (isShowDialog) showLoadingDialog();
+        trxTransferList.enqueue(new Callback<TRXTransferListBean>() {
+            @Override
+            public void onResponse(Call<TRXTransferListBean> call, Response<TRXTransferListBean> response) {
+                disMissLoadingDialog();
+                if (response == null || response.body() == null) {
+                    return;
+                }
+                List<LocalCoinBill> list = new ArrayList<>();
+                if (response.isSuccessful()) {
+                    TRXTransferListBean body = response.body();
+                    if (body != null && body.getData() != null && body.getData().size() > 0) {
+                        List<TRXTransferListBean.DataBean> data = body.getData();
+
+                        for (TRXTransferListBean.DataBean datum : data) {
+                            LocalCoinBill localCoinBill = new LocalCoinBill();
+                            localCoinBill.setTxHash(datum.getHash());
+
+                            if (TextUtils.equals(accountListBean.getAddress(), datum.getOwnerAddress())) {
+                                localCoinBill.setDirection("0");
+                            } else {
+                                localCoinBill.setDirection("1");
+
+                            }
+//                            localCoinBill.setHeight();
+                            localCoinBill.setFrom(datum.getOwnerAddress());
+                            localCoinBill.setTo(datum.getToAddress());
+                            localCoinBill.setValue(datum.getContractData() != null ? datum.getContractData().getAmount() : new BigDecimal(0));
+                            localCoinBill.setTxFee(datum.getContractData() != null ? datum.getContractData().getAmount() : new BigDecimal(0));
+//                            localCoinBill.setTransDatetime(datum.getTimestamp() + "");
+                            list.add(localCoinBill);
+
+//                            LocalUSDTCoinBill localUSDTCoinBill = new LocalUSDTCoinBill();
+//                            localUSDTCoinBill.setAmount(datum.getContractData() != null ? datum.getContractData().getAmount() : new BigDecimal(0));
+//                            localUSDTCoinBill.setBlock(datum.getBlock());
+//                            localUSDTCoinBill.setBlockHash(datum.getHash());
+//                            localUSDTCoinBill.setBlockTime(datum.getTimestamp());
+//                            localUSDTCoinBill.setConfirmations(datum.isConfirmed() ? 1 : 0);
+//                            localUSDTCoinBill.setDivisible("");
+//                            localUSDTCoinBill.setFee(new BigDecimal(datum.getFee()));
+//                            localUSDTCoinBill.setIsmine("");
+//                            localUSDTCoinBill.setPositioninBlock(0);
+//                            localUSDTCoinBill.setPropertyId(0);
+//                            localUSDTCoinBill.setPropertyName("");
+//                            localUSDTCoinBill.setSendingAddress(datum.getToAddress());
+//                            localUSDTCoinBill.setTxid("");
+//                            localUSDTCoinBill.setType(datum.getContractType() + "");
+//                            localUSDTCoinBill.setTypeInt(datum.getContractType());
+//                            localUSDTCoinBill.setVaild("");
+//                            localUSDTCoinBill.setReferenceAddress(datum.getOwnerAddress());
+
+                        }
+
+                        mRefreshHelper.setData(list, getString(R.string.no_record), R.mipmap.order_none);
+
+                    } else {
+                        mRefreshHelper.setData(list, getString(R.string.no_record), R.mipmap.order_none);
+                    }
+                } else {
+                    mRefreshHelper.setData(list, getString(R.string.no_record), R.mipmap.order_none);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TRXTransferListBean> call, Throwable t) {
+                disMissLoadingDialog();
+                NetErrorHelper.onReqFailure(WalletCoinDetailsActivity.this, "999", t.getMessage());
+            }
+        });
+
+    }
+
+    /**
      * 获取流水
      *
      * @param pageindex
@@ -495,6 +588,18 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
             return false;
         }
         return TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_USDT);
+    }
+
+    /**
+     * 判断当前所属是否波场币
+     *
+     * @return
+     */
+    public boolean isTRX() {
+        if (accountListBean == null) {
+            return false;
+        }
+        return TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX);
     }
 
     /**

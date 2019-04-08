@@ -65,6 +65,7 @@ import com.cdkj.token.model.SymbolPriceModel;
 import com.cdkj.token.model.SystemMessageModel;
 import com.cdkj.token.model.SystemParameterListModel;
 import com.cdkj.token.model.SystemParameterModel;
+import com.cdkj.token.model.TRXTransferListBean;
 import com.cdkj.token.model.TradeTypeBean;
 import com.cdkj.token.model.TrustModel;
 import com.cdkj.token.model.TxHashModel;
@@ -88,6 +89,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 /**
@@ -933,7 +935,8 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<UserBankCardModel>> getBankData(@Field("code") String code, @Field("json") String json);
-   /**
+
+    /**
      * 获取用户绑定的银行卡数据 列表
      *
      * @param code
@@ -1049,7 +1052,8 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<MoneyTransactionTypeModel>> getMoneyTransactionType(@Field("code") String code, @Field("json") String json);
- /**
+
+    /**
      * 获取钱包交易记录里面的  筛选数据
      *
      * @return
@@ -1057,7 +1061,8 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<ResponseInListModel<DAppModel>>> getDAppList(@Field("code") String code, @Field("json") String json);
- /**
+
+    /**
      * 获取钱包交易记录里面的  筛选数据
      *
      * @return
@@ -1065,6 +1070,7 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<DAppModel>> getDApp(@Field("code") String code, @Field("json") String json);
+
     /**
      * 获取金米福分数据
      *
@@ -1086,7 +1092,8 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseListModel<TradeTypeBean>> getTradeType(@Field("code") String code, @Field("json") String json);
- /**
+
+    /**
      * 获取金米福分数据
      *
      * @param code
@@ -1096,5 +1103,35 @@ public interface MyApi {
     @FormUrlEncoded
     @POST("api")
     Call<BaseResponseModel<JinmiTeamBean>> getJinmiTeam(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 2701 创建(TRX)波场的地址
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<String>> createTRXAddress(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 2701 创建(TRX)波场的地址
+     *
+     * @param code
+     * @param json
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("api")
+    Call<BaseResponseModel<String>> transferTRX(@Field("code") String code, @Field("json") String json);
+
+    /**
+     * 获取trx交易流水
+     *
+     * @return
+     */
+    @GET("api/transaction")
+    Call<TRXTransferListBean> getTRXTransferList(@Query("address") String address, @Query("start") int start, @Query("limit") int limit);
 
 }
