@@ -187,7 +187,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
                     return getBTCBillListAdapter(listData);
                 }
 
-                if (accountListBean != null && LocalCoinDBUtils.isEthTokenCoinByName(accountListBean.getCoinSymbol())) { //ETH token币
+                if (accountListBean != null && LocalCoinDBUtils.isEthTokenCoinByName(accountListBean.getCoinSymbol())||TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_KCC)) { //ETH token币
                     return getEthTokenCoinDetailsListAdapter(listData);
                 }
 
@@ -208,7 +208,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
 
                     getBTCBillRequest(pageindex, limit, isShowDialog);
 
-                } else if (LocalCoinDBUtils.isEthTokenCoinByName(accountListBean.getCoinSymbol())) { //ETH token币
+                } else if (LocalCoinDBUtils.isEthTokenCoinByName(accountListBean.getCoinSymbol()) || TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_KCC)) { //ETH token币
 
                     getEthTokenCoinBillList(pageindex, limit, isShowDialog);
 
@@ -219,7 +219,7 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
                 } else if (isTRX()) {
                     //这个的分页是  1-10  10-20  20-30
                     if (pageindex == 1) {
-                        getTRXBillRequest(pageindex, limit, isShowDialog);
+                        getTRXBillRequest(pageindex - 1, limit, isShowDialog);
                     } else {
                         getTRXBillRequest(limit, pageindex * limit, isShowDialog);
                     }
@@ -478,12 +478,12 @@ public class WalletCoinDetailsActivity extends AbsLoadActivity {
                                 localCoinBill.setDirection("1");
 
                             }
-//                            localCoinBill.setHeight();
+                            localCoinBill.setHeight(datum.getBlock());
                             localCoinBill.setFrom(datum.getOwnerAddress());
                             localCoinBill.setTo(datum.getToAddress());
                             localCoinBill.setValue(datum.getContractData() != null ? datum.getContractData().getAmount() : new BigDecimal(0));
                             localCoinBill.setTxFee(datum.getContractData() != null ? datum.getContractData().getAmount() : new BigDecimal(0));
-//                            localCoinBill.setTransDatetime(datum.getTimestamp() + "");
+                            localCoinBill.setTransDatetime(datum.getTimestamp() + "");
                             list.add(localCoinBill);
 
 //                            LocalUSDTCoinBill localUSDTCoinBill = new LocalUSDTCoinBill();

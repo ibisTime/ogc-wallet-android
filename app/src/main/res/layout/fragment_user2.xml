@@ -298,14 +298,13 @@
                                 android:textSize="14sp" />
 
                             <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:background="@mipmap/more" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:background="@mipmap/more" />
 
                         </LinearLayout>
                     </LinearLayout>
-
 
                 </android.support.v7.widget.CardView>
 

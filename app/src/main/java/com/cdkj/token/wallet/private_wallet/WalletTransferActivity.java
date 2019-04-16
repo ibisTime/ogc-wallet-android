@@ -146,49 +146,49 @@ public class WalletTransferActivity extends AbsLoadActivity {
             UITipDialog.showInfo(this, getString(R.string.please_input_transaction_number));
             return true;
         }
-        if (!TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX))//todo 删除
-            try {
+//        if (!TextUtils.equals(accountListBean.getCoinSymbol(), WalletHelper.COIN_TRX))//todo 删除
+        try {
 
-                if (accountListBean == null || TextUtils.isEmpty(accountListBean.getCoinBalance())) {
-                    UITipDialog.showInfo(this, getStrRes(R.string.no_balance));
-                    return true;
-                }
+            if (accountListBean == null || TextUtils.isEmpty(accountListBean.getCoinBalance())) {
+                UITipDialog.showInfo(this, getStrRes(R.string.no_balance));
+                return true;
+            }
 
-                BigInteger amountBigInteger = AmountUtil.bigIntegerFormat(new BigDecimal(mBinding.edtAmount.getText().toString().trim()), accountListBean.getCoinSymbol()); //转账数量
+            BigInteger amountBigInteger = AmountUtil.bigIntegerFormat(new BigDecimal(mBinding.edtAmount.getText().toString().trim()), accountListBean.getCoinSymbol()); //转账数量
 
-                if (amountBigInteger.compareTo(BigInteger.ZERO) == 0 || amountBigInteger.compareTo(BigInteger.ZERO) == -1) {
-                    UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
-                    return true;
-                }
-
-                if (transferGasPrice == null) return true;
-
-                if (!LocalCoinDBUtils.isTokenCoinBySymbol(accountListBean.getCoinSymbol())) { //token币不进行手续费校验
-
-                    BigInteger allBigInteger = WalletHelper.getDeflutGasLimit().multiply(transferGasPrice).add(amountBigInteger);//手续费+转账数量
-
-                    int checkInt = allBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger()); //比较
-
-                    if (checkInt == 1) {
-                        UITipDialog.showInfo(this, getString(R.string.no_balance));
-                        return true;
-                    }
-
-                } else {
-
-                    int checkInt = amountBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger());
-
-                    if (checkInt == 1) {
-                        UITipDialog.showInfo(this, getString(R.string.no_balance));
-                        return true;
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (amountBigInteger.compareTo(BigInteger.ZERO) == 0 || amountBigInteger.compareTo(BigInteger.ZERO) == -1) {
                 UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
                 return true;
             }
+
+            if (transferGasPrice == null) return true;
+
+            if (!LocalCoinDBUtils.isTokenCoinBySymbol(accountListBean.getCoinSymbol())) { //token币不进行手续费校验
+
+                BigInteger allBigInteger = WalletHelper.getDeflutGasLimit().multiply(transferGasPrice).add(amountBigInteger);//手续费+转账数量
+
+                int checkInt = allBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger()); //比较
+
+                if (checkInt == 1) {
+                    UITipDialog.showInfo(this, getString(R.string.no_balance));
+                    return true;
+                }
+
+            } else {
+
+                int checkInt = amountBigInteger.compareTo(new BigDecimal(accountListBean.getCoinBalance()).toBigInteger());
+
+                if (checkInt == 1) {
+                    UITipDialog.showInfo(this, getString(R.string.no_balance));
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            UITipDialog.showInfo(this, getString(R.string.please_correct_transaction_number));
+            return true;
+        }
         return false;
     }
 

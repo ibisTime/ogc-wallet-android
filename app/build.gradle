@@ -45,7 +45,7 @@ android {
         applicationId "com.cdkj.wallet"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 2
+        versionCode 3
         versionName "1.1.0"
         flavorDimensions "1"
 
@@ -91,14 +91,14 @@ android {
         }
 
         devtest {
-            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "boolean", "IS_DEBUG", "true"
             buildConfigField "String", "umeng", "\"5b73d987a40fa33a1e00017e\""
             minifyEnabled false
         }
 
         debug {
             signingConfig signingConfigs.config
-            buildConfigField "boolean", "IS_DEBUG", "false"
+            buildConfigField "boolean", "IS_DEBUG", "true"
             buildConfigField "String", "umeng", "\"5b73d987a40fa33a1e00017e\""
             minifyEnabled false
         }

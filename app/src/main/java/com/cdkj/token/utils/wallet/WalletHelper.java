@@ -107,6 +107,7 @@ import static com.cdkj.token.utils.wallet.WalletDBColumn.WALLET_NAME;
 // 转账方法流程逻辑封装 除了单币种转账 还有一键划转， 如果逻辑改变，需要修改好几处地方，不方便
 public class WalletHelper {
 
+
     //助记词分隔符
     public final static String HELPWORD_SPACE_SYMBOL = ",";
 
@@ -122,6 +123,7 @@ public class WalletHelper {
     public final static String COIN_BTC = "BTC";// 币种类型 BTC
     public final static String COIN_USDT = "USDT";// 币种类型 USDT
     public final static String COIN_TRX = "TRX";// 币种类型 USDT
+    public final static String COIN_KCC = "KCC";// 币种类型 USDT
 
 
     //ETH 节点地址

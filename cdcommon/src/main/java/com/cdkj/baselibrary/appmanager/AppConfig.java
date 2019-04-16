@@ -100,10 +100,12 @@ public class AppConfig {
      * @return
      */
     public static int getThisNodeType() {
-        if (LogUtil.isLog) {
-            return NODE_DEV;
-        }
+        //todo   去掉  下面打开
         return NODE_REALSE;
+//        if (LogUtil.isLog) {
+//            return NODE_DEV;
+//        }
+//        return NODE_REALSE;
     }
 
     /**

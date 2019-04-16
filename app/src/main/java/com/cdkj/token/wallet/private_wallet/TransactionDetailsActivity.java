@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.cdkj.baselibrary.activitys.WebViewActivity;
@@ -70,7 +71,11 @@ public class TransactionDetailsActivity extends AbsLoadActivity {
         mBinding.tvViewMore.setOnClickListener(view -> {
 
             if (localCoinBill != null) {
-                WebViewActivity.openURL(this, getString(R.string.transaction_details), WalletHelper.getBrowserUrlByCoinType(coinType) + localCoinBill.getTxHash());
+                if (TextUtils.equals(coinType, WalletHelper.COIN_TRX)) {
+                    WebViewActivity.openURL(this, getString(R.string.transaction_details), "https://tronscan.org/#/transaction/" + localCoinBill.getTxHash());
+                } else {
+                    WebViewActivity.openURL(this, getString(R.string.transaction_details), WalletHelper.getBrowserUrlByCoinType(coinType) + localCoinBill.getTxHash());
+                }
             }
         });
     }
@@ -103,8 +108,11 @@ public class TransactionDetailsActivity extends AbsLoadActivity {
             mBinding.tvBlockHeight.setText(localCoinBill.getHeight() + "");
         }
 
-
-        mBinding.tvDate.setText(DateUtil.formatStringData(localCoinBill.getTransDatetime(), DEFAULT_DATE_FMT));
+        if (TextUtils.equals(WalletHelper.COIN_TRX, coinType)) {
+            mBinding.tvDate.setText(DateUtil.formatIntegerData(Long.parseLong(localCoinBill.getTransDatetime()), DEFAULT_DATE_FMT));
+        } else {
+            mBinding.tvDate.setText(DateUtil.formatStringData(localCoinBill.getTransDatetime(), DEFAULT_DATE_FMT));
+        }
         mBinding.tvGas.setText(AmountUtil.transformFormatToString(localCoinBill.getTxFee(), this.coinType, ALLSCALE));
         mBinding.tvTransctionCode.setText(localCoinBill.getTxHash());
 

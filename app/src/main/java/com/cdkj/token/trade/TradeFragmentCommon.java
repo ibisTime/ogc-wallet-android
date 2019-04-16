@@ -110,6 +110,7 @@ public class TradeFragmentCommon extends BaseLazyFragment implements IdentifyInt
         fragment.setArguments(bundle);
         return fragment;
     }
+
     /**
      * 获得fragment实例
      *
@@ -125,11 +126,20 @@ public class TradeFragmentCommon extends BaseLazyFragment implements IdentifyInt
 
     @Override
     protected void lazyLoad() {
-
+        if (mActivity != null) {
+            starttimer();
+            getSymbolList();
+        }
+        LogUtil.E("pppppp  lazyLoad" + "币种为" + symbol + getUserVisibleHint());
     }
 
     @Override
     protected void onInvisible() {
+        if (subscribe != null) {
+            subscribe.dispose();
+            subscribe = null;
+        }
+        LogUtil.E("pppppp  onInvisible" + "币种为" + symbol + getUserVisibleHint());
 
     }
 
@@ -137,8 +147,8 @@ public class TradeFragmentCommon extends BaseLazyFragment implements IdentifyInt
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(mActivity.getLayoutInflater(), R.layout.fragment_trade, null, false);
-        if (getArguments()!=null) {
-            symbol=getArguments().getString("symbol");
+        if (getArguments() != null) {
+            symbol = getArguments().getString("symbol");
         }
         mGetUserInfoPresenter = new UserInfoPresenter(this, mActivity);
         // 用于 edittext  输入时显示在 键盘上方
@@ -152,8 +162,8 @@ public class TradeFragmentCommon extends BaseLazyFragment implements IdentifyInt
         initMinCnyAmount();
         initClickListener();
 
-        starttimer();
-        getSymbolList();
+//        starttimer();
+//        getSymbolList();
 
         return mBinding.getRoot();
 
@@ -838,34 +848,23 @@ public class TradeFragmentCommon extends BaseLazyFragment implements IdentifyInt
     //************身份证实名认证回调
 
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        if (mActivity != null) {
+//            starttimer();
+//            getSymbolList();
+//        }
+//    }
 
-        LogUtil.E("pppppp2   isVisibleToUser值为:" + isVisibleToUser);
-        LogUtil.E("pppppp2   getUserVisibleHint()值为:" + getUserVisibleHint());
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.E("pppppp开始请求数据USDT");
-        if (mActivity != null) {
-            starttimer();
-            getSymbolList();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.E("pppppp结束请求数据USDT");
-        if (subscribe != null) {
-            subscribe.dispose();
-            subscribe = null;
-        }
-    }
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        if (subscribe != null) {
+//            subscribe.dispose();
+//            subscribe = null;
+//        }
+//    }
 
     /**
      * 选择银行卡的回调

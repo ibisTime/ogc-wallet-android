@@ -42,7 +42,13 @@ public class CoinBillListAdapter extends BaseQuickAdapter<LocalCoinBill, BaseVie
     protected void convert(BaseViewHolder helper, LocalCoinBill item) {
         if (item == null) return;
 
-        helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getTransDatetime(), DATE_MMddHHmm));
+        try {
+            long loon = Long.parseLong(item.getTransDatetime());
+            helper.setText(R.id.tv_time, DateUtil.formatIntegerData(loon, DateUtil.DEFAULT_DATE_FMT));
+        } catch (Exception ex) {
+            helper.setText(R.id.tv_time, DateUtil.formatStringData(item.getTransDatetime(), DATE_MMddHHmm));
+        }
+
         helper.setImageResource(R.id.iv_type, getPrivateCoinStataIconByState(item.getDirection()));
 
         String amountString = AmountUtil.transformFormatToString(item.getValue(), coinUnit, ALLSCALE) + " " + this.coinSymbol;

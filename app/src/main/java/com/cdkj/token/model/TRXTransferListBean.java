@@ -59,7 +59,7 @@ public class TRXTransferListBean {
          * fee :
          */
 
-        private int block;
+        private long block;
         private String hash;
         private long timestamp;
         private String ownerAddress;
@@ -73,11 +73,11 @@ public class TRXTransferListBean {
         private String data;
         private String fee;
 
-        public int getBlock() {
+        public long getBlock() {
             return block;
         }
 
-        public void setBlock(int block) {
+        public void setBlock(long block) {
             this.block = block;
         }
 

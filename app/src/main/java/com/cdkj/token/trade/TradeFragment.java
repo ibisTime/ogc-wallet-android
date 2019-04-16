@@ -137,25 +137,4 @@ public class TradeFragment extends BaseLazyFragment {
     protected void onInvisible() {
 
     }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-        LogUtil.E("pppppp1   isVisibleToUser值为:" + isVisibleToUser);
-        LogUtil.E("pppppp1   getUserVisibleHint()值为:" + getUserVisibleHint());
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        LogUtil.E("pppppp获取焦点了");
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        LogUtil.E("pppppp失去焦点了");
-    }
 }
